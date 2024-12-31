@@ -44,6 +44,8 @@ With a soul ablaze with passion, I am innately driven to surpass my limits, disd
 
 6. Engage in impactful projects.
 
-7. Keep fit.
+7. Read some new books.
+
+8. Keep fit.
 
 I am committed to persisting in scientific research, contributing to my dreams, and the construction of my homeland.
