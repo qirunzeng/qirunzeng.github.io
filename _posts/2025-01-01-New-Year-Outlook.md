@@ -30,7 +30,7 @@ However, I also realized that I've spent an excessive amount of time on computer
 
 **Embracing the Future with Enthusiasm**
 
-With a soul ablaze with passion, I am innately driven to surpass my limits, disdainful of the constraints of traditional boundaries, and drawn to the allure of new horizons. In 2025, I am set to journey to Hong Kong to complete my Ph.D. Now, I am poised to set several goals for myself:
+With a soul ablaze with passion, I am innately driven to surpass my limits, disdainful of the constraints of traditional boundaries, and captivated by the allure of distant fragrances. In 2025, I am set to journey to Hong Kong to complete my Ph.D. Now, I am poised to set several goals for myself:
 
 1. Publish a research paper.
 
