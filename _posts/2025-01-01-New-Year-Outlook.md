@@ -16,7 +16,7 @@ As the new year dawns, it's a time-honored tradition to pen down our plans and r
 
 In the year gone by, I've accomplished quite a few things:
 
-1. I served as a teaching assistant for courses such as "Data Structures and Algorithms" and "Computer Programming A." Additionally, I briefly acted as a teaching assistant for "Mathematical Analysis B1," which is also worth considering.
+1. I served as a teaching assistant for courses such as "Data Structure and Algorithm" and "Computer Programming A." Additionally, I briefly acted as a teaching assistant for "Mathematical Analysis B1," which is also worth considering.
 
 2. I embarked on a scientific research journey as a junior research assistant at CUHK. Although my contributions were modest, I discovered a deep passion for research and have decided to dedicate the rest of my life to it.
 
