@@ -1,5 +1,5 @@
 ---
-title: 'New Year\'s Outlook'
+title: 'New Year Outlook'
 date: 2025-01-01
 permalink: /posts/2025/01/New-Year-Outlook/
 tags:
