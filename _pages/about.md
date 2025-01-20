@@ -26,7 +26,7 @@ He will soon be a Ph.D. student at CityUHK, supervised by Professor [Jinhang Zuo
 Contact me
 =====
 
-Just feel free to contact me via e-mail in the sidebar.
+Just feel free to contact me via [zqr01zqr@mail.ustc.edu.cn](mailto:zqr01zqr@mail.ustc.edu.cn) or [qirunzeng@gmail.com](mailto:qirunzeng@gmail.com).
 
 **Contest account**
 
