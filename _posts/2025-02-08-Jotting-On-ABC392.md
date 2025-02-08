@@ -1,6 +1,6 @@
 ---
 title: 'Jotting On AtCoder Beginner Contest 392'
-date: 2024-02-08
+date: 2025-02-08
 permalink: /posts/2024/11/Jotting-On-ABC392/
 tags:
   - Algorithm
