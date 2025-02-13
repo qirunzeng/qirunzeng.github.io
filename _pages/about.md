@@ -9,7 +9,14 @@ redirect_from:
 
 **Welcome here!**
 
-This is my personal homepage and blog, and I will record some of my thoughts as I like.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+deserunt mollit anim id est laborum.
 
 Bio
 =====
@@ -26,8 +33,8 @@ He will soon be a Ph.D. student at CityUHK, supervised by Professor [Jinhang Zuo
 Contact me
 =====
 
-Just feel free to contact me via [zqr01zqr@mail.ustc.edu.cn](mailto:zqr01zqr@mail.ustc.edu.cn) or [qirunzeng@gmail.com](mailto:qirunzeng@gmail.com).
+Just feel free to contact me via [qirunzeng@gmail.com](mailto:qirunzeng@gmail.com).
 
 **Contest account**
 
-> [clist.by/coder/rewinery](https://clist.by/coder/rewinery)
+See [clist.by/coder/rewinery](https://clist.by/coder/rewinery)
