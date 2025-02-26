@@ -1,7 +1,7 @@
 ---
 title: 'Fibonacci and its generating function'
 date: 2025-02-26
-permalink: /posts/2024/11/Fibonacci/
+permalink: /posts/2025/02/Fibonacci/
 tags:
   - Math
 ---
@@ -17,6 +17,8 @@ $$
     $$
     \mathscr F (z) = z + z \mathscr F (z) + z^2 \mathscr F(z)
     $$
+    where $
+    \phi = \frac{1+\sqrt{5}}{2}$ and $\hat \phi = \frac{1 - \sqrt{5}}{2} $.
 
     We know that 
     $$
@@ -46,15 +48,8 @@ $$
     $$
     \mathscr F(z) = \sum_{i = 0}^{\infty} \frac{1}{\sqrt{5}} (\phi^i - \hat{\phi}^i) z
     $$
-    where
-    $$
-    \phi = \frac{1+\sqrt{5}}{2}, \quad \hat \phi = \frac{1 - \sqrt{5}}{2}
-    $$
 
-    We can derive from
-    $$
-    F_x = F_{x-1} + F_{x-2}
-    $$
+    We can derive from $ F_x = F_{x-1} + F_{x-2} $
     that
     $$
     \begin{aligned}

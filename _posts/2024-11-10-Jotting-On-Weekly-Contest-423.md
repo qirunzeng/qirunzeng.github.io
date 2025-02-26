@@ -1,7 +1,7 @@
 ---
 title: 'Jotting On Weekly Contest 423'
 date: 2024-10-20
-permalink: /posts/2024/11/Jotting-On-Weekly-Contest-423/
+permalink: /posts/2024/10/Jotting-On-Weekly-Contest-423/
 tags:
   - algorithm
   - LeetCode
