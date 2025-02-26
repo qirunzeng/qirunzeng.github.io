@@ -47,7 +47,7 @@ $$
     \mathscr F (z) = \frac{z}{1 - z - z^2} = \frac{z}{(1 - \phi z)(1 - \hat\phi z)} = \frac{1}{\sqrt{5}} \left( \frac{1}{1 - \phi z} - \frac{1}{1 - \hat\phi z} \right)
     $$
 
-    By working the equality in problem 1.
+    By working the equation in problem 1.
 
 3. Prove that 
     
