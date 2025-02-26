@@ -61,16 +61,10 @@ $$
     \end{aligned}
     $$
 
-    then we have:
+    by working out the above equations we have:
     
     $$
-    \sqrt{5} F_{x-1} = \frac{(1+\sqrt{5})^{x-1} - (1 - \sqrt{5})^{x-1}}{2^{x-1}}
-    $$
-    
-    i.e.
-    
-    $$
-    F_{x} = \frac{(1+\sqrt{5})^x - (1 - \sqrt{5})^{x}}{2^x\sqrt{5}}
+    F_{x} = \frac{(1+\sqrt{5})^x - (1 - \sqrt{5})^x}{2^x\sqrt{5}}
     $$
 
 All that remains is the problem of finding the convergence domain of this function, which I will work out afterwards.
