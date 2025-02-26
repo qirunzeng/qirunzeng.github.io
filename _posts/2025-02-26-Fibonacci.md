@@ -19,7 +19,11 @@ $$
     \mathscr F (z) = z + z \mathscr F (z) + z^2 \mathscr F(z)
     $$
     
-    where $\phi = \frac{1+\sqrt{5}}{2}$ and $\hat \phi = \frac{1 - \sqrt{5}}{2}$.
+    where 
+    
+    $$
+    \phi = \frac{1+\sqrt{5}}{2}\text{ and }\hat \phi = \frac{1 - \sqrt{5}}{2}
+    $$
 
     We know that 
     $$
