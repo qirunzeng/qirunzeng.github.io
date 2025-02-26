@@ -14,11 +14,12 @@ $$
 $$
 
 1. Prove that the following equation holds for some $z$
+    
     $$
     \mathscr F (z) = z + z \mathscr F (z) + z^2 \mathscr F(z)
     $$
-    where $
-    \phi = \frac{1+\sqrt{5}}{2}$ and $\hat \phi = \frac{1 - \sqrt{5}}{2} $.
+    
+    where $\phi = \frac{1+\sqrt{5}}{2}$ and $\hat \phi = \frac{1 - \sqrt{5}}{2}$.
 
     We know that 
     $$
@@ -45,25 +46,31 @@ $$
     By working the equality in problem 1.
 
 3. Prove that 
+    
     $$
     \mathscr F(z) = \sum_{i = 0}^{\infty} \frac{1}{\sqrt{5}} (\phi^i - \hat{\phi}^i) z
     $$
 
     We can derive from $ F_x = F_{x-1} + F_{x-2} $
     that
+    
     $$
     \begin{aligned}
     F_x + \frac{\sqrt{5}-1}{2} F_{x-1} =& {\left(\frac{1+\sqrt{5}}{2}\right)}^{x-1} \\
     F_x - \frac{\sqrt{5}+1}{2} F_{x-1} =& {\left(\frac{1-\sqrt{5}}{2}\right)}^{x-1}
     \end{aligned}
     $$
+
     then we have:
+    
     $$
     \sqrt{5} F_{x-1} = \frac{{(1+\sqrt{5})}^{x-1} - {(1 - \sqrt{5})}^{x-1}}{2^{x-1}}
     $$
+    
     i.e.
+    
     $$
-    F_{x} = \frac{{(1+\sqrt{5})}^{x} - {(1 - \sqrt{5})}^{x}}{2^{x}\sqrt{5}}
+    F_{x} = \frac{{(1+\sqrt{5})}^x - {(1 - \sqrt{5})}^{x}}{2^x\sqrt{5}}
     $$
 
 All that remains is the problem of finding the convergence domain of this function, which I will work out afterwards.
