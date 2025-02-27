@@ -71,4 +71,22 @@ $$
     F_{x} = \frac{(1+\sqrt{5})^x - (1 - \sqrt{5})^x}{2^x\sqrt{5}}
     $$
 
-All that remains is the problem of finding the convergence domain of this function, which I will work out afterwards.
+4. Convergence Domain
+    
+    Since
+    
+    $$
+    \lim_{n \to \infty} \sqrt[n]{F_n} = \frac{1 + \sqrt{5}}{2}
+    $$
+    
+    and
+    
+    $$
+    \lim_{n \to \infty} \mathscr F (\pm \frac{2}{1+\sqrt{5}}) \neq C
+    $$
+
+    The convergence domain is:
+
+    $$
+    \left(-\frac{2}{1+\sqrt{5}}, \frac{2}{1+\sqrt{5}}\right) \Leftrightarrow \left(-\frac{\sqrt{5}-1}{2}, \frac{\sqrt{5} - 1}{2}\right) 
+    $$
