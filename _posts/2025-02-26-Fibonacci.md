@@ -13,14 +13,12 @@ $$
 \mathscr F (z) = \sum_{i=0}^{\infty} F_i z^i = 0 + z + z^2 + 2z^3 + 3z^4 + 5z^5 + 8z^6 + \cdots
 $$
 
-1. Prove that the following equation holds for some $z$
-    
+1. Prove that the following equation holds
     $$
     \mathscr F (z) = z + z \mathscr F (z) + z^2 \mathscr F(z)
     $$
     
     where 
-    
     $$
     \phi = \frac{1+\sqrt{5}}{2}\text{ and }\hat \phi = \frac{1 - \sqrt{5}}{2}
     $$
@@ -50,12 +48,15 @@ $$
     By working the equation in problem 1.
 
 3. Prove that 
-    
     $$
     \mathscr F(z) = \sum_{i = 0}^{\infty} \frac{1}{\sqrt{5}} (\phi^i - \hat{\phi}^i) z
     $$
 
-    We can derive from $ F_x = F_{x-1} + F_{x-2} $
+    We can derive from 
+    $$ 
+    F_x = F_{x-1} + F_{x-2} 
+    $$
+    
     that
     
     $$
@@ -66,7 +67,6 @@ $$
     $$
 
     by working out the above equations we have:
-    
     $$
     F_{x} = \frac{(1+\sqrt{5})^x - (1 - \sqrt{5})^x}{2^x\sqrt{5}}
     $$
@@ -74,19 +74,16 @@ $$
 4. Convergence Domain
     
     Since
-    
     $$
     \lim_{n \to \infty} \sqrt[n]{F_n} = \frac{1 + \sqrt{5}}{2}
     $$
     
     and
-    
     $$
     \lim_{n \to \infty} \mathscr F (\pm \frac{2}{1+\sqrt{5}}) \neq C
     $$
 
     The convergence domain is:
-
     $$
     \left(-\frac{2}{1+\sqrt{5}}, \frac{2}{1+\sqrt{5}}\right) \Leftrightarrow \left(-\frac{\sqrt{5}-1}{2}, \frac{\sqrt{5} - 1}{2}\right) 
     $$
