@@ -13,11 +13,10 @@ $$
 \mathscr F (z) = \sum_{i=0}^{\infty} F_i z^i = 0 + z + z^2 + 2z^3 + 3z^4 + 5z^5 + 8z^6 + \cdots
 $$
 
-1. Prove that the following equation holds
+1. Prove that the following equation holds:
     $$
     \mathscr F (z) = z + z \mathscr F (z) + z^2 \mathscr F(z)
     $$
-    
     where 
     $$
     \phi = \frac{1+\sqrt{5}}{2}\text{ and }\hat \phi = \frac{1 - \sqrt{5}}{2}
@@ -29,7 +28,6 @@ $$
     $$ 
 
     So:
-
     $$
     \begin{aligned}
     z + z\mathscr F (z) + z^2 \mathscr F(z) &= z + \sum_{i=0}^{\infty} F_i z^{i+1} + \sum_{i=0}^{\infty} F_i z^{i+2} \\
@@ -56,7 +54,6 @@ $$
     $$ 
     F_x = F_{x-1} + F_{x-2} 
     $$
-    
     that
     
     $$
