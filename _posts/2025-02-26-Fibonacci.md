@@ -28,6 +28,7 @@ $$
     $$ 
 
     So:
+    
     $$
     \begin{aligned}
     z + z\mathscr F (z) + z^2 \mathscr F(z) &= z + \sum_{i=0}^{\infty} F_i z^{i+1} + \sum_{i=0}^{\infty} F_i z^{i+2} \\
@@ -63,7 +64,7 @@ $$
     \end{aligned}
     $$
 
-    by working out the above equations we have:
+    By working out the above equations we have:
     $$
     F_{x} = \frac{(1+\sqrt{5})^x - (1 - \sqrt{5})^x}{2^x\sqrt{5}}
     $$
@@ -74,7 +75,6 @@ $$
     $$
     \lim_{n \to \infty} \sqrt[n]{F_n} = \frac{1 + \sqrt{5}}{2}
     $$
-    
     and
     $$
     \lim_{n \to \infty} \mathscr F (\pm \frac{2}{1+\sqrt{5}}) \neq C
