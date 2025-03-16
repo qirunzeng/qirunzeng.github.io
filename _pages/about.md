@@ -34,7 +34,3 @@ Contact me
 =====
 
 Just feel free to contact me via [qirunzeng@gmail.com](mailto:qirunzeng@gmail.com).
-
-**Contest account**
-
-See [clist.by/coder/rewinery](https://clist.by/coder/rewinery)
