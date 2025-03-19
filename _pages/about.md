@@ -9,28 +9,21 @@ redirect_from:
 
 **Welcome here!**
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-deserunt mollit anim id est laborum.
-
 Bio
 =====
 
-Qirun Zeng is currently an undergraduate student at the USTC School of the Gifted Young, majoring in computer science. His interest lies in:
+Jiayi Shen is currently an undergraduate student at the USTC School of Finance, majoring in finance and minoring in finance. Her interest lies in:
 
 - Algorithm
 - Machine learning
 - Game theory
-- Game development
 
-He will soon be a Ph.D. student at CityUHK, supervised by Professor [Jinhang Zuo](https://jhzuo.github.io), starting in Fall 2025.
+Currently she is working on Application and Innovation of e-value Method in Economic Research: Multiple Hypothesis Testing and Policy Evaluation, under the guidance of professor [Weiwei Zhuang](https://bs.ustc.edu.cn/chinese/profile.php?id=85).
+
+
+<!-- He will soon be a Ph.D. student at CityUHK, supervised by Professor [Jinhang Zuo](https://jhzuo.github.io), starting in Fall 2025. -->
 
 Contact me
 =====
 
-Just feel free to contact me via [qirunzeng@gmail.com](mailto:qirunzeng@gmail.com).
+Just feel free to contact me via [plusoneshen@gmail.com](mailto:plusoneshen@gmail.com).

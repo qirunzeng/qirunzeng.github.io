@@ -8,27 +8,27 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Qirun Zeng"
+title                    : "Jiayi Shen"
 title_separator          : "-"
-name                     : &name "Qirun Zeng"
+name                     : &name "Jiayi Shen"
 description              : &description "My personal website"
-url                      : https://qirunzeng.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : https://Plusone-Shen.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "qirunzeng/qirunzeng.github.io"
+repository               : "Plusone-Shen/Plusone-Shen.github.io"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "self-image.png"
-  name             : "Qirun Zeng"
+  # avatar           : "self-image.png"
+  name             : "Jiayi Shen"
   pronouns         : # example: "she/her"  
   bio              : "undergraduate at USTC"
   location         : "Hefei, Anhui, China"
   employer         : "UST of China"
   uri              : # URL
-  email            : "qirunzeng@gmail.com" 
+  email            : "plusoneshen@gmail.com" 
 
   # Academic websites
   # arxiv            : # URL - Update with the correct link to your profile
@@ -43,7 +43,7 @@ author:
   # bitbucket        : # Username - Update with your username on the site
   # codepen          : # Username
   # dribbble         : # Username
-  github           : "qirunzeng"
+  github           : "Plusone-Shen"
   # kaggle           : # Username  
   # stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
@@ -55,7 +55,7 @@ author:
   # goodreads        : # Username
   # google_plus      : # Username
   # keybase          : # Username
-  instagram        : "qirunzeng"
+  # instagram        : "Plusone-Shen"
   # lastfm           : # Username
   # linkedin         : # Username
   # mastodon         : # URL
@@ -71,7 +71,7 @@ author:
   # wikipedia        : # Username
   # xing             : # Username
   # youtube          : # Username
-  zhihu            : "https://www.zhihu.com/people/rewinery"
+  # zhihu            : "https://www.zhihu.com/people/rewinery"
 
 # Publication Category - The following the list of publication categories and their headings
 # publication_category:
