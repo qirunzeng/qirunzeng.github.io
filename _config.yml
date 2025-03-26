@@ -21,7 +21,7 @@ repository               : "qirunzeng/qirunzeng.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  # avatar           : "self-image.png"
+  avatar           : "self-image.png"
   name             : "Qirun Zeng"
   pronouns         : # example: "she/her"  
   bio              : "undergraduate at USTC"
