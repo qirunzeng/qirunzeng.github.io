@@ -24,7 +24,7 @@ author:
   # Biographic information
   avatar           : "self-image.png"
   name             : "Qirun Zeng"
-  pronouns         : "he/him"
+  pronouns         : # "he/him"
   bio              : "Ph.D. to be at CityUHK"
   location         : "Kowloon, Hong Kong SAR"
   employer         : "City University of HK"
