@@ -8,8 +8,8 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-site_theme               : "default"
-title                    : "Qirun's Homepage"
+site_theme               : "modern"
+title                    : "Qirun Zeng"
 title_separator          : "-"
 name                     : &name "Qirun Zeng"
 description              : &description "My personal website"
