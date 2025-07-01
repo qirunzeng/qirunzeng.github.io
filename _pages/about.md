@@ -13,17 +13,12 @@ redirect_from:
 Bio
 =====
 
-Qirun Zeng is currently an undergraduate student at the USTC School of the Gifted Yound, majoring in Computer Science. His current interest lies in:
+I am currently an undergraduate student at the USTC School of the Gifted Yound, majoring in Computer Science. His current interest lies in:
 
 - Algorithm
 - Reinforcement Learning
 
-He will soon be a Ph.D. student at CityUHK, supervised by Professor [Jinhang Zuo](https://jhzuo.github.io), starting in Fall 2025.
-
-Contact me
-=====
-
-Just feel free to contact me via [qirunzeng@gmail.com](mailto:qirunzeng@gmail.com).
+I will soon be a Ph.D. student at CityUHK, supervised by Professor [Jinhang Zuo](https://jhzuo.github.io), starting in Fall 2025.
 
 <!-- This is the front page of a website that is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the repository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. You can fork [this template](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and markdown files, add your own PDFs and other content, and have your own site for free, with no ads!
 
