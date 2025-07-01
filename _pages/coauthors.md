@@ -14,3 +14,5 @@ Xuchuang Wang, Postdoc at UMass
 Qixin Zhang, Postdoc at NTU
 
 Gordon Poon, Undergraduate at CityUHK
+
+Eric He, Richard Hoffmann, Undergraduate at Caltech
