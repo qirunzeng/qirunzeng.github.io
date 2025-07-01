@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-site_theme               : "modern"
+site_theme               : "default"
 title                    : "Qirun Zeng"
 title_separator          : "-"
 name                     : &name "Qirun Zeng"
@@ -25,7 +25,7 @@ author:
   avatar           : "self-image.png"
   name             : "Qirun Zeng"
   pronouns         : # "he/him"
-  bio              : "Ph.D. to be at CityUHK"
+  bio              : "Ph.D. at CityUHK"
   location         : "Kowloon, Hong Kong SAR"
   employer         : "City University of HK"
   uri              : # URL
