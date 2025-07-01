@@ -13,12 +13,8 @@ redirect_from:
 Bio
 =====
 
-I am currently an undergraduate student at the USTC School of the Gifted Yound, majoring in Computer Science. His current interest lies in:
+I am a first year Ph.D. student in the AI Group at City University of Hong Kong (CityUHK), beginning my studies in Fall 2025 under the supervision of [Prof. Jinhang Zuo](https://jhzuo.github.io). I earned my Bachelor’s degree from the school of the Gifted Young, University of Science and Technology of China (SGY, USTC) in 2025, advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/).
 
-- Algorithm
-- Reinforcement Learning
-
-I will soon be a Ph.D. student at CityUHK, supervised by Professor [Jinhang Zuo](https://jhzuo.github.io), starting in Fall 2025.
 
 <!-- This is the front page of a website that is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the repository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. You can fork [this template](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and markdown files, add your own PDFs and other content, and have your own site for free, with no ads!
 
