@@ -7,6 +7,10 @@ redirect_from:
   - /friendlink
 ---
 
-Jinhang Zuo
+Jinhang Zuo, Assistant Professor at CityUHK
 
-Qixin Zhang
+Xuchuang Wang, Postdoc at UMass
+
+Qixin Zhang, Postdoc at NTU
+
+Gordon Poon, Undergraduate at CityUHK
