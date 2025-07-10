@@ -18,8 +18,8 @@ I am a first year Ph.D. student in the AI Group at City University of Hong Kong 
 Research Interests
 =====
 
-- Algorithm
-- Reinforcement Learning
+- Theoretical Computer Science
+- Reinforcement Learning (Multi-Armed Bandits)
 
 Services
 =====
