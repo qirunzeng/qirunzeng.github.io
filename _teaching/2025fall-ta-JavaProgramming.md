@@ -8,3 +8,7 @@ date: 2025-09-01
 location: "Hong Kong SAR, China"
 ---
 
+Main Responsibilities:
+- Creating and designing assignments
+- Grading assignments and exams
+<!-- - Designing and evaluating experiments -->

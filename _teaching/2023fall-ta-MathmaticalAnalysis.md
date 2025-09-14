@@ -7,3 +7,8 @@ venue: "University of Science and Technology, School of Mathematical Science"
 date: 2023-09-01
 location: "Hefei, Anhui, China"
 ---
+
+Main Responsibilities:
+- Grading assignments and exams
+- Conducting tutorial sessions
+- Developing lecture notes
