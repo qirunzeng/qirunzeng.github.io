@@ -5,5 +5,5 @@ type: "undergraduate course"
 permalink: /teaching/2024fall-ta-MathematicalAnalysis
 venue: "University of Science and Technology, School of Mathematical Science"
 date: 2023-09-01
-location: "Heifei, Anhui, China"
+location: "Hefei, Anhui, China"
 ---
