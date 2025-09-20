@@ -28,7 +28,7 @@ Skills
 
 Publications
 ======
-You can find my publications at [\(\to\)](https://qirunzeng.github.io/publications/).
+You can find my publications [here](https://qirunzeng.github.io/publications/).
 
 <!--Talks
 ======
