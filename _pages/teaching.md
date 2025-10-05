@@ -5,8 +5,7 @@ permalink: /teaching/
 author_profile: true
 ---
 
-Teaching Assistant
-===
+> Teaching Assistant in the following courses.
 
 - **Mathemathcal Analysis (B1)**
     
