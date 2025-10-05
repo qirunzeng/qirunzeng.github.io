@@ -11,7 +11,7 @@ author_profile: true
     
     2023 Fall, USTC, School of Mathematical Science
 
-  - Data Structure \& Algorithm
+  - Data Structure & Algorithm
 
     2024 Spring, USTC, School of Information Science and Technology
 
