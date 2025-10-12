@@ -26,6 +26,8 @@ Research Interests
 
 - Learning Theory
 
+- Game Theory
+
 Services
 =====
 
