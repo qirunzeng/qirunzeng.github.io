@@ -33,7 +33,7 @@ author:
 
   # Academic websites
   academia         : # URL
-  arxiv            : # URL - Update with the correct link to your profile
+  arxiv            : "https://arxiv.org/a/zeng_q_5.html"
   googlescholar    : "https://scholar.google.com/citations?user=sITttdEAAAAJ&hl=en&oi=ao"
   impactstory      : # URL
   orcid            : "https://orcid.org/0009-0005-0570-532X"
