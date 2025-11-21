@@ -28,4 +28,4 @@ author_profile: true
     
     2023 Fall, USTC, School of Mathematical Science
 
-    The exercise course handouts can be found [here](https://drive.google.com/file/d/1Qkph9d2aEDjzVKQr0JAfuCTf6wByso97/view?usp=sharing)
+    The exercise course handouts can be found [here](./../files/MathematicalAnalysis.pdf)
