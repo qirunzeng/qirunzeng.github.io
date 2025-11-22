@@ -39,7 +39,7 @@ author_profile: true
 2025
 ===
 
-- ➤ <div class="pub-item">
+<div class="pub-item">
     <b>Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection</b><br>
     <b>Qirun Zeng</b>, Eric He, Richard Hoffmann, Xuchuang Wang, Jinhang Zuo.<br>
 
@@ -53,7 +53,7 @@ author_profile: true
        target="_blank" rel="noopener noreferrer">GitHub</a>
 </div>
 
-- ➤ <div class="pub-item">
+<div class="pub-item">
     <b>Fusing Reward and Dueling Feedback in Stochastic Bandits</b><br>
     Xuchuang Wang, <b>Qirun Zeng</b>, Jinhang Zuo, Xutong Liu,
     Mohammad Hajiesmaili, John C. S. Lui, Adam Wierman.<br>
