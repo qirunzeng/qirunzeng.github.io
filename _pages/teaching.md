@@ -24,6 +24,19 @@ author_profile: true
     font-size: 20px;
     color: #4b78ff;  /* 更接近截图的蓝色 */
 }
+
+.tag {
+    display: inline-block;
+    padding: 2px 8px;
+    margin-right: 6px;
+    margin-top: 6px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+}
+
+.tag-github { background: #2d3436; }
 </style>
 
 > Teaching Assistant in the following courses.
@@ -39,7 +52,10 @@ author_profile: true
 
     2024 Fall, USTC, School of Information Science and Technology<br>
 
-    Part of the experiment can be found [here](https://github.com/qirunzeng/USTC-ComputerProgrammingA-2024Fall)
+    Part of the experiment can be found here:
+    <a class="tag tag-github"
+       href="https://github.com/qirunzeng/USTC-ComputerProgrammingA-2024Fall"
+       target="_blank" rel="noopener noreferrer">GitHub</a>
 </div>
 
 
@@ -48,7 +64,10 @@ author_profile: true
 
     2024 Spring, USTC, School of Information Science and Technology<br>
 
-    Part of the experiment can be found [here](https://github.com/qirunzeng/USTC-DSA-2024Spring)
+    Part of the experiment can be found here:
+    <a class="tag tag-github"
+       href="https://github.com/qirunzeng/USTC-DSA-2024Spring"
+       target="_blank" rel="noopener noreferrer">github</a>
 </div>
 
 <div class="item">
@@ -56,5 +75,7 @@ author_profile: true
     
     2023 Fall, USTC, School of Mathematical Science<br>
 
-    The exercise course handouts can be found [here](./../files/MathematicalAnalysis.pdf)
+    The exercise course handouts can be found 
+    <a href="./../files/MathematicalAnalysis.pdf" 
+        target="_blank" rel="noopener noreferrer">here</a>.
 </div>
