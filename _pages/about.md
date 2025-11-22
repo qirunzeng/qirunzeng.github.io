@@ -7,6 +7,27 @@ redirect_from:
   - /about.html
 ---
 
+<style>
+/* 每一条 publication 的间距 */
+.item {
+    position: relative;
+    padding-left: 32px;  /* 稍大一点与箭头对齐更好看 */
+    margin-bottom: 26px;
+    font-size: 17px;
+    line-height: 1.55;
+}
+
+/* 调整箭头位置 — 更靠上、与文字中线对齐 */
+.item::before {
+    content: "↪";  /* 你截图里是这种样式的箭头 */
+    position: absolute;
+    left: 0;
+    top: -0.15em;     /* 关键：让箭头与文字垂直居中 */
+    font-size: 20px;
+    color: #4b78ff;  /* 更接近截图的蓝色 */
+}
+</style>
+
 **Welcome here!**
 
 Bio
@@ -19,11 +40,13 @@ You can find my CV [here](./../files/CV.pdf).
 Research Interests
 =====
 
-- Theoretical Computer Science
+<div class="item">
+Theoretical Computer Science
+</div>
 
-- Learning Theory
-
-- Game Theory
+<div class="item">
+Learning Theory
+</div>
 
 Services
 =====
