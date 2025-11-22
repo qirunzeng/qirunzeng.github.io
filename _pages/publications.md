@@ -50,7 +50,7 @@ author_profile: true
 
 <div class="pub-item">
     <b>Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection</b><br>
-    <b>Qirun Zeng</b>, Eric He, Richard Hoffmann, Xuchuang Wang, Jinhang Zuo.<br>
+    <u>Qirun Zeng</u>, Eric He, Richard Hoffmann, Xuchuang Wang, Jinhang Zuo.<br>
 
     <a class="pub-tag pub-tag-arxiv"
        href="https://arxiv.org/abs/2505.21938"
@@ -64,7 +64,7 @@ author_profile: true
 
 <div class="pub-item">
     <b>Fusing Reward and Dueling Feedback in Stochastic Bandits</b><br>
-    Xuchuang Wang, <b>Qirun Zeng</b>, Jinhang Zuo, Xutong Liu,
+    Xuchuang Wang, <u>Qirun Zeng</u>, Jinhang Zuo, Xutong Liu,
     Mohammad Hajiesmaili, John C. S. Lui, Adam Wierman.<br>
 
     In Proceedings of the 42th International Conference on Machine Learning
