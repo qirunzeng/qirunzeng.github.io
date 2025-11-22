@@ -67,7 +67,7 @@ author_profile: true
     Part of the experiment can be found here:
     <a class="tag tag-github"
        href="https://github.com/qirunzeng/USTC-DSA-2024Spring"
-       target="_blank" rel="noopener noreferrer">github</a>
+       target="_blank" rel="noopener noreferrer">GitHub</a>
 </div>
 
 <div class="item">
