@@ -51,6 +51,10 @@ Learning Theory
 Services
 =====
 
-- Reviewer or subreviewer of ICML 2025, NeurIPS 2025, ICLR 2026.
+<div class="item">
+Reviewer or subreviewer of ICML 2025, NeurIPS 2025, ICLR 2026.
+</div>
 
-- Student Mentor of MSAI (Master of Science in Artificial Intelligence) 2025.
+<div class="item">
+Student Mentor of MSAI (Master of Science in Artificial Intelligence) 2025.
+</div>
