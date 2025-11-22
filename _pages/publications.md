@@ -16,7 +16,7 @@ author_profile: true
 }
 
 .pub-item::before {
-    content: "↪";  /* 左侧小箭头，可以换成 → 或 ➜ */
+    content: "➜";  /* 左侧小箭头，可以换成 → 或 ➜ */
     position: absolute;
     left: 0;
     top: 3px;
@@ -69,6 +69,7 @@ author_profile: true
        href="https://openreview.net/pdf?id=mqljEW2NQl"
        target="_blank" rel="noopener noreferrer">ICML 2025</a>
 
+    In Proceedings of the 42th International Conference on Machine Learning
     <a class="pub-tag pub-tag-github"
        href="https://github.com/qirunzeng/Fusing-Reward-and-Dueling"
        target="_blank" rel="noopener noreferrer">GitHub</a>
