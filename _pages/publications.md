@@ -20,7 +20,7 @@ author_profile: true
     content: "↪";  /* 你截图里是这种样式的箭头 */
     position: absolute;
     left: 0;
-    top: 0.25em;     /* 关键：让箭头与文字垂直居中 */
+    top: -0.25em;     /* 关键：让箭头与文字垂直居中 */
     font-size: 20px;
     color: #4b78ff;  /* 更接近截图的蓝色 */
 }
