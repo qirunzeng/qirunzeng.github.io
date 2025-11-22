@@ -9,20 +9,22 @@ author_profile: true
 /* 每一条 publication 的间距 */
 .pub-item {
     position: relative;
-    padding-left: 28px;   /* 让内容右缩进 */
-    margin-bottom: 22px;  /* 每条之间空隙更好看 */
+    padding-left: 32px;  /* 稍大一点与箭头对齐更好看 */
+    margin-bottom: 26px;
     font-size: 17px;
-    line-height: 1.5;
+    line-height: 1.55;
 }
 
+/* 调整箭头位置 — 更靠上、与文字中线对齐 */
 .pub-item::before {
-    content: "➜";  /* 左侧小箭头，可以换成 → 或 ➜ */
+    content: "↪";  /* 你截图里是这种样式的箭头 */
     position: absolute;
     left: 0;
-    top: 3px;
+    top: 0.25em;     /* 关键：让箭头与文字垂直居中 */
     font-size: 20px;
-    color: #3a7bd5;  /* 箭头颜色，可改 */
+    color: #4b78ff;  /* 更接近截图的蓝色 */
 }
+
 
 /* 标签样式（你已有，但我补一个通用版本） */
 .pub-tag {
@@ -65,11 +67,11 @@ author_profile: true
     Xuchuang Wang, <b>Qirun Zeng</b>, Jinhang Zuo, Xutong Liu,
     Mohammad Hajiesmaili, John C. S. Lui, Adam Wierman.<br>
 
+    In Proceedings of the 42th International Conference on Machine Learning
     <a class="pub-tag pub-tag-icml"
        href="https://openreview.net/pdf?id=mqljEW2NQl"
        target="_blank" rel="noopener noreferrer">ICML 2025</a>
 
-    In Proceedings of the 42th International Conference on Machine Learning
     <a class="pub-tag pub-tag-github"
        href="https://github.com/qirunzeng/Fusing-Reward-and-Dueling"
        target="_blank" rel="noopener noreferrer">GitHub</a>
