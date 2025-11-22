@@ -39,29 +39,30 @@ author_profile: true
 2025
 ===
 
-> ➤ <div class="pub-item">
->     <b>Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection</b><br>
->     <b>Qirun Zeng</b>, Eric He, Richard Hoffmann, Xuchuang Wang, Jinhang Zuo.<br>
->
->     <a class="pub-tag pub-tag-arxiv"
->        href="https://arxiv.org/abs/2505.21938"
->        target="_blank" rel="noopener noreferrer">arXiv</a>
->
->     <a class="pub-tag pub-tag-github"
->        href="https://github.com/richardhoff88/online_learning_torank"
->        target="_blank" rel="noopener noreferrer">GitHub</a>
-> </div>
->
-> ➤ <div class="pub-item">
->     <b>Fusing Reward and Dueling Feedback in Stochastic Bandits</b><br>
->     Xuchuang Wang, <b>Qirun Zeng</b>, Jinhang Zuo, Xutong Liu,
->     Mohammad Hajiesmaili, John C. S. Lui, Adam Wierman.<br>
->
->     <a class="pub-tag pub-tag-icml"
->        href="https://openreview.net/pdf?id=mqljEW2NQl"
->        target="_blank" rel="noopener noreferrer">ICML 2025</a>
->
->     <a class="pub-tag pub-tag-github"
->        href="https://github.com/qirunzeng/Fusing-Reward-and-Dueling"
->        target="_blank" rel="noopener noreferrer">GitHub</a>
-> </div>
+- ➤ <div class="pub-item">
+    <b>Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection</b><br>
+    <b>Qirun Zeng</b>, Eric He, Richard Hoffmann, Xuchuang Wang, Jinhang Zuo.<br>
+
+    <!-- 这里两个 tag 都是超链接 -->
+    <a class="pub-tag pub-tag-arxiv"
+       href="https://arxiv.org/abs/2505.21938"
+       target="_blank" rel="noopener noreferrer">arXiv</a>
+
+    <a class="pub-tag pub-tag-github"
+       href="https://github.com/richardhoff88/online_learning_torank"
+       target="_blank" rel="noopener noreferrer">GitHub</a>
+</div>
+
+- ➤ <div class="pub-item">
+    <b>Fusing Reward and Dueling Feedback in Stochastic Bandits</b><br>
+    Xuchuang Wang, <b>Qirun Zeng</b>, Jinhang Zuo, Xutong Liu,
+    Mohammad Hajiesmaili, John C. S. Lui, Adam Wierman.<br>
+
+    <a class="pub-tag pub-tag-icml"
+       href="https://openreview.net/pdf?id=mqljEW2NQl"
+       target="_blank" rel="noopener noreferrer">ICML 2025</a>
+
+    <a class="pub-tag pub-tag-github"
+       href="https://github.com/qirunzeng/Fusing-Reward-and-Dueling"
+       target="_blank" rel="noopener noreferrer">GitHub</a>
+</div>
