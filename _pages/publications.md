@@ -8,31 +8,38 @@ author_profile: true
 <style>
 /* 每一条 publication 的间距 */
 .pub-item {
-    margin-bottom: 14px;
+    position: relative;
+    padding-left: 28px;   /* 让内容右缩进 */
+    margin-bottom: 22px;  /* 每条之间空隙更好看 */
+    font-size: 17px;
+    line-height: 1.5;
 }
 
-/* 通用 tag 样式 */
+.pub-item::before {
+    content: "↪";  /* 左侧小箭头，可以换成 → 或 ➜ */
+    position: absolute;
+    left: 0;
+    top: 3px;
+    font-size: 20px;
+    color: #3a7bd5;  /* 箭头颜色，可改 */
+}
+
+/* 标签样式（你已有，但我补一个通用版本） */
 .pub-tag {
     display: inline-block;
     padding: 2px 8px;
-    font-size: 12px;
-    border-radius: 999px;      /* 胶囊形 */
-    color: #fff;
-    text-decoration: none;     /* 去掉下划线 */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    margin-right: 4px;
+    margin-right: 6px;
+    margin-top: 6px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
 }
 
-/* 悬停效果（可选） */
-.pub-tag:hover {
-    opacity: 0.85;
-}
+.pub-tag-arxiv { background: #c0392b; }
+.pub-tag-github { background: #2d3436; }
+.pub-tag-icml { background: #8e44ad; }
 
-/* 各种不同类型的 tag 颜色 */
-.pub-tag-arxiv  { background: #d9534f; }   /* 红色 arXiv */
-.pub-tag-github { background: #555555; }   /* 深灰 GitHub */
-.pub-tag-icml   { background: #7c2dd0; }   /* 紫色 ICML */
-.pub-tag-preprint { background: #5cb85c; } /* 绿色 Preprint（如果你也想让它可点） */
 </style>
 
 
@@ -43,7 +50,6 @@ author_profile: true
     <b>Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection</b><br>
     <b>Qirun Zeng</b>, Eric He, Richard Hoffmann, Xuchuang Wang, Jinhang Zuo.<br>
 
-    <!-- 这里两个 tag 都是超链接 -->
     <a class="pub-tag pub-tag-arxiv"
        href="https://arxiv.org/abs/2505.21938"
        target="_blank" rel="noopener noreferrer">arXiv</a>
@@ -52,6 +58,7 @@ author_profile: true
        href="https://github.com/richardhoff88/online_learning_torank"
        target="_blank" rel="noopener noreferrer">GitHub</a>
 </div>
+
 
 <div class="pub-item">
     <b>Fusing Reward and Dueling Feedback in Stochastic Bandits</b><br>
@@ -66,3 +73,4 @@ author_profile: true
        href="https://github.com/qirunzeng/Fusing-Reward-and-Dueling"
        target="_blank" rel="noopener noreferrer">GitHub</a>
 </div>
+
