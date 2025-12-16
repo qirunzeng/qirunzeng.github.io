@@ -22,7 +22,7 @@ repository               : "qirunzeng/qirunzeng.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "avatar.png"
+  avatar           : "avatar.jpg"
   name             : "Qirun Zeng"
   pronouns         : # "he/him"
   bio              : "Ph.D. at CityUHK"
