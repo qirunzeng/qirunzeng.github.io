@@ -15,7 +15,7 @@ author_profile: true
     line-height: 1.55;
 }
 
-.item::before {
+.pub-item::before {
     content: "\21D2";
     position: absolute;
     left: 0;
