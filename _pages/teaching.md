@@ -15,14 +15,14 @@ author_profile: true
     line-height: 1.55;
 }
 
-/* 调整箭头位置 — 更靠上、与文字中线对齐 */
 .item::before {
-    content: "↪";  /* 你截图里是这种样式的箭头 */
+    content: "\21D2";
     position: absolute;
     left: 0;
-    top: -0.15em;     /* 关键：让箭头与文字垂直居中 */
-    font-size: 20px;
-    color: #4b78ff;  /* 更接近截图的蓝色 */
+    top: -0.1em;
+    font-size: 0.95em;  /* 不要太大，更“公式感” */
+    font-weight: 500;
+    color: #4b78ff;
 }
 
 .tag {
@@ -57,7 +57,6 @@ author_profile: true
        href="https://github.com/qirunzeng/USTC-ComputerProgrammingA-2024Fall"
        target="_blank" rel="noopener noreferrer">GitHub</a>
 </div>
-
 
 <div class="item">
     <b>Data Structure & Algorithm</b><br>
