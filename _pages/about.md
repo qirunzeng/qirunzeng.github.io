@@ -21,7 +21,7 @@ redirect_from:
     content: "\21D2";
     position: absolute;
     left: 0;
-    top: -0.1em;
+    /* top: -0.1em; */
     font-size: 0.95em;  /* 不要太大，更“公式感” */
     font-weight: 500;
     color: #4b78ff;
