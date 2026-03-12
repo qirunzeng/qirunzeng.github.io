@@ -25,7 +25,6 @@ author_profile: true
     color: #4b78ff;
 }
 
-
 /* 标签样式（你已有，但我补一个通用版本） */
 .pub-tag {
     display: inline-block;
@@ -44,7 +43,6 @@ author_profile: true
 
 </style>
 
-
 2025
 ===
 
@@ -60,7 +58,6 @@ author_profile: true
        href="https://github.com/richardhoff88/online_learning_torank"
        target="_blank" rel="noopener noreferrer">GitHub</a>
 </div>
-
 
 <div class="pub-item">
     <b>Fusing Reward and Dueling Feedback in Stochastic Bandits</b><br>

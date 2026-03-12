@@ -33,7 +33,7 @@ redirect_from:
 Bio
 =====
 
-I am a first year Ph.D. student from City University of Hong Kong (CityUHK), beginning my studies in Fall 2025 under the supervision of [Prof. Jinhang Zuo](https://jhzuo.github.io). Before that, I earned my bachelor's degree from the School of the Gifted Young, University of Science and Technology of China (SGY, USTC) in 2025, advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/).
+I am a first year Ph.D. student from City University of Hong Kong (CityUHK), beginning my studies in Fall 2025 under the supervision of [Prof. Jinhang Zuo](https://jhzuo.github.io). Before that, I earned my bachelor's degree from the School of the Gifted Young, University of Science and Technology of China (SGY, USTC) in 2025, advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io).
 
 You can find my CV [here](./../files/CV.pdf).
 
