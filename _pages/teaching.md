@@ -42,6 +42,13 @@ author_profile: true
 > Teaching Assistant in the following courses.
 
 <div class="item">
+    <b>Data Structure for Media</b><br>
+
+    2026 Spring, CityUHK, Department of Computer Science
+</div>
+
+
+<div class="item">
     <b>Java Programming</b><br>
 
     2025 Fall, CityUHK, Department of Computer Science
