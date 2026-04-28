@@ -43,7 +43,7 @@ author_profile: true
 
 </style>
 
-2025
+PrePrints
 ===
 
 <div class="pub-item">
@@ -58,6 +58,9 @@ author_profile: true
        href="https://github.com/richardhoff88/online_learning_torank"
        target="_blank" rel="noopener noreferrer">GitHub</a>
 </div>
+
+Conference Proceedings
+===
 
 <div class="pub-item">
     <b>Fusing Reward and Dueling Feedback in Stochastic Bandits</b><br>
