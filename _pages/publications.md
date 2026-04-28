@@ -39,7 +39,7 @@ author_profile: true
 
 .pub-tag-arxiv { background: #c0392b; }
 .pub-tag-github { background: #2d3436; }
-.pub-tag-icml { background: #8e44ad; }
+.pub-tag-conf { background: #8e44ad; }
 
 </style>
 
@@ -68,7 +68,7 @@ Conference Proceedings
     Mohammad Hajiesmaili, John C. S. Lui, Adam Wierman.<br>
 
     In Proceedings of the 42th International Conference on Machine Learning
-    <a class="pub-tag pub-tag-icml"
+    <a class="pub-tag pub-tag-conf"
        href="https://openreview.net/pdf?id=mqljEW2NQl"
        target="_blank" rel="noopener noreferrer">ICML 2025</a>
 
