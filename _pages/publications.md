@@ -48,7 +48,7 @@ PrePrints
 
 <div class="pub-item">
     <b>Best Arm Identification in Linear Bandits via Hybrid Feedback</b><br>
-    <u>Qirun Zeng</u>, Eric He, Richard Hoffmann, Xuchuang Wang, Jinhang Zuo.<br>
+    <u>Qirun Zeng</u>, Xuchuang Wang, Jiayi Shen, Xutong Liu, Fang Kong, Jinhang Zuo.<br>
 
     <a class="pub-tag pub-tag-arxiv"
        href="https://arxiv.org"
