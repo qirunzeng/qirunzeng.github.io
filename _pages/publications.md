@@ -47,6 +47,20 @@ PrePrints
 ===
 
 <div class="pub-item">
+    <b>Best Arm Identification in Linear Bandits via Hybrid Feedback</b><br>
+    <u>Qirun Zeng</u>, Eric He, Richard Hoffmann, Xuchuang Wang, Jinhang Zuo.<br>
+
+    <a class="pub-tag pub-tag-arxiv"
+       href="https://arxiv.org"
+       target="_blank" rel="noopener noreferrer">arXiv</a>
+
+    <a class="pub-tag pub-tag-github"
+       href="https://https://github.com/qirunzeng/HyTS-GLB"
+       target="_blank" rel="noopener noreferrer">GitHub</a>
+</div>
+
+
+<div class="pub-item">
     <b>Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection</b><br>
     <u>Qirun Zeng</u>, Eric He, Richard Hoffmann, Xuchuang Wang, Jinhang Zuo.<br>
 

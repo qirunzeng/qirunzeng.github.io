@@ -47,13 +47,12 @@ author_profile: true
     2026 Spring, CityUHK, Department of Computer Science
 </div>
 
-
 <div class="item">
     <b>Java Programming</b><br>
 
     2025 Fall, CityUHK, Department of Computer Science
 </div>
-    
+
 <div class="item">
     <b>Computer Programming A</b><br>
 
@@ -78,7 +77,7 @@ author_profile: true
 
 <div class="item">
     <b>Mathemathcal Analysis (B1)</b><br>
-    
+
     2023 Fall, USTC, School of Mathematical Science<br>
 
     The exercise course handouts can be found 
