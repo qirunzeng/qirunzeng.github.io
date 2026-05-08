@@ -51,7 +51,7 @@ PrePrints
     <u>Qirun Zeng</u>, Xuchuang Wang, Jiayi Shen, Xutong Liu, Fang Kong, Jinhang Zuo.<br>
 
     <a class="pub-tag pub-tag-arxiv"
-       href="https://arxiv.org"
+       href="https://arxiv.org/abs/2605.05745"
        target="_blank" rel="noopener noreferrer">arXiv</a>
 
     <a class="pub-tag pub-tag-github"
