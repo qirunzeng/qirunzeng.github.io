@@ -25,6 +25,10 @@ author_profile: true
     color: #4b78ff;
 }
 
+.item b {
+    font-size: 1.12em;
+}
+
 .tag {
     display: inline-block;
     padding: 2px 8px;

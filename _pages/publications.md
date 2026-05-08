@@ -25,6 +25,14 @@ author_profile: true
     color: #4b78ff;
 }
 
+.pub-item b {
+    font-size: 1.12em;
+}
+
+.pub-category {
+    font-size: 1.35em;
+}
+
 /* 标签样式（你已有，但我补一个通用版本） */
 .pub-tag {
     display: inline-block;
@@ -43,8 +51,7 @@ author_profile: true
 
 </style>
 
-PrePrints
-===
+<h2 class="pub-category">PrePrints</h2>
 
 <div class="pub-item">
     <b>Best Arm Identification in Linear Bandits via Hybrid Feedback</b><br>
@@ -73,8 +80,7 @@ PrePrints
        target="_blank" rel="noopener noreferrer">GitHub</a>
 </div>
 
-Conference Proceedings
-===
+<h2 class="pub-category">Conference Proceedings</h2>
 
 <div class="pub-item">
     <b>Fusing Reward and Dueling Feedback in Stochastic Bandits</b><br>
@@ -90,4 +96,3 @@ Conference Proceedings
        href="https://github.com/qirunzeng/Fusing-Reward-and-Dueling"
        target="_blank" rel="noopener noreferrer">GitHub</a>
 </div>
-
