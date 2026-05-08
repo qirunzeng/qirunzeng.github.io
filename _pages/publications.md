@@ -36,11 +36,11 @@ author_profile: true
 /* 标签样式（你已有，但我补一个通用版本） */
 .pub-tag {
     display: inline-block;
-    padding: 2px 8px;
-    margin-right: 6px;
-    margin-top: 6px;
-    border-radius: 6px;
-    font-size: 14px;
+    padding: 1px 7px;
+    margin-right: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 13px;
     text-decoration: none;
     color: white;
 }
