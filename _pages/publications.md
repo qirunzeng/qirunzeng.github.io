@@ -51,9 +51,11 @@ author_profile: true
 
 </style>
 
-<h2 class="pub-category">PrePrints</h2>
 
 \* stands for equal contribution
+
+<h2 class="pub-category">PrePrints</h2>
+
 
 <div class="pub-item">
     <b>Best Arm Identification in Linear Bandits via Hybrid Feedback</b><br>
