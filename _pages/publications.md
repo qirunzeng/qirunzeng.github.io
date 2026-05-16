@@ -53,6 +53,8 @@ author_profile: true
 
 <h2 class="pub-category">PrePrints</h2>
 
+\* stands for equal contribution
+
 <div class="pub-item">
     <b>Best Arm Identification in Linear Bandits via Hybrid Feedback</b><br>
     <u>Qirun Zeng</u>, Xuchuang Wang, Jiayi Shen, Xutong Liu, Fang Kong, Jinhang Zuo.<br>
@@ -65,7 +67,6 @@ author_profile: true
        href="https://https://github.com/qirunzeng/HyTS-GLB"
        target="_blank" rel="noopener noreferrer">GitHub</a>
 </div>
-
 
 <div class="pub-item">
     <b>Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection</b><br>
@@ -81,6 +82,20 @@ author_profile: true
 </div>
 
 <h2 class="pub-category">Conference Proceedings</h2>
+
+<div class="pub-item">
+    <b>One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization</b><br>
+    Qixin Zhang*, <u>Qirun Zeng</u>*, Hui Lu, Pingchuan Ma, Jinhang Zuo, Renqiang Luo, Yi Yu, Dacheng Tao.<br>
+
+    In Proceedings of the 32nd SIGKDD Conference on Knowledge Discovery and Data Mining
+    <a class="pub-tag pub-tag-conf"
+       href="https://qirunzeng.github.io"
+       target="_blank" rel="noopener noreferrer">SIGKDD 2026</a>
+
+    <a class="pub-tag pub-tag-github"
+       href="https://github.com/qirunzeng/OneRound-IM"
+       target="_blank" rel="noopener noreferrer">GitHub</a>
+</div>
 
 <div class="pub-item">
     <b>Fusing Reward and Dueling Feedback in Stochastic Bandits</b><br>
