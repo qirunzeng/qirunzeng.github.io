@@ -92,7 +92,7 @@ author_profile: true
     In Proceedings of the 32nd SIGKDD Conference on Knowledge Discovery and Data Mining
     <a class="pub-tag pub-tag-conf"
        href="https://qirunzeng.github.io"
-       target="_blank" rel="noopener noreferrer">SIGKDD 2026</a>
+       target="_blank" rel="noopener noreferrer">KDD 2026</a>
 
     <a class="pub-tag pub-tag-github"
        href="https://github.com/qirunzeng/OneRound-IM"
