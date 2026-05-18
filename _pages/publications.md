@@ -11,7 +11,7 @@ author_profile: true
     position: relative;
     padding-left: 32px;  /* 稍大一点与箭头对齐更好看 */
     margin-bottom: 26px;
-    font-size: 17px;
+    font-size: 13px;
     line-height: 1.55;
 }
 
@@ -23,10 +23,6 @@ author_profile: true
     font-size: 0.95em;  /* 不要太大，更“公式感” */
     font-weight: 500;
     color: #4b78ff;
-}
-
-.pub-item b {
-    font-size: 1.12em;
 }
 
 .pub-category {
@@ -51,11 +47,9 @@ author_profile: true
 
 </style>
 
-
 \* stands for equal contribution
 
 <h2 class="pub-category">PrePrints</h2>
-
 
 <div class="pub-item">
     <b>Best Arm Identification in Linear Bandits via Hybrid Feedback</b><br>
