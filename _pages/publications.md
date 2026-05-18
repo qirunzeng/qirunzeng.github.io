@@ -11,7 +11,7 @@ author_profile: true
     position: relative;
     padding-left: 32px;  /* 稍大一点与箭头对齐更好看 */
     margin-bottom: 26px;
-    font-size: 13px;
+    /* font-size: 13px; */
     line-height: 1.55;
 }
 
