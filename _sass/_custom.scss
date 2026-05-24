@@ -1,17 +1,12 @@
-.item,
-.pub-item {
+.item {
   position: relative;
   padding-left: 32px;
   margin-bottom: 26px;
   line-height: 1.55;
-}
-
-.item {
   font-size: 17px;
 }
 
-.item::before,
-.pub-item::before {
+.item::before {
   content: "\21D2";
   position: absolute;
   left: 0;
@@ -24,40 +19,29 @@
   font-size: 1.12em;
 }
 
-.category,
-.pub-category {
+.category {
   font-size: 1.35em;
 }
 
-.tag,
-.pub-tag {
+.tag {
   display: inline-block;
   margin-top: 5px;
   margin-right: 5px;
   border-radius: 5px;
   text-decoration: none;
   color: #fff;
-}
-
-.tag {
-  padding: 2px 8px;
-  font-size: 14px;
-}
-
-.pub-tag {
   padding: 1px 7px;
   font-size: 13px;
 }
 
-.tag-github,
-.pub-tag-github {
+.tag-github {
   background: #2d3436;
 }
 
-.pub-tag-arxiv {
+.tag-arxiv {
   background: #c0392b;
 }
 
-.pub-tag-conf {
+.tag-conf {
   background: #8e44ad;
 }
