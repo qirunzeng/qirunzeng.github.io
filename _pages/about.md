@@ -7,32 +7,6 @@ redirect_from:
   - /about.html
 ---
 
-<style>
-/* 每一条 publication 的间距 */
-.item {
-    position: relative;
-    padding-left: 32px;  /* 稍大一点与箭头对齐更好看 */
-    margin-bottom: 26px;
-    font-size: 17px;
-    line-height: 1.55;
-}
-
-.item::before {
-    content: "\21D2";
-    position: absolute;
-    left: 0;
-    /* top: -0.1em; */
-    font-size: 0.95em;  /* 不要太大，更“公式感” */
-    font-weight: 500;
-    color: #4b78ff;
-}
-
-.category {
-    font-size: 1.35em;
-}
-
-</style>
-
 **Welcome here!**
 
 <h2 class="category">About Me</h2>
