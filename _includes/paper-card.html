@@ -22,7 +22,11 @@
   {% if include.paper.links %}
     <p class="paper-card__links" aria-label="Links for {{ include.paper.title }}">
       {% for link in include.paper.links %}
-        <a class="tag tag-{{ link.type | default: 'link' }}" href="{{ link.url }}" {% if link.url contains '://' %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}</a>
+        {% if link.url %}
+          <a class="tag tag-{{ link.type | default: 'link' }}" href="{{ link.url }}" {% if link.url contains '://' %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}</a>
+        {% else %}
+          <span class="tag tag-{{ link.type | default: 'link' }}">{{ link.label }}</span>
+        {% endif %}
       {% endfor %}
     </p>
   {% endif %}

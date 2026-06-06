@@ -15,6 +15,8 @@ conference:
     status: "Proceedings of the 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD 2026)."
     summary: "Studies memory-efficient approximation algorithms for influence maximization under partition constraints."
     links:
+      - label: "KDD 2026"
+        type: "conf"
       - label: "GitHub"
         url: "https://github.com/qirunzeng/OneRound-IM"
         type: "github"
@@ -32,9 +34,9 @@ conference:
     status: "Proceedings of the 42nd International Conference on Machine Learning (ICML 2025)."
     summary: "Examines stochastic bandits with both reward observations and dueling feedback."
     links:
-      - label: "Paper"
+      - label: "ICML 2025"
         url: "https://openreview.net/pdf?id=mqljEW2NQl"
-        type: "paper"
+        type: "conf"
       - label: "GitHub"
         url: "https://github.com/qirunzeng/Fusing-Reward-and-Dueling"
         type: "github"
