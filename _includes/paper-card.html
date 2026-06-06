@@ -11,6 +11,10 @@
     {% endfor %}
   </p>
 
+  {% if include.paper.summary %}
+    <p class="paper-card__summary">{{ include.paper.summary }}</p>
+  {% endif %}
+
   {% if include.paper.links %}
     <p class="paper-card__meta" aria-label="Links for {{ include.paper.title }}">
       {% for link in include.paper.links %}
@@ -23,9 +27,5 @@
     </p>
   {% elsif include.paper.status %}
     <p class="paper-card__status">{{ include.paper.status }}</p>
-  {% endif %}
-
-  {% if include.paper.summary %}
-    <p class="paper-card__summary">{{ include.paper.summary }}</p>
   {% endif %}
 </article>

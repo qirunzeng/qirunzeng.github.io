@@ -63,6 +63,13 @@
   line-height: 1.42;
 }
 
+.paper-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  column-gap: 1rem;
+  align-items: start;
+}
+
 .paper-card--compact {
   margin-bottom: 0.9rem;
   padding-top: 0.65rem;
@@ -70,6 +77,7 @@
 
 .paper-card__title,
 .teaching-entry h3 {
+  grid-column: 1;
   max-width: 48rem;
   margin: 0 0 0.22rem;
   font-size: 16px;
@@ -80,8 +88,8 @@
 .paper-card__authors,
 .paper-card__status,
 .paper-card__summary,
-.paper-card__meta,
 .teaching-entry p {
+  grid-column: 1;
   margin: 0.18rem 0 0;
   max-width: 48rem;
 }
@@ -100,10 +108,16 @@
 }
 
 .paper-card__meta {
+  grid-column: 2;
+  grid-row: 1 / span 3;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem;
-  align-items: center;
+  justify-content: flex-end;
+  gap: 0.22rem;
+  align-items: flex-start;
+  justify-self: end;
+  max-width: 7.5rem;
+  margin: 0.1rem 0 0;
 }
 
 .paper-card__author--me {
@@ -142,44 +156,75 @@
 
 .tag {
   display: inline-block;
-  margin-top: 0.2rem;
+  margin-top: 0;
   margin-right: 0;
   border-radius: 4px;
-  color: #fff;
-  padding: 0.16rem 0.45rem;
-  font-size: 12px;
+  padding: 0.08rem 0.34rem;
+  border: 1px solid currentColor;
+  background: transparent;
+  font-size: 10.5px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.25;
   text-decoration: none !important;
   vertical-align: baseline;
 }
 
 .tag:hover,
 .tag:focus {
-  color: #fff;
   text-decoration: none !important;
-  filter: brightness(0.95);
+  filter: brightness(0.9);
 }
 
 .tag-github {
-  background: #2d3436;
+  color: #2d3436;
+  background: rgba(45, 52, 54, 0.06);
 }
 
 .tag-conf {
-  background: #7b4ca0;
+  color: #6f3b99;
+  background: rgba(123, 76, 160, 0.08);
 }
 
 .tag-arxiv {
-  background: #9f2f2f;
+  color: #9f2f2f;
+  background: rgba(159, 47, 47, 0.08);
 }
 
 .tag-paper,
 .tag-pdf {
-  background: #2f6f73;
+  color: #2f6f73;
+  background: rgba(47, 111, 115, 0.08);
 }
 
 .tag-link {
-  background: #4f5d75;
+  color: #4f5d75;
+  background: rgba(79, 93, 117, 0.08);
+}
+
+html[data-theme="dark"] .tag-github {
+  color: #d0d7de;
+  background: rgba(208, 215, 222, 0.08);
+}
+
+html[data-theme="dark"] .tag-conf {
+  color: #d8c1ff;
+  background: rgba(216, 193, 255, 0.1);
+}
+
+html[data-theme="dark"] .tag-arxiv {
+  color: #ffb4b4;
+  background: rgba(255, 180, 180, 0.1);
+}
+
+html[data-theme="dark"] .tag-paper,
+html[data-theme="dark"] .tag-pdf {
+  color: #a9d6d9;
+  background: rgba(169, 214, 217, 0.1);
+}
+
+html[data-theme="dark"] .tag-link {
+  color: #cbd3e3;
+  background: rgba(203, 211, 227, 0.1);
 }
 
 .author__urls-wrapper .btn {
@@ -187,9 +232,19 @@
 }
 
 @media (max-width: 600px) {
+  .paper-card {
+    display: block;
+  }
+
   .paper-card,
   .teaching-entry {
     padding-left: 0.75rem;
+  }
+
+  .paper-card__meta {
+    justify-content: flex-start;
+    max-width: none;
+    margin-top: 0.25rem;
   }
 
   .contact-links {
