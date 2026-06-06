@@ -10,21 +10,6 @@ I am a Ph.D. student in computer science at City University of Hong Kong, advise
 
 {% include section-header.html title="Research Positioning" description="Broadly, my work is in theoretical computer science. Within that area, I focus on learning theory and online decision-making, with a secondary algorithm-design thread in influence maximization." %}
 
-<dl class="research-positioning">
-  <div>
-    <dt>Core area</dt>
-    <dd>Theoretical computer science, especially learning theory.</dd>
-  </div>
-  <div>
-    <dt>Main problems</dt>
-    <dd>Bandit learning, hybrid feedback, best-arm identification, and robustness in online learning.</dd>
-  </div>
-  <div>
-    <dt>Algorithmic thread</dt>
-    <dd>Approximation algorithms and influence maximization under structural constraints.</dd>
-  </div>
-</dl>
-
 {% include section-header.html title="Selected Work" description="A short view of current and recent projects. See the research page for the full list." %}
 
 {% for paper in site.data.publications.preprints limit:1 %}
