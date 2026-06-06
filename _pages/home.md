@@ -4,30 +4,26 @@ permalink: /
 title: "Qirun Zeng"
 description: "Qirun Zeng is a Ph.D. student in computer science at City University of Hong Kong, working in theoretical computer science and learning theory."
 author_profile: true
-mermaid: true
 ---
 
 I am a Ph.D. student in computer science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io). I study theoretical questions in sequential decision-making, with current work on bandit learning, hybrid feedback, robustness, and influence maximization.
 
-{% include section-header.html title="Research Profile" description="My work uses algorithmic and theoretical tools to analyze learning and decision-making systems." %}
+{% include section-header.html title="Research Positioning" description="Broadly, my work is in theoretical computer science. Within that area, I focus on learning theory and online decision-making, with a secondary algorithm-design thread in influence maximization." %}
 
-<ul class="academic-list">
-  <li><strong>Learning theory:</strong> bandit learning, best-arm identification, reward and preference feedback, and sample-efficient decision-making.</li>
-  <li><strong>Theoretical computer science:</strong> approximation algorithms, influence maximization, and algorithmic guarantees under structural constraints.</li>
-  <li><strong>Robustness:</strong> adversarial behavior in online learning and data-injection attacks against bandit algorithms.</li>
-</ul>
-
-{% include section-header.html title="Research Map" description="A compact view of how my current projects fit together." %}
-
-```mermaid
-flowchart LR
-  A["Learning Theory"] --> B["Bandit Learning"]
-  B --> C["Hybrid Feedback"]
-  B --> D["Best-Arm Identification"]
-  B --> E["Robustness"]
-  F["Theoretical Computer Science"] --> G["Approximation Algorithms"]
-  G --> H["Influence Maximization"]
-```
+<dl class="research-positioning">
+  <div>
+    <dt>Core area</dt>
+    <dd>Theoretical computer science, especially learning theory.</dd>
+  </div>
+  <div>
+    <dt>Main problems</dt>
+    <dd>Bandit learning, hybrid feedback, best-arm identification, and robustness in online learning.</dd>
+  </div>
+  <div>
+    <dt>Algorithmic thread</dt>
+    <dd>Approximation algorithms and influence maximization under structural constraints.</dd>
+  </div>
+</dl>
 
 {% include section-header.html title="Selected Work" description="A short view of current and recent projects. See the research page for the full list." %}
 
