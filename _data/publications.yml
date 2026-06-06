@@ -42,7 +42,7 @@ conference:
         type: "github"
 
 preprints:
-  - title: "Best Arm Identification in Linear Bandits via Hybrid Feedback"
+  - title: "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback"
     authors:
       - name: "Qirun Zeng"
         me: true
@@ -52,7 +52,7 @@ preprints:
       - name: "Fang Kong"
       - name: "Jinhang Zuo"
     status: "arXiv preprint, 2605.05745."
-    summary: "Studies best-arm identification in linear bandits with hybrid feedback."
+    summary: "Studies best-arm identification in generalized linear bandits with hybrid feedback."
     links:
       - label: "arXiv"
         url: "https://arxiv.org/abs/2605.05745"
