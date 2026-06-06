@@ -4,6 +4,7 @@ permalink: /
 title: "Qirun Zeng"
 description: "Qirun Zeng is a Ph.D. student in computer science at City University of Hong Kong, working in theoretical computer science and learning theory."
 author_profile: true
+mermaid: true
 ---
 
 I am a Ph.D. student in computer science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io). My research is in theoretical computer science and learning theory, with current work on bandit learning, hybrid feedback models, robustness, and influence maximization.
@@ -17,6 +18,18 @@ Before joining CityUHK, I received my bachelor's degree from the School of the G
   <li><strong>Theoretical computer science:</strong> approximation algorithms, influence maximization, and algorithmic guarantees under structural constraints.</li>
   <li><strong>Robustness:</strong> adversarial behavior in online learning and data-injection attacks against bandit algorithms.</li>
 </ul>
+
+{% include section-header.html title="Research Map" description="A compact view of how my current projects fit together." %}
+
+```mermaid
+flowchart LR
+  A["Learning Theory"] --> B["Bandit Learning"]
+  B --> C["Hybrid Feedback"]
+  B --> D["Best-Arm Identification"]
+  B --> E["Robustness"]
+  F["Theoretical Computer Science"] --> G["Approximation Algorithms"]
+  G --> H["Influence Maximization"]
+```
 
 {% include section-header.html title="Selected Papers and Projects" description="A short view of current and recent work. See the research page for the full list." %}
 
