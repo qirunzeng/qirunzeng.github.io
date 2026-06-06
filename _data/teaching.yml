@@ -1,0 +1,36 @@
+- course: "Data Structure for Media"
+  term: "Spring 2026"
+  institution: "City University of Hong Kong"
+  unit: "Department of Computer Science"
+
+- course: "Java Programming"
+  term: "Fall 2025"
+  institution: "City University of Hong Kong"
+  unit: "Department of Computer Science"
+
+- course: "Computer Programming A"
+  term: "Fall 2024"
+  institution: "University of Science and Technology of China"
+  unit: "School of Information Science and Technology"
+  links:
+    - label: "Course materials"
+      url: "https://github.com/qirunzeng/USTC-ComputerProgrammingA-2024Fall"
+      type: "github"
+
+- course: "Data Structure and Algorithm"
+  term: "Spring 2024"
+  institution: "University of Science and Technology of China"
+  unit: "School of Information Science and Technology"
+  links:
+    - label: "Course materials"
+      url: "https://github.com/qirunzeng/USTC-DSA-2024Spring"
+      type: "github"
+
+- course: "Mathematical Analysis (B1)"
+  term: "Fall 2023"
+  institution: "University of Science and Technology of China"
+  unit: "School of Mathematical Sciences"
+  links:
+    - label: "Exercise handouts"
+      url: "/files/MathematicalAnalysis.pdf"
+      type: "pdf"

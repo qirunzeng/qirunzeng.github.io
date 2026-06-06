@@ -1,0 +1,11 @@
+<article class="teaching-entry">
+  <h3>{{ include.item.course }}</h3>
+  <p>{{ include.item.term }}, {{ include.item.institution }}, {{ include.item.unit }}.</p>
+  {% if include.item.links %}
+    <p class="teaching-entry__links">
+      {% for link in include.item.links %}
+        <a class="tag tag-{{ link.type | default: 'link' }}" href="{{ link.url }}" {% if link.url contains '://' %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}</a>
+      {% endfor %}
+    </p>
+  {% endif %}
+</article>

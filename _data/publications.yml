@@ -1,0 +1,78 @@
+conference:
+  - title: "One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization"
+    authors:
+      - name: "Qixin Zhang"
+        equal: true
+      - name: "Qirun Zeng"
+        me: true
+        equal: true
+      - name: "Hui Lu"
+      - name: "Pingchuan Ma"
+      - name: "Jinhang Zuo"
+      - name: "Renqiang Luo"
+      - name: "Yi Yu"
+      - name: "Dacheng Tao"
+    status: "Proceedings of the 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD 2026)."
+    summary: "Studies memory-efficient approximation algorithms for influence maximization under partition constraints."
+    links:
+      - label: "GitHub"
+        url: "https://github.com/qirunzeng/OneRound-IM"
+        type: "github"
+
+  - title: "Fusing Reward and Dueling Feedback in Stochastic Bandits"
+    authors:
+      - name: "Xuchuang Wang"
+      - name: "Qirun Zeng"
+        me: true
+      - name: "Jinhang Zuo"
+      - name: "Xutong Liu"
+      - name: "Mohammad Hajiesmaili"
+      - name: "John C. S. Lui"
+      - name: "Adam Wierman"
+    status: "Proceedings of the 42nd International Conference on Machine Learning (ICML 2025)."
+    summary: "Examines stochastic bandits with both reward observations and dueling feedback."
+    links:
+      - label: "Paper"
+        url: "https://openreview.net/pdf?id=mqljEW2NQl"
+        type: "paper"
+      - label: "GitHub"
+        url: "https://github.com/qirunzeng/Fusing-Reward-and-Dueling"
+        type: "github"
+
+preprints:
+  - title: "Best Arm Identification in Linear Bandits via Hybrid Feedback"
+    authors:
+      - name: "Qirun Zeng"
+        me: true
+      - name: "Xuchuang Wang"
+      - name: "Jiayi Shen"
+      - name: "Xutong Liu"
+      - name: "Fang Kong"
+      - name: "Jinhang Zuo"
+    status: "Preprint, arXiv:2605.05745."
+    summary: "Studies best-arm identification in linear bandits with hybrid feedback."
+    links:
+      - label: "arXiv"
+        url: "https://arxiv.org/abs/2605.05745"
+        type: "arxiv"
+      - label: "GitHub"
+        url: "https://github.com/qirunzeng/HyTS-GLB"
+        type: "github"
+
+  - title: "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection"
+    authors:
+      - name: "Qirun Zeng"
+        me: true
+      - name: "Eric He"
+      - name: "Richard Hoffmann"
+      - name: "Xuchuang Wang"
+      - name: "Jinhang Zuo"
+    status: "Preprint, arXiv:2505.21938."
+    summary: "Studies adversarial attacks on stochastic bandit algorithms through fake data injection."
+    links:
+      - label: "arXiv"
+        url: "https://arxiv.org/abs/2505.21938"
+        type: "arxiv"
+      - label: "GitHub"
+        url: "https://github.com/richardhoff88/online_learning_torank"
+        type: "github"

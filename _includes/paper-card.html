@@ -1,0 +1,29 @@
+<article class="paper-card{% if include.compact %} paper-card--compact{% endif %}">
+  <h3 class="paper-card__title">{{ include.paper.title }}</h3>
+
+  <p class="paper-card__authors">
+    {% for author in include.paper.authors %}
+      {% if author.me %}
+        <span class="paper-card__author paper-card__author--me">{{ author.name }}</span>{% if author.equal %}<sup>*</sup>{% endif %}
+      {% else %}
+        <span class="paper-card__author">{{ author.name }}</span>{% if author.equal %}<sup>*</sup>{% endif %}
+      {% endif %}{% unless forloop.last %}, {% endunless %}
+    {% endfor %}
+  </p>
+
+  {% if include.paper.status %}
+    <p class="paper-card__status">{{ include.paper.status }}</p>
+  {% endif %}
+
+  {% if include.paper.summary %}
+    <p class="paper-card__summary">{{ include.paper.summary }}</p>
+  {% endif %}
+
+  {% if include.paper.links %}
+    <p class="paper-card__links" aria-label="Links for {{ include.paper.title }}">
+      {% for link in include.paper.links %}
+        <a class="tag tag-{{ link.type | default: 'link' }}" href="{{ link.url }}" {% if link.url contains '://' %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}</a>
+      {% endfor %}
+    </p>
+  {% endif %}
+</article>

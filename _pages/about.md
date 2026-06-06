@@ -1,37 +1,34 @@
 ---
-permalink: /
-title: "Qirun Zeng's Homepage"
+layout: single
+permalink: /about/
+title: "About"
+description: "Academic background, research interests, service, and teaching for Qirun Zeng."
 author_profile: true
-redirect_from: 
-  - /about/
+redirect_from:
   - /about.html
 ---
 
-**Welcome here!**
+I am a Ph.D. student in computer science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io). My research interests are in theoretical computer science and learning theory.
 
-<h2 class="category">About Me</h2>
+I received my bachelor's degree from the School of the Gifted Young at the University of Science and Technology of China in 2025. At USTC, I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io).
 
-I am a first year Ph.D. student from City University of Hong Kong (CityUHK), beginning my studies in Fall 2025 under the supervision of [Prof. Jinhang Zuo](https://jhzuo.github.io). Before that, I earned my bachelor's degree from the School of the Gifted Young, University of Science and Technology of China (SGY, USTC) in 2025, advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io).
+{% include section-header.html title="Research Interests" description="My current work centers on theoretical questions in sequential decision-making and algorithm design." %}
 
-<!-- Research Interests
-===== -->
+<ul class="academic-list">
+  <li>Theoretical computer science.</li>
+  <li>Learning theory.</li>
+  <li>Bandit learning, hybrid feedback, and best-arm identification.</li>
+  <li>Approximation algorithms and influence maximization.</li>
+  <li>Robustness and adversarial behavior in online learning.</li>
+</ul>
 
-<h2 class="category">Research Interests</h2>
+{% include section-header.html title="Service" %}
 
-<div class="item">
-Theoretical Computer Science
-</div>
+<ul class="academic-list">
+  <li>Reviewer or subreviewer for ICML 2025, NeurIPS 2025, and ICLR 2026.</li>
+  <li>Student mentor for the Master of Science in Artificial Intelligence program, CityUHK, 2025.</li>
+</ul>
 
-<div class="item">
-Learning Theory
-</div>
+{% include section-header.html title="Teaching" %}
 
-<h2 class="category">Services</h2>
-
-<div class="item">
-Reviewer or subreviewer of ICML 2025, NeurIPS 2025, ICLR 2026.
-</div>
-
-<div class="item">
-Student Mentor of MSAI (Master of Science in Artificial Intelligence) 2025.
-</div>
+I have served as a teaching assistant for programming, data structures, algorithms, and mathematical analysis courses. See the [teaching page](/teaching/) for details and available course materials.

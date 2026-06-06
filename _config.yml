@@ -12,7 +12,7 @@ site_theme               : "default"
 title                    : "Qirun Zeng"
 title_separator          : "-"
 name                     : &name "Qirun Zeng"
-description              : &description "My personal website"
+description              : &description "Ph.D. student in computer science at City University of Hong Kong; theoretical computer science, learning theory, bandit learning, and approximation algorithms."
 url                      : https://qirunzeng.github.io # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io" or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "qirunzeng/qirunzeng.github.io"
@@ -25,9 +25,9 @@ author:
   avatar           : "avatar.jpg"
   name             : "Qirun Zeng"
   pronouns         : # "he/him"
-  bio              : "Ph.D. at CityUHK"
+  bio              : "Ph.D. student in Computer Science, CityUHK"
   location         : "Kowloon, Hong Kong SAR"
-  employer         : "CityU of Hong Kong"
+  employer         : "City University of Hong Kong"
   uri              : # URL
   email            : "qirunzeng@gmail.com" 
 
@@ -109,7 +109,7 @@ staticman:
       options:
         format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 atom_feed:
-  hide                   : false     # change to true to hide the RSS feed in the footer
+  hide                   : true     # change to true to hide the RSS feed in the footer
   path                   : # blank (default) uses feed.xml
 
 
@@ -127,13 +127,17 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 :  # Open Graph/Twitter default site image
+og_image                 : "avatar.jpg" # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  type                   : # Person or Organization (defaults to Person)
-  name                   : # If the user or organization name differs from the site's name
+  type                   : "Person" # Person or Organization (defaults to Person)
+  name                   : "Qirun Zeng" # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
+    - "https://scholar.google.com/citations?user=sITttdEAAAAJ&hl=en&oi=ao"
+    - "https://arxiv.org/a/zeng_q_5.html"
+    - "https://orcid.org/0009-0005-0570-532X"
+    - "https://github.com/qirunzeng"
 
 
 # Analytics
