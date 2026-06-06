@@ -46,35 +46,45 @@
   margin-bottom: 0.45rem;
 }
 
-.research-positioning {
+.page__content .research-positioning {
+  display: table;
   max-width: 48rem;
-  margin: 0.75rem 0 1.4rem;
+  width: 100%;
+  margin: 0.65rem 0 1.2rem;
   border-top: 1px solid var(--global-border-color);
+  border-collapse: collapse;
+  line-height: 1.28;
 }
 
-.research-positioning div {
-  display: grid;
-  grid-template-columns: 9.5rem minmax(0, 1fr);
-  column-gap: 0.95rem;
-  align-items: center;
-  padding: 0.42rem 0;
+.page__content .research-positioning div {
+  display: table-row;
+}
+
+.page__content .research-positioning dt,
+.page__content .research-positioning dd {
+  display: table-cell;
+  padding: 0.36rem 0;
   border-bottom: 1px solid var(--global-border-color);
+  vertical-align: middle;
 }
 
-.research-positioning dt {
+.page__content .research-positioning dt {
+  width: 9.5rem;
   margin: 0;
+  padding-right: 1rem;
   color: var(--global-text-color-light);
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.15;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.research-positioning dd {
+.page__content .research-positioning dd {
   margin: 0;
-  font-size: 14.5px;
-  line-height: 1.35;
+  font-size: 14px;
+  line-height: 1.32;
 }
 
 .paper-card,
@@ -267,11 +277,27 @@ html[data-theme="dark"] .tag-link {
 }
 
 @media (max-width: 600px) {
-  .research-positioning div {
+  .page__content .research-positioning,
+  .page__content .research-positioning div,
+  .page__content .research-positioning dt,
+  .page__content .research-positioning dd {
     display: block;
   }
 
-  .research-positioning dt {
+  .page__content .research-positioning div {
+    padding: 0.42rem 0;
+    border-bottom: 1px solid var(--global-border-color);
+  }
+
+  .page__content .research-positioning dt,
+  .page__content .research-positioning dd {
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .page__content .research-positioning dt {
+    width: auto;
+    padding-right: 0;
     margin-bottom: 0.15rem;
   }
 
