@@ -158,15 +158,21 @@
   display: inline-block;
   margin-top: 0;
   margin-right: 0;
-  border-radius: 4px;
-  padding: 0.08rem 0.34rem;
+  border-radius: 3px;
+  padding: 0.045rem 0.26rem;
   border: 1px solid currentColor;
   background: transparent;
-  font-size: 10.5px;
-  font-weight: 600;
-  line-height: 1.25;
+  font-size: 9.5px;
+  font-weight: 500;
+  line-height: 1.18;
   text-decoration: none !important;
   vertical-align: baseline;
+}
+
+.paper-card__meta .tag {
+  padding: 0.045rem 0.26rem;
+  font-size: 9.5px !important;
+  line-height: 1.18;
 }
 
 .tag:hover,
@@ -176,29 +182,34 @@
 }
 
 .tag-github {
-  color: #2d3436;
-  background: rgba(45, 52, 54, 0.06);
+  color: #3f4a4d;
+  background: #eef1f2;
+  border-color: #b9c3c7;
 }
 
 .tag-conf {
-  color: #6f3b99;
-  background: rgba(123, 76, 160, 0.08);
+  color: #51405f;
+  background: #f0edf3;
+  border-color: #c9bfd2;
 }
 
 .tag-arxiv {
-  color: #9f2f2f;
-  background: rgba(159, 47, 47, 0.08);
+  color: #654743;
+  background: #f4eeee;
+  border-color: #d6bfbc;
 }
 
 .tag-paper,
 .tag-pdf {
-  color: #2f6f73;
-  background: rgba(47, 111, 115, 0.08);
+  color: #405b5c;
+  background: #edf3f3;
+  border-color: #bed2d3;
 }
 
 .tag-link {
-  color: #4f5d75;
-  background: rgba(79, 93, 117, 0.08);
+  color: #4d5564;
+  background: #f0f2f5;
+  border-color: #c4cad4;
 }
 
 html[data-theme="dark"] .tag-github {

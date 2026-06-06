@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am a Ph.D. student in computer science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io). My research interests are in theoretical computer science and learning theory.
+I began my Ph.D. studies in computer science at City University of Hong Kong in Fall 2025, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io).
 
 I received my bachelor's degree from the School of the Gifted Young at the University of Science and Technology of China in 2025. At USTC, I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io).
 

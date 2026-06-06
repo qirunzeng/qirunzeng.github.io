@@ -7,11 +7,9 @@ author_profile: true
 mermaid: true
 ---
 
-I am a Ph.D. student in computer science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io). My research is in theoretical computer science and learning theory, with current work on bandit learning, hybrid feedback models, robustness, and influence maximization.
+I am a Ph.D. student in computer science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io). I study theoretical questions in sequential decision-making, with current work on bandit learning, hybrid feedback, robustness, and influence maximization.
 
-Before joining CityUHK, I received my bachelor's degree from the School of the Gifted Young at the University of Science and Technology of China in 2025, where I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io).
-
-{% include section-header.html title="Research Profile" description="My work uses algorithmic and theoretical tools to study sequential decision-making and learning problems. Recent projects focus on stochastic bandits, hybrid feedback, adversarial robustness, and scalable influence maximization." %}
+{% include section-header.html title="Research Profile" description="My work uses algorithmic and theoretical tools to analyze learning and decision-making systems." %}
 
 <ul class="academic-list">
   <li><strong>Learning theory:</strong> bandit learning, best-arm identification, reward and preference feedback, and sample-efficient decision-making.</li>
@@ -31,7 +29,7 @@ flowchart LR
   G --> H["Influence Maximization"]
 ```
 
-{% include section-header.html title="Selected Papers and Projects" description="A short view of current and recent work. See the research page for the full list." %}
+{% include section-header.html title="Selected Work" description="A short view of current and recent projects. See the research page for the full list." %}
 
 {% for paper in site.data.publications.preprints limit:1 %}
   {% include paper-card.html paper=paper compact=true %}
