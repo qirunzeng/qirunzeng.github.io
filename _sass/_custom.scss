@@ -73,7 +73,7 @@
 .paper-card__authors,
 .paper-card__status,
 .paper-card__summary,
-.paper-card__links,
+.paper-card__meta,
 .teaching-entry p {
   margin: 0.18rem 0 0;
   max-width: 48rem;
@@ -90,6 +90,13 @@
   color: var(--global-text-color-light);
   font-size: 14px;
   line-height: 1.4;
+}
+
+.paper-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
 }
 
 .paper-card__author--me {
@@ -128,8 +135,8 @@
 
 .tag {
   display: inline-block;
-  margin-top: 0.28rem;
-  margin-right: 0.3rem;
+  margin-top: 0.2rem;
+  margin-right: 0;
   border-radius: 4px;
   color: #fff;
   padding: 0.16rem 0.45rem;

@@ -15,9 +15,9 @@ conference:
     status: "KDD 2026, conference proceedings."
     summary: "Studies memory-efficient approximation algorithms for influence maximization under partition constraints."
     links:
-      - label: "KDD 2026"
+      - label: "KDD'2026"
         type: "conf"
-      - label: "GitHub"
+      - label: "Code"
         url: "https://github.com/qirunzeng/OneRound-IM"
         type: "github"
 
@@ -34,10 +34,10 @@ conference:
     status: "ICML 2025, conference proceedings."
     summary: "Examines stochastic bandits with both reward observations and dueling feedback."
     links:
-      - label: "ICML 2025"
+      - label: "ICML'2025"
         url: "https://openreview.net/pdf?id=mqljEW2NQl"
         type: "conf"
-      - label: "GitHub"
+      - label: "Code"
         url: "https://github.com/qirunzeng/Fusing-Reward-and-Dueling"
         type: "github"
 
@@ -57,7 +57,7 @@ preprints:
       - label: "arXiv"
         url: "https://arxiv.org/abs/2605.05745"
         type: "arxiv"
-      - label: "GitHub"
+      - label: "Code"
         url: "https://github.com/qirunzeng/HyTS-GLB"
         type: "github"
 
@@ -75,6 +75,6 @@ preprints:
       - label: "arXiv"
         url: "https://arxiv.org/abs/2505.21938"
         type: "arxiv"
-      - label: "GitHub"
+      - label: "Code"
         url: "https://github.com/richardhoff88/online_learning_torank"
         type: "github"

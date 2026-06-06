@@ -11,16 +11,8 @@
     {% endfor %}
   </p>
 
-  {% if include.paper.status %}
-    <p class="paper-card__status">{{ include.paper.status }}</p>
-  {% endif %}
-
-  {% if include.paper.summary %}
-    <p class="paper-card__summary">{{ include.paper.summary }}</p>
-  {% endif %}
-
   {% if include.paper.links %}
-    <p class="paper-card__links" aria-label="Links for {{ include.paper.title }}">
+    <p class="paper-card__meta" aria-label="Links for {{ include.paper.title }}">
       {% for link in include.paper.links %}
         {% if link.url %}
           <a class="tag tag-{{ link.type | default: 'link' }}" href="{{ link.url }}" {% if link.url contains '://' %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}</a>
@@ -29,5 +21,11 @@
         {% endif %}
       {% endfor %}
     </p>
+  {% elsif include.paper.status %}
+    <p class="paper-card__status">{{ include.paper.status }}</p>
+  {% endif %}
+
+  {% if include.paper.summary %}
+    <p class="paper-card__summary">{{ include.paper.summary }}</p>
   {% endif %}
 </article>
