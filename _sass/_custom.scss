@@ -283,8 +283,6 @@ html[data-theme="dark"] .tag-link {
   --profile-card-gradient: linear-gradient(90deg, rgba(183, 138, 47, 0.12), rgba(47, 159, 189, 0.08));
   --profile-shadow: 0 12px 34px rgba(31, 41, 51, 0.08);
   --content-column-width: 820px;
-  --profile-sidebar-column: 285px;
-  --profile-page-gutter: 1.4rem;
 }
 
 html[data-theme="dark"] {
@@ -612,7 +610,7 @@ html[data-theme="dark"] .archive a:hover {
 @media (min-width: 925px) {
   #main {
     display: grid;
-    grid-template-columns: var(--profile-sidebar-column) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     align-items: start;
     padding-left: 1em;
     padding-right: 1em;
@@ -620,6 +618,8 @@ html[data-theme="dark"] .archive a:hover {
 
   .sidebar {
     grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
     float: none;
     position: sticky;
     top: 5.2rem;
@@ -630,9 +630,21 @@ html[data-theme="dark"] .archive a:hover {
   }
 
   .page,
-  .archive,
+  .archive {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    float: none;
+    width: min(var(--content-column-width), 100%);
+    max-width: var(--content-column-width);
+    margin-right: 0;
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .page__related {
-    grid-column: 2;
+    grid-column: 1;
     justify-self: center;
     float: none;
     width: min(var(--content-column-width), 100%);
