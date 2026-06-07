@@ -3,9 +3,15 @@ layout: single
 permalink: /
 description: "Qirun Zeng is a Ph.D. student in computer science at City University of Hong Kong, working in theoretical computer science and learning theory."
 author_profile: true
+redirect_from:
+  - /about/
+  - /about.html
 ---
 
 {% assign home = site.data.home %}
+{% assign scholar = site.data.scholar %}
+{% assign conference_count = site.data.publications.conference | size %}
+{% assign preprint_count = site.data.publications.preprints | size %}
 
 <div class="home-profile">
   <section id="profile" class="home-section home-section--intro">
@@ -19,6 +25,20 @@ author_profile: true
         {{ paragraph | markdownify }}
       {% endfor %}
     </div>
+
+    <ul class="home-profile-metrics" aria-label="Academic metrics">
+      {% if scholar.total_citations %}
+        <li><strong>{{ scholar.total_citations }}</strong><span>Total citations</span></li>
+      {% endif %}
+      {% if scholar.h_index %}
+        <li><strong>{{ scholar.h_index }}</strong><span>h-index</span></li>
+      {% endif %}
+      {% if scholar.i10_index %}
+        <li><strong>{{ scholar.i10_index }}</strong><span>i10-index</span></li>
+      {% endif %}
+      <li><strong>{{ conference_count }}</strong><span>Conference papers</span></li>
+      <li><strong>{{ preprint_count }}</strong><span>Preprints</span></li>
+    </ul>
   </section>
 
   <section id="research" class="home-section">
@@ -97,6 +117,17 @@ author_profile: true
         <li>{{ item }}</li>
       {% endfor %}
     </ul>
+  </section>
+
+  <section id="teaching" class="home-section">
+    <header class="home-section__header">
+      <h2>Teaching</h2>
+      <p>{{ home.teaching.summary }}</p>
+    </header>
+
+    <div class="home-prose">
+      {{ home.teaching.description | markdownify }}
+    </div>
   </section>
 
   <section id="contact" class="home-section">

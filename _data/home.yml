@@ -47,5 +47,9 @@ service:
     - "Reviewer or subreviewer for ICML 2025, NeurIPS 2025, and ICLR 2026."
     - "Student mentor for the Master of Science in Artificial Intelligence program, CityUHK, 2025."
 
+teaching:
+  summary: "Teaching assistant experience and selected course materials."
+  description: "I have served as a teaching assistant for programming, data structures, algorithms, and mathematical analysis courses. See the [teaching page](/teaching/) for details and available course materials."
+
 contact:
   summary: "For research discussions, seminar invitations, and collaboration inquiries, email is the most reliable contact channel."
