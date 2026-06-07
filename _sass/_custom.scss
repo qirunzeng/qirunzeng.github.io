@@ -643,18 +643,18 @@ html[data-theme="dark"] .archive a:hover {
    ========================================================================== */
 
 html[data-theme="dark"] {
-  --global-base-color: #0b0f14;
-  --global-bg-color: #0b0f14;
-  --global-footer-bg-color: #0b0f14;
+  --global-base-color: #1a2027;
+  --global-bg-color: #1a2027;
+  --global-footer-bg-color: #1a2027;
   --global-border-color: #263241;
   --global-text-color: #e6edf3;
   --global-text-color-light: #8b949e;
   --global-masthead-link-color: #c9d1d9;
   --global-masthead-link-color-hover: #f0f6fc;
-  --profile-surface: #111820;
-  --profile-surface-soft: #151f2a;
-  --profile-border: #263241;
-  --profile-border-strong: #3b4a5c;
+  --profile-surface: #202832;
+  --profile-surface-soft: #263140;
+  --profile-border: #3a4654;
+  --profile-border-strong: #566575;
   --profile-heading: #e6edf3;
   --profile-muted: #8b949e;
   --profile-accent: #d6a354;
@@ -667,7 +667,7 @@ html[data-theme="dark"] {
 
 html[data-theme="dark"] body {
   background:
-    linear-gradient(180deg, #151a20 0%, #10151b 34%, #0b0f14 100%),
+    linear-gradient(180deg, #2b313a 0%, #222933 38%, #1a2027 100%),
     var(--global-bg-color);
 }
 
@@ -757,9 +757,11 @@ html[data-theme="dark"] body {
 .home-profile-metrics li {
   margin: 0;
   padding: 0.62rem 0.72rem;
-  border: 1px solid var(--profile-border);
+  border: 1px solid rgba(214, 163, 84, 0.28);
   border-radius: 7px;
-  background: var(--profile-surface);
+  background:
+    linear-gradient(135deg, rgba(214, 163, 84, 0.16), rgba(132, 216, 219, 0.1)),
+    var(--profile-surface);
 }
 
 .home-profile-metrics strong,
@@ -933,9 +935,10 @@ html[data-theme="dark"] body {
   grid-column: 2;
   grid-row: 1;
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   gap: 0.38rem;
-  max-width: none;
+  max-width: 14rem;
   margin: 0;
 }
 
@@ -964,6 +967,16 @@ html[data-theme="dark"] body {
 html[data-theme="dark"] .greedy-nav button {
   border: 1px solid var(--profile-border);
   background: rgba(17, 24, 32, 0.72);
+}
+
+@media (min-width: 761px) {
+  .home-timeline li {
+    grid-template-columns: 6.2rem minmax(0, 1fr) max-content;
+  }
+
+  .paper-card__meta {
+    justify-content: flex-end;
+  }
 }
 
 @media (max-width: 760px) {
