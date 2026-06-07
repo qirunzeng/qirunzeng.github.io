@@ -282,9 +282,6 @@ html[data-theme="dark"] .tag-link {
   --profile-blue: #426f9f;
   --profile-card-gradient: linear-gradient(90deg, rgba(183, 138, 47, 0.12), rgba(47, 159, 189, 0.08));
   --profile-shadow: 0 12px 34px rgba(31, 41, 51, 0.08);
-  --content-column-width: 820px;
-  --layout-sidebar-width: 220px;
-  --layout-column-gap: 60px;
 }
 
 html[data-theme="dark"] {
@@ -323,11 +320,6 @@ html[data-theme="dark"] .masthead {
   background: rgba(31, 41, 51, 0.09);
 }
 
-.masthead__inner-wrap {
-  padding-top: 0.42rem;
-  padding-bottom: 0.42rem;
-}
-
 .greedy-nav,
 .masthead__menu-item {
   background: transparent;
@@ -346,10 +338,6 @@ html[data-theme="dark"] .masthead {
 .greedy-nav .visible-links a::before {
   height: 2px;
   background: var(--profile-accent);
-}
-
-#main {
-  margin-top: 4.2rem;
 }
 
 .page__title {
@@ -608,30 +596,7 @@ html[data-theme="dark"] .archive a:hover {
   text-decoration-color: var(--global-link-color-hover);
 }
 
-@media (min-width: 925px) {
-  .greedy-nav .visible-links li:first-child {
-    min-width: var(--layout-sidebar-width);
-    padding-right: var(--layout-column-gap);
-  }
-
-  .greedy-nav .visible-links li:first-child a,
-  .greedy-nav .visible-links li:nth-child(2) a {
-    margin-left: 0;
-  }
-
-  .masthead__menu-item--lg {
-    padding-right: 0;
-  }
-}
-
-@media (max-width: 1120px) {
-}
-
 @media (max-width: 760px) {
-  #main {
-    margin-top: 3.4rem;
-  }
-
   .author__avatar img {
     width: 72px;
     max-width: 72px;
@@ -645,14 +610,6 @@ html[data-theme="dark"] .archive a:hover {
   .home-section {
     padding: 1.15rem 0 1.35rem;
   }
-}
-
-@media (max-width: 520px) {
-  .greedy-nav a {
-    margin: 0 0.55rem;
-    font-size: 0.84rem;
-  }
-
 }
 
 /* Homepage narrative refresh
@@ -685,15 +642,6 @@ html[data-theme="dark"] body {
   background:
     linear-gradient(180deg, #2b313a 0%, #222933 38%, #1a2027 100%),
     var(--global-bg-color);
-}
-
-.home-profile {
-  max-width: var(--content-column-width);
-}
-
-.archive,
-.page__inner-wrap {
-  max-width: var(--content-column-width);
 }
 
 .home-section {
@@ -888,7 +836,6 @@ html[data-theme="dark"] body {
   grid-template-columns: minmax(0, 1fr) max-content;
   column-gap: 1rem;
   align-items: start;
-  max-width: var(--content-column-width);
   padding: 1.08rem 1.2rem;
   border: 1px solid var(--profile-border);
   border-left: 3px solid var(--profile-accent);
