@@ -3,6 +3,12 @@
   line-height: 1.62;
 }
 
+@include breakpoint($large) {
+  .archive {
+    @include suffix(2 of 12);
+  }
+}
+
 .page__content p,
 .archive p {
   max-width: 48rem;
