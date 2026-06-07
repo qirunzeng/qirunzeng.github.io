@@ -611,9 +611,8 @@ html[data-theme="dark"] .archive a:hover {
 
 @media (min-width: 925px) {
   .greedy-nav .visible-links {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    width: 100%;
   }
 
   .greedy-nav .visible-links li:first-child {
