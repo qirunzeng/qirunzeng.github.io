@@ -1,22 +1,29 @@
+hero:
+  title: "Qirun Zeng"
+  subtitle: "Ph.D. Student in Computer Science, City University of Hong Kong"
+  tagline: "Algorithms for decision-making under uncertainty."
+  topics:
+    - "Theoretical computer science"
+    - "Online decision-making"
+    - "Approximation algorithms"
+
 profile:
-  summary: "My work is in theoretical computer science, with a focus on learning theory, online decision-making, and approximation algorithms."
-  cards:
-    - title: "Academic Background"
-      paragraphs:
-        - "I am a Ph.D. student in computer science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io)."
-        - "I received my bachelor's degree from University of Science and Technology of China in 2025, where I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
-    - title: "Research Focus"
-      paragraphs:
-        - "My current research studies sequential decision-making, especially bandit learning, hybrid feedback, robustness, and influence maximization."
-      tags:
-        - "Theory"
-        - "Learning Theory"
-        - "Bandit Learning"
-        - "Hybrid Feedback"
-        - "Influence Maximization"
+  summary: "Academic background and advising."
+  paragraphs:
+    - "I am a Ph.D. student in computer science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io)."
+    - "I received my bachelor's degree from University of Science and Technology of China in 2025, where I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
+
+research:
+  summary: "I study sequential decision-making under limited, noisy, or hybrid feedback. My current work focuses on bandit learning, robust online learning, and influence maximization, with an emphasis on provable guarantees and efficient algorithms."
+  tags:
+    - "Learning Theory"
+    - "Bandit Learning"
+    - "Hybrid Feedback"
+    - "Robust Online Learning"
+    - "Influence Maximization"
 
 publications:
-  summary: "Selected current and recent work. See the research page for the full list."
+  summary: "Selected current and recent work in learning theory, bandit learning, and approximation algorithms."
 
 honors:
   summary: "Selected honors, awards, and scholarships."

@@ -11,81 +11,38 @@ author_profile: true
 {% assign preprint_count = site.data.publications.preprints | size %}
 
 <div class="home-profile">
-  <section id="scholar-metrics" class="home-section">
-    <header class="home-section__header">
-      <h2>Scholar Metrics</h2>
-      <p>Google Scholar metrics are refreshed by a scheduled site data workflow. The current values below are seeded from the latest successful profile snapshot.</p>
-    </header>
+  <section class="home-hero" aria-labelledby="home-title">
+    <p class="home-hero__eyebrow">{{ home.hero.subtitle }}</p>
+    <h1 id="home-title">{{ home.hero.title }}</h1>
+    <p class="home-hero__tagline">{{ home.hero.tagline }}</p>
+    <p class="home-hero__topics">{{ home.hero.topics | join: " &middot; " }}</p>
 
-    <div class="metric-grid">
-      <article class="metric-card">
-        <p class="metric-card__value">{% if scholar.total_citations %}{{ scholar.total_citations }}{% else %}Updating{% endif %}</p>
-        <h3>Total citations</h3>
-        <p>{% if scholar.updated_at %}Updated {{ scholar.updated_at }}{% else %}Scheduled update pending{% endif %}</p>
-      </article>
-
-      <article class="metric-card">
-        <p class="metric-card__value">{% if scholar.h_index %}{{ scholar.h_index }}{% else %}Updating{% endif %}</p>
-        <h3>h-index</h3>
-        <p>{% if scholar.updated_at %}Google Scholar snapshot{% else %}Scheduled update pending{% endif %}</p>
-      </article>
-
-      <article class="metric-card">
-        <p class="metric-card__value">{% if scholar.i10_index %}{{ scholar.i10_index }}{% else %}Updating{% endif %}</p>
-        <h3>i10-index</h3>
-        <p>{% if scholar.updated_at %}Google Scholar snapshot{% else %}Scheduled update pending{% endif %}</p>
-      </article>
-
-      <article class="metric-card">
-        <p class="metric-card__value">{{ conference_count }}</p>
-        <h3>Conference papers</h3>
-        <p>From site publication data</p>
-      </article>
-
-      <article class="metric-card">
-        <p class="metric-card__value">{{ preprint_count }}</p>
-        <h3>Preprints</h3>
-        <p>From site publication data</p>
-      </article>
-    </div>
-
-    <p class="home-note">
+    <div class="home-actions" aria-label="Primary links">
+      <a class="home-action-button" href="/publications/">Publications</a>
       {% if scholar.source_url %}
-        <a href="{{ scholar.source_url }}" target="_blank" rel="noopener noreferrer">Google Scholar profile</a>
-      {% else %}
-        Google Scholar metrics update automatically when scheduled data is available.
+        <a class="home-action-button home-action-button--secondary" href="{{ scholar.source_url }}" target="_blank" rel="noopener noreferrer">Google Scholar</a>
       {% endif %}
-    </p>
-  </section>
-
-  <section id="profile" class="home-section">
-    <header class="home-section__header">
-      <h2>Profile</h2>
-      <p>{{ home.profile.summary }}</p>
-    </header>
-
-    <div class="home-card-stack">
-      {% for card in home.profile.cards %}
-        <article class="home-card">
-          <h3>{{ card.title }}</h3>
-          {% for paragraph in card.paragraphs %}
-            {{ paragraph | markdownify }}
-          {% endfor %}
-          {% if card.tags %}
-            <div class="home-tags" aria-label="{{ card.title }} tags">
-              {% for tag in card.tags %}
-                <span>{{ tag }}</span>
-              {% endfor %}
-            </div>
-          {% endif %}
-        </article>
-      {% endfor %}
+      <a class="home-action-button home-action-button--secondary" href="mailto:{{ site.author.email }}">Email</a>
     </div>
+
+    <ul class="home-metrics" aria-label="Academic metrics">
+      {% if scholar.total_citations %}
+        <li><strong>{{ scholar.total_citations }}</strong> total citations</li>
+      {% endif %}
+      {% if scholar.h_index %}
+        <li><strong>{{ scholar.h_index }}</strong> h-index</li>
+      {% endif %}
+      {% if scholar.i10_index %}
+        <li><strong>{{ scholar.i10_index }}</strong> i10-index</li>
+      {% endif %}
+      <li><strong>{{ conference_count }}</strong> conference papers</li>
+      <li><strong>{{ preprint_count }}</strong> preprints</li>
+    </ul>
   </section>
 
-  <section id="publications" class="home-section">
+  <section id="publications" class="home-section home-section--featured">
     <header class="home-section__header">
-      <h2>Publications</h2>
+      <h2>Selected Publications</h2>
       <p>{{ home.publications.summary }}</p>
     </header>
 
@@ -99,18 +56,30 @@ author_profile: true
     <p class="home-action"><a class="text-link" href="/publications/">View all publications</a></p>
   </section>
 
-  <section id="honors" class="home-section">
+  <section id="research" class="home-section">
     <header class="home-section__header">
-      <h2>Honors</h2>
-      <p>{{ home.honors.summary }}</p>
+      <h2>Research Focus</h2>
     </header>
 
-    <div class="home-list-stack">
-      {% for item in home.honors.items %}
-        <article class="home-list-item">
-          <h3>{{ item.date }} | {{ item.title }}</h3>
-          <p>{{ item.detail }}</p>
-        </article>
+    <article class="home-card home-card--strong">
+      <p>{{ home.research.summary }}</p>
+      <div class="home-tags" aria-label="Research topics">
+        {% for tag in home.research.tags %}
+          <span>{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </article>
+  </section>
+
+  <section id="profile" class="home-section">
+    <header class="home-section__header">
+      <h2>Profile</h2>
+      <p>{{ home.profile.summary }}</p>
+    </header>
+
+    <div class="home-prose">
+      {% for paragraph in home.profile.paragraphs %}
+        {{ paragraph | markdownify }}
       {% endfor %}
     </div>
   </section>
@@ -123,7 +92,7 @@ author_profile: true
 
     <div class="home-list-stack">
       {% for item in home.education.items %}
-        <article class="home-list-item">
+        <article class="home-list-item home-list-item--card">
           <h3>{{ item.period }} | {{ item.degree }}</h3>
           <p><strong>{{ item.institution }}</strong></p>
           {{ item.detail | markdownify }}
@@ -132,13 +101,30 @@ author_profile: true
     </div>
   </section>
 
+  <section id="honors" class="home-section">
+    <header class="home-section__header">
+      <h2>Honors</h2>
+      <p>{{ home.honors.summary }}</p>
+    </header>
+
+    <ol class="home-timeline">
+      {% for item in home.honors.items %}
+        <li>
+          <span>{{ item.date }}</span>
+          <strong>{{ item.title }}</strong>
+          <em>{{ item.detail }}</em>
+        </li>
+      {% endfor %}
+    </ol>
+  </section>
+
   <section id="service" class="home-section">
     <header class="home-section__header">
       <h2>Service</h2>
       <p>{{ home.service.summary }}</p>
     </header>
 
-    <ul class="home-service-list">
+    <ul class="home-plain-list">
       {% for item in home.service.items %}
         <li>{{ item }}</li>
       {% endfor %}
