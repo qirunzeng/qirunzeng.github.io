@@ -79,7 +79,6 @@
 }
 
 .paper-card__authors,
-.paper-card__status,
 .paper-card__summary,
 .teaching-entry p {
   grid-column: 1;
@@ -93,8 +92,7 @@
   max-width: 48rem;
 }
 
-.paper-card__authors,
-.paper-card__status {
+.paper-card__authors {
   color: var(--global-text-color-light);
   font-size: 14px;
   line-height: 1.4;
@@ -282,6 +280,7 @@ html[data-theme="dark"] .tag-link {
   --profile-accent: #b78a2f;
   --profile-teal: #276f70;
   --profile-blue: #426f9f;
+  --profile-card-gradient: linear-gradient(90deg, rgba(183, 138, 47, 0.12), rgba(47, 159, 189, 0.08));
   --profile-shadow: 0 12px 34px rgba(31, 41, 51, 0.08);
 }
 
@@ -295,6 +294,7 @@ html[data-theme="dark"] {
   --profile-accent: #d1a34c;
   --profile-teal: #84d8db;
   --profile-blue: #9ed7ff;
+  --profile-card-gradient: linear-gradient(90deg, rgba(214, 163, 84, 0.13), rgba(132, 216, 219, 0.08));
   --global-link-color: #84d8db;
   --global-link-color-hover: #b8f2f4;
   --global-link-color-visited: #c4def7;
@@ -730,7 +730,9 @@ html[data-theme="dark"] body {
   border: 1px solid var(--profile-border);
   border-left: 3px solid var(--profile-accent);
   border-radius: 7px;
-  background: var(--profile-surface);
+  background:
+    var(--profile-card-gradient),
+    var(--profile-surface);
   box-shadow: none;
 }
 
@@ -740,7 +742,7 @@ html[data-theme="dark"] body {
 
 .home-card--strong {
   background:
-    linear-gradient(90deg, rgba(214, 163, 84, 0.12), rgba(214, 163, 84, 0) 14rem),
+    var(--profile-card-gradient),
     var(--profile-surface);
 }
 
@@ -777,7 +779,7 @@ html[data-theme="dark"] body {
   border: 1px solid rgba(214, 163, 84, 0.28);
   border-radius: 7px;
   background:
-    linear-gradient(135deg, rgba(214, 163, 84, 0.16), rgba(132, 216, 219, 0.1)),
+    var(--profile-card-gradient),
     var(--profile-surface);
 }
 
@@ -887,7 +889,9 @@ html[data-theme="dark"] body {
   border: 1px solid var(--profile-border);
   border-left: 3px solid var(--profile-accent);
   border-radius: 7px;
-  background: var(--profile-surface);
+  background:
+    var(--profile-card-gradient),
+    var(--profile-surface);
   box-shadow: none;
   font-size: 1rem;
   line-height: 1.52;
@@ -908,18 +912,12 @@ html[data-theme="dark"] body {
   grid-row: 2;
 }
 
-.paper-card__status {
-  grid-column: 1 / -1;
-  grid-row: 3;
-}
-
 .paper-card__summary {
   grid-column: 1 / -1;
   grid-row: 3;
 }
 
 .paper-card__authors,
-.paper-card__status,
 .paper-card__summary {
   max-width: 48rem;
 }
@@ -927,18 +925,6 @@ html[data-theme="dark"] body {
 .paper-card__authors {
   color: var(--profile-muted);
   font-size: 0.94rem;
-}
-
-.paper-card__status {
-  display: none;
-  margin-top: 0.52rem;
-  padding: 0.12rem 0.45rem;
-  border: 1px solid rgba(214, 163, 84, 0.42);
-  border-radius: 999px;
-  color: var(--profile-heading);
-  background: rgba(214, 163, 84, 0.14);
-  font-size: 0.78rem;
-  font-weight: 700;
 }
 
 .paper-card__summary {
