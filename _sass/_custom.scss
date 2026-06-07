@@ -536,6 +536,13 @@ html[data-theme="dark"] .masthead {
 .home-list-stack {
   display: grid;
   grid-template-columns: 1fr;
+}
+
+.home-card-stack {
+  gap: 1.35rem;
+}
+
+.home-list-stack {
   gap: 0.9rem;
 }
 
