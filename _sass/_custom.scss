@@ -441,14 +441,16 @@ html[data-theme="dark"] .masthead {
 }
 
 .paper-card,
-.teaching-entry {
+.teaching-entry,
+.home-card {
   max-width: none;
   padding: 0.95rem 1rem;
   border-left: 3px solid var(--profile-accent);
 }
 
 .paper-card__title,
-.teaching-entry h3 {
+.teaching-entry h3,
+.home-card h3 {
   color: var(--profile-heading);
 }
 
@@ -546,7 +548,6 @@ html[data-theme="dark"] .masthead {
   gap: 0.9rem;
 }
 
-.home-card,
 .home-list-item {
   padding: 1rem 1.1rem;
 }
