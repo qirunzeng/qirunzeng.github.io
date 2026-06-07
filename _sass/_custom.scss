@@ -349,7 +349,7 @@ html[data-theme="dark"] .masthead {
 }
 
 #main {
-  max-width: none;
+  max-width: $x-large;
   margin-top: 4.2rem;
 }
 
@@ -614,15 +614,19 @@ html[data-theme="dark"] .archive a:hover {
     display: grid;
     grid-template-columns: var(--profile-sidebar-column) minmax(0, 1fr);
     align-items: start;
-    padding-left: var(--profile-page-gutter);
-    padding-right: var(--profile-page-gutter);
+    padding-left: 1em;
+    padding-right: 1em;
   }
 
   .sidebar {
     grid-column: 1;
     float: none;
+    position: sticky;
+    top: 5.2rem;
+    height: auto;
+    overflow: visible;
     width: 220px;
-    padding-top: 5.2rem;
+    padding-top: 0;
   }
 
   .page,
