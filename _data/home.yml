@@ -1,15 +1,13 @@
 profile:
   summary: "Academic background and advising."
   paragraphs:
-    - "I am a Ph.D. student in computer science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io)."
-    - "I received my bachelor's degree from University of Science and Technology of China in 2025, where I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
+    - "I am a Ph.D. student in computer science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io). Bofore that, I received my bachelor's degree in Computer Science and Technology from the School of the Gifted Young at the University of Science and Technology of China, where I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
 
 research:
   summary: "I study sequential decision-making under limited, noisy, or hybrid feedback. My current work focuses on bandit learning, robust online learning, and influence maximization, with an emphasis on provable guarantees and efficient algorithms."
   tags:
     - "Learning Theory"
     - "Bandit Learning"
-    - "Hybrid Feedback"
     - "Robust Online Learning"
     - "Influence Maximization"
 
