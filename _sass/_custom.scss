@@ -370,7 +370,7 @@ html[data-theme="dark"] .masthead {
 
 .page__content p,
 .archive p {
-  max-width: 64rem;
+  max-width: 48rem;
 }
 
 .section-header h2 {
@@ -619,7 +619,7 @@ html[data-theme="dark"] .archive a:hover {
 
   .page,
   .archive {
-    width: calc(100% - 285px);
+    width: min(820px, calc(100% - 285px));
     padding-left: 0;
     padding-right: 0;
   }
@@ -689,6 +689,11 @@ html[data-theme="dark"] body {
 }
 
 .home-profile {
+  max-width: 820px;
+}
+
+.archive,
+.page__inner-wrap {
   max-width: 820px;
 }
 
