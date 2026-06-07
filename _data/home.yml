@@ -1,0 +1,70 @@
+profile:
+  summary: "My work connects theoretical computer science, learning theory, online decision-making, approximation algorithms, and robust learning systems."
+  cards:
+    - title: "Academic Background"
+      paragraphs:
+        - "I am a Ph.D. student in computer science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io)."
+        - "I received my bachelor's degree from the School of the Gifted Young at the University of Science and Technology of China in 2025, where I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
+    - title: "Research Focus"
+      paragraphs:
+        - "My current research studies theoretical questions in sequential decision-making, especially bandit learning, hybrid feedback, robustness, and influence maximization."
+      tags:
+        - "Theory"
+        - "Learning Theory"
+        - "Bandit Learning"
+        - "Hybrid Feedback"
+        - "Influence Maximization"
+
+research:
+  summary: "I am interested in algorithms with provable guarantees for learning and decision-making under limited, noisy, or strategically distorted feedback."
+  items:
+    - title: "Bandit Learning and Hybrid Feedback"
+      description: "Designing sample-efficient methods for stochastic bandits, best-arm identification, and generalized linear bandits with multiple feedback channels."
+    - title: "Robust Online Learning"
+      description: "Studying how online learning systems behave under adversarial behavior, fake data injection, and model uncertainty."
+    - title: "Approximation Algorithms"
+      description: "Developing memory-efficient approximation algorithms for influence maximization and related combinatorial optimization problems."
+
+publications:
+  summary: "Selected current and recent work. See the research page for the full list."
+
+honors:
+  summary: "Selected honors, awards, and scholarships across undergraduate and doctoral stages."
+  items:
+    - title: "Outstanding Graduate"
+      detail: "Top 15%."
+      date: "2025.03"
+    - title: "Growth Empowerment Scholarship"
+      detail: "35 selected from 1,950 students."
+      date: "2022.03"
+    - title: "Excellent Student Scholarship, Gold"
+      detail: "Top 3%."
+      date: "2021.10"
+
+funding:
+  summary: "Current funding and scholarship support."
+  items:
+    - title: "CityU UGC-FUNDED"
+      detail: "Doctoral funding support at City University of Hong Kong."
+      date: "2025-present"
+
+education:
+  summary: "Academic training and advising."
+  items:
+    - degree: "Ph.D. in Computer Science"
+      institution: "City University of Hong Kong"
+      period: "2025-present"
+      detail: "Advisor: [Prof. Jinhang Zuo](https://jhzuo.github.io)."
+    - degree: "B.S., School of the Gifted Young"
+      institution: "University of Science and Technology of China"
+      period: "2021-2025"
+      detail: "Advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
+
+service:
+  summary: "Academic service and mentoring."
+  items:
+    - "Reviewer or subreviewer for ICML 2025, NeurIPS 2025, and ICLR 2026."
+    - "Student mentor for the Master of Science in Artificial Intelligence program, CityUHK, 2025."
+
+contact:
+  summary: "For research discussions, seminar invitations, and collaboration inquiries, email is the most reliable contact channel."
