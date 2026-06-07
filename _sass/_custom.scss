@@ -283,6 +283,8 @@ html[data-theme="dark"] .tag-link {
   --profile-card-gradient: linear-gradient(90deg, rgba(183, 138, 47, 0.12), rgba(47, 159, 189, 0.08));
   --profile-shadow: 0 12px 34px rgba(31, 41, 51, 0.08);
   --content-column-width: 820px;
+  --layout-sidebar-width: 220px;
+  --layout-column-gap: 60px;
 }
 
 html[data-theme="dark"] {
@@ -608,9 +610,30 @@ html[data-theme="dark"] .archive a:hover {
 }
 
 @media (min-width: 925px) {
+  .greedy-nav .visible-links {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .greedy-nav .visible-links li:first-child {
+    flex: 0 0 var(--layout-sidebar-width);
+    margin-right: var(--layout-column-gap);
+  }
+
+  .greedy-nav .visible-links li:first-child a,
+  .greedy-nav .visible-links li:nth-child(2) a {
+    margin-left: 0;
+  }
+
+  .masthead__menu-item--lg {
+    padding-right: 0;
+  }
+
   #main {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: var(--layout-sidebar-width) minmax(0, var(--content-column-width));
+    column-gap: var(--layout-column-gap);
     align-items: start;
     padding-left: 1em;
     padding-right: 1em;
@@ -631,9 +654,9 @@ html[data-theme="dark"] .archive a:hover {
 
   .page,
   .archive {
-    grid-column: 1;
+    grid-column: 2;
     grid-row: 1;
-    justify-self: center;
+    justify-self: stretch;
     float: none;
     width: min(var(--content-column-width), 100%);
     max-width: var(--content-column-width);
@@ -644,8 +667,8 @@ html[data-theme="dark"] .archive a:hover {
   }
 
   .page__related {
-    grid-column: 1;
-    justify-self: center;
+    grid-column: 2;
+    justify-self: stretch;
     float: none;
     width: min(var(--content-column-width), 100%);
     max-width: var(--content-column-width);
