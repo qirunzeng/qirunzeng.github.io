@@ -1,13 +1,13 @@
 profile:
-  summary: "My work connects theoretical computer science, learning theory, online decision-making, approximation algorithms, and robust learning systems."
+  summary: "My work is in theoretical computer science, with a focus on learning theory, online decision-making, and approximation algorithms."
   cards:
     - title: "Academic Background"
       paragraphs:
         - "I am a Ph.D. student in computer science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io)."
-        - "I received my bachelor's degree from the School of the Gifted Young at the University of Science and Technology of China in 2025, where I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
+        - "I received my bachelor's degree from University of Science and Technology of China in 2025, where I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
     - title: "Research Focus"
       paragraphs:
-        - "My current research studies theoretical questions in sequential decision-making, especially bandit learning, hybrid feedback, robustness, and influence maximization."
+        - "My current research studies sequential decision-making, especially bandit learning, hybrid feedback, robustness, and influence maximization."
       tags:
         - "Theory"
         - "Learning Theory"
@@ -15,21 +15,11 @@ profile:
         - "Hybrid Feedback"
         - "Influence Maximization"
 
-research:
-  summary: "I am interested in algorithms with provable guarantees for learning and decision-making under limited, noisy, or strategically distorted feedback."
-  items:
-    - title: "Bandit Learning and Hybrid Feedback"
-      description: "Designing sample-efficient methods for stochastic bandits, best-arm identification, and generalized linear bandits with multiple feedback channels."
-    - title: "Robust Online Learning"
-      description: "Studying how online learning systems behave under adversarial behavior, fake data injection, and model uncertainty."
-    - title: "Approximation Algorithms"
-      description: "Developing memory-efficient approximation algorithms for influence maximization and related combinatorial optimization problems."
-
 publications:
   summary: "Selected current and recent work. See the research page for the full list."
 
 honors:
-  summary: "Selected honors, awards, and scholarships across undergraduate and doctoral stages."
+  summary: "Selected honors, awards, and scholarships."
   items:
     - title: "Outstanding Graduate"
       detail: "Top 15%."
@@ -41,13 +31,6 @@ honors:
       detail: "Top 3%."
       date: "2021.10"
 
-funding:
-  summary: "Current funding and scholarship support."
-  items:
-    - title: "CityU UGC-FUNDED"
-      detail: "Doctoral funding support at City University of Hong Kong."
-      date: "2025-present"
-
 education:
   summary: "Academic training and advising."
   items:
@@ -55,10 +38,10 @@ education:
       institution: "City University of Hong Kong"
       period: "2025-present"
       detail: "Advisor: [Prof. Jinhang Zuo](https://jhzuo.github.io)."
-    - degree: "B.S., School of the Gifted Young"
+    - degree: "B.S."
       institution: "University of Science and Technology of China"
       period: "2021-2025"
-      detail: "Advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
+      detail: "School of the Gifted Young. Advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
 
 service:
   summary: "Academic service and mentoring."

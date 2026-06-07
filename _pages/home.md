@@ -64,7 +64,7 @@ author_profile: true
       <p>{{ home.profile.summary }}</p>
     </header>
 
-    <div class="home-card-grid home-card-grid--two">
+    <div class="home-card-stack">
       {% for card in home.profile.cards %}
         <article class="home-card">
           <h3>{{ card.title }}</h3>
@@ -78,22 +78,6 @@ author_profile: true
               {% endfor %}
             </div>
           {% endif %}
-        </article>
-      {% endfor %}
-    </div>
-  </section>
-
-  <section id="research" class="home-section">
-    <header class="home-section__header">
-      <h2>Research</h2>
-      <p>{{ home.research.summary }}</p>
-    </header>
-
-    <div class="home-card-grid home-card-grid--three">
-      {% for item in home.research.items %}
-        <article class="home-card home-card--compact">
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.description }}</p>
         </article>
       {% endfor %}
     </div>
@@ -115,32 +99,19 @@ author_profile: true
     <p class="home-action"><a class="text-link" href="/publications/">View all publications</a></p>
   </section>
 
-  <section id="honors-funding" class="home-section">
+  <section id="honors" class="home-section">
     <header class="home-section__header">
-      <h2>Honors & Funding</h2>
+      <h2>Honors</h2>
       <p>{{ home.honors.summary }}</p>
     </header>
 
-    <div class="home-list-grid">
-      <div>
-        <h3 class="home-subtitle">Honors</h3>
-        {% for item in home.honors.items %}
-          <article class="home-list-item">
-            <h4>{{ item.date }} | {{ item.title }}</h4>
-            <p>{{ item.detail }}</p>
-          </article>
-        {% endfor %}
-      </div>
-
-      <div>
-        <h3 class="home-subtitle">Funding</h3>
-        {% for item in home.funding.items %}
-          <article class="home-list-item">
-            <h4>{{ item.date }} | {{ item.title }}</h4>
-            <p>{{ item.detail }}</p>
-          </article>
-        {% endfor %}
-      </div>
+    <div class="home-list-stack">
+      {% for item in home.honors.items %}
+        <article class="home-list-item">
+          <h3>{{ item.date }} | {{ item.title }}</h3>
+          <p>{{ item.detail }}</p>
+        </article>
+      {% endfor %}
     </div>
   </section>
 
@@ -150,7 +121,7 @@ author_profile: true
       <p>{{ home.education.summary }}</p>
     </header>
 
-    <div class="home-list-grid">
+    <div class="home-list-stack">
       {% for item in home.education.items %}
         <article class="home-list-item">
           <h3>{{ item.period }} | {{ item.degree }}</h3>

@@ -484,14 +484,15 @@ html[data-theme="dark"] .masthead {
 
 .metric-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.8rem;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  max-width: 42rem;
   margin-top: 0.9rem;
 }
 
 .metric-card {
-  min-height: 8.8rem;
-  padding: 1rem;
+  min-height: 0;
+  padding: 0.9rem 1rem;
   border: 1px solid rgba(255, 255, 255, 0.34);
   border-radius: 8px;
   color: #fff;
@@ -503,7 +504,7 @@ html[data-theme="dark"] .masthead {
 }
 
 .metric-card__value {
-  margin: 0 0 0.48rem;
+  margin: 0 0 0.38rem;
   color: #fff;
   font-family: Georgia, Times, serif;
   font-size: 2.15rem;
@@ -531,28 +532,16 @@ html[data-theme="dark"] .masthead {
   font-size: 0.88rem;
 }
 
-.home-card-grid,
-.home-list-grid {
+.home-card-stack,
+.home-list-stack {
   display: grid;
+  grid-template-columns: 1fr;
   gap: 0.9rem;
-}
-
-.home-card-grid--two,
-.home-list-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.home-card-grid--three {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .home-card,
 .home-list-item {
   padding: 1rem 1.1rem;
-}
-
-.home-card--compact {
-  padding: 0.95rem 1rem;
 }
 
 .home-card h3,
@@ -663,13 +652,6 @@ html[data-theme="dark"] .masthead {
 }
 
 @media (max-width: 1120px) {
-  .metric-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .home-card-grid--three {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 760px) {
@@ -685,17 +667,6 @@ html[data-theme="dark"] .masthead {
   .sidebar .author__name,
   .author__bio {
     text-align: left;
-  }
-
-  .metric-grid,
-  .home-card-grid--two,
-  .home-card-grid--three,
-  .home-list-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .metric-card {
-    min-height: 7.8rem;
   }
 
   .home-section {
