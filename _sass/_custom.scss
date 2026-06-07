@@ -349,7 +349,7 @@ html[data-theme="dark"] .masthead {
 }
 
 #main {
-  max-width: calc(var(--content-column-width) + var(--profile-sidebar-column) + (2 * var(--profile-page-gutter)));
+  max-width: none;
   margin-top: 4.2rem;
 }
 
@@ -611,19 +611,30 @@ html[data-theme="dark"] .archive a:hover {
 
 @media (min-width: 925px) {
   #main {
+    display: grid;
+    grid-template-columns: var(--profile-sidebar-column) minmax(0, 1fr);
+    align-items: start;
     padding-left: var(--profile-page-gutter);
     padding-right: var(--profile-page-gutter);
   }
 
   .sidebar {
+    grid-column: 1;
+    float: none;
     width: 220px;
     padding-top: 5.2rem;
   }
 
   .page,
-  .archive {
-    width: min(var(--content-column-width), calc(100% - var(--profile-sidebar-column)));
+  .archive,
+  .page__related {
+    grid-column: 2;
+    justify-self: center;
+    float: none;
+    width: min(var(--content-column-width), 100%);
     max-width: var(--content-column-width);
+    margin-right: 0;
+    margin-left: 0;
     padding-left: 0;
     padding-right: 0;
   }
