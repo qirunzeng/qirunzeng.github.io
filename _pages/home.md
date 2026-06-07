@@ -6,54 +6,19 @@ author_profile: true
 ---
 
 {% assign home = site.data.home %}
-{% assign scholar = site.data.scholar %}
-{% assign conference_count = site.data.publications.conference | size %}
-{% assign preprint_count = site.data.publications.preprints | size %}
 
 <div class="home-profile">
-  <section class="home-hero" aria-labelledby="home-title">
-    <p class="home-hero__eyebrow">{{ home.hero.subtitle }}</p>
-    <h1 id="home-title">{{ home.hero.title }}</h1>
-    <p class="home-hero__tagline">{{ home.hero.tagline }}</p>
-    <p class="home-hero__topics">{{ home.hero.topics | join: " &middot; " }}</p>
-
-    <div class="home-actions" aria-label="Primary links">
-      <a class="home-action-button" href="/publications/">Publications</a>
-      {% if scholar.source_url %}
-        <a class="home-action-button home-action-button--secondary" href="{{ scholar.source_url }}" target="_blank" rel="noopener noreferrer">Google Scholar</a>
-      {% endif %}
-      <a class="home-action-button home-action-button--secondary" href="mailto:{{ site.author.email }}">Email</a>
-    </div>
-
-    <ul class="home-metrics" aria-label="Academic metrics">
-      {% if scholar.total_citations %}
-        <li><strong>{{ scholar.total_citations }}</strong> total citations</li>
-      {% endif %}
-      {% if scholar.h_index %}
-        <li><strong>{{ scholar.h_index }}</strong> h-index</li>
-      {% endif %}
-      {% if scholar.i10_index %}
-        <li><strong>{{ scholar.i10_index }}</strong> i10-index</li>
-      {% endif %}
-      <li><strong>{{ conference_count }}</strong> conference papers</li>
-      <li><strong>{{ preprint_count }}</strong> preprints</li>
-    </ul>
-  </section>
-
-  <section id="publications" class="home-section home-section--featured">
+  <section id="profile" class="home-section home-section--intro">
     <header class="home-section__header">
-      <h2>Selected Publications</h2>
-      <p>{{ home.publications.summary }}</p>
+      <h2>Profile</h2>
+      <p>{{ home.profile.summary }}</p>
     </header>
 
-    {% for paper in site.data.publications.preprints limit:1 %}
-      {% include paper-card.html paper=paper compact=true %}
-    {% endfor %}
-    {% for paper in site.data.publications.conference limit:2 %}
-      {% include paper-card.html paper=paper compact=true %}
-    {% endfor %}
-
-    <p class="home-action"><a class="text-link" href="/publications/">View all publications</a></p>
+    <div class="home-prose">
+      {% for paragraph in home.profile.paragraphs %}
+        {{ paragraph | markdownify }}
+      {% endfor %}
+    </div>
   </section>
 
   <section id="research" class="home-section">
@@ -71,17 +36,20 @@ author_profile: true
     </article>
   </section>
 
-  <section id="profile" class="home-section">
+  <section id="publications" class="home-section home-section--featured">
     <header class="home-section__header">
-      <h2>Profile</h2>
-      <p>{{ home.profile.summary }}</p>
+      <h2>Selected Publications</h2>
+      <p>{{ home.publications.summary }}</p>
     </header>
 
-    <div class="home-prose">
-      {% for paragraph in home.profile.paragraphs %}
-        {{ paragraph | markdownify }}
-      {% endfor %}
-    </div>
+    {% for paper in site.data.publications.preprints limit:1 %}
+      {% include paper-card.html paper=paper compact=true %}
+    {% endfor %}
+    {% for paper in site.data.publications.conference limit:2 %}
+      {% include paper-card.html paper=paper compact=true %}
+    {% endfor %}
+
+    <p class="home-action"><a class="text-link" href="/publications/">View all publications</a></p>
   </section>
 
   <section id="education" class="home-section">

@@ -1,12 +1,3 @@
-hero:
-  title: "Qirun Zeng"
-  subtitle: "Ph.D. Student in Computer Science, City University of Hong Kong"
-  tagline: "Algorithms for decision-making under uncertainty."
-  topics:
-    - "Theoretical computer science"
-    - "Online decision-making"
-    - "Approximation algorithms"
-
 profile:
   summary: "Academic background and advising."
   paragraphs:
