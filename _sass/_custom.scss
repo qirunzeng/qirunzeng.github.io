@@ -596,6 +596,17 @@ html[data-theme="dark"] .archive a:hover {
   text-decoration-color: var(--global-link-color-hover);
 }
 
+@media (min-width: 925px) {
+  .masthead__menu-item--lg {
+    min-width: span(2.5 of 12);
+    padding-right: 0;
+  }
+
+  .greedy-nav .visible-links li:nth-child(2) a {
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 760px) {
   .author__avatar img {
     width: 72px;
