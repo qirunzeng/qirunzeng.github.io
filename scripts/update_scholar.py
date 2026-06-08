@@ -4,10 +4,12 @@
 from __future__ import annotations
 
 import datetime as dt
+import os
 import pathlib
 import re
 import sys
 from html.parser import HTMLParser
+from urllib.parse import parse_qs, urlparse
 
 import requests
 
@@ -30,6 +32,67 @@ def read_source_url() -> str:
     if match:
         return match.group(1).strip()
     return DEFAULT_SOURCE_URL
+
+
+def read_existing_metrics() -> dict[str, int]:
+    if not DATA_PATH.exists():
+        return {}
+
+    text = DATA_PATH.read_text()
+    metrics: dict[str, int] = {}
+    for key in ("total_citations", "h_index", "i10_index"):
+        match = re.search(rf"^{key}:\s*(\d+)\s*$", text, re.MULTILINE)
+        if match:
+            metrics[key] = int(match.group(1))
+    return metrics
+
+
+def scholar_user_id(source_url: str) -> str:
+    parsed = urlparse(source_url)
+    user = parse_qs(parsed.query).get("user", [""])[0].strip()
+    if not user:
+        raise RuntimeError("Could not find the Scholar user id in source_url.")
+    return user
+
+
+def fetch_metrics_from_serpapi(source_url: str) -> dict[str, int] | None:
+    api_key = os.environ.get("SERPAPI_KEY", "").strip()
+    if not api_key:
+        return None
+
+    response = requests.get(
+        "https://serpapi.com/search.json",
+        params={
+            "engine": "google_scholar_author",
+            "author_id": scholar_user_id(source_url),
+            "api_key": api_key,
+        },
+        timeout=30,
+    )
+    response.raise_for_status()
+    payload = response.json()
+
+    cited_by = payload.get("cited_by", {})
+    rows = cited_by.get("table", [])
+    metrics: dict[str, int] = {}
+    key_map = {
+        "citations": "total_citations",
+        "h_index": "h_index",
+        "i10_index": "i10_index",
+    }
+
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        for source_key, target_key in key_map.items():
+            value = row.get(source_key)
+            if isinstance(value, dict) and "all" in value:
+                metrics[target_key] = clean_int(str(value["all"]))
+
+    missing = [key for key in key_map.values() if key not in metrics]
+    if missing:
+        raise RuntimeError(f"SerpApi response missing Scholar metrics: {', '.join(missing)}")
+    return metrics
 
 
 def fetch_profile(source_url: str) -> str:
@@ -162,8 +225,32 @@ def write_metrics(source_url: str, metrics: dict[str, int]) -> None:
 
 def main() -> int:
     source_url = read_source_url()
-    html = fetch_profile(source_url)
-    metrics = parse_metrics(html)
+    try:
+        metrics = fetch_metrics_from_serpapi(source_url)
+        if metrics is None:
+            html = fetch_profile(source_url)
+            metrics = parse_metrics(html)
+    except Exception as exc:
+        if os.environ.get("SCHOLAR_STRICT") == "1":
+            raise
+
+        existing = read_existing_metrics()
+        if {"total_citations", "h_index", "i10_index"} <= existing.keys():
+            print(
+                "Scholar update skipped; keeping existing metrics because the "
+                f"live fetch failed: {exc}",
+                file=sys.stderr,
+            )
+            print(
+                "Existing Scholar metrics: "
+                f"citations={existing['total_citations']}, "
+                f"h_index={existing['h_index']}, "
+                f"i10_index={existing['i10_index']}"
+            )
+            return 0
+
+        raise
+
     write_metrics(source_url, metrics)
     print(
         "Updated Scholar metrics: "
