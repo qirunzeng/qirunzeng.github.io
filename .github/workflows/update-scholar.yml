@@ -25,6 +25,9 @@ jobs:
         run: python -m pip install --upgrade requests beautifulsoup4
 
       - name: Refresh Scholar metrics
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+          SCHOLAR_STRICT: "1"
         run: python scripts/update_scholar.py
 
       - name: Commit updated metrics
