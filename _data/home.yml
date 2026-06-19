@@ -17,6 +17,9 @@ publications:
 honors:
   summary: "Selected honors, awards, and scholarships."
   items:
+    - title: "ACM Hong Kong Chapter"
+      detail: "2nd Place."
+      date: "2026.06"
     - title: "Outstanding Graduate"
       detail: "Top 15%."
       date: "2025.03"
