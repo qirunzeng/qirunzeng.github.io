@@ -8,7 +8,7 @@ redirect_from:
   - /research/
 ---
 
-My research is in theoretical computer science and learning theory, with current work on bandit learning, hybrid feedback, robustness, and influence maximization.
+My research is in learning theory, with current work on bandit problems and influence maximization.
 
 <p class="note">* Equal contribution.</p>
 
