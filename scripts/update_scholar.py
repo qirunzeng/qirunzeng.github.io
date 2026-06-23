@@ -223,11 +223,6 @@ def write_metrics(source_url: str, metrics: dict[str, int]) -> None:
     DATA_PATH.write_text(content)
 
 
-def github_warning(message: str) -> None:
-    escaped = message.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
-    print(f"::warning title=Scholar update skipped::{escaped}", file=sys.stderr)
-
-
 def main() -> int:
     source_url = read_source_url()
     try:
@@ -241,7 +236,6 @@ def main() -> int:
 
         existing = read_existing_metrics()
         if {"total_citations", "h_index", "i10_index"} <= existing.keys():
-            github_warning(f"Keeping existing metrics because the live fetch failed: {exc}")
             print(
                 "Scholar update skipped; keeping existing metrics because the "
                 f"live fetch failed: {exc}",
