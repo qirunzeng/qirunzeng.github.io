@@ -133,7 +133,7 @@ redirect_from:
   <section id="contact" class="home-section">
     <header class="home-section__header">
       <h2>Contact</h2>
-      <p>{{ home.contact.summary }}</p>
+      {{ home.contact.summary | markdownify }}
     </header>
 
     {% include contact-links.html %}
