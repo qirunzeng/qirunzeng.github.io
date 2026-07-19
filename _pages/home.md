@@ -135,7 +135,5 @@ redirect_from:
       <h2>Contact</h2>
       {{ home.contact.summary | markdownify }}
     </header>
-
-    {% include contact-links.html %}
   </section>
 </div>
