@@ -2,7 +2,7 @@
 layout: archive
 title: "Research and Publications"
 permalink: /publications/
-description: "Publications and preprints by Qirun Zeng in learning theory, bandit learning, approximation algorithms, and theoretical computer science."
+description: "Publications and preprints."
 author_profile: true
 redirect_from:
   - /research/

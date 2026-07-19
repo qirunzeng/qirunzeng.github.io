@@ -1,24 +1,24 @@
 profile:
   summary: "Academic background and advising."
   paragraphs:
-    - "I am a Ph.D. student in computer science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io). Bofore that, I received my bachelor's degree in Computer Science and Technology from the School of the Gifted Young at the University of Science and Technology of China, where I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
+    - "I am a Ph.D. student in Computer Science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io). I am currently seeking research internship opportunities. Please feel free to contact me regarding any potential opportunities. Previously, I worked as a research assistant with [Prof. Sibo Wang](https://www1.se.cuhk.edu.hk/~swang/) at the Chinese University of Hong Kong from July to October 2024. Before that, I received my bachelor's degree in Computer Science and Technology from the School of the Gifted Young at the University of Science and Technology of China, where I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
 
 research:
-  summary: "I study sequential decision-making under limited, noisy, or hybrid feedback. My current work focuses on bandit learning, robust online learning, and influence maximization, with an emphasis on provable guarantees and efficient algorithms."
+  summary: "I study sequential decision-making under limited, noisy, or hybrid feedback. My current work focuses on bandit learning, and influence maximization."
   tags:
     - "Learning Theory"
-    - "Bandit Learning"
-    - "Robust Online Learning"
     - "Influence Maximization"
+    - "Game Theory"
+    - "Multi-Agent Systems"
 
 publications:
-  summary: "Selected current and recent work in learning theory, bandit learning, and approximation algorithms."
+  summary: "Selected current and recent work."
 
 honors:
   summary: "Selected honors, awards, and scholarships."
   items:
     - title: "ACM Hong Kong Chapter"
-      detail: "2nd Place."
+      detail: "1st Runner-Up."
       date: "2026.06"
     - title: "Outstanding Graduate"
       detail: "Top 15%."
@@ -45,7 +45,7 @@ education:
 service:
   summary: "Academic service and mentoring."
   items:
-    - "Reviewer or subreviewer for ICML 2025, NeurIPS 2025, and ICLR 2026."
+    - "Reviewer or subreviewer for ICML 2025, NeurIPS 2025, and ICLR 2026, NeurIPS 2026."
     - "Student mentor for the Master of Science in Artificial Intelligence program, CityUHK, 2025."
 
 teaching:
@@ -53,4 +53,4 @@ teaching:
   description: "I have served as a teaching assistant for programming, data structures, algorithms, and mathematical analysis courses. See the [teaching page](/teaching/) for details and available course materials."
 
 contact:
-  summary: "For research discussions, seminar invitations, and collaboration inquiries, email is the most reliable contact channel."
+  summary: "For research discussions, collaboration inquiries, internship or employment opportunities, and other matters, please feel free to contact me at [qirunzeng@gmail.com](mailto:qirunzeng@gmail.com) or [qirun.zeng@my.cityu.edu.hk](mailto:qirun.zeng@my.cityu.edu.hk)."
