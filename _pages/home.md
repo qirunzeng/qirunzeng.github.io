@@ -1,7 +1,7 @@
 ---
 layout: single
 permalink: /
-description: "Qirun Zeng is a Ph.D. student in computer science at City University of Hong Kong, working in theoretical computer science and learning theory."
+description: "Qirun Zeng is a Ph.D. candidate in computer science at City University of Hong Kong, working in theoretical computer science and learning theory."
 author_profile: true
 redirect_from:
   - /about/
