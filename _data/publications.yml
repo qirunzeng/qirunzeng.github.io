@@ -13,7 +13,7 @@ conference:
       - name: "Yi Yu"
       - name: "Dacheng Tao"
     status: "KDD 2026, conference proceedings."
-    summary: "Studies memory-efficient approximation algorithms for influence maximization under partition constraints."
+    # summary: "Studies memory-efficient approximation algorithms for influence maximization under partition constraints."
     links:
       - label: "KDD'2026"
         type: "conf"
@@ -32,7 +32,7 @@ conference:
       - name: "John C. S. Lui"
       - name: "Adam Wierman"
     status: "ICML 2025, conference proceedings."
-    summary: "Examines stochastic bandits with both reward observations and dueling feedback."
+    # summary: "Examines stochastic bandits with both reward observations and dueling feedback."
     links:
       - label: "ICML'2025"
         url: "https://openreview.net/pdf?id=mqljEW2NQl"
@@ -52,7 +52,7 @@ preprints:
       - name: "Fang Kong"
       - name: "Jinhang Zuo"
     status: "arXiv preprint, 2605.05745."
-    summary: "Studies best-arm identification in generalized linear bandits with hybrid feedback."
+    # summary: "Studies best-arm identification in generalized linear bandits with hybrid feedback."
     links:
       - label: "arXiv"
         url: "https://arxiv.org/abs/2605.05745"
@@ -70,7 +70,7 @@ preprints:
       - name: "Xuchuang Wang"
       - name: "Jinhang Zuo"
     status: "arXiv preprint, 2505.21938."
-    summary: "Studies adversarial attacks on stochastic bandit algorithms through fake data injection."
+    # summary: "Studies adversarial attacks on stochastic bandit algorithms through fake data injection."
     links:
       - label: "arXiv"
         url: "https://arxiv.org/abs/2505.21938"
