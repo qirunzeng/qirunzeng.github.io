@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import html as html_module
 import json
 import os
 import pathlib
@@ -21,13 +22,14 @@ from dataclasses import dataclass
 from html.parser import HTMLParser
 from typing import Any
 from urllib.error import HTTPError, URLError
-from urllib.parse import parse_qs, urlencode, urlparse
+from urllib.parse import parse_qs, quote, urlencode, urlparse
 from urllib.request import Request, urlopen
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DEFAULT_DATA_PATH = ROOT / "_data" / "scholar.yml"
 MAX_RESPONSE_BYTES = 2_000_000
+BTH_MIRROR_URL = "https://cse.bth.se/~fer/googlescholar-api/googlescholar.php"
 METRIC_KEYS = ("total_citations", "h_index", "i10_index")
 METRIC_LABELS = {
     "citations": "total_citations",
@@ -48,6 +50,7 @@ class ScholarError(RuntimeError):
 class ScholarConfig:
     source_url: str
     expected_name: str
+    identity_publication: str
 
 
 @dataclass(frozen=True)
@@ -73,13 +76,20 @@ def read_config(path: pathlib.Path) -> ScholarConfig:
     text = path.read_text(encoding="utf-8")
     source_url = yaml_scalar(text, "source_url") or ""
     expected_name = yaml_scalar(text, "expected_name") or ""
+    identity_publication = yaml_scalar(text, "identity_publication") or ""
     parsed = urlparse(source_url)
     user_id = parse_qs(parsed.query).get("user", [""])[0].strip()
     if parsed.scheme != "https" or parsed.hostname != "scholar.google.com" or not user_id:
         raise ScholarError("source_url must be an HTTPS Google Scholar profile URL with a user id")
     if not expected_name:
         raise ScholarError("expected_name is required in the Scholar data file")
-    return ScholarConfig(source_url=source_url, expected_name=expected_name)
+    if not identity_publication:
+        raise ScholarError("identity_publication is required in the Scholar data file")
+    return ScholarConfig(
+        source_url=source_url,
+        expected_name=expected_name,
+        identity_publication=identity_publication,
+    )
 
 
 def read_existing(path: pathlib.Path) -> tuple[dict[str, int], str | None]:
@@ -221,9 +231,11 @@ def retry(operation_name: str, operation: Any, attempts: int = 3) -> Any:
             return operation()
         except (ScholarError, HTTPError, URLError, TimeoutError, OSError, ValueError) as exc:
             errors.append(f"attempt {attempt}: {type(exc).__name__}: {exc}")
+            if isinstance(exc, HTTPError) and exc.code in {400, 401, 403, 404}:
+                break
             if attempt < attempts:
                 time.sleep(attempt * 2)
-    raise ScholarError(f"{operation_name} failed after {attempts} attempts; " + " | ".join(errors))
+    raise ScholarError(f"{operation_name} failed; " + " | ".join(errors))
 
 
 def fetch_from_google(source_url: str) -> ScholarSnapshot:
@@ -282,6 +294,65 @@ def fetch_from_serpapi(source_url: str, api_key: str) -> ScholarSnapshot:
     return retry("SerpApi fetch", operation, attempts=2)
 
 
+def parse_bth_payload(
+    payload: dict[str, Any], *, expected_name: str, identity_publication: str
+) -> ScholarSnapshot:
+    publications = payload.get("publications")
+    if not isinstance(publications, list) or not publications:
+        raise ScholarError("BTH Scholar mirror returned no publications")
+    if len(publications) >= 100:
+        raise ScholarError("BTH Scholar mirror publication list may be truncated at 100")
+
+    expected_title = normalized_name(identity_publication)
+    publication_titles: list[str] = []
+    citation_counts: list[int] = []
+    for publication in publications:
+        if not isinstance(publication, dict):
+            raise ScholarError("BTH Scholar mirror returned a malformed publication")
+        title = html_module.unescape(str(publication.get("title", "")))
+        publication_titles.append(normalized_name(title))
+        citation_counts.append(clean_int(publication.get("citations", 0)))
+    if expected_title not in publication_titles:
+        raise ScholarError(
+            "BTH Scholar mirror identity check failed: known publication was not found"
+        )
+
+    total_citations = clean_int(payload.get("total_citations"))
+    if citation_counts and max(citation_counts) > total_citations:
+        raise ScholarError("BTH Scholar mirror citation totals are internally inconsistent")
+    ordered_counts = sorted(citation_counts, reverse=True)
+    h_index = sum(count >= rank for rank, count in enumerate(ordered_counts, start=1))
+    i10_index = sum(count >= 10 for count in ordered_counts)
+    return ScholarSnapshot(
+        name=expected_name,
+        metrics={
+            "total_citations": total_citations,
+            "h_index": h_index,
+            "i10_index": i10_index,
+        },
+        provider="bth-scholar-mirror",
+    )
+
+
+def fetch_from_bth_mirror(config: ScholarConfig) -> ScholarSnapshot:
+    # The documented legacy endpoint passes the user value through to Scholar;
+    # pagesize=100 avoids silently deriving indices from only the first 20 works.
+    user = quote(f"{scholar_user_id(config.source_url)}&pagesize=100", safe="")
+
+    def operation() -> ScholarSnapshot:
+        raw = fetch_bytes(f"{BTH_MIRROR_URL}?user={user}")
+        payload = json.loads(raw.decode("utf-8"))
+        if not isinstance(payload, dict):
+            raise ScholarError("BTH Scholar mirror did not return a JSON object")
+        return parse_bth_payload(
+            payload,
+            expected_name=config.expected_name,
+            identity_publication=config.identity_publication,
+        )
+
+    return retry("BTH Scholar mirror fetch", operation, attempts=2)
+
+
 def fetch_snapshot(config: ScholarConfig) -> ScholarSnapshot:
     api_key = os.environ.get("SERPAPI_KEY", "").strip()
     errors: list[str] = []
@@ -293,6 +364,11 @@ def fetch_snapshot(config: ScholarConfig) -> ScholarSnapshot:
             print(f"Warning: {exc}; trying Google Scholar directly.", file=sys.stderr)
     try:
         return fetch_from_google(config.source_url)
+    except ScholarError as exc:
+        errors.append(str(exc))
+        print(f"Warning: {exc}; trying the BTH Scholar mirror.", file=sys.stderr)
+    try:
+        return fetch_from_bth_mirror(config)
     except ScholarError as exc:
         errors.append(str(exc))
     raise ScholarError("All Scholar providers failed: " + " || ".join(errors))
@@ -345,6 +421,7 @@ def render_data(
         [
             f"source_url: {quote_yaml(config.source_url)}",
             f"expected_name: {quote_yaml(config.expected_name)}",
+            f"identity_publication: {quote_yaml(config.identity_publication)}",
             f"last_checked_at: {quote_yaml(checked_at)}",
             f"metrics_updated_at: {quote_yaml(metrics_updated_at)}",
             f"total_citations: {snapshot.metrics['total_citations']}",

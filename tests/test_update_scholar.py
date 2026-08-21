@@ -22,6 +22,7 @@ class ScholarUpdateTests(unittest.TestCase):
         self.config = scholar.ScholarConfig(
             source_url="https://scholar.google.com/citations?user=sITttdEAAAAJ&hl=en",
             expected_name="Qirun Zeng",
+            identity_publication="Fusing Reward and Dueling Feedback in Stochastic Bandits",
         )
 
     def test_parses_profile_identity_and_all_time_metrics(self) -> None:
@@ -68,6 +69,40 @@ class ScholarUpdateTests(unittest.TestCase):
             self.assertFalse(scholar.atomic_write(path, "value: 1\n"))
             self.assertTrue(scholar.atomic_write(path, "value: 2\n"))
             self.assertEqual(path.read_text(), "value: 2\n")
+
+    def test_derives_indices_from_validated_mirror_publications(self) -> None:
+        payload = {
+            "total_citations": 21,
+            "publications": [
+                {
+                    "title": "Fusing reward and dueling feedback in stochastic bandits",
+                    "citations": 12,
+                },
+                {"title": "Another paper", "citations": 7},
+                {"title": "Third paper", "citations": 2},
+            ],
+        }
+        snapshot = scholar.parse_bth_payload(
+            payload,
+            expected_name=self.config.expected_name,
+            identity_publication=self.config.identity_publication,
+        )
+        self.assertEqual(
+            snapshot.metrics,
+            {"total_citations": 21, "h_index": 2, "i10_index": 1},
+        )
+
+    def test_rejects_mirror_response_for_another_profile(self) -> None:
+        payload = {
+            "total_citations": 50,
+            "publications": [{"title": "Unrelated paper", "citations": 50}],
+        }
+        with self.assertRaisesRegex(scholar.ScholarError, "identity check failed"):
+            scholar.parse_bth_payload(
+                payload,
+                expected_name=self.config.expected_name,
+                identity_publication=self.config.identity_publication,
+            )
 
 
 if __name__ == "__main__":

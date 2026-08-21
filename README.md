@@ -32,12 +32,16 @@ daily at 09:23 Hong Kong time. It validates the profile identity and all three
 metrics before atomically replacing the data file, commits the verified data,
 and explicitly requests a Pages rebuild.
 
-The fetcher uses the public Scholar profile by default. For more reliable
-hosted runs, add a repository Actions secret named `SERPAPI_KEY`; the direct
-profile remains a fallback. A total failure, malformed response, wrong profile,
-or unexpected metric decrease fails the workflow without changing the stored
-values. The failure job opens and assigns a durable GitHub Issue, comments on
-repeated failures, and the next successful run closes the alert.
+The fetcher prefers the public Scholar profile, then falls back to the
+open-source BTH Google Scholar mirror because Google blocks GitHub-hosted runner
+IPs. The mirror response must contain a configured known publication; h-index
+and i10-index are independently derived from its publication citation counts.
+For a more reliable primary source, add a repository Actions secret named
+`SERPAPI_KEY` (the free quota is sufficient for a daily run). A total failure,
+malformed response, wrong profile, truncated publication list, or unexpected
+metric decrease fails the workflow without changing the stored values. The
+failure job opens and assigns a durable GitHub Issue, comments on repeated
+failures, and the next successful run closes the alert.
 
 Run the same checks locally with:
 
