@@ -11,10 +11,12 @@
 
   <dl class="profile__facts">
     <div>
+      <span class="profile__fact-icon" aria-hidden="true">{% include icon.html name="location" %}</span>
       <dt>Based in</dt>
       <dd>{{ profile.location }}</dd>
     </div>
     <div>
+      <span class="profile__fact-icon" aria-hidden="true">{% include icon.html name="institution" %}</span>
       <dt>Affiliation</dt>
       <dd>{{ profile.affiliation_short }}</dd>
     </div>

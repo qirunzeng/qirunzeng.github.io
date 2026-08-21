@@ -296,7 +296,8 @@ a {
 
 .profile__facts div {
   display: grid;
-  grid-template-columns: 4.2rem 1fr;
+  align-items: center;
+  grid-template-columns: 1.4rem 4.2rem 1fr;
   gap: 0.5rem;
 }
 
@@ -315,6 +316,23 @@ a {
 
 .profile__facts dd {
   color: var(--ink-soft);
+}
+
+.profile__fact-icon {
+  display: grid;
+  width: 1.4rem;
+  height: 1.4rem;
+  place-items: center;
+  color: var(--wine);
+}
+
+.profile__fact-icon svg,
+.profile__link-icon svg {
+  display: block;
+  width: 1.05rem;
+  height: 1.05rem;
+  flex: none;
+  fill: currentColor;
 }
 
 .profile__links {
@@ -349,12 +367,6 @@ a {
   place-items: center;
   color: var(--wine);
   transition: color 150ms ease, transform 150ms ease;
-}
-
-.profile__link-icon svg {
-  width: 1.05rem;
-  height: 1.05rem;
-  fill: currentColor;
 }
 
 .profile__links a:hover .profile__link-icon {
@@ -977,7 +989,7 @@ a {
   }
 
   .profile__facts div {
-    display: flex;
+    grid-template-columns: 1.2rem auto auto;
     gap: 0.4rem;
   }
 
