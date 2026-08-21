@@ -242,8 +242,32 @@ a {
 }
 
 .site-divider {
-  width: 1px;
-  background: color-mix(in srgb, var(--line) 72%, transparent);
+  position: sticky;
+  top: 7rem;
+  width: 3px;
+  height: calc(100vh - 10rem);
+  align-self: start;
+  justify-self: center;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--line-strong) 30%, transparent),
+    color-mix(in srgb, var(--line-strong) 68%, transparent) 22%,
+    color-mix(in srgb, var(--line-strong) 82%, transparent) 50%,
+    color-mix(in srgb, var(--line-strong) 68%, transparent) 78%,
+    color-mix(in srgb, var(--line-strong) 30%, transparent)
+  );
+  clip-path: polygon(
+    33% 0,
+    67% 0,
+    76% 18%,
+    100% 50%,
+    76% 82%,
+    67% 100%,
+    33% 100%,
+    24% 82%,
+    0 50%,
+    24% 18%
+  );
 }
 
 .profile {
