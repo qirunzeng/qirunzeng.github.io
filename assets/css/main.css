@@ -443,7 +443,7 @@ a {
 }
 
 .section-heading__summary {
-  max-width: 42rem;
+  max-width: 100%;
   margin: 0.55rem 0 0;
   color: var(--muted);
   font-size: 0.92rem;
