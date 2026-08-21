@@ -70,6 +70,12 @@
       <main class="site-main" id="main-content">
         {{ content }}
       </main>
+
+      <div class="site-divider site-divider--news" aria-hidden="true"></div>
+
+      <aside class="news-column" aria-label="Recent news">
+        {% include news.html variant="rail" %}
+      </aside>
     </div>
 
     <footer class="site-footer">
