@@ -230,12 +230,17 @@ a {
   width: min(calc(100% - 3rem), var(--content-width));
   min-height: calc(100vh - 9rem);
   margin: 2.5rem auto 0;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: clamp(3rem, 7vw, 7rem);
+  grid-template-columns: 220px 1px minmax(0, 1fr);
+  column-gap: clamp(1.5rem, 3.5vw, 3.5rem);
 }
 
 .profile-column {
   min-width: 0;
+}
+
+.site-divider {
+  width: 1px;
+  background: color-mix(in srgb, var(--line) 72%, transparent);
 }
 
 .profile {
@@ -942,7 +947,7 @@ a {
 .site-footer {
   width: min(calc(100% - 3rem), var(--content-width));
   margin: 0 auto;
-  padding: 1.35rem 0 2rem calc(220px + clamp(3rem, 7vw, 7rem));
+  padding: 1.35rem 0 2rem calc(221px + clamp(3rem, 7vw, 7rem));
   border-top: 1px solid var(--line);
 }
 
@@ -958,6 +963,10 @@ a {
   .site-shell {
     grid-template-columns: 1fr;
     gap: 3.5rem;
+  }
+
+  .site-divider {
+    display: none;
   }
 
   .profile {
@@ -1233,6 +1242,7 @@ a {
 
   .site-header,
   .profile-column,
+  .site-divider,
   .site-footer,
   .section-action,
   .theme-toggle {
