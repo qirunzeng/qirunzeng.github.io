@@ -1,0 +1,159 @@
+name: Update Scholar Metrics
+
+on:
+  schedule:
+    # 09:23 in Hong Kong; an off-peak minute reduces GitHub scheduler delays.
+    - cron: "23 1 * * *"
+  workflow_dispatch:
+    inputs:
+      allow_decrease:
+        description: "Accept a verified metric decrease for this manual run"
+        required: false
+        default: false
+        type: boolean
+      test_alert:
+        description: "Deliberately fail once to test the GitHub Issue alarm"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: update-scholar-metrics
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+
+jobs:
+  update-scholar:
+    name: Fetch, validate, and publish metrics
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Run fetcher tests
+        run: python -m unittest discover -s tests -p "test_*.py" -v
+
+      - name: Exercise failure alarm
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.test_alert }}
+        run: |
+          echo "Intentional failure requested for alert-path testing."
+          exit 1
+
+      - name: Refresh Scholar metrics
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+          ALLOW_DECREASE: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_decrease }}
+        run: |
+          arguments=()
+          if [[ "$ALLOW_DECREASE" == "true" ]]; then
+            arguments+=(--allow-decrease)
+          fi
+          python scripts/update_scholar.py "${arguments[@]}"
+
+      - name: Commit verified data
+        id: commit
+        run: |
+          if git diff --quiet -- _data/scholar.yml; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No Scholar data change to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/scholar.yml
+          git commit -m "Update Scholar metrics"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Request GitHub Pages rebuild
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
+
+      - name: Close resolved Scholar alert
+        if: success()
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const title = "[Automation] Google Scholar metrics update failed";
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              per_page: 100,
+            });
+            const issue = issues.find(item => !item.pull_request && item.title === title);
+            if (issue) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `Recovered successfully in [workflow run ${context.runNumber}](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}).`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: "closed",
+                state_reason: "completed",
+              });
+            }
+
+  alert-on-failure:
+    name: Open or update failure alert
+    needs: update-scholar
+    if: ${{ always() && needs.update-scholar.result == 'failure' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Create durable GitHub Issue alarm
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const title = "[Automation] Google Scholar metrics update failed";
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              `The daily Google Scholar refresh failed at ${new Date().toISOString()}.`,
+              "",
+              `- Workflow run: [${context.runNumber}](${runUrl})`,
+              `- Branch: \`${context.ref}\``,
+              "- The existing metrics were left untouched.",
+              "",
+              "Open the workflow run for the exact fetch, parse, validation, commit, or Pages error.",
+            ].join("\n");
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              per_page: 100,
+            });
+            const issue = issues.find(item => !item.pull_request && item.title === title);
+            if (issue) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                assignees: [context.repo.owner],
+              });
+            }

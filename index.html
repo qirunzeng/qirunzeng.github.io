@@ -21,9 +21,14 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
 
   <dl class="metrics" aria-label="Academic metrics">
     {% for metric in home.metrics %}
+      {% if metric.scholar_key %}
+        {% assign metric_value = site.data.scholar[metric.scholar_key] %}
+      {% else %}
+        {% assign metric_value = metric.value %}
+      {% endif %}
       <div>
         <dt>{{ metric.label }}</dt>
-        <dd>{{ metric.value }}</dd>
+        <dd>{{ metric_value }}</dd>
       </div>
     {% endfor %}
   </dl>
