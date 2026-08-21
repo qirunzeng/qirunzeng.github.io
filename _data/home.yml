@@ -9,6 +9,8 @@ metrics:
     label: "Citations"
   - value: 1
     label: "h-index"
+  - value: 0
+    label: "i10-index"
   - value: 3
     label: "Conference papers"
   - value: 2
