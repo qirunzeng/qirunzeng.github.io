@@ -1,5 +1,5 @@
 profile:
-  summary: "Academic background and advising."
+  summary: "My background."
   paragraphs:
     - "I am a Ph.D. candidate in Computer Science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io). Previously, I worked as a research assistant with [Prof. Sibo Wang](https://www1.se.cuhk.edu.hk/~swang/) at the Chinese University of Hong Kong from July to October 2024."
     - "I received my bachelor's degree in Computer Science and Technology from the School of the Gifted Young at the University of Science and Technology of China, where I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
@@ -25,7 +25,6 @@ news:
 # Choose and order the papers shown in Selected Publications by their IDs in
 # _data/publications.yml.
 selected_publications:
-  - "best-arm-hybrid-feedback"
   - "werewolf"
   - "one-rounding-fits-all"
 
