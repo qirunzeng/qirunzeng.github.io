@@ -27,6 +27,7 @@ news:
 selected_publications:
   - "werewolf"
   - "one-rounding-fits-all"
+  - "fusing-reward-dueling"
 
 research:
   summary: "I study sequential decision-making under limited, noisy, or hybrid feedback. My current work focuses on bandit learning and influence maximization."
