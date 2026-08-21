@@ -1,5 +1,6 @@
 conference:
-  - title: "WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems"
+  - id: "werewolf"
+    title: "WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems"
     authors:
       - name: "Manhin Poon"
       - name: "Qirun Zeng"
@@ -11,7 +12,8 @@ conference:
       - label: "EMNLP'2026"
         type: "conference"
 
-  - title: "One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization"
+  - id: "one-rounding-fits-all"
+    title: "One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization"
     authors:
       - name: "Qixin Zhang"
         equal: true
@@ -33,7 +35,8 @@ conference:
         url: "https://github.com/qirunzeng/OneRound-IM"
         type: "code"
 
-  - title: "Fusing Reward and Dueling Feedback in Stochastic Bandits"
+  - id: "fusing-reward-dueling"
+    title: "Fusing Reward and Dueling Feedback in Stochastic Bandits"
     authors:
       - name: "Xuchuang Wang"
       - name: "Qirun Zeng"
@@ -53,7 +56,8 @@ conference:
         type: "code"
 
 preprints:
-  - title: "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback"
+  - id: "best-arm-hybrid-feedback"
+    title: "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback"
     authors:
       - name: "Qirun Zeng"
         me: true
@@ -71,7 +75,8 @@ preprints:
         url: "https://github.com/qirunzeng/HyTS-GLB"
         type: "code"
 
-  - title: "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection"
+  - id: "adversarial-bandits-fake-data"
+    title: "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection"
     authors:
       - name: "Qirun Zeng"
         me: true
@@ -87,4 +92,3 @@ preprints:
       - label: "Code"
         url: "https://github.com/richardhoff88/online_learning_torank"
         type: "code"
-

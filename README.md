@@ -19,3 +19,7 @@ Then open `http://127.0.0.1:4000`.
 - Homepage sections: `_data/home.yml`
 - Publications: `_data/publications.yml`
 - Teaching: `_data/teaching.yml`
+
+To choose the papers shown on the homepage, edit `selected_publications` in
+`_data/home.yml`. Each entry is a publication `id` from
+`_data/publications.yml`, and the list order controls the display order.

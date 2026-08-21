@@ -54,33 +54,14 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
   {% include section-heading.html title="Selected Publications" summary="Selected current and recent work." %}
 
   <div class="publication-sequence">
-    {% for paper in site.data.publications.preprints limit:1 %}
-      {% include publication.html paper=paper %}
-    {% endfor %}
-    {% for paper in site.data.publications.conference limit:2 %}
-      {% include publication.html paper=paper %}
+    {% assign all_publications = site.data.publications.conference | concat: site.data.publications.preprints %}
+    {% for publication_id in home.selected_publications %}
+      {% assign paper = all_publications | where: "id", publication_id | first %}
+      {% if paper %}{% include publication.html paper=paper %}{% endif %}
     {% endfor %}
   </div>
 
   <p class="section-action"><a href="{{ '/publications/' | relative_url }}">View all publications <span aria-hidden="true">→</span></a></p>
-</section>
-
-<section class="page-section" aria-labelledby="education-heading">
-  {% include section-heading.html title="Education" summary="Academic training and advising." %}
-  <div class="timeline">
-    {% for item in home.education %}
-      {% include timeline-item.html period=item.period title=item.degree subtitle=item.institution detail=item.detail %}
-    {% endfor %}
-  </div>
-</section>
-
-<section class="page-section" aria-labelledby="honors-heading">
-  {% include section-heading.html title="Honors" summary="Selected honors, awards, and scholarships." %}
-  <div class="timeline timeline--compact">
-    {% for item in home.honors %}
-      {% include timeline-item.html period=item.date title=item.title detail=item.detail %}
-    {% endfor %}
-  </div>
 </section>
 
 <section class="page-section" aria-labelledby="service-heading">
@@ -96,9 +77,4 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
   {% include section-heading.html title="Teaching" %}
   <p class="prose">I have served as a teaching assistant for programming, data structures, algorithms, and mathematical analysis courses.</p>
   <p class="section-action"><a href="{{ '/teaching/' | relative_url }}">View teaching experience <span aria-hidden="true">→</span></a></p>
-</section>
-
-<section class="page-section" aria-labelledby="contact-heading">
-  {% include section-heading.html title="Contact" %}
-  <p class="prose">For research discussions, collaboration inquiries, internship or employment opportunities, please email <a href="mailto:{{ site.data.profile.email }}">{{ site.data.profile.email }}</a>.</p>
 </section>

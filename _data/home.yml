@@ -24,6 +24,13 @@ news:
   - date: "2026"
     text: "Our preprint [**Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback**](https://arxiv.org/abs/2605.05745) is now available on arXiv."
 
+# Choose and order the papers shown in Selected Publications by their IDs in
+# _data/publications.yml.
+selected_publications:
+  - "best-arm-hybrid-feedback"
+  - "werewolf"
+  - "one-rounding-fits-all"
+
 research:
   summary: "I study sequential decision-making under limited, noisy, or hybrid feedback. My current work focuses on bandit learning and influence maximization."
   tags:
@@ -31,30 +38,6 @@ research:
     - "Influence Maximization"
     - "Game Theory"
     - "Multi-Agent Systems"
-
-education:
-  - period: "2025.09 — Present"
-    degree: "Ph.D. candidate in Computer Science"
-    institution: "City University of Hong Kong"
-    detail: "Advisor: [Prof. Jinhang Zuo](https://jhzuo.github.io)."
-  - period: "2021.09 — 2025.07"
-    degree: "B.Eng. in Computer Science and Technology"
-    institution: "University of Science and Technology of China"
-    detail: "School of the Gifted Young. Advisors: [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
-
-honors:
-  - date: "2026.06"
-    title: "ACM Hong Kong Chapter"
-    detail: "2nd Place."
-  - date: "2025.03"
-    title: "Outstanding Graduate"
-    detail: "Top 15%."
-  - date: "2022.03"
-    title: "Growth Empowerment Scholarship"
-    detail: "35 selected from 1,950 students."
-  - date: "2021.10"
-    title: "Excellent Student Scholarship, Gold"
-    detail: "Top 3%."
 
 service:
   - period: "2026"
