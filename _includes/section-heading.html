@@ -1,6 +1,5 @@
 {% assign heading_id = include.id | default: include.title | slugify | append: '-heading' %}
 <header class="section-heading{% if include.level == 1 %} section-heading--page{% endif %}">
-  {% if include.eyebrow %}<p class="eyebrow">{{ include.eyebrow }}</p>{% endif %}
   {% if include.level == 1 %}
     <h1 id="{{ heading_id }}">{{ include.title }}</h1>
   {% else %}
