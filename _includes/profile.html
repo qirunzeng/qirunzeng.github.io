@@ -1,7 +1,7 @@
 {% assign profile = site.data.profile %}
 <div class="profile">
   <a class="profile__portrait" href="{{ '/' | relative_url }}" tabindex="-1" aria-hidden="true">
-    <img src="{{ profile.avatar | relative_url }}" alt="" width="1122" height="1402">
+    <img src="{{ profile.avatar | relative_url }}" alt="" width="320" height="320">
   </a>
 
   <div class="profile__identity">
@@ -24,11 +24,10 @@
     {% for link in profile.links %}
       <li>
         <a href="{{ link.url | relative_url }}"{% if link.url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>
-          <span class="profile__link-mark" aria-hidden="true">{{ link.mark }}</span>
+          <span class="profile__link-icon" aria-hidden="true">{% include icon.html name=link.icon %}</span>
           <span>{{ link.label }}</span>
         </a>
       </li>
     {% endfor %}
   </ul>
 </div>
-

@@ -247,7 +247,7 @@ a {
   display: block;
   overflow: hidden;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1;
   margin-bottom: 1.25rem;
   background: var(--paper-soft);
   box-shadow: var(--shadow);
@@ -341,19 +341,25 @@ a {
   color: var(--wine);
 }
 
-.profile__link-mark {
+.profile__link-icon {
   display: grid;
   width: 1.4rem;
   height: 1.4rem;
   flex: 0 0 1.4rem;
   place-items: center;
-  border: 1px solid color-mix(in srgb, var(--wine) 35%, transparent);
-  border-radius: 50%;
   color: var(--wine);
-  font-family: var(--sans);
-  font-size: 0.53rem;
-  font-weight: 850;
-  letter-spacing: -0.03em;
+  transition: color 150ms ease, transform 150ms ease;
+}
+
+.profile__link-icon svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: currentColor;
+}
+
+.profile__links a:hover .profile__link-icon {
+  color: var(--wine-deep);
+  transform: translateY(-1px);
 }
 
 .site-main {
@@ -514,6 +520,54 @@ a {
   border-radius: 50%;
   background: var(--wine);
   content: "";
+}
+
+.news-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.news-item {
+  display: grid;
+  padding: 0.78rem 0;
+  align-items: start;
+  border-bottom: 1px solid var(--line);
+  grid-template-columns: 4.2rem 1rem minmax(0, 1fr);
+  gap: 0 0.65rem;
+}
+
+.news-item__date {
+  margin-top: 0.06rem;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+}
+
+.news-item__marker {
+  width: 0.42rem;
+  height: 0.42rem;
+  margin-top: 0.43rem;
+  border-radius: 50%;
+  background: var(--wine);
+}
+
+.news-item__body,
+.news-item__body p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  line-height: 1.52;
+}
+
+.news-item__body strong {
+  color: var(--ink);
+  font-weight: 700;
 }
 
 .publication-sequence {
@@ -938,7 +992,7 @@ a {
     min-height: 1.6rem;
   }
 
-  .profile__link-mark {
+  .profile__link-icon {
     width: 1.2rem;
     height: 1.2rem;
     flex-basis: 1.2rem;
@@ -1070,6 +1124,26 @@ a {
 
   .publication__details {
     grid-template-columns: 1fr;
+  }
+
+  .news-item {
+    grid-template-columns: 0.8rem minmax(0, 1fr);
+    gap: 0 0.5rem;
+  }
+
+  .news-item__date {
+    margin: 0 0 0.14rem;
+    grid-column: 2;
+  }
+
+  .news-item__marker {
+    margin-top: 0.36rem;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  .news-item__body {
+    grid-column: 2;
   }
 
   .publication__links {

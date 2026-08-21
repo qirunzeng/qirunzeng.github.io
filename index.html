@@ -29,6 +29,19 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
   </dl>
 </section>
 
+<section class="page-section" aria-labelledby="news-heading">
+  {% include section-heading.html title="News" summary="Recent research updates." %}
+  <ol class="news-list">
+    {% for item in home.news %}
+      <li class="news-item">
+        <time class="news-item__date">{{ item.date }}</time>
+        <span class="news-item__marker" aria-hidden="true"></span>
+        <div class="news-item__body">{{ item.text | markdownify }}</div>
+      </li>
+    {% endfor %}
+  </ol>
+</section>
+
 <section class="page-section" aria-labelledby="research-heading">
   {% include section-heading.html id="research" title="Research Focus" %}
   <p class="prose">{{ home.research.summary }}</p>
