@@ -1,0 +1,23 @@
+title: "Qirun Zeng"
+description: "Ph.D. candidate in Computer Science at City University of Hong Kong, working on learning theory, bandit learning, and approximation algorithms."
+url: "https://qirunzeng.github.io"
+baseurl: ""
+lang: "en"
+timezone: "Asia/Hong_Kong"
+
+markdown: kramdown
+permalink: pretty
+
+navigation:
+  - title: "Research"
+    url: "/publications/"
+  - title: "Teaching"
+    url: "/teaching/"
+  - title: "Contact"
+    url: "/contact/"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor

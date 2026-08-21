@@ -1,0 +1,59 @@
+profile:
+  summary: "Academic background and advising."
+  paragraphs:
+    - "I am a Ph.D. candidate in Computer Science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io). Previously, I worked as a research assistant with [Prof. Sibo Wang](https://www1.se.cuhk.edu.hk/~swang/) at the Chinese University of Hong Kong from July to October 2024."
+    - "I received my bachelor's degree in Computer Science and Technology from the School of the Gifted Young at the University of Science and Technology of China, where I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io). I am currently seeking research internship opportunities."
+
+metrics:
+  - value: 6
+    label: "Citations"
+  - value: 1
+    label: "h-index"
+  - value: 3
+    label: "Conference papers"
+  - value: 2
+    label: "Preprints"
+
+research:
+  summary: "I study sequential decision-making under limited, noisy, or hybrid feedback. My current work focuses on bandit learning and influence maximization."
+  tags:
+    - "Learning Theory"
+    - "Influence Maximization"
+    - "Game Theory"
+    - "Multi-Agent Systems"
+
+education:
+  - period: "2025.09 — Present"
+    degree: "Ph.D. candidate in Computer Science"
+    institution: "City University of Hong Kong"
+    detail: "Advisor: [Prof. Jinhang Zuo](https://jhzuo.github.io)."
+  - period: "2021.09 — 2025.07"
+    degree: "B.Eng. in Computer Science and Technology"
+    institution: "University of Science and Technology of China"
+    detail: "School of the Gifted Young. Advisors: [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
+
+honors:
+  - date: "2026.06"
+    title: "ACM Hong Kong Chapter"
+    detail: "2nd Place."
+  - date: "2025.03"
+    title: "Outstanding Graduate"
+    detail: "Top 15%."
+  - date: "2022.03"
+    title: "Growth Empowerment Scholarship"
+    detail: "35 selected from 1,950 students."
+  - date: "2021.10"
+    title: "Excellent Student Scholarship, Gold"
+    detail: "Top 3%."
+
+service:
+  - period: "2026"
+    title: "Reviewer"
+    detail: "ICLR and NeurIPS."
+  - period: "2025"
+    title: "Reviewer"
+    detail: "ICML and NeurIPS."
+  - period: "2025 — 2026"
+    title: "Student Mentor"
+    detail: "MSc Artificial Intelligence Program, CityUHK."
+

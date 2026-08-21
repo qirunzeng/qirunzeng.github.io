@@ -1,0 +1,26 @@
+<article class="publication">
+  <span class="publication__number" aria-hidden="true"></span>
+  <div class="publication__body">
+    <h3 class="publication__title">{{ include.paper.title }}</h3>
+
+    <p class="publication__authors">
+      {% for author in include.paper.authors %}{% if author.me %}<strong>{{ author.name }}</strong>{% else %}{{ author.name }}{% endif %}{% if author.equal %}<sup>*</sup>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
+    </p>
+
+    <div class="publication__details">
+      <p class="publication__venue">{{ include.paper.venue }}</p>
+      {% if include.paper.links %}
+        <p class="publication__links" aria-label="Links for {{ include.paper.title }}">
+          {% for link in include.paper.links %}
+            {% if link.url %}
+              <a class="tag tag--{{ link.type }}" href="{{ link.url | relative_url }}"{% if link.url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}</a>
+            {% else %}
+              <span class="tag tag--{{ link.type }}">{{ link.label }}</span>
+            {% endif %}
+          {% endfor %}
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</article>
+

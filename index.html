@@ -1,0 +1,91 @@
+---
+layout: default
+permalink: /
+description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City University of Hong Kong, working on learning theory, bandit learning, and approximation algorithms."
+---
+
+{% assign home = site.data.home %}
+
+<section class="page-section page-section--first" aria-labelledby="profile-heading">
+  <header class="section-heading section-heading--page">
+    <p class="eyebrow">About</p>
+    <h1 id="profile-heading">Profile</h1>
+    <p class="section-heading__summary">{{ home.profile.summary }}</p>
+  </header>
+
+  <div class="prose prose--lead">
+    {% for paragraph in home.profile.paragraphs %}
+      {{ paragraph | markdownify }}
+    {% endfor %}
+  </div>
+
+  <dl class="metrics" aria-label="Academic metrics">
+    {% for metric in home.metrics %}
+      <div>
+        <dt>{{ metric.label }}</dt>
+        <dd>{{ metric.value }}</dd>
+      </div>
+    {% endfor %}
+  </dl>
+</section>
+
+<section class="page-section" aria-labelledby="research-heading">
+  {% include section-heading.html id="research" title="Research Focus" %}
+  <p class="prose">{{ home.research.summary }}</p>
+  <ul class="research-topics" aria-label="Research topics">
+    {% for topic in home.research.tags %}<li>{{ topic }}</li>{% endfor %}
+  </ul>
+</section>
+
+<section class="page-section" aria-labelledby="selected-publications-heading">
+  {% include section-heading.html title="Selected Publications" summary="Selected current and recent work." %}
+
+  <div class="publication-sequence">
+    {% for paper in site.data.publications.preprints limit:1 %}
+      {% include publication.html paper=paper %}
+    {% endfor %}
+    {% for paper in site.data.publications.conference limit:2 %}
+      {% include publication.html paper=paper %}
+    {% endfor %}
+  </div>
+
+  <p class="section-action"><a href="{{ '/publications/' | relative_url }}">View all publications <span aria-hidden="true">→</span></a></p>
+</section>
+
+<section class="page-section" aria-labelledby="education-heading">
+  {% include section-heading.html title="Education" summary="Academic training and advising." %}
+  <div class="timeline">
+    {% for item in home.education %}
+      {% include timeline-item.html period=item.period title=item.degree subtitle=item.institution detail=item.detail %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="page-section" aria-labelledby="honors-heading">
+  {% include section-heading.html title="Honors" summary="Selected honors, awards, and scholarships." %}
+  <div class="timeline timeline--compact">
+    {% for item in home.honors %}
+      {% include timeline-item.html period=item.date title=item.title detail=item.detail %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="page-section" aria-labelledby="service-heading">
+  {% include section-heading.html title="Service" summary="Academic service and mentoring." %}
+  <div class="timeline timeline--compact">
+    {% for item in home.service %}
+      {% include timeline-item.html period=item.period title=item.title detail=item.detail %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="page-section" aria-labelledby="teaching-heading">
+  {% include section-heading.html title="Teaching" %}
+  <p class="prose">I have served as a teaching assistant for programming, data structures, algorithms, and mathematical analysis courses.</p>
+  <p class="section-action"><a href="{{ '/teaching/' | relative_url }}">View teaching experience <span aria-hidden="true">→</span></a></p>
+</section>
+
+<section class="page-section" aria-labelledby="contact-heading">
+  {% include section-heading.html title="Contact" %}
+  <p class="prose">For research discussions, collaboration inquiries, internship or employment opportunities, please email <a href="mailto:{{ site.data.profile.email }}">{{ site.data.profile.email }}</a>.</p>
+</section>

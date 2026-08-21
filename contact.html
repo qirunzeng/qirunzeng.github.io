@@ -1,0 +1,35 @@
+---
+layout: default
+title: "Contact"
+nav: "Contact"
+permalink: /contact/
+description: "Contact information and academic profile links for Qirun Zeng."
+---
+
+<section class="page-section page-section--first">
+  {% include section-heading.html level=1 eyebrow="Get in touch" title="Contact" summary="Research discussions, collaboration inquiries, and internship or employment opportunities are welcome." %}
+
+  <div class="contact-block">
+    <p class="contact-block__label">Primary email</p>
+    <p class="contact-block__value"><a href="mailto:{{ site.data.profile.email }}">{{ site.data.profile.email }}</a></p>
+  </div>
+
+  <div class="contact-block">
+    <p class="contact-block__label">Institutional email</p>
+    <p class="contact-block__value"><a href="mailto:{{ site.data.profile.secondary_email }}">{{ site.data.profile.secondary_email }}</a></p>
+  </div>
+
+  <div class="contact-directory">
+    <h2>Academic profiles</h2>
+    <ul>
+      {% for link in site.data.profile.links offset:1 %}
+        <li>
+          <a href="{{ link.url | relative_url }}"{% if link.url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>
+            <span>{{ link.label }}</span><span aria-hidden="true">↗</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#faf9f5">
+    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('qz-theme');
+          var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.dataset.theme = theme;
+        } catch (error) {}
+      }());
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "{{ site.data.profile.name }}",
+        "url": "{{ site.url }}",
+        "jobTitle": "{{ site.data.profile.role }}",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "{{ site.data.profile.affiliation }}"
+        },
+        "email": "mailto:{{ site.data.profile.email }}"
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} home">
+          <span class="site-brand__mark" aria-hidden="true">QZ</span>
+          <span>{{ site.title }}</span>
+        </a>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          {% for item in site.navigation %}
+            <a href="{{ item.url | relative_url }}"{% if page.nav == item.title %} aria-current="page"{% endif %}>{{ item.title }}</a>
+          {% endfor %}
+          <button class="theme-toggle" type="button" aria-label="Switch to dark theme" title="Change color theme">
+            <span aria-hidden="true">◐</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="site-shell">
+      <aside class="profile-column" aria-label="Profile">
+        {% include profile.html %}
+      </aside>
+
+      <main class="site-main" id="main-content">
+        {{ content }}
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <p>© {{ 'now' | date: '%Y' }} {{ site.data.profile.name }}. Built as a small, independent static site.</p>
+    </footer>
+
+    <script src="{{ '/assets/js/site.js' | relative_url }}"></script>
+  </body>
+</html>
+

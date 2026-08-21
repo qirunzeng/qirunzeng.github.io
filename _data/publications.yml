@@ -1,0 +1,90 @@
+conference:
+  - title: "WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems"
+    authors:
+      - name: "Manhin Poon"
+      - name: "Qirun Zeng"
+        me: true
+      - name: "Xiangxiang Dai"
+      - name: "Jinhang Zuo"
+    venue: "In Findings of the Association for Computational Linguistics: EMNLP 2026"
+    links:
+      - label: "EMNLP'2026"
+        type: "conference"
+
+  - title: "One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization"
+    authors:
+      - name: "Qixin Zhang"
+        equal: true
+      - name: "Qirun Zeng"
+        me: true
+        equal: true
+      - name: "Hui Lu"
+      - name: "Pingchuan Ma"
+      - name: "Jinhang Zuo"
+      - name: "Renqiang Luo"
+      - name: "Yi Yu"
+      - name: "Dacheng Tao"
+    venue: "In Proceedings of the 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining"
+    links:
+      - label: "KDD'2026"
+        url: "https://dl.acm.org/doi/abs/10.1145/3770855.3817696"
+        type: "conference"
+      - label: "Code"
+        url: "https://github.com/qirunzeng/OneRound-IM"
+        type: "code"
+
+  - title: "Fusing Reward and Dueling Feedback in Stochastic Bandits"
+    authors:
+      - name: "Xuchuang Wang"
+      - name: "Qirun Zeng"
+        me: true
+      - name: "Jinhang Zuo"
+      - name: "Xutong Liu"
+      - name: "Mohammad Hajiesmaili"
+      - name: "John C. S. Lui"
+      - name: "Adam Wierman"
+    venue: "In Proceedings of the 42nd International Conference on Machine Learning"
+    links:
+      - label: "ICML'2025"
+        url: "https://openreview.net/pdf?id=mqljEW2NQl"
+        type: "conference"
+      - label: "Code"
+        url: "https://github.com/qirunzeng/Fusing-Reward-and-Dueling"
+        type: "code"
+
+preprints:
+  - title: "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback"
+    authors:
+      - name: "Qirun Zeng"
+        me: true
+      - name: "Xuchuang Wang"
+      - name: "Jiayi Shen"
+      - name: "Xutong Liu"
+      - name: "Fang Kong"
+      - name: "Jinhang Zuo"
+    venue: "arXiv preprint arXiv:2605.05745, 2026"
+    links:
+      - label: "arXiv"
+        url: "https://arxiv.org/abs/2605.05745"
+        type: "arxiv"
+      - label: "Code"
+        url: "https://github.com/qirunzeng/HyTS-GLB"
+        type: "code"
+
+  - title: "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection"
+    authors:
+      - name: "Qirun Zeng"
+        me: true
+      - name: "Eric He"
+      - name: "Richard Hoffmann"
+      - name: "Xuchuang Wang"
+      - name: "Jinhang Zuo"
+    venue: "arXiv preprint arXiv:2505.21938, 2025"
+    links:
+      - label: "arXiv"
+        url: "https://arxiv.org/abs/2505.21938"
+        type: "arxiv"
+      - label: "Code"
+        url: "https://github.com/richardhoff88/online_learning_torank"
+        type: "code"
+

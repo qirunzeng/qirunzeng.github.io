@@ -1,0 +1,10 @@
+<article class="timeline-item">
+  <p class="timeline-item__date">{{ include.period }}</p>
+  <span class="timeline-item__marker" aria-hidden="true"></span>
+  <div class="timeline-item__body">
+    <h3>{{ include.title }}</h3>
+    {% if include.subtitle %}<p class="timeline-item__subtitle">{{ include.subtitle }}</p>{% endif %}
+    {% if include.detail %}<div class="timeline-item__detail">{{ include.detail | markdownify }}</div>{% endif %}
+  </div>
+</article>
+

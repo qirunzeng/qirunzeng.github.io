@@ -1,0 +1,18 @@
+---
+layout: default
+title: "Teaching"
+nav: "Teaching"
+permalink: /teaching/
+description: "Teaching assistant experience and selected course materials for Qirun Zeng."
+---
+
+<section class="page-section page-section--first">
+  {% include section-heading.html level=1 eyebrow="Experience" title="Teaching" summary="Teaching assistant experience across computer science and mathematics." %}
+
+  <div class="teaching-list">
+    {% for item in site.data.teaching %}
+      {% include teaching-item.html item=item %}
+    {% endfor %}
+  </div>
+</section>
+

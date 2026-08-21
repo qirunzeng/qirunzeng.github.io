@@ -1,0 +1,34 @@
+{% assign profile = site.data.profile %}
+<div class="profile">
+  <a class="profile__portrait" href="{{ '/' | relative_url }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ profile.avatar | relative_url }}" alt="" width="1122" height="1402">
+  </a>
+
+  <div class="profile__identity">
+    <p class="profile__name">{{ profile.name }}</p>
+    <p class="profile__role">{{ profile.role }}</p>
+  </div>
+
+  <dl class="profile__facts">
+    <div>
+      <dt>Based in</dt>
+      <dd>{{ profile.location }}</dd>
+    </div>
+    <div>
+      <dt>Affiliation</dt>
+      <dd>{{ profile.affiliation_short }}</dd>
+    </div>
+  </dl>
+
+  <ul class="profile__links">
+    {% for link in profile.links %}
+      <li>
+        <a href="{{ link.url | relative_url }}"{% if link.url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>
+          <span class="profile__link-mark" aria-hidden="true">{{ link.mark }}</span>
+          <span>{{ link.label }}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
