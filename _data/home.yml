@@ -21,8 +21,6 @@ news:
     text: "Our paper **WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems** was accepted to **Findings of EMNLP 2026**."
   - date: "2026"
     text: "Our paper [**One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization**](https://dl.acm.org/doi/abs/10.1145/3770855.3817696) was accepted to **KDD 2026**."
-  - date: "2026"
-    text: "Our preprint [**Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback**](https://arxiv.org/abs/2605.05745) is now available on arXiv."
 
 # Choose and order the papers shown in Selected Publications by their IDs in
 # _data/publications.yml.
