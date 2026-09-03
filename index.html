@@ -61,7 +61,7 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
   {% include section-heading.html title="Service" summary="Academic service and mentoring." %}
   <div class="timeline timeline--compact">
     {% for item in home.service %}
-      {% include timeline-item.html period=item.period title=item.title detail=item.detail %}
+      {% include timeline-item.html period=item.period title=item.title detail=item.detail mentees=item.mentees %}
     {% endfor %}
   </div>
 </section>
