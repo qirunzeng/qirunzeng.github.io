@@ -4,7 +4,7 @@
     <h3 class="publication__title">{{ include.paper.title }}</h3>
 
     <p class="publication__authors">
-      {% for author in include.paper.authors %}{% if author.me %}<strong>{{ author.name }}</strong>{% else %}{{ author.name }}{% endif %}{% if author.equal %}<sup>*</sup>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
+      {% for author in include.paper.authors %}{% if author.me %}<strong>{{ author.name }}</strong>{% else %}{{ author.name }}{% endif %}{% if author.equal %}<sup>*</sup>{% endif %}{% if author.mentored %}<sup title="Mentored student">†</sup>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
     </p>
 
     <div class="publication__details">
@@ -23,4 +23,3 @@
     </div>
   </div>
 </article>
-

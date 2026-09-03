@@ -5,20 +5,5 @@
     <h3>{{ include.title }}</h3>
     {% if include.subtitle %}<p class="timeline-item__subtitle">{{ include.subtitle }}</p>{% endif %}
     {% if include.detail %}<div class="timeline-item__detail">{{ include.detail | markdownify }}</div>{% endif %}
-    {% if include.mentees %}
-      <ul class="mentee-list" aria-label="Student mentees">
-        {% for mentee in include.mentees %}
-          <li>
-            <span class="mentee-list__name">{{ mentee.name }}</span>
-            {% if mentee.role or mentee.institution %}
-              <span class="mentee-list__meta">({% if mentee.role %}{{ mentee.role }}{% endif %}{% if mentee.role and mentee.institution %}, {% endif %}{% if mentee.institution %}{{ mentee.institution }}{% endif %})</span>
-            {% endif %}
-            {% if mentee.venue %}
-              <span class="mentee-list__outcome">— <strong>{{ mentee.venue }}</strong>{% if mentee.first_author %} (first author){% endif %}</span>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
   </div>
 </article>

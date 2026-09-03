@@ -1,0 +1,23 @@
+{% assign note_publications = site.data.publications.conference | concat: site.data.publications.preprints %}
+{% assign note_has_equal = false %}
+{% assign note_has_mentored = false %}
+
+{% for note_paper in note_publications %}
+  {% assign note_in_scope = true %}
+  {% if include.paper_ids %}
+    {% unless include.paper_ids contains note_paper.id %}
+      {% assign note_in_scope = false %}
+    {% endunless %}
+  {% endif %}
+
+  {% if note_in_scope %}
+    {% for note_author in note_paper.authors %}
+      {% if note_author.equal %}{% assign note_has_equal = true %}{% endif %}
+      {% if note_author.mentored %}{% assign note_has_mentored = true %}{% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+{% if note_has_equal or note_has_mentored %}
+  <p class="publication-note">{% if note_has_equal %}<sup>*</sup> Equal contribution.{% endif %}{% if note_has_equal and note_has_mentored %} {% endif %}{% if note_has_mentored %}<sup>†</sup> Mentored student.{% endif %}</p>
+{% endif %}

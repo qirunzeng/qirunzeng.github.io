@@ -46,11 +46,3 @@ service:
   - period: "2025"
     title: "Reviewer"
     detail: "ICML and NeurIPS."
-  - period: "2025 — 2026"
-    title: "Research Mentorship"
-    mentees:
-      - name: "Manhin Poon"
-        role: "Undergraduate"
-        institution: "CityUHK"
-        venue: "Findings of EMNLP 2026"
-        first_author: true

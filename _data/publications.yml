@@ -3,6 +3,7 @@ conference:
     title: "WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems"
     authors:
       - name: "Manhin Poon"
+        mentored: true
       - name: "Qirun Zeng"
         me: true
       - name: "Xiangxiang Dai"

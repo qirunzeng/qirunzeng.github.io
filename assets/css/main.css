@@ -927,39 +927,6 @@ a {
   line-height: 1.5;
 }
 
-.mentee-list {
-  display: grid;
-  gap: 0.16rem;
-  margin: 0.28rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.mentee-list li {
-  color: var(--muted);
-  font-size: 0.83rem;
-  line-height: 1.5;
-}
-
-.mentee-list li::before {
-  margin-right: 0.42rem;
-  color: var(--faint);
-  content: "—";
-}
-
-.mentee-list__name {
-  color: var(--ink-soft);
-  font-weight: 700;
-}
-
-.mentee-list__meta {
-  margin-left: 0.16rem;
-}
-
-.mentee-list__outcome {
-  margin-left: 0.24rem;
-}
-
 .teaching-list {
   display: grid;
   gap: 0;
