@@ -1,0 +1,30 @@
+{% capture course_blob %}{% for item in site.data.teaching %}{{ item.course }}|||{% endfor %}{% endcapture %}
+{% capture institution_blob %}{% for item in site.data.teaching %}{{ item.institution }}|||{% endfor %}{% endcapture %}
+{% assign distinct_courses = course_blob | strip | split: '|||' | uniq %}
+{% assign institutions = institution_blob | strip | split: '|||' | uniq %}
+{% assign material_count = 0 %}
+{% for item in site.data.teaching %}
+  {% if item.links %}{% assign material_count = material_count | plus: 1 %}{% endif %}
+{% endfor %}
+
+<section class="context-rail teaching-rail" aria-labelledby="teaching-rail-heading">
+  <header class="context-rail__header">
+    <h2 id="teaching-rail-heading">Teaching at a glance</h2>
+  </header>
+
+  <dl class="rail-metrics">
+    <div><dt>Appointments</dt><dd>{{ site.data.teaching | size }}</dd></div>
+    <div><dt>Distinct courses</dt><dd>{{ distinct_courses | size }}</dd></div>
+    <div><dt>Universities</dt><dd>{{ institutions | size }}</dd></div>
+    <div><dt>Courses with materials</dt><dd>{{ material_count }}</dd></div>
+  </dl>
+
+  <div class="teaching-rail__areas">
+    <h3>Areas</h3>
+    <ul>
+      <li>Programming</li>
+      <li>Data Structures &amp; Algorithms</li>
+      <li>Mathematical Analysis</li>
+    </ul>
+  </div>
+</section>

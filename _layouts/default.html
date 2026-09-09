@@ -1,4 +1,5 @@
 <!doctype html>
+{% assign context_rail = page.context_rail %}
 <html lang="{{ site.lang | default: 'en' }}">
   <head>
     <meta charset="utf-8">
@@ -60,7 +61,7 @@
       </div>
     </header>
 
-    <div class="site-shell">
+    <div class="site-shell{% unless context_rail %} site-shell--without-rail{% endunless %}">
       <aside class="profile-column" aria-label="Profile">
         {% include profile.html %}
       </aside>
@@ -71,11 +72,20 @@
         {{ content }}
       </main>
 
-      <div class="site-divider site-divider--news" aria-hidden="true"></div>
+      {% if context_rail %}
+        <div class="site-divider site-divider--context" aria-hidden="true"></div>
 
-      <aside class="news-column" aria-label="Recent news">
-        {% include news.html variant="rail" %}
-      </aside>
+        <aside class="context-column" aria-label="{% if context_rail == 'news' %}Recent news{% elsif context_rail == 'collaborators' %}Publication collaborators{% else %}Teaching overview{% endif %}">
+          {% case context_rail %}
+            {% when 'news' %}
+              {% include news.html variant="rail" %}
+            {% when 'collaborators' %}
+              {% include collaborators.html %}
+            {% when 'teaching' %}
+              {% include teaching-overview.html %}
+          {% endcase %}
+        </aside>
+      {% endif %}
     </div>
 
     <footer class="site-footer">
