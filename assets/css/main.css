@@ -637,23 +637,16 @@ a {
 .rail-metrics {
   display: grid;
   margin: 0;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
 }
 
 .rail-metrics div {
-  display: flex;
-  padding: 0.8rem 0;
-  flex-direction: column;
+  display: grid;
+  padding: 0.68rem 0;
+  align-items: baseline;
   border-bottom: 1px solid var(--line);
-}
-
-.rail-metrics div:nth-child(odd) {
-  padding-right: 0.55rem;
-  border-right: 1px solid var(--line);
-}
-
-.rail-metrics div:nth-child(even) {
-  padding-left: 0.55rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
 }
 
 .rail-metrics dt,
@@ -662,19 +655,17 @@ a {
 }
 
 .rail-metrics dd {
-  order: -1;
   color: var(--wine);
   font-family: var(--sans);
-  font-size: 1.25rem;
+  font-size: 0.9rem;
   font-weight: 820;
   line-height: 1;
 }
 
 .rail-metrics dt {
-  margin-top: 0.28rem;
   color: var(--muted);
   font-family: var(--sans);
-  font-size: 0.63rem;
+  font-size: 0.72rem;
   font-weight: 700;
   line-height: 1.3;
 }
