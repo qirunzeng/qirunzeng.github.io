@@ -575,6 +575,11 @@ a {
 .news-rail {
   position: sticky;
   top: 6.5rem;
+  max-height: calc(100vh - 8rem);
+  max-height: calc(100dvh - 8rem);
+  overflow-y: auto;
+  scrollbar-color: var(--line-strong) transparent;
+  scrollbar-width: thin;
 }
 
 .context-rail__header,
