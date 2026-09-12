@@ -5,17 +5,18 @@
       <h2 id="news-rail-heading">News</h2>
     </header>
     <ol class="news-rail__list">
-      {% for item in news_items %}
+      {% for item in news_items limit:5 %}
         <li class="news-rail__item">
           <time class="news-rail__date">{{ item.date }}</time>
           <div class="news-rail__body">{{ item.text | markdownify }}</div>
         </li>
       {% endfor %}
     </ol>
+    <p class="section-action news-rail__action"><a href="{{ '/news/' | relative_url }}">View all news <span aria-hidden="true">→</span></a></p>
   </section>
-{% else %}
-  <section class="page-section home-news--inline" aria-labelledby="news-heading">
-    {% include section-heading.html title="News" summary="Recent research updates." %}
+{% elsif include.variant == "archive" %}
+  <section class="page-section page-section--first" aria-labelledby="news-heading">
+    {% include section-heading.html level=1 title="News" summary="Research milestones and recent updates." %}
     <ol class="news-list">
       {% for item in news_items %}
         <li class="news-item">
@@ -25,5 +26,19 @@
         </li>
       {% endfor %}
     </ol>
+  </section>
+{% else %}
+  <section class="page-section home-news--inline" aria-labelledby="news-heading">
+    {% include section-heading.html title="News" summary="Recent research updates." %}
+    <ol class="news-list">
+      {% for item in news_items limit:5 %}
+        <li class="news-item">
+          <time class="news-item__date">{{ item.date }}</time>
+          <span class="news-item__marker" aria-hidden="true"></span>
+          <div class="news-item__body">{{ item.text | markdownify }}</div>
+        </li>
+      {% endfor %}
+    </ol>
+    <p class="section-action"><a href="{{ '/news/' | relative_url }}">View all news <span aria-hidden="true">→</span></a></p>
   </section>
 {% endif %}
