@@ -662,6 +662,10 @@ a {
   gap: 0.75rem;
 }
 
+.publication-metrics div:last-child {
+  border-bottom: 0;
+}
+
 .rail-metrics dt,
 .rail-metrics dd {
   margin: 0;
