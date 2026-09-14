@@ -589,6 +589,31 @@ a {
   line-height: 1.4;
 }
 
+.context-rail__section {
+  padding-top: 1.1rem;
+}
+
+.context-rail__section + .context-rail__section {
+  margin-top: 0.35rem;
+  border-top: 1px solid var(--line-strong);
+}
+
+.context-rail__section h3 {
+  margin: 0 0 0.55rem;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.context-rail__section-summary {
+  margin: -0.18rem 0 0.55rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
 .collaborator-list {
   margin: 0;
   padding: 0;

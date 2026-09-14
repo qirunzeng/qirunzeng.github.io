@@ -2,31 +2,86 @@
 {% capture collaborator_blob %}{% for paper in all_publications %}{% for author in paper.authors %}{% unless author.me %}{{ author.name }}|||{% endunless %}{% endfor %}{% endfor %}{% endcapture %}
 {% assign collaborator_names = collaborator_blob | strip | split: '|||' | uniq | sort_natural %}
 {% assign paper_count = all_publications | size %}
+{% assign venue_order = site.data.publications.venue_order %}
 
-<section class="context-rail collaborator-rail" aria-labelledby="collaborator-rail-heading">
+<section class="context-rail collaborator-rail" aria-labelledby="publication-overview-heading">
   <header class="context-rail__header">
-    <h2 id="collaborator-rail-heading">Collaborators</h2>
-    <p>{{ collaborator_names | size }} people across {{ paper_count }} publications.</p>
+    <h2 id="publication-overview-heading">At a glance</h2>
+    <p>{{ paper_count }} publications.</p>
   </header>
 
-  <ol class="collaborator-list">
-    {%- for frequency in (1..paper_count) reversed -%}
-      {%- for collaborator_name in collaborator_names -%}
-        {%- assign collaboration_count = 0 -%}
-        {%- for paper in all_publications -%}
-          {%- for author in paper.authors -%}
-            {%- if author.name == collaborator_name -%}
-              {%- assign collaboration_count = collaboration_count | plus: 1 -%}
-            {%- endif -%}
+  <section class="context-rail__section" aria-labelledby="venue-counts-heading">
+    <h3 id="venue-counts-heading">By venue</h3>
+    <dl class="rail-metrics publication-metrics">
+      {% for venue_name in venue_order %}
+        {% assign venue_count = 0 %}
+        {% for paper in all_publications %}
+          {% if paper.venue_group == venue_name %}
+            {% assign venue_count = venue_count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+        {% if venue_count > 0 %}
+          <div>
+            <dt>{{ venue_name }}</dt>
+            <dd><span aria-hidden="true">×</span> {{ venue_count }}</dd>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </dl>
+  </section>
+
+  <section class="context-rail__section" aria-labelledby="lead-author-counts-heading">
+    <h3 id="lead-author-counts-heading">First / co-first author</h3>
+    <dl class="rail-metrics publication-metrics">
+      {% for venue_name in venue_order %}
+        {% assign lead_author_count = 0 %}
+        {% for paper in all_publications %}
+          {% if paper.venue_group == venue_name %}
+            {% assign is_lead_author = false %}
+            {% for author in paper.authors %}
+              {% if author.me and forloop.first %}
+                {% assign is_lead_author = true %}
+              {% elsif author.me and author.equal %}
+                {% assign is_lead_author = true %}
+              {% endif %}
+            {% endfor %}
+            {% if is_lead_author %}
+              {% assign lead_author_count = lead_author_count | plus: 1 %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% if lead_author_count > 0 %}
+          <div>
+            <dt>{{ venue_name }}</dt>
+            <dd><span aria-hidden="true">×</span> {{ lead_author_count }}</dd>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </dl>
+  </section>
+
+  <section class="context-rail__section" aria-labelledby="collaborator-rail-heading">
+    <h3 id="collaborator-rail-heading">Collaborators</h3>
+    <p class="context-rail__section-summary">{{ collaborator_names | size }} people across {{ paper_count }} publications.</p>
+    <ol class="collaborator-list">
+      {%- for frequency in (1..paper_count) reversed -%}
+        {%- for collaborator_name in collaborator_names -%}
+          {%- assign collaboration_count = 0 -%}
+          {%- for paper in all_publications -%}
+            {%- for author in paper.authors -%}
+              {%- if author.name == collaborator_name -%}
+                {%- assign collaboration_count = collaboration_count | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
           {%- endfor -%}
+          {%- if collaboration_count == frequency %}
+            <li>
+              <span>{{ collaborator_name }}</span>
+              <span class="collaborator-list__count" aria-label="{{ collaboration_count }} joint {% if collaboration_count == 1 %}publication{% else %}publications{% endif %}">{{ collaboration_count }}</span>
+            </li>
+          {%- endif -%}
         {%- endfor -%}
-        {%- if collaboration_count == frequency %}
-          <li>
-            <span>{{ collaborator_name }}</span>
-            <span class="collaborator-list__count" aria-label="{{ collaboration_count }} joint {% if collaboration_count == 1 %}publication{% else %}publications{% endif %}">{{ collaboration_count }}</span>
-          </li>
-        {%- endif -%}
-      {%- endfor -%}
-    {%- endfor %}
-  </ol>
+      {%- endfor %}
+    </ol>
+  </section>
 </section>

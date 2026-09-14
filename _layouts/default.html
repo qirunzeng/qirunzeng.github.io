@@ -75,7 +75,7 @@
       {% if context_rail %}
         <div class="site-divider site-divider--context" aria-hidden="true"></div>
 
-        <aside class="context-column" aria-label="{% if context_rail == 'news' %}Recent news{% elsif context_rail == 'collaborators' %}Publication collaborators{% else %}Teaching overview{% endif %}">
+        <aside class="context-column" aria-label="{% if context_rail == 'news' %}Recent news{% elsif context_rail == 'collaborators' %}Publication overview{% else %}Teaching overview{% endif %}">
           {% case context_rail %}
             {% when 'news' %}
               {% include news.html variant="rail" %}
