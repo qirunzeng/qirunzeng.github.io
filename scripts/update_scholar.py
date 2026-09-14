@@ -28,6 +28,7 @@ from urllib.request import Request, urlopen
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DEFAULT_DATA_PATH = ROOT / "_data" / "scholar.yml"
+DEFAULT_PUBLICATION_DATA_PATH = ROOT / "_data" / "publication_citations.json"
 MAX_RESPONSE_BYTES = 2_000_000
 BTH_MIRROR_URL = "https://cse.bth.se/~fer/googlescholar-api/googlescholar.php"
 METRIC_KEYS = ("total_citations", "h_index", "i10_index")
@@ -54,10 +55,18 @@ class ScholarConfig:
 
 
 @dataclass(frozen=True)
+class ScholarPublication:
+    scholar_id: str
+    title: str
+    citations: int
+
+
+@dataclass(frozen=True)
 class ScholarSnapshot:
     name: str
     metrics: dict[str, int]
     provider: str
+    publications: tuple[ScholarPublication, ...] = ()
 
 
 def yaml_scalar(text: str, key: str) -> str | None:
@@ -178,6 +187,61 @@ class ScholarProfileParser(HTMLParser):
             self.current_cell.append(data)
 
 
+class ScholarPublicationParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.in_row = False
+        self.in_title = False
+        self.in_citations = False
+        self.current_id = ""
+        self.title_parts: list[str] = []
+        self.citation_parts: list[str] = []
+        self.publications: list[ScholarPublication] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        attributes = dict(attrs)
+        classes = (attributes.get("class") or "").split()
+        if tag == "tr" and "gsc_a_tr" in classes:
+            self.in_row = True
+            self.current_id = ""
+            self.title_parts = []
+            self.citation_parts = []
+            return
+        if not self.in_row or tag != "a":
+            return
+        if "gsc_a_at" in classes:
+            self.in_title = True
+            href = attributes.get("href") or ""
+            self.current_id = parse_qs(urlparse(href).query).get(
+                "citation_for_view", [""]
+            )[0]
+        elif "gsc_a_ac" in classes:
+            self.in_citations = True
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "a":
+            self.in_title = False
+            self.in_citations = False
+        elif tag == "tr" and self.in_row:
+            title = " ".join("".join(self.title_parts).split())
+            citation_text = "".join(self.citation_parts).strip()
+            if title and self.current_id:
+                self.publications.append(
+                    ScholarPublication(
+                        scholar_id=self.current_id,
+                        title=title,
+                        citations=clean_int(citation_text) if citation_text else 0,
+                    )
+                )
+            self.in_row = False
+
+    def handle_data(self, data: str) -> None:
+        if self.in_title:
+            self.title_parts.append(data)
+        if self.in_citations:
+            self.citation_parts.append(data)
+
+
 def parse_scholar_html(html: str) -> ScholarSnapshot:
     lowered = html.casefold()
     challenge_markers = (
@@ -205,7 +269,14 @@ def parse_scholar_html(html: str) -> ScholarSnapshot:
     missing = [key for key in METRIC_KEYS if key not in metrics]
     if missing:
         raise ScholarError(f"Google Scholar metrics table is incomplete: {', '.join(missing)}")
-    return ScholarSnapshot(name=name, metrics=metrics, provider="google-scholar")
+    publication_parser = ScholarPublicationParser()
+    publication_parser.feed(html)
+    return ScholarSnapshot(
+        name=name,
+        metrics=metrics,
+        provider="google-scholar",
+        publications=tuple(publication_parser.publications),
+    )
 
 
 def fetch_bytes(url: str, *, timeout: int = 30) -> bytes:
@@ -240,7 +311,9 @@ def retry(operation_name: str, operation: Any, attempts: int = 3) -> Any:
 
 def fetch_from_google(source_url: str) -> ScholarSnapshot:
     def operation() -> ScholarSnapshot:
-        html = fetch_bytes(source_url).decode("utf-8", errors="replace")
+        separator = "&" if "?" in source_url else "?"
+        profile_url = f"{source_url}{separator}pagesize=100"
+        html = fetch_bytes(profile_url).decode("utf-8", errors="replace")
         return parse_scholar_html(html)
 
     return retry("Direct Google Scholar fetch", operation)
@@ -271,7 +344,27 @@ def parse_serpapi_payload(payload: dict[str, Any]) -> ScholarSnapshot:
             "SerpApi response is incomplete"
             + (f": missing {', '.join(missing)}" if missing else "")
         )
-    return ScholarSnapshot(name=str(name), metrics=metrics, provider="serpapi")
+    publications: list[ScholarPublication] = []
+    for article in payload.get("articles", []):
+        if not isinstance(article, dict) or not article.get("title"):
+            continue
+        cited_by = article.get("cited_by")
+        citation_value: Any = 0
+        if isinstance(cited_by, dict):
+            citation_value = cited_by.get("value", 0)
+        publications.append(
+            ScholarPublication(
+                scholar_id=str(article.get("citation_id", "")),
+                title=html_module.unescape(str(article["title"])),
+                citations=clean_int(citation_value),
+            )
+        )
+    return ScholarSnapshot(
+        name=str(name),
+        metrics=metrics,
+        provider="serpapi",
+        publications=tuple(publications),
+    )
 
 
 def fetch_from_serpapi(source_url: str, api_key: str) -> ScholarSnapshot:
@@ -306,12 +399,17 @@ def parse_bth_payload(
     expected_title = normalized_name(identity_publication)
     publication_titles: list[str] = []
     citation_counts: list[int] = []
+    parsed_publications: list[ScholarPublication] = []
     for publication in publications:
         if not isinstance(publication, dict):
             raise ScholarError("BTH Scholar mirror returned a malformed publication")
         title = html_module.unescape(str(publication.get("title", "")))
+        citations = clean_int(publication.get("citations", 0))
         publication_titles.append(normalized_name(title))
-        citation_counts.append(clean_int(publication.get("citations", 0)))
+        citation_counts.append(citations)
+        parsed_publications.append(
+            ScholarPublication(scholar_id="", title=title, citations=citations)
+        )
     if expected_title not in publication_titles:
         raise ScholarError(
             "BTH Scholar mirror identity check failed: known publication was not found"
@@ -331,6 +429,7 @@ def parse_bth_payload(
             "i10_index": i10_index,
         },
         provider="bth-scholar-mirror",
+        publications=tuple(parsed_publications),
     )
 
 
@@ -358,17 +457,26 @@ def fetch_snapshot(config: ScholarConfig) -> ScholarSnapshot:
     errors: list[str] = []
     if api_key:
         try:
-            return fetch_from_serpapi(config.source_url, api_key)
+            snapshot = fetch_from_serpapi(config.source_url, api_key)
+            if not snapshot.publications:
+                raise ScholarError("SerpApi response has no per-publication citation data")
+            return snapshot
         except ScholarError as exc:
             errors.append(str(exc))
             print(f"Warning: {exc}; trying Google Scholar directly.", file=sys.stderr)
     try:
-        return fetch_from_google(config.source_url)
+        snapshot = fetch_from_google(config.source_url)
+        if not snapshot.publications:
+            raise ScholarError("Google Scholar profile has no publication rows")
+        return snapshot
     except ScholarError as exc:
         errors.append(str(exc))
         print(f"Warning: {exc}; trying the BTH Scholar mirror.", file=sys.stderr)
     try:
-        return fetch_from_bth_mirror(config)
+        snapshot = fetch_from_bth_mirror(config)
+        if not snapshot.publications:
+            raise ScholarError("BTH Scholar mirror has no per-publication citation data")
+        return snapshot
     except ScholarError as exc:
         errors.append(str(exc))
     raise ScholarError("All Scholar providers failed: " + " || ".join(errors))
@@ -404,6 +512,107 @@ def validate_snapshot(
         )
 
 
+def read_publication_data(path: pathlib.Path, config: ScholarConfig) -> dict[str, Any]:
+    if not path.exists():
+        raise ScholarError(f"Publication citation data file does not exist: {path}")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise ScholarError("Publication citation data must be a JSON object")
+    if str(payload.get("source", "")) != "Google Scholar":
+        raise ScholarError("Publication citation source must be Google Scholar")
+    source_url = str(payload.get("source_url", ""))
+    if scholar_user_id(source_url) != scholar_user_id(config.source_url):
+        raise ScholarError("Publication citation data points to a different Scholar profile")
+    papers = payload.get("papers")
+    if not isinstance(papers, dict) or not papers:
+        raise ScholarError("Publication citation data has no configured papers")
+    expected_prefix = f"{scholar_user_id(config.source_url)}:"
+    for paper_id, paper in papers.items():
+        if not isinstance(paper_id, str) or not isinstance(paper, dict):
+            raise ScholarError("Publication citation data contains a malformed paper")
+        title = paper.get("title")
+        citation_id = paper.get("scholar_id")
+        citations = paper.get("citations")
+        if not isinstance(title, str) or not title.strip():
+            raise ScholarError(f"Publication {paper_id!r} has no valid title")
+        if not isinstance(citation_id, str) or not citation_id.startswith(expected_prefix):
+            raise ScholarError(f"Publication {paper_id!r} has no valid Scholar id")
+        if (
+            isinstance(citations, bool)
+            or not isinstance(citations, int)
+            or not 0 <= citations <= 10_000_000
+        ):
+            raise ScholarError(f"Publication {paper_id!r} has an invalid citation count")
+    return payload
+
+
+def reconcile_publication_citations(
+    snapshot: ScholarSnapshot,
+    existing_data: dict[str, Any],
+    *,
+    checked_at: str,
+    allow_decrease: bool = False,
+) -> dict[str, Any]:
+    if not snapshot.publications:
+        raise ScholarError("Scholar provider returned no per-publication citation data")
+
+    by_id: dict[str, ScholarPublication] = {}
+    by_title: dict[str, list[ScholarPublication]] = {}
+    for publication in snapshot.publications:
+        if publication.scholar_id:
+            if publication.scholar_id in by_id:
+                raise ScholarError(
+                    f"Scholar provider returned duplicate id {publication.scholar_id!r}"
+                )
+            by_id[publication.scholar_id] = publication
+        by_title.setdefault(normalized_name(publication.title), []).append(publication)
+
+    old_papers = existing_data["papers"]
+    new_papers: dict[str, dict[str, Any]] = {}
+    metrics_changed = False
+    configured_total = 0
+    for paper_id, old_paper in old_papers.items():
+        matched = by_id.get(old_paper["scholar_id"])
+        if matched is not None:
+            if normalized_name(matched.title) != normalized_name(old_paper["title"]):
+                raise ScholarError(
+                    f"Scholar id for publication {paper_id!r} now has a different title"
+                )
+        else:
+            title_matches = by_title.get(normalized_name(old_paper["title"]), [])
+            if len(title_matches) != 1:
+                raise ScholarError(
+                    f"Could not uniquely match publication {paper_id!r} in Scholar data"
+                )
+            matched = title_matches[0]
+
+        citations = matched.citations
+        if citations > snapshot.metrics["total_citations"]:
+            raise ScholarError(
+                f"Publication {paper_id!r} exceeds the profile's total citations"
+            )
+        if citations < old_paper["citations"] and not allow_decrease:
+            raise ScholarError(
+                "Publication citations decreased unexpectedly (manual approval required): "
+                f"{paper_id}: {old_paper['citations']} -> {citations}"
+            )
+        metrics_changed = metrics_changed or citations != old_paper["citations"]
+        configured_total += citations
+        new_paper = dict(old_paper)
+        new_paper["citations"] = citations
+        new_papers[paper_id] = new_paper
+
+    if configured_total > snapshot.metrics["total_citations"]:
+        raise ScholarError("Per-publication citations exceed the profile total")
+
+    updated = dict(existing_data)
+    updated["last_checked_at"] = checked_at
+    if metrics_changed or not updated.get("metrics_updated_at"):
+        updated["metrics_updated_at"] = checked_at
+    updated["papers"] = new_papers
+    return updated
+
+
 def quote_yaml(value: str) -> str:
     return json.dumps(value, ensure_ascii=False)
 
@@ -432,8 +641,12 @@ def render_data(
     )
 
 
+def render_publication_data(data: dict[str, Any]) -> str:
+    return json.dumps(data, ensure_ascii=False, indent=2) + "\n"
+
+
 def atomic_write(path: pathlib.Path, content: str) -> bool:
-    if path.read_text(encoding="utf-8") == content:
+    if path.exists() and path.read_text(encoding="utf-8") == content:
         return False
     path.parent.mkdir(parents=True, exist_ok=True)
     handle, temporary_name = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
@@ -452,6 +665,11 @@ def atomic_write(path: pathlib.Path, content: str) -> bool:
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-file", type=pathlib.Path, default=DEFAULT_DATA_PATH)
+    parser.add_argument(
+        "--publication-data-file",
+        type=pathlib.Path,
+        default=DEFAULT_PUBLICATION_DATA_PATH,
+    )
     parser.add_argument("--html-file", type=pathlib.Path, help="Parse a saved profile page")
     parser.add_argument(
         "--allow-decrease",
@@ -467,6 +685,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         config = read_config(args.data_file)
         existing, previous_updated_at = read_existing(args.data_file)
+        publication_data = read_publication_data(args.publication_data_file, config)
         if args.html_file:
             snapshot = parse_scholar_html(args.html_file.read_text(encoding="utf-8"))
         else:
@@ -474,7 +693,21 @@ def main(argv: list[str] | None = None) -> int:
         validate_snapshot(snapshot, config, existing, allow_decrease=args.allow_decrease)
         checked_at = dt.datetime.now(dt.timezone.utc).date().isoformat()
         content = render_data(config, snapshot, existing, previous_updated_at, checked_at)
-        changed = False if args.check_only else atomic_write(args.data_file, content)
+        updated_publication_data = reconcile_publication_citations(
+            snapshot,
+            publication_data,
+            checked_at=checked_at,
+            allow_decrease=args.allow_decrease,
+        )
+        publication_content = render_publication_data(updated_publication_data)
+        if args.check_only:
+            changed = False
+            publication_changed = False
+        else:
+            changed = atomic_write(args.data_file, content)
+            publication_changed = atomic_write(
+                args.publication_data_file, publication_content
+            )
     except (ScholarError, OSError, UnicodeError, json.JSONDecodeError) as exc:
         print(f"Scholar update failed: {exc}", file=sys.stderr)
         return 1
@@ -484,7 +717,13 @@ def main(argv: list[str] | None = None) -> int:
         f"Scholar check succeeded via {snapshot.provider}: "
         f"citations={metrics['total_citations']}, h-index={metrics['h_index']}, "
         f"i10-index={metrics['i10_index']}; "
-        + ("data file updated" if changed else "no data-file change")
+        + ("profile data updated" if changed else "no profile-data change")
+        + "; "
+        + (
+            "publication citations updated"
+            if publication_changed
+            else "no publication-citation change"
+        )
     )
     return 0
 

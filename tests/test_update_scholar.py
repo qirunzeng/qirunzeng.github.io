@@ -34,6 +34,37 @@ class ScholarUpdateTests(unittest.TestCase):
             {"total_citations": 1234, "h_index": 12, "i10_index": 34},
         )
 
+    def test_parses_publication_ids_titles_and_citations(self) -> None:
+        html = (ROOT / "tests" / "fixtures" / "scholar_profile.html").read_text()
+        html += """
+        <table>
+          <tr class="gsc_a_tr">
+            <td><a class="gsc_a_at" href="/citations?view_op=view_citation&amp;citation_for_view=sITttdEAAAAJ:u5HHmVD_uO8C">Fusing Reward and Dueling Feedback in Stochastic Bandits</a></td>
+            <td><a class="gsc_a_ac gs_ibl">5</a></td>
+          </tr>
+          <tr class="gsc_a_tr">
+            <td><a class="gsc_a_at" href="/citations?view_op=view_citation&amp;citation_for_view=sITttdEAAAAJ:qjMakFHDy7sC">One Rounding Fits All</a></td>
+            <td><a class="gsc_a_ac gs_ibl"></a></td>
+          </tr>
+        </table>
+        """
+        snapshot = scholar.parse_scholar_html(html)
+        self.assertEqual(
+            snapshot.publications,
+            (
+                scholar.ScholarPublication(
+                    scholar_id="sITttdEAAAAJ:u5HHmVD_uO8C",
+                    title="Fusing Reward and Dueling Feedback in Stochastic Bandits",
+                    citations=5,
+                ),
+                scholar.ScholarPublication(
+                    scholar_id="sITttdEAAAAJ:qjMakFHDy7sC",
+                    title="One Rounding Fits All",
+                    citations=0,
+                ),
+            ),
+        )
+
     def test_rejects_captcha_instead_of_using_stale_values(self) -> None:
         with self.assertRaisesRegex(scholar.ScholarError, "CAPTCHA"):
             scholar.parse_scholar_html("<html>Our systems have detected unusual traffic</html>")
@@ -102,6 +133,66 @@ class ScholarUpdateTests(unittest.TestCase):
                 payload,
                 expected_name=self.config.expected_name,
                 identity_publication=self.config.identity_publication,
+            )
+
+    def test_reconciles_publication_citations_by_stable_scholar_id(self) -> None:
+        existing = {
+            "source": "Google Scholar",
+            "source_url": self.config.source_url,
+            "last_checked_at": "2026-09-13",
+            "metrics_updated_at": "2026-09-13",
+            "papers": {
+                "fusing": {
+                    "scholar_id": "sITttdEAAAAJ:u5HHmVD_uO8C",
+                    "title": "Fusing Reward and Dueling Feedback in Stochastic Bandits",
+                    "citations": 5,
+                }
+            },
+        }
+        snapshot = scholar.ScholarSnapshot(
+            name="Qirun Zeng",
+            metrics={"total_citations": 7, "h_index": 1, "i10_index": 0},
+            provider="test",
+            publications=(
+                scholar.ScholarPublication(
+                    scholar_id="sITttdEAAAAJ:u5HHmVD_uO8C",
+                    title="Fusing Reward and Dueling Feedback in Stochastic Bandits",
+                    citations=6,
+                ),
+            ),
+        )
+        updated = scholar.reconcile_publication_citations(
+            snapshot, existing, checked_at="2026-09-14"
+        )
+        self.assertEqual(updated["papers"]["fusing"]["citations"], 6)
+        self.assertEqual(updated["last_checked_at"], "2026-09-14")
+        self.assertEqual(updated["metrics_updated_at"], "2026-09-14")
+
+    def test_rejects_publication_citation_decrease(self) -> None:
+        existing = {
+            "papers": {
+                "fusing": {
+                    "scholar_id": "sITttdEAAAAJ:u5HHmVD_uO8C",
+                    "title": "Fusing Reward and Dueling Feedback in Stochastic Bandits",
+                    "citations": 5,
+                }
+            }
+        }
+        snapshot = scholar.ScholarSnapshot(
+            name="Qirun Zeng",
+            metrics={"total_citations": 6, "h_index": 1, "i10_index": 0},
+            provider="test",
+            publications=(
+                scholar.ScholarPublication(
+                    scholar_id="sITttdEAAAAJ:u5HHmVD_uO8C",
+                    title="Fusing Reward and Dueling Feedback in Stochastic Bandits",
+                    citations=4,
+                ),
+            ),
+        )
+        with self.assertRaisesRegex(scholar.ScholarError, "decreased unexpectedly"):
+            scholar.reconcile_publication_citations(
+                snapshot, existing, checked_at="2026-09-14"
             )
 
 

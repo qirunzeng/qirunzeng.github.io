@@ -12,18 +12,22 @@ description: "Conference publications and preprints by Qirun Zeng."
 
   {% include publication-note.html %}
 
+  <p class="publication-data-note">
+    Citation counts from <a href="{{ site.data.publication_citations.source_url }}" target="_blank" rel="noopener noreferrer">{{ site.data.publication_citations.source }}</a>, last checked <time datetime="{{ site.data.publication_citations.last_checked_at }}">{{ site.data.publication_citations.last_checked_at | date: "%e %B %Y" }}</time>.
+  </p>
+
   <div class="publication-sequence publication-sequence--full">
     <section class="publication-group" aria-labelledby="conference-heading">
       <h2 id="conference-heading">Conference Proceedings</h2>
       {% for paper in site.data.publications.conference %}
-        {% include publication.html paper=paper %}
+        {% include publication.html paper=paper extended=true %}
       {% endfor %}
     </section>
 
     <section class="publication-group" aria-labelledby="preprints-heading">
       <h2 id="preprints-heading">Preprints</h2>
       {% for paper in site.data.publications.preprints %}
-        {% include publication.html paper=paper %}
+        {% include publication.html paper=paper extended=true %}
       {% endfor %}
     </section>
   </div>

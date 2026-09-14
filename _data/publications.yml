@@ -7,6 +7,9 @@ venue_order:
 conference:
   - id: "werewolf"
     title: "WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems"
+    publication_date: "August 2026"
+    publication_date_iso: "2026-08"
+    abstract_status: "The abstract will be added when the public proceedings record is available."
     authors:
       - name: "Manhin Poon"
         mentored: true
@@ -22,6 +25,11 @@ conference:
 
   - id: "one-rounding-fits-all"
     title: "One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization"
+    publication_date: "8 August 2026"
+    publication_date_iso: "2026-08-08"
+    doi: "10.1145/3770855.3817696"
+    abstract: >-
+      Partition-constrained influence maximization generalizes viral-marketing problems from one seed set to multiple groups, but existing approximation methods can require substantial memory and extra samples for validation. This work introduces RBwA, a progressive-sampling algorithm that uses Rademacher averages to estimate solution quality, removes the separate validation set, and reduces rounding to one call. Its BwARound subroutine stores a single fractional vector and takes maximal feasible steps. Experiments on large social networks show gains in memory use, sample efficiency, and iteration count.
     authors:
       - name: "Qixin Zhang"
         equal: true
@@ -46,6 +54,11 @@ conference:
 
   - id: "fusing-reward-dueling"
     title: "Fusing Reward and Dueling Feedback in Stochastic Bandits"
+    publication_date: "13 July 2025"
+    publication_date_iso: "2025-07-13"
+    doi: "10.48550/arXiv.2504.15812"
+    abstract: >-
+      This work studies stochastic bandits that provide both absolute reward observations and relative pairwise comparisons. It establishes a regret lower bound and develops two ways to combine the feedback: an elimination method that shares candidate sets, and a decomposition method that assigns the more informative feedback to exploration while using the other for exploitation. Under a standard assumption, the decomposition approach matches the lower bound up to constants. Experiments support the theoretical benefit of choosing between feedback types arm by arm.
     authors:
       - name: "Xuchuang Wang"
       - name: "Qirun Zeng"
@@ -68,6 +81,11 @@ conference:
 preprints:
   - id: "best-arm-hybrid-feedback"
     title: "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback"
+    publication_date: "7 May 2026"
+    publication_date_iso: "2026-05-07"
+    doi: "10.48550/arXiv.2605.05745"
+    abstract: >-
+      This paper considers fixed-confidence best-arm identification in generalized linear bandits when the learner may request either a single-arm reward or a pairwise comparison. A likelihood-ratio confidence sequence combines the two observation types into an ellipsoidal confidence set. Building on it, a hybrid Track-and-Stop algorithm adapts its queries through a minimax design over arms and pairs. The analysis gives correctness and stopping-time guarantees, extends to unequal acquisition costs, and is supported by experiments showing improved sample efficiency.
     authors:
       - name: "Qirun Zeng"
         me: true
@@ -88,6 +106,11 @@ preprints:
 
   - id: "adversarial-bandits-fake-data"
     title: "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection"
+    publication_date: "28 May 2025"
+    publication_date_iso: "2025-05-28"
+    doi: "10.48550/arXiv.2505.21938"
+    abstract: >-
+      This work replaces common, highly permissive bandit-attack assumptions with a bounded fake-data-injection model: an attacker may add only a limited number of plausible feedback samples to the learner's history. It develops attacks that respect both value and timing constraints, and shows that they can make a target arm dominate the learner's choices while keeping total attack cost sublinear. Tests on synthetic and real data demonstrate the practical vulnerability of stochastic bandit algorithms under this threat model.
     authors:
       - name: "Qirun Zeng"
         me: true
