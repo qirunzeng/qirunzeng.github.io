@@ -36,7 +36,11 @@
       {% if include.paper.abstract or include.paper.abstract_status %}
         <details class="publication__abstract">
           <summary>Abstract</summary>
-          <p>{% if include.paper.abstract %}{{ include.paper.abstract }}{% else %}{{ include.paper.abstract_status }}{% endif %}</p>
+          {% if include.paper.abstract %}
+            {{ include.paper.abstract | markdownify }}
+          {% else %}
+            <p>{{ include.paper.abstract_status }}</p>
+          {% endif %}
         </details>
       {% endif %}
     {% endif %}
