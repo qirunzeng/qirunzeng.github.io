@@ -73,7 +73,7 @@ conference:
     venue_group: "ICML"
     links:
       - label: "ICML'2025"
-        url: "https://openreview.net/pdf?id=mqljEW2NQl"
+        url: "https://dl.acm.org/doi/10.5555/3780338.3782937"
         type: "conference"
       - label: "Code"
         url: "https://github.com/qirunzeng/Fusing-Reward-and-Dueling"
