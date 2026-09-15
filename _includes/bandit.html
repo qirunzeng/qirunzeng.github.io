@@ -1,0 +1,96 @@
+<div class="bandit" data-bandit tabindex="0" aria-label="Interactive two-armed bandit game">
+  <div class="bandit__topbar">
+    <div class="bandit__intro">
+      <span class="bandit__badge" aria-hidden="true">
+        <svg viewBox="0 0 48 48" focusable="false">
+          <rect x="7" y="10" width="29" height="31" rx="5"></rect>
+          <rect x="12" y="16" width="19" height="10" rx="2"></rect>
+          <circle cx="17" cy="21" r="2"></circle>
+          <circle cx="26" cy="21" r="2"></circle>
+          <path d="M13 34h17M38 17h4v12"></path>
+          <circle cx="42" cy="15" r="3"></circle>
+        </svg>
+      </span>
+      <div>
+        <p class="bandit__eyebrow">Explore or exploit?</p>
+        <p>Two arms hide different reward probabilities. Learn which one is better before your rounds run out.</p>
+      </div>
+    </div>
+
+    <form class="bandit__setup" data-bandit-setup>
+      <label for="bandit-rounds">Rounds</label>
+      <input id="bandit-rounds" data-bandit-rounds type="number" value="10" min="1" max="100" step="1" inputmode="numeric">
+      <button type="submit">New game</button>
+    </form>
+  </div>
+
+  <div class="bandit__scoreboard" aria-label="Game statistics">
+    <div>
+      <span>Round</span>
+      <strong data-bandit-round>0 / 10</strong>
+    </div>
+    <div>
+      <span>Reward</span>
+      <strong data-bandit-reward>0</strong>
+    </div>
+    <div>
+      <span>Expected regret</span>
+      <strong data-bandit-regret>hidden</strong>
+    </div>
+  </div>
+
+  <div class="bandit__progress" aria-hidden="true"><span data-bandit-progress></span></div>
+
+  <div class="bandit__arms">
+    <button class="bandit-arm" type="button" data-bandit-arm="a" aria-label="Pull arm A">
+      <span class="bandit-arm__machine" aria-hidden="true">
+        <svg viewBox="0 0 96 96" focusable="false">
+          <path class="bandit-arm__shadow" d="M18 78h60l6 10H12l6-10Z"></path>
+          <rect x="18" y="12" width="60" height="69" rx="10"></rect>
+          <path d="M26 20h44M26 69h44"></path>
+          <rect x="27" y="30" width="42" height="27" rx="5"></rect>
+          <circle cx="38" cy="43.5" r="5"></circle>
+          <path d="m38 38.5 1.5 3h3.3l-2.7 2 1 3.2-3.1-1.9-3.1 1.9 1-3.2-2.7-2h3.3l1.5-3Z"></path>
+          <circle cx="58" cy="43.5" r="5"></circle>
+          <path d="m58 38.5 1.5 3h3.3l-2.7 2 1 3.2-3.1-1.9-3.1 1.9 1-3.2-2.7-2h3.3l1.5-3Z"></path>
+          <path d="M78 28h8v27M86 28v-8"></path>
+          <circle cx="86" cy="16" r="6"></circle>
+        </svg>
+      </span>
+      <span class="bandit-arm__letter">A</span>
+      <span class="bandit-arm__stats"><span data-bandit-pulls="a">0 pulls</span><span data-bandit-wins="a">0 rewards</span></span>
+      <span class="bandit-arm__chance" data-bandit-chance="a">probability hidden</span>
+    </button>
+
+    <span class="bandit__versus" aria-hidden="true">or</span>
+
+    <button class="bandit-arm" type="button" data-bandit-arm="b" aria-label="Pull arm B">
+      <span class="bandit-arm__machine" aria-hidden="true">
+        <svg viewBox="0 0 96 96" focusable="false">
+          <path class="bandit-arm__shadow" d="M18 78h60l6 10H12l6-10Z"></path>
+          <rect x="18" y="12" width="60" height="69" rx="10"></rect>
+          <path d="M26 20h44M26 69h44"></path>
+          <rect x="27" y="30" width="42" height="27" rx="5"></rect>
+          <circle cx="38" cy="43.5" r="5"></circle>
+          <path d="m38 38.5 1.5 3h3.3l-2.7 2 1 3.2-3.1-1.9-3.1 1.9 1-3.2-2.7-2h3.3l1.5-3Z"></path>
+          <circle cx="58" cy="43.5" r="5"></circle>
+          <path d="m58 38.5 1.5 3h3.3l-2.7 2 1 3.2-3.1-1.9-3.1 1.9 1-3.2-2.7-2h3.3l1.5-3Z"></path>
+          <path d="M78 28h8v27M86 28v-8"></path>
+          <circle cx="86" cy="16" r="6"></circle>
+        </svg>
+      </span>
+      <span class="bandit-arm__letter">B</span>
+      <span class="bandit-arm__stats"><span data-bandit-pulls="b">0 pulls</span><span data-bandit-wins="b">0 rewards</span></span>
+      <span class="bandit-arm__chance" data-bandit-chance="b">probability hidden</span>
+    </button>
+  </div>
+
+  <div class="bandit__feedback" data-bandit-feedback aria-live="polite">Choose an arm to begin.</div>
+
+  <div class="bandit__history-wrap">
+    <span>Reward trail</span>
+    <ol class="bandit__history" data-bandit-history aria-label="Reward history"></ol>
+  </div>
+
+  <p class="bandit__note">This is the exploration–exploitation dilemma in miniature. <a href="{{ '/publications/' | relative_url }}">See how I study bandit feedback <span aria-hidden="true">→</span></a></p>
+</div>
