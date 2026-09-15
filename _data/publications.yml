@@ -47,7 +47,7 @@ conference:
     venue_group: "KDD"
     links:
       - label: "KDD'2026"
-        url: "https://dl.acm.org/doi/abs/10.1145/3770855.3817696"
+        url: "https://dl.acm.org/doi/10.1145/3770855.3817696"
         type: "conference"
       - label: "Code"
         url: "https://github.com/qirunzeng/OneRound-IM"
