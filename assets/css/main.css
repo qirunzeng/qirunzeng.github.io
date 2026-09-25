@@ -1281,9 +1281,16 @@ a {
 
 .publication__authors .publication__equal-marker,
 .publication-note .publication__equal-marker {
-  font-size: 1.35em;
+  font-size: 1.55em;
   line-height: 0;
-  vertical-align: 0.16em;
+  vertical-align: 0.12em;
+}
+
+.publication__authors .publication__mentor-marker,
+.publication-note .publication__mentor-marker {
+  font-size: 0.82em;
+  line-height: 0;
+  vertical-align: 0.32em;
 }
 
 .publication__details {

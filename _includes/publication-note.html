@@ -19,5 +19,5 @@
 {% endfor %}
 
 {% if note_has_equal or note_has_mentored %}
-  <p class="publication-note">{% if note_has_equal %}<sup class="publication__equal-marker">⋆</sup> Equal contribution.{% endif %}{% if note_has_equal and note_has_mentored %}&ensp;{% endif %}{% if note_has_mentored %}<sup>†</sup> Mentored student.{% endif %}</p>
+  <p class="publication-note">{% if note_has_equal %}<sup class="publication__equal-marker">⋆</sup> Equal contribution.{% endif %}{% if note_has_equal and note_has_mentored %}&ensp;{% endif %}{% if note_has_mentored %}<sup class="publication__mentor-marker">†</sup> Mentored student.{% endif %}</p>
 {% endif %}
