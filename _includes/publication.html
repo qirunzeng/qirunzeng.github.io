@@ -15,7 +15,7 @@
           <p class="publication__metadata">
             {% if include.paper.publication_date %}<span>Published <time{% if include.paper.publication_date_iso %} datetime="{{ include.paper.publication_date_iso }}"{% endif %}>{{ include.paper.publication_date }}</time></span>{% endif %}
             {% if include.paper.doi %}<a href="https://doi.org/{{ include.paper.doi }}" target="_blank" rel="noopener noreferrer">DOI {{ include.paper.doi }}</a>{% endif %}
-            {% if citation %}<a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=sITttdEAAAAJ&amp;citation_for_view={{ citation.scholar_id }}" target="_blank" rel="noopener noreferrer">Cited by {{ citation.citations }}</a>{% endif %}
+            {% if citation and citation.citations > 0 %}<a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=sITttdEAAAAJ&amp;citation_for_view={{ citation.scholar_id }}" target="_blank" rel="noopener noreferrer">Cited by {{ citation.citations }}</a>{% endif %}
           </p>
         {% endif %}
       </div>

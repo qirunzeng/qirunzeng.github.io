@@ -1,4 +1,4 @@
-{% assign all_publications = site.data.publications.conference | concat: site.data.publications.preprints %}
+{% assign all_publications = site.data.publications.conference | concat: site.data.publications.journal | concat: site.data.publications.preprints %}
 {% capture collaborator_blob %}{% for paper in all_publications %}{% for author in paper.authors %}{% unless author.me %}{{ author.name }}|||{% endunless %}{% endfor %}{% endfor %}{% endcapture %}
 {% assign collaborator_names = collaborator_blob | strip | split: '|||' | uniq | sort_natural %}
 {% assign paper_count = all_publications | size %}

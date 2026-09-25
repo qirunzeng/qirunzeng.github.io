@@ -1,4 +1,4 @@
-{% assign note_publications = site.data.publications.conference | concat: site.data.publications.preprints %}
+{% assign note_publications = site.data.publications.conference | concat: site.data.publications.journal | concat: site.data.publications.preprints %}
 {% assign note_has_equal = false %}
 {% assign note_has_mentored = false %}
 

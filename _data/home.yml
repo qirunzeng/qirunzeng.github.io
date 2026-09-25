@@ -11,10 +11,12 @@ metrics:
     label: "h-index"
   - scholar_key: "i10_index"
     label: "i10-index"
-  - value: 5
+  - publication_key: "conference"
     label: "Conference papers"
-  - value: 2
-    label: "NeurIPS papers"
+  - publication_key: "journal"
+    label: "Journal papers"
+  - publication_key: "preprints"
+    label: "Preprints"
 
 news:
   - date: "2026"

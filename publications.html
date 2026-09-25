@@ -4,7 +4,7 @@ title: "Publications"
 nav: "Research"
 permalink: /publications/
 context_rail: collaborators
-description: "Conference publications by Qirun Zeng."
+description: "Research publications by Qirun Zeng."
 ---
 
 <section class="page-section page-section--first">
@@ -17,15 +17,26 @@ description: "Conference publications by Qirun Zeng."
   </p>
 
   <div class="publication-sequence publication-sequence--full">
-    <section class="publication-group" aria-labelledby="conference-heading">
-      <h2 id="conference-heading">Conference Proceedings</h2>
-      {% for paper in site.data.publications.conference %}
-        {% if paper.pin_to_top %}{% include publication.html paper=paper extended=true %}{% endif %}
-      {% endfor %}
-      {% for paper in site.data.publications.conference %}
-        {% unless paper.pin_to_top %}{% include publication.html paper=paper extended=true %}{% endunless %}
-      {% endfor %}
-    </section>
+    {% if site.data.publications.conference and site.data.publications.conference != empty %}
+      <section class="publication-group" aria-labelledby="conference-heading">
+        <h2 id="conference-heading">Conference Proceedings</h2>
+        {% for paper in site.data.publications.conference %}
+          {% if paper.pin_to_top %}{% include publication.html paper=paper extended=true %}{% endif %}
+        {% endfor %}
+        {% for paper in site.data.publications.conference %}
+          {% unless paper.pin_to_top %}{% include publication.html paper=paper extended=true %}{% endunless %}
+        {% endfor %}
+      </section>
+    {% endif %}
+
+    {% if site.data.publications.journal and site.data.publications.journal != empty %}
+      <section class="publication-group" aria-labelledby="journal-heading">
+        <h2 id="journal-heading">Journal Articles</h2>
+        {% for paper in site.data.publications.journal %}
+          {% include publication.html paper=paper extended=true %}
+        {% endfor %}
+      </section>
+    {% endif %}
 
     {% if site.data.publications.preprints and site.data.publications.preprints != empty %}
       <section class="publication-group" aria-labelledby="preprints-heading">

@@ -19,19 +19,27 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
     {% endfor %}
   </div>
 
-  <dl class="metrics" aria-label="Academic metrics">
+  {% capture metric_items %}
     {% for metric in home.metrics %}
       {% if metric.scholar_key %}
         {% assign metric_value = site.data.scholar[metric.scholar_key] %}
+      {% elsif metric.publication_key %}
+        {% assign metric_value = site.data.publications[metric.publication_key] | size %}
       {% else %}
         {% assign metric_value = metric.value %}
       {% endif %}
-      <div>
-        <dt>{{ metric.label }}</dt>
-        <dd>{{ metric_value }}</dd>
-      </div>
+      {% if metric_value and metric_value > 0 %}
+        <div>
+          <dt>{{ metric.label }}</dt>
+          <dd>{{ metric_value }}</dd>
+        </div>
+      {% endif %}
     {% endfor %}
-  </dl>
+  {% endcapture %}
+  {% assign metric_items = metric_items | strip %}
+  {% if metric_items != "" %}
+    <dl class="metrics" aria-label="Academic metrics">{{ metric_items }}</dl>
+  {% endif %}
 </section>
 
 {% include news.html variant="inline" %}
@@ -55,7 +63,7 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
   {% include publication-note.html paper_ids=home.selected_publications %}
 
   <div class="publication-sequence">
-    {% assign all_publications = site.data.publications.conference | concat: site.data.publications.preprints %}
+    {% assign all_publications = site.data.publications.conference | concat: site.data.publications.journal | concat: site.data.publications.preprints %}
     {% for publication_id in home.selected_publications %}
       {% assign paper = all_publications | where: "id", publication_id | first %}
       {% if paper %}{% include publication.html paper=paper %}{% endif %}
