@@ -1202,6 +1202,17 @@ a {
   font-weight: 700;
 }
 
+.news-rail__body ul,
+.news-item__body ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1rem;
+}
+
+.news-rail__body li,
+.news-item__body li {
+  margin-top: 0.18rem;
+}
+
 .publication-sequence {
   counter-reset: publication;
 }

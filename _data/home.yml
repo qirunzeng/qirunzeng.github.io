@@ -18,7 +18,11 @@ metrics:
 
 news:
   - date: "2026"
-    text: "Our papers [**Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback**](https://arxiv.org/abs/2605.05745) and [**Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection**](https://arxiv.org/abs/2505.21938) were accepted to **NeurIPS 2026**."
+    text: |-
+      **2 papers accepted to NeurIPS 2026!**
+
+      - [**Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback**](https://arxiv.org/abs/2605.05745)
+      - [**Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection**](https://arxiv.org/abs/2505.21938)
   - date: "2026"
     text: "Our paper **WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems** was accepted to **Findings of EMNLP 2026**."
   - date: "2026"
