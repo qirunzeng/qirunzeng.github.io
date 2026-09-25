@@ -55,6 +55,7 @@ conference:
         type: "code"
 
   - id: "best-arm-hybrid-feedback"
+    pin_to_top: true
     title: "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback"
     publication_date: "7 May 2026"
     publication_date_iso: "2026-05-07"
@@ -82,6 +83,7 @@ conference:
         type: "code"
 
   - id: "adversarial-bandits-fake-data"
+    pin_to_top: true
     title: "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection"
     publication_date: "28 May 2025"
     publication_date_iso: "2025-05-28"

@@ -20,7 +20,10 @@ description: "Conference publications by Qirun Zeng."
     <section class="publication-group" aria-labelledby="conference-heading">
       <h2 id="conference-heading">Conference Proceedings</h2>
       {% for paper in site.data.publications.conference %}
-        {% include publication.html paper=paper extended=true %}
+        {% if paper.pin_to_top %}{% include publication.html paper=paper extended=true %}{% endif %}
+      {% endfor %}
+      {% for paper in site.data.publications.conference %}
+        {% unless paper.pin_to_top %}{% include publication.html paper=paper extended=true %}{% endunless %}
       {% endfor %}
     </section>
 
