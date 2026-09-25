@@ -4,7 +4,7 @@ title: "Publications"
 nav: "Research"
 permalink: /publications/
 context_rail: collaborators
-description: "Conference publications and preprints by Qirun Zeng."
+description: "Conference publications by Qirun Zeng."
 ---
 
 <section class="page-section page-section--first">
@@ -24,11 +24,13 @@ description: "Conference publications and preprints by Qirun Zeng."
       {% endfor %}
     </section>
 
-    <section class="publication-group" aria-labelledby="preprints-heading">
-      <h2 id="preprints-heading">Preprints</h2>
-      {% for paper in site.data.publications.preprints %}
-        {% include publication.html paper=paper extended=true %}
-      {% endfor %}
-    </section>
+    {% if site.data.publications.preprints and site.data.publications.preprints != empty %}
+      <section class="publication-group" aria-labelledby="preprints-heading">
+        <h2 id="preprints-heading">Preprints</h2>
+        {% for paper in site.data.publications.preprints %}
+          {% include publication.html paper=paper extended=true %}
+        {% endfor %}
+      </section>
+    {% endif %}
   </div>
 </section>

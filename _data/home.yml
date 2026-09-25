@@ -11,12 +11,16 @@ metrics:
     label: "h-index"
   - scholar_key: "i10_index"
     label: "i10-index"
-  - value: 3
+  - value: 5
     label: "Conference papers"
   - value: 2
-    label: "Preprints"
+    label: "NeurIPS papers"
 
 news:
+  - date: "2026"
+    text: "Our paper [**Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback**](https://arxiv.org/abs/2605.05745) was accepted to **NeurIPS 2026**."
+  - date: "2026"
+    text: "Our paper [**Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection**](https://arxiv.org/abs/2505.21938) was accepted to **NeurIPS 2026**."
   - date: "2026"
     text: "Our paper **WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems** was accepted to **Findings of EMNLP 2026**."
   - date: "2026"

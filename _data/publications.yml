@@ -1,4 +1,5 @@
 venue_order:
+  - "NeurIPS"
   - "ICML"
   - "KDD"
   - "EMNLP"
@@ -53,6 +54,59 @@ conference:
         url: "https://github.com/qirunzeng/OneRound-IM"
         type: "code"
 
+  - id: "best-arm-hybrid-feedback"
+    title: "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback"
+    publication_date: "7 May 2026"
+    publication_date_iso: "2026-05-07"
+    doi: "10.48550/arXiv.2605.05745"
+    abstract: >-
+      We study fixed-confidence best arm identification in generalized linear bandits under a hybrid feedback model: at each round, the learner may query either (i) absolute reward feedback from a single arm or (ii) relative (dueling) feedback from an arm pair, both governed by generalized linear models. We introduce a likelihood-ratio--based confidence sequence that unifies heterogeneous generalized linear observations and yields an explicit ellipsoidal confidence set under a self-concordance assumption. Building on this confidence set, we propose a hybrid Track-and-Stop algorithm that adaptively allocates queries by tracking a minimax-optimal design over a joint action space of arms and pairs. We establish δ-correctness and provide high-probability upper bounds on the stopping time. We further extend the framework to a cost-aware setting that accounts for heterogeneous acquisition costs across feedback modalities. Empirical experiments demonstrate that the proposed algorithms significantly improve sample efficiency over baseline methods.
+    authors:
+      - name: "Qirun Zeng"
+        me: true
+      - name: "Xuchuang Wang"
+      - name: "Jiayi Shen"
+      - name: "Xutong Liu"
+      - name: "Fang Kong"
+      - name: "Jinhang Zuo"
+    venue: "In Proceedings of the 40th Annual Conference on Neural Information Processing Systems"
+    venue_group: "NeurIPS"
+    links:
+      - label: "NeurIPS'2026"
+        type: "conference"
+      - label: "arXiv"
+        url: "https://arxiv.org/abs/2605.05745"
+        type: "arxiv"
+      - label: "Code"
+        url: "https://github.com/qirunzeng/HyTS-GLB"
+        type: "code"
+
+  - id: "adversarial-bandits-fake-data"
+    title: "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection"
+    publication_date: "28 May 2025"
+    publication_date_iso: "2025-05-28"
+    doi: "10.48550/arXiv.2505.21938"
+    abstract: >-
+      Adversarial attacks on stochastic bandits have traditionally relied on some unrealistic assumptions, such as per-round reward manipulation and unbounded perturbations, limiting their relevance to real-world systems. We propose a more practical threat model, Fake Data Injection, which reflects realistic adversarial constraints: the attacker can inject only a limited number of bounded fake feedback samples into the learner's history, simulating legitimate interactions. We design effective attack strategies under this model, explicitly addressing both magnitude constraints (on reward values) and temporal constraints (on when and how often data can be injected). Our theoretical analysis shows that these attacks can mislead a class of bandit algorithms into selecting a target arm in nearly all rounds while incurring only sublinear attack cost. Experiments on synthetic and real-world datasets validate the effectiveness of our strategies, revealing vulnerabilities in stochastic bandit algorithms under practical adversarial scenarios.
+    authors:
+      - name: "Qirun Zeng"
+        me: true
+      - name: "Eric He"
+      - name: "Richard Hoffmann"
+      - name: "Xuchuang Wang"
+      - name: "Jinhang Zuo"
+    venue: "In Proceedings of the 40th Annual Conference on Neural Information Processing Systems"
+    venue_group: "NeurIPS"
+    links:
+      - label: "NeurIPS'2026"
+        type: "conference"
+      - label: "arXiv"
+        url: "https://arxiv.org/abs/2505.21938"
+        type: "arxiv"
+      - label: "Code"
+        url: "https://github.com/richardhoff88/online_learning_torank"
+        type: "code"
+
   - id: "fusing-reward-dueling"
     title: "Fusing Reward and Dueling Feedback in Stochastic Bandits"
     publication_date: "13 July 2025"
@@ -79,52 +133,4 @@ conference:
         url: "https://github.com/qirunzeng/Fusing-Reward-and-Dueling"
         type: "code"
 
-preprints:
-  - id: "best-arm-hybrid-feedback"
-    title: "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback"
-    publication_date: "7 May 2026"
-    publication_date_iso: "2026-05-07"
-    doi: "10.48550/arXiv.2605.05745"
-    abstract: >-
-      We study fixed-confidence best arm identification in generalized linear bandits under a hybrid feedback model: at each round, the learner may query either (i) absolute reward feedback from a single arm or (ii) relative (dueling) feedback from an arm pair, both governed by generalized linear models. We introduce a likelihood-ratio--based confidence sequence that unifies heterogeneous generalized linear observations and yields an explicit ellipsoidal confidence set under a self-concordance assumption. Building on this confidence set, we propose a hybrid Track-and-Stop algorithm that adaptively allocates queries by tracking a minimax-optimal design over a joint action space of arms and pairs. We establish δ-correctness and provide high-probability upper bounds on the stopping time. We further extend the framework to a cost-aware setting that accounts for heterogeneous acquisition costs across feedback modalities. Empirical experiments demonstrate that the proposed algorithms significantly improve sample efficiency over baseline methods.
-    authors:
-      - name: "Qirun Zeng"
-        me: true
-      - name: "Xuchuang Wang"
-      - name: "Jiayi Shen"
-      - name: "Xutong Liu"
-      - name: "Fang Kong"
-      - name: "Jinhang Zuo"
-    venue: "arXiv preprint arXiv:2605.05745, 2026"
-    venue_group: "arXiv"
-    links:
-      - label: "arXiv"
-        url: "https://arxiv.org/abs/2605.05745"
-        type: "arxiv"
-      - label: "Code"
-        url: "https://github.com/qirunzeng/HyTS-GLB"
-        type: "code"
-
-  - id: "adversarial-bandits-fake-data"
-    title: "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection"
-    publication_date: "28 May 2025"
-    publication_date_iso: "2025-05-28"
-    doi: "10.48550/arXiv.2505.21938"
-    abstract: >-
-      Adversarial attacks on stochastic bandits have traditionally relied on some unrealistic assumptions, such as per-round reward manipulation and unbounded perturbations, limiting their relevance to real-world systems. We propose a more practical threat model, Fake Data Injection, which reflects realistic adversarial constraints: the attacker can inject only a limited number of bounded fake feedback samples into the learner's history, simulating legitimate interactions. We design effective attack strategies under this model, explicitly addressing both magnitude constraints (on reward values) and temporal constraints (on when and how often data can be injected). Our theoretical analysis shows that these attacks can mislead a class of bandit algorithms into selecting a target arm in nearly all rounds while incurring only sublinear attack cost. Experiments on synthetic and real-world datasets validate the effectiveness of our strategies, revealing vulnerabilities in stochastic bandit algorithms under practical adversarial scenarios.
-    authors:
-      - name: "Qirun Zeng"
-        me: true
-      - name: "Eric He"
-      - name: "Richard Hoffmann"
-      - name: "Xuchuang Wang"
-      - name: "Jinhang Zuo"
-    venue: "arXiv preprint arXiv:2505.21938, 2025"
-    venue_group: "arXiv"
-    links:
-      - label: "arXiv"
-        url: "https://arxiv.org/abs/2505.21938"
-        type: "arxiv"
-      - label: "Code"
-        url: "https://github.com/richardhoff88/online_learning_torank"
-        type: "code"
+preprints: []
