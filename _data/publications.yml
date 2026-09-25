@@ -74,10 +74,8 @@ conference:
     venue_group: "NeurIPS"
     links:
       - label: "NeurIPS'2026"
-        type: "conference"
-      - label: "arXiv"
         url: "https://arxiv.org/abs/2605.05745"
-        type: "arxiv"
+        type: "conference"
       - label: "Code"
         url: "https://github.com/qirunzeng/HyTS-GLB"
         type: "code"
@@ -101,10 +99,8 @@ conference:
     venue_group: "NeurIPS"
     links:
       - label: "NeurIPS'2026"
-        type: "conference"
-      - label: "arXiv"
         url: "https://arxiv.org/abs/2505.21938"
-        type: "arxiv"
+        type: "conference"
       - label: "Code"
         url: "https://github.com/richardhoff88/online_learning_torank"
         type: "code"
