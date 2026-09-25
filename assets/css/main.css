@@ -1279,6 +1279,13 @@ a {
   font-weight: 800;
 }
 
+.publication__authors .publication__equal-marker,
+.publication-note .publication__equal-marker {
+  font-size: 1.08em;
+  line-height: 0;
+  vertical-align: 0.22em;
+}
+
 .publication__details {
   display: grid;
   margin-top: 0.38rem;
