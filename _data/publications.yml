@@ -5,6 +5,20 @@ venue_order:
   - "EMNLP"
   - "arXiv"
 
+metrics:
+  - scholar_key: "total_citations"
+    label: "Citations"
+  - scholar_key: "h_index"
+    label: "h-index"
+  - scholar_key: "i10_index"
+    label: "i10-index"
+  - publication_key: "conference"
+    label: "Conference papers"
+  - publication_key: "journal"
+    label: "Journal papers"
+  - publication_key: "preprints"
+    label: "Preprints"
+
 conference:
   - id: "werewolf"
     title: "WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems"

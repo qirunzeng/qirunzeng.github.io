@@ -3,12 +3,37 @@
 {% assign collaborator_names = collaborator_blob | strip | split: '|||' | uniq | sort_natural %}
 {% assign paper_count = all_publications | size %}
 {% assign venue_order = site.data.publications.venue_order %}
+{% assign publication_metrics = site.data.publications.metrics %}
 
 <section class="context-rail collaborator-rail" aria-labelledby="publication-overview-heading">
   <header class="context-rail__header">
     <h2 id="publication-overview-heading">At a glance</h2>
-    <p>{{ paper_count }} publications.</p>
   </header>
+
+  {% capture publication_metric_items %}
+    {% for metric in publication_metrics %}
+      {% if metric.scholar_key %}
+        {% assign metric_value = site.data.scholar[metric.scholar_key] %}
+      {% elsif metric.publication_key %}
+        {% assign metric_value = site.data.publications[metric.publication_key] | size %}
+      {% else %}
+        {% assign metric_value = metric.value %}
+      {% endif %}
+      {% if metric_value and metric_value > 0 %}
+        <div>
+          <dt>{{ metric.label }}</dt>
+          <dd>{{ metric_value }}</dd>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endcapture %}
+  {% assign publication_metric_items = publication_metric_items | strip %}
+  {% if publication_metric_items != "" %}
+    <section class="context-rail__section" aria-labelledby="publication-metrics-heading">
+      <h3 id="publication-metrics-heading">Metrics</h3>
+      <dl class="rail-metrics publication-metrics">{{ publication_metric_items }}</dl>
+    </section>
+  {% endif %}
 
   <section class="context-rail__section" aria-labelledby="venue-counts-heading">
     <h3 id="venue-counts-heading">By venue</h3>

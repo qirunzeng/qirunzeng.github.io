@@ -26,7 +26,7 @@ To choose the papers shown on the homepage, edit `selected_publications` in
 
 ## Google Scholar metrics
 
-The homepage reads citations, h-index, and i10-index from
+The Publications page reads citations, h-index, and i10-index from
 `_data/scholar.yml`. The `Update Scholar Metrics` GitHub Actions workflow runs
 daily at 09:23 Hong Kong time. It validates the profile identity and all three
 metrics before atomically replacing the data file, commits the verified data,
