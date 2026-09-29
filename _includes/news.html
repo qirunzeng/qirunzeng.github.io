@@ -29,7 +29,7 @@
   </section>
 {% else %}
   <section class="page-section home-news--inline" aria-labelledby="news-heading">
-    {% include section-heading.html title="News" summary="Recent research updates." %}
+    {% include section-heading.html title="News" %}
     <ol class="news-list">
       {% for item in news_items limit:5 %}
         <li class="news-item">

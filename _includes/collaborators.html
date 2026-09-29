@@ -36,32 +36,14 @@
   {% endif %}
 
   <section class="context-rail__section" aria-labelledby="venue-counts-heading">
-    <h3 id="venue-counts-heading">By venue</h3>
+    <h3 id="venue-counts-heading">By Venue (First / Co-first)</h3>
     <dl class="rail-metrics publication-metrics">
       {% for venue_name in venue_order %}
         {% assign venue_count = 0 %}
-        {% for paper in all_publications %}
-          {% if paper.venue_group == venue_name %}
-            {% assign venue_count = venue_count | plus: 1 %}
-          {% endif %}
-        {% endfor %}
-        {% if venue_count > 0 %}
-          <div>
-            <dt>{{ venue_name }}</dt>
-            <dd><span aria-hidden="true">×</span> {{ venue_count }}</dd>
-          </div>
-        {% endif %}
-      {% endfor %}
-    </dl>
-  </section>
-
-  <section class="context-rail__section" aria-labelledby="lead-author-counts-heading">
-    <h3 id="lead-author-counts-heading">First / co-first author</h3>
-    <dl class="rail-metrics publication-metrics">
-      {% for venue_name in venue_order %}
         {% assign lead_author_count = 0 %}
         {% for paper in all_publications %}
           {% if paper.venue_group == venue_name %}
+            {% assign venue_count = venue_count | plus: 1 %}
             {% assign is_lead_author = false %}
             {% for author in paper.authors %}
               {% if author.me and forloop.first %}
@@ -75,10 +57,10 @@
             {% endif %}
           {% endif %}
         {% endfor %}
-        {% if lead_author_count > 0 %}
+        {% if venue_count > 0 %}
           <div>
             <dt>{{ venue_name }}</dt>
-            <dd><span aria-hidden="true">×</span> {{ lead_author_count }}</dd>
+            <dd aria-label="{{ venue_count }} {% if venue_count == 1 %}publication{% else %}publications{% endif %}, {{ lead_author_count }} first or co-first author {% if lead_author_count == 1 %}paper{% else %}papers{% endif %}">{{ venue_count }}({{ lead_author_count }})</dd>
           </div>
         {% endif %}
       {% endfor %}

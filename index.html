@@ -10,7 +10,6 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
 <section class="page-section page-section--first" aria-labelledby="profile-heading">
   <header class="section-heading section-heading--page">
     <h1 id="profile-heading">Profile</h1>
-    <p class="section-heading__summary">{{ home.profile.summary }}</p>
   </header>
 
   <div class="prose prose--lead">
@@ -48,7 +47,7 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
 </section>
 
 <section class="page-section" aria-labelledby="service-heading">
-  {% include section-heading.html title="Service" summary="Academic reviewing and service." %}
+  {% include section-heading.html title="Service" %}
   <div class="timeline timeline--compact">
     {% for item in home.service %}
       {% include timeline-item.html period=item.period title=item.title detail=item.detail %}
@@ -63,6 +62,6 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
 </section>
 
 <section class="page-section" aria-labelledby="bandit-heading">
-  {% include section-heading.html id="bandit" title="10-second Bandit" summary="Can you identify the better arm before your rounds run out?" %}
+  {% include section-heading.html id="bandit" title="10-second Bandit" %}
   {% include bandit.html %}
 </section>
