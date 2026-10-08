@@ -168,3 +168,7 @@ preprints:
       - label: "arXiv"
         url: "https://arxiv.org/abs/2610.10000"
         type: "preprint"
+      - label: "Code"
+        url: "https://github.com/qirunzeng/Attack-on-Bounded-Bandit"
+        type: "code"
+
