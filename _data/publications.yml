@@ -147,4 +147,24 @@ conference:
 
 journal: []
 
-preprints: []
+preprints:
+  - id: "offline-attacks-warm-start-bandits"
+    title: "Beyond Reward Suppression: Near-Optimal Offline Attacks on Warm-Start Bandits with Bounded Rewards"
+    publication_date: "7 October 2026"
+    publication_date_iso: "2026-10-07"
+    doi: "10.48550/arXiv.2610.10000"
+    abstract: >-
+      Adversarial attacks on bandits aim to mislead a learner toward a target arm while keeping the attack cost small. Existing attacks typically achieve this by suppressing non-target arms. In practice, however, manipulation such as fake reviews often directly promotes the target item. We study this gap through bounded offline attacks on warm-start bandits, where an attacker can inject only valid action-reward pairs into the warm-start history before deployment. We show that target promotion is not merely a heuristic: when the target arm lies near the lower reward boundary, any order-optimal-cost attack against UCB that makes it selected in nearly all online rounds must allocate a nonvanishing fraction of its cost to the target arm. We then design an attack that achieves the optimal sublinear cost and characterize its allocation between target promotion and non-target suppression. We further extend the attack to Thompson Sampling, ε-greedy, and a broader class of bandit algorithms. Experiments on real-world and synthetic data validate the effectiveness of our attacks.
+    authors:
+      - name: "Qirun Zeng"
+        me: true
+      - name: "Manhin Poon"
+      - name: "Xiangxiang Dai"
+      - name: "Qixin Zhang"
+      - name: "Jinhang Zuo"
+    venue: "arXiv preprint arXiv:2610.10000"
+    venue_group: "arXiv"
+    links:
+      - label: "arXiv"
+        url: "https://arxiv.org/abs/2610.10000"
+        type: "preprint"
