@@ -148,6 +148,29 @@ conference:
 journal: []
 
 preprints:
+  - id: "improved-e-value-thresholds"
+    title: "Improved E-Value Thresholds with Applications to Multiple and Sequential Testing"
+    publication_date: "8 October 2026"
+    publication_date_iso: "2026-10-08"
+    doi: "10.48550/arXiv.2610.11186"
+    abstract: >-
+      E-values provide a flexible framework for statistical inference, but the universal threshold 1/α can be conservative when the null distribution has additional structure. We study how structural restrictions limit the worst-case concentration underlying Markov's inequality, using a nondecreasing density model to constrain tail allocation and an L-Lipschitz density model to control local concentration. The nondecreasing model gives the minimax rejection threshold, and the Lipschitz condition yields a sharper closed-form threshold with an O(L^-1/2) relative improvement over 1/α. We further show that this threshold is asymptotically sharp as α approaches zero, in the sense that no uniformly valid threshold can improve on it by a fixed positive L-dependent amount. We then incorporate the Lipschitz calibration into multiple testing procedures with FDR control and use the same structural information to construct calibrated conditional e-values for anytime-valid sequential inference. Numerical experiments illustrate the resulting gains in discoveries and the trade-offs of the sequential procedures.
+    authors:
+      - name: "Jiayi Shen"
+      - name: "Houzhen Liu"
+      - name: "Qirun Zeng"
+        me: true
+      - name: "Manhin Poon"
+      - name: "Weiqi Yang"
+      - name: "Qixin Zhang"
+      - name: "Weiwei Zhuang"
+    venue: "arXiv preprint arXiv:2610.11186"
+    venue_group: "arXiv"
+    links:
+      - label: "arXiv"
+        url: "https://arxiv.org/abs/2610.11186"
+        type: "preprint"
+
   - id: "offline-attacks-warm-start-bandits"
     title: "Beyond Reward Suppression: Near-Optimal Offline Attacks on Warm-Start Bandits with Bounded Rewards"
     publication_date: "7 October 2026"
@@ -171,4 +194,3 @@ preprints:
       - label: "Code"
         url: "https://github.com/qirunzeng/Attack-on-Bounded-Bandit"
         type: "code"
-
