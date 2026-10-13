@@ -172,6 +172,10 @@ preprints:
       - label: "arXiv"
         url: "https://arxiv.org/abs/2610.11186"
         type: "preprint"
+      - label: "Code"
+        url: "https://github.com/houzhenliu/e-LC"
+        type: "code"
+
 
   - id: "offline-attacks-warm-start-bandits"
     title: "Beyond Reward Suppression: Near-Optimal Offline Attacks on Warm-Start Bandits with Bounded Rewards"
