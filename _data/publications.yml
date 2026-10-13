@@ -28,7 +28,6 @@ conference:
       Self-organizing LLM-based multi-agent systems dynamically select agents and organize communication graphs for each query. While this adaptivity improves flexibility, it also creates a control-plane attack surface: a malicious agent may exploit this selection and organization process to preserve future access and influence over later tasks. We formulate the attacker as a reputation-aware Trojan agent that chooses when to behave constructively and when to disrupt the task. Under full reputation access, we prove the optimality of a threshold-based attack policy and show why persistent attacks require a survivability constraint. We then propose WEREWOLF, a primal-dual reinforcement learning attacker that learns attack timing under hidden reputation by maximizing task disruption subject to control-plane access loss. Across four self-organizing systems and three benchmarks, it reduces average accuracy from 72.3% to 25.8% with an 86.3% attack success rate, and retains control-plane exposure comparable to that of honest agents. 
     authors:
       - name: "Manhin Poon"
-        mentored: true
       - name: "Qirun Zeng"
         me: true
       - name: "Xiangxiang Dai"
@@ -38,6 +37,9 @@ conference:
     links:
       - label: "EMNLP'2026"
         type: "conference"
+      - label: "Code"
+        url: "https://github.com/EntroShape/Attacking-the-MAS"
+        type: "code"
 
   - id: "one-rounding-fits-all"
     title: "One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization"
