@@ -1,8 +1,8 @@
 {
   "source": "Google Scholar",
   "source_url": "https://scholar.google.com/citations?user=sITttdEAAAAJ&hl=en",
-  "last_checked_at": "2026-10-17",
-  "metrics_updated_at": "2026-10-13",
+  "last_checked_at": "2026-10-18",
+  "metrics_updated_at": "2026-10-18",
   "papers": {
     "werewolf": {
       "scholar_id": "sITttdEAAAAJ:zYLM7Y9cAGgC",
@@ -22,7 +22,7 @@
     "best-arm-hybrid-feedback": {
       "scholar_id": "sITttdEAAAAJ:2osOgNQ5qMEC",
       "title": "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback",
-      "citations": 0
+      "citations": 1
     },
     "adversarial-bandits-fake-data": {
       "scholar_id": "sITttdEAAAAJ:u-x6o8ySG0sC",
