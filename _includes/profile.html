@@ -31,5 +31,28 @@
         </a>
       </li>
     {% endfor %}
+    {% if profile.wechat_qr %}
+      <li>
+        <a href="{{ profile.wechat_qr | relative_url }}" target="_blank" rel="noopener noreferrer" data-wechat-open>
+          <span class="profile__link-icon" aria-hidden="true">{% include icon.html name="wechat" %}</span>
+          <span>WeChat</span>
+        </a>
+      </li>
+    {% endif %}
   </ul>
 </div>
+
+{% if profile.wechat_qr %}
+  <dialog class="wechat-dialog" id="wechat-dialog" aria-labelledby="wechat-title" aria-describedby="wechat-help">
+    <div class="wechat-dialog__header">
+      <h2 id="wechat-title">WeChat</h2>
+      <form method="dialog">
+        <button class="wechat-dialog__close" type="submit" aria-label="Close WeChat QR code" autofocus>&times;</button>
+      </form>
+    </div>
+    <a href="{{ profile.wechat_qr | relative_url }}" target="_blank" rel="noopener noreferrer" aria-label="Open full-size WeChat QR code">
+      <img src="{{ profile.wechat_qr | relative_url }}" alt="{{ profile.name }}'s WeChat friend QR code" width="1002" height="1266" loading="lazy">
+    </a>
+    <p id="wechat-help">Scan with WeChat to add me.</p>
+  </dialog>
+{% endif %}

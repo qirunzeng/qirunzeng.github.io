@@ -1,7 +1,4 @@
 {% assign all_publications = site.data.publications.conference | concat: site.data.publications.journal | concat: site.data.publications.preprints %}
-{% capture collaborator_blob %}{% for paper in all_publications %}{% for author in paper.authors %}{% unless author.me %}{{ author.name }}|||{% endunless %}{% endfor %}{% endfor %}{% endcapture %}
-{% assign collaborator_names = collaborator_blob | strip | split: '|||' | uniq | sort_natural %}
-{% assign paper_count = all_publications | size %}
 {% assign venue_order = site.data.publications.venue_order %}
 {% assign publication_metrics = site.data.publications.metrics %}
 
@@ -67,28 +64,4 @@
     </dl>
   </section>
 
-  <section class="context-rail__section" aria-labelledby="collaborator-rail-heading">
-    <h3 id="collaborator-rail-heading">Collaborators</h3>
-    <p class="context-rail__section-summary">{{ collaborator_names | size }} people across {{ paper_count }} publications.</p>
-    <ol class="collaborator-list">
-      {%- for frequency in (1..paper_count) reversed -%}
-        {%- for collaborator_name in collaborator_names -%}
-          {%- assign collaboration_count = 0 -%}
-          {%- for paper in all_publications -%}
-            {%- for author in paper.authors -%}
-              {%- if author.name == collaborator_name -%}
-                {%- assign collaboration_count = collaboration_count | plus: 1 -%}
-              {%- endif -%}
-            {%- endfor -%}
-          {%- endfor -%}
-          {%- if collaboration_count == frequency %}
-            <li>
-              <span>{{ collaborator_name }}</span>
-              <span class="collaborator-list__count" aria-label="{{ collaboration_count }} joint {% if collaboration_count == 1 %}publication{% else %}publications{% endif %}">{{ collaboration_count }}</span>
-            </li>
-          {%- endif -%}
-        {%- endfor -%}
-      {%- endfor %}
-    </ol>
-  </section>
 </section>
