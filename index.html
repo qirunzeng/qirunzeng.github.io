@@ -1,34 +1,22 @@
 ---
 layout: default
 permalink: /
-context_rail: news
+home: true
 bandit: true
 description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City University of Hong Kong, working on learning theory, bandit learning, and approximation algorithms."
 ---
 
 {% assign home = site.data.home %}
 
-<section class="page-section page-section--first" aria-labelledby="profile-heading">
-  <header class="section-heading section-heading--page">
-    <h1 id="profile-heading">Profile</h1>
-  </header>
-
-  <div class="prose prose--lead">
-    {% for paragraph in home.profile.paragraphs %}
-      {{ paragraph | markdownify }}
-    {% endfor %}
+<section class="home-intro" aria-labelledby="profile-heading">
+  <img class="home-intro__portrait" src="{{ site.data.profile.avatar | relative_url }}" alt="" width="112" height="112" decoding="async">
+  <h1 id="profile-heading">{{ site.data.profile.name }}</h1>
+  <p class="home-intro__role">Ph.D. candidate at City University of Hong Kong</p>
+  <p class="home-intro__focus">{{ home.research.summary }}</p>
+  <div class="home-intro__actions">
+    <a class="home-button" href="{{ '/publications/' | relative_url }}">Publications <span aria-hidden="true">↗</span></a>
+    <a class="home-contact" href="mailto:{{ site.data.profile.email }}">Email <span aria-hidden="true">↗</span></a>
   </div>
-
-</section>
-
-{% include news.html variant="inline" %}
-
-<section class="page-section" aria-labelledby="research-heading">
-  {% include section-heading.html id="research" title="Research Focus" %}
-  <p class="prose">{{ home.research.summary }}</p>
-  <ul class="research-topics" aria-label="Research topics">
-    {% for topic in home.research.tags %}<li>{{ topic }}</li>{% endfor %}
-  </ul>
 </section>
 
 <section class="page-section" aria-labelledby="selected-publications-heading">
@@ -45,6 +33,18 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
   </div>
 
   <p class="section-action"><a href="{{ '/publications/' | relative_url }}">View all publications <span aria-hidden="true">→</span></a></p>
+</section>
+
+{% include news.html variant="compact" %}
+
+<section class="page-section" aria-labelledby="about-heading">
+  {% include section-heading.html title="About" %}
+  <div class="prose">
+    {% for paragraph in home.profile.paragraphs %}{{ paragraph | markdownify }}{% endfor %}
+  </div>
+  <ul class="research-topics" aria-label="Research topics">
+    {% for topic in home.research.tags %}<li>{{ topic }}</li>{% endfor %}
+  </ul>
 </section>
 
 <section class="page-section" aria-labelledby="service-heading">
@@ -66,5 +66,8 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
 
 <section class="page-section" aria-labelledby="bandit-heading">
   {% include section-heading.html id="bandit" title="2-Armed Bandit" %}
-  {% include bandit.html %}
+  <details class="home-disclosure">
+    <summary>Play the bandit game <span aria-hidden="true">＋</span></summary>
+    {% include bandit.html %}
+  </details>
 </section>

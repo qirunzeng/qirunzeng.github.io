@@ -40,7 +40,7 @@
       }
     </script>
   </head>
-  <body>
+  <body{% if page.home %} class="page-home"{% endif %}>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header">
@@ -89,7 +89,7 @@
     </div>
 
     <footer class="site-footer">
-      <p>© {{ 'now' | date: '%Y' }} {{ site.data.profile.name }}. Built as a small, independent static site.</p>
+      <p>© {{ 'now' | date: '%Y' }} {{ site.data.profile.name }}.</p>
     </footer>
 
     <script defer src="{{ '/assets/js/site.js' | relative_url }}?v={{ asset_version | uri_escape }}"></script>

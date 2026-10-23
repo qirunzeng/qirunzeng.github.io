@@ -130,7 +130,7 @@
       button.setAttribute('aria-label', 'Pull arm ' + arm.toUpperCase());
     });
     history.replaceChildren();
-    feedback.textContent = 'Choose an arm to begin. The probabilities stay fixed for this game.';
+    feedback.textContent = 'Choose an arm to begin.';
     render();
     if (shouldFocus) armButtons[0].focus();
   }

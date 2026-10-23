@@ -58,7 +58,7 @@ with `allow_decrease` enabled after checking the public profile.
 The homepage uses `_data/codeforces.json`, a snapshot of the official
 `user.info`, `user.status`, and `user.rating` API responses for `rewinery`.
 The update workflow refreshes it every Monday at 10:47 Hong Kong time, or on
-manual dispatch. The schedule becomes active after the workflow is pushed.
+manual dispatch. The schedule runs from the default branch.
 Visitors make no API requests, and all statistics and charts work without JS.
 
 ```sh
@@ -85,3 +85,10 @@ parts of a whole; languages use a static SVG ring with a text legend.
 The bandit game script loads only on the homepage. Maintenance scripts and tests
 are excluded from the published output. No additional runtime libraries were
 introduced.
+
+
+The homepage leads with identity, research, and selected publications in a
+two-column layout. News summaries live in `_data/home.yml`; the archive retains
+full entries. Codeforces charts and the bandit game use native disclosures.
+Public copy contains only relevant content, short actions, and freshness dates;
+methodology and implementation details belong in this README.

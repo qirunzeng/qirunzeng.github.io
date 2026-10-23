@@ -5,14 +5,17 @@ profile:
 
 news:
   - date: "2026"
+    summary: "Two papers accepted to **NeurIPS 2026**."
     text: |-
       **2 papers accepted to NeurIPS 2026!**
 
       - [**Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback**](https://arxiv.org/abs/2605.05745)
       - [**Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection**](https://arxiv.org/abs/2505.21938)
   - date: "2026"
+    summary: "WEREWOLF accepted to **Findings of EMNLP 2026**."
     text: "Our paper **WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems** was accepted to **Findings of EMNLP 2026**."
   - date: "2026"
+    summary: "One Rounding Fits All accepted to **KDD 2026**."
     text: "Our paper [**One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization**](https://dl.acm.org/doi/abs/10.1145/3770855.3817696) was accepted to **KDD 2026**."
   - date: "2025"
     text: "Our paper [**Fusing Reward and Dueling Feedback in Stochastic Bandits**](https://openreview.net/pdf?id=mqljEW2NQl) was accepted to **ICML 2025**."

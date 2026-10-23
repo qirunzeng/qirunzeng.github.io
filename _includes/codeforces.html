@@ -12,10 +12,12 @@
       <div><dt>Problems solved</dt><dd>{{ cf.solved }}</dd></div>
       <div><dt>Rated contests</dt><dd>{{ cf.rated_contests }}</dd></div>
     </dl>
+    <details class="cf-disclosure">
+      <summary>Explore topics &amp; languages <span aria-hidden="true">＋</span></summary>
     <div class="cf-charts">
       <div class="cf-chart">
         <h3>Problems by topic</h3>
-        <p class="cf-caption">Unique solved problems · top 6</p>
+        <p class="cf-caption">Top 6 topics</p>
         <ol class="cf-bars">
           {% assign max_tag = cf.tags.first.count | times: 1.0 %}
           {% for tag in cf.tags limit:6 %}
@@ -42,6 +44,7 @@
         <ul class="cf-legend">{% for language in cf.languages %}<li><span class="cf-dot cf-color-{{ forloop.index0 | modulo: 5 }}" aria-hidden="true"></span><span>{{ language.name | escape }}</span><strong>{{ language.count }}</strong></li>{% endfor %}</ul>
       </div>
     </div>
-    <p class="cf-note">A problem is counted once; topics may overlap. Languages count accepted submissions, including repeat solves.<br>Updated <time datetime="{{ cf.updated_at }}">{{ cf.updated_at | date: '%b %-d, %Y' }}</time> · <a href="{{ cf.profile_url }}">Official profile ↗</a></p>
+    </details>
+    <p class="cf-note">Updated <time datetime="{{ cf.updated_at }}">{{ cf.updated_at | date: '%b %-d, %Y' }}</time></p>
   </div>
 </section>
