@@ -125,20 +125,12 @@
   ],
   "languages": [
     {
-      "name": "C++23 (GCC 14-64, msys2)",
-      "count": 89
+      "name": "C++",
+      "count": 98
     },
     {
-      "name": "PyPy 3-64",
-      "count": 17
-    },
-    {
-      "name": "Python 3",
-      "count": 12
-    },
-    {
-      "name": "C++17 (GCC 7-32)",
-      "count": 9
+      "name": "Python",
+      "count": 29
     }
   ],
   "rating_history": [

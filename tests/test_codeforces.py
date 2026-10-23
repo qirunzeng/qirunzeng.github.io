@@ -21,6 +21,16 @@ class AggregationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             aggregate(self.profile, [], [])
 
+    def test_language_families_preserve_submission_counts(self):
+        languages = ['C++17 (GCC 7-32)', 'C++23 (GCC 14-64, msys2)',
+                     'GNU C++20 (64)', 'Python 3', 'PyPy 3-64', 'Python 2',
+                     'Java 21', 'C# 10']
+        data = aggregate(self.profile, [self.submission(language=name) for name in languages], [])
+        self.assertEqual(data['languages'], [
+            {'name': 'C++', 'count': 3}, {'name': 'Python', 'count': 3},
+            {'name': 'C# 10', 'count': 1}, {'name': 'Java 21', 'count': 1}])
+        self.assertEqual(sum(row['count'] for row in data['languages']), data['accepted_submissions'])
+
     def test_inconsistent_rating_rejected(self):
         with self.assertRaises(ValueError):
             aggregate(self.profile, [], [dict(newRating=1600)])

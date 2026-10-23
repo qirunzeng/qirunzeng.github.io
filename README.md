@@ -69,8 +69,9 @@ python3 -m unittest discover -s tests -p 'test_*.py' -v
 Solved problems are deduplicated by contest ID and problem index, including
 practice and virtual participation. Topics count unique solved problems and
 can overlap; languages count all accepted submissions, including repeated
-solves. The fetcher paginates the complete submission history, respects API
-request spacing, validates identity and rating consistency, and atomically
+solves. Language versions are grouped into C++ and Python families; PyPy counts
+as Python. Other language names remain distinct. The fetcher paginates the
+complete submission history, respects API request spacing, validates identity and rating consistency, and atomically
 replaces the snapshot only on success. A decreasing solved count fails for
 manual inspection. Network/API failure leaves the previous snapshot intact;
 the date shown on the page identifies its age. GitHub Actions reports refresh

@@ -5,6 +5,7 @@ from collections import Counter
 from datetime import datetime, timezone
 import json
 from pathlib import Path
+import re
 import time
 from urllib.parse import urlencode
 from urllib.request import urlopen
@@ -22,6 +23,15 @@ def api(method, **params):
     return payload['result']
 
 
+def language_family(language):
+    name = language.strip()
+    if re.match(r'^(?:GNU\s+)?C\+\+', name, re.IGNORECASE):
+        return 'C++'
+    if re.match(r'^(?:Python|PyPy)(?=\s|\d|$)', name, re.IGNORECASE):
+        return 'Python'
+    return name
+
+
 def aggregate(profile, submissions, ratings):
     if profile['handle'].casefold() != HANDLE:
         raise ValueError('Unexpected Codeforces identity')
@@ -37,7 +47,7 @@ def aggregate(profile, submissions, ratings):
         if key[0] is None:
             raise ValueError('Problem has no stable identity')
         solved[key] = problem
-        languages[submission['programmingLanguage']] += 1
+        languages[language_family(submission['programmingLanguage'])] += 1
         accepted += 1
     tags = Counter(tag for problem in solved.values() for tag in set(problem['tags']))
     def rows(counter):
