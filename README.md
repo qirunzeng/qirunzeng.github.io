@@ -80,8 +80,10 @@ failures in its run status.
 
 The visual system uses system fonts, neutral surfaces, restrained wine accents,
 thin dividers, and responsive spacing, with light/dark themes and reduced-motion
-support. Topic comparisons use bars because overlapping categories are not
-parts of a whole; languages use a static SVG ring with a text legend.
+support. Topics and languages use static SVG rings with text legends. Topic segments
+represent shares of tag occurrences across unique solved problems; they do not
+represent mutually exclusive shares of solved problems. The Other segment sums
+all tag counts beyond the top six.
 Maintenance scripts and tests
 are excluded from the published output. No additional runtime libraries were
 introduced.

@@ -17,14 +17,40 @@
     <div class="cf-charts">
       <div class="cf-chart">
         <h3>Problems by topic</h3>
-        <p class="cf-caption">Top 6 topics</p>
-        <ol class="cf-bars">
-          {% assign max_tag = cf.tags.first.count | times: 1.0 %}
+        <p class="cf-caption">Tag frequency</p>
+        {% assign tag_total = 0 %}
+        {% assign other_total = 0 %}
+        {% for tag in cf.tags %}{% assign tag_total = tag_total | plus: tag.count %}{% endfor %}
+        {% for tag in cf.tags offset:6 %}{% assign other_total = other_total | plus: tag.count %}{% endfor %}
+        {% assign tag_offset = 0 %}
+        <div class="cf-donut-wrap">
+          <svg class="cf-donut" viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="cf-donut-track" cx="60" cy="60" r="46" />
+            {% if tag_total > 0 %}
+              {% for tag in cf.tags limit:6 %}
+                {% assign share = tag.count | times: 100.0 | divided_by: tag_total %}
+                <circle class="cf-slice cf-color-{{ forloop.index0 }}" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="{{ share }} {{ 100 | minus: share }}" stroke-dashoffset="{{ tag_offset | times: -1 }}" />
+                {% assign tag_offset = tag_offset | plus: share %}
+              {% endfor %}
+              {% if other_total > 0 %}
+                {% assign other_share = other_total | times: 100.0 | divided_by: tag_total %}
+                <circle class="cf-slice cf-color-6" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="{{ other_share }} {{ 100 | minus: other_share }}" stroke-dashoffset="{{ tag_offset | times: -1 }}" />
+              {% endif %}
+            {% endif %}
+          </svg>
+          <div class="cf-donut-label"><strong>{{ cf.tags.size }}</strong><span>topics</span></div>
+        </div>
+        <ol class="cf-legend">
           {% for tag in cf.tags limit:6 %}
-            <li><div><span>{{ tag.name | escape }}</span><strong>{{ tag.count }}</strong></div><span class="cf-bar" aria-hidden="true"><i style="width: {{ tag.count | divided_by: max_tag | times: 100 }}%"></i></span></li>
+            <li><span class="cf-dot cf-color-{{ forloop.index0 }}" aria-hidden="true"></span><span>{{ tag.name | escape }}</span><strong>{{ tag.count }}</strong></li>
           {% endfor %}
         </ol>
-        {% if cf.tags.size > 6 %}<details class="cf-details"><summary>Other ({{ cf.tags.size | minus: 6 }})</summary><ul>{% for tag in cf.tags offset:6 %}<li><span>{{ tag.name | escape }}</span><strong>{{ tag.count }}</strong></li>{% endfor %}</ul></details>{% endif %}
+        {% if cf.tags.size > 6 %}
+          <details class="cf-details cf-topic-other">
+            <summary><span class="cf-dot cf-color-6" aria-hidden="true"></span><span>Other ({{ cf.tags.size | minus: 6 }}) <span class="cf-other-toggle" aria-hidden="true">＋</span></span><strong>{{ other_total }}</strong></summary>
+            <ul>{% for tag in cf.tags offset:6 %}<li><span>{{ tag.name | escape }}</span><strong>{{ tag.count }}</strong></li>{% endfor %}</ul>
+          </details>
+        {% endif %}
       </div>
       <div class="cf-chart">
         <h3>Languages</h3>
