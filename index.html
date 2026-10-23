@@ -3,7 +3,7 @@ layout: default
 permalink: /
 home: true
 bandit: true
-description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City University of Hong Kong, working on learning theory, bandit learning, and approximation algorithms."
+description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City University of Hong Kong, studying bandit learning, feedback design, and adversarial robustness."
 ---
 
 {% assign home = site.data.home %}
@@ -34,6 +34,18 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
   <p class="section-action"><a href="{{ '/publications/' | relative_url }}">View all publications <span aria-hidden="true">→</span></a></p>
 </section>
 
+<section class="page-section" aria-labelledby="research-interests-heading">
+  {% include section-heading.html title="Research Interests" %}
+  <dl class="research-interests">
+    {% for interest in home.research.interests %}
+      <div>
+        <dt><a href="{{ '/publications/' | relative_url }}#paper-{{ interest.paper }}">{{ interest.title }}</a></dt>
+        <dd>{{ interest.detail }}</dd>
+      </div>
+    {% endfor %}
+  </dl>
+</section>
+
 {% include news.html variant="compact" %}
 
 <section class="page-section" aria-labelledby="about-heading">
@@ -41,9 +53,6 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
   <div class="prose">
     {% for paragraph in home.profile.paragraphs %}{{ paragraph | markdownify }}{% endfor %}
   </div>
-  <ul class="research-topics" aria-label="Research topics">
-    {% for topic in home.research.tags %}<li>{{ topic }}</li>{% endfor %}
-  </ul>
 </section>
 
 <section class="page-section" aria-labelledby="service-heading">
@@ -61,12 +70,10 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
   <p class="section-action"><a href="{{ '/teaching/' | relative_url }}">View teaching experience <span aria-hidden="true">→</span></a></p>
 </section>
 
-{% include codeforces.html %}
-
-<section class="page-section" aria-labelledby="bandit-heading">
-  {% include section-heading.html id="bandit" title="2-Armed Bandit" %}
-  <details class="home-disclosure">
-    <summary>Play the bandit game <span aria-hidden="true">＋</span></summary>
+<section class="home-extras" aria-label="Programming and demos">
+  {% include codeforces.html %}
+  <details class="home-extra" id="bandit-heading">
+    <summary><span>Bandit game</span><span class="home-extra__toggle" aria-hidden="true">＋</span></summary>
     {% include bandit.html %}
   </details>
 </section>

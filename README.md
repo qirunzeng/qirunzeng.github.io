@@ -98,3 +98,13 @@ start and title scale. Publication statistics sit immediately below the title in
 strip; venue details expand on demand. Teaching opens directly with the course
 list. Neither page adds a third layout column. On compact screens, page content
 comes first and profile links follow it consistently across all pages.
+
+
+Research interests are maintained in `_data/home.yml` with explicit paper IDs.
+Bandit learning maps to the hybrid-feedback and reward/dueling papers;
+adversarial robustness maps to fake-data injection, warm-start attacks, and
+WEREWOLF; sequential inference maps to confidence sequences and e-values;
+combinatorial optimization maps to partition-constrained influence maximization.
+These summarize the existing abstracts rather than asserting additional fields.
+Programming and the bandit demo are compact, closed disclosures at the end of
+the homepage. All data and game functionality remain available on expansion.

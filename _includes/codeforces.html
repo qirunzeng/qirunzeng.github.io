@@ -1,6 +1,6 @@
 {% assign cf = site.data.codeforces %}
-<section class="page-section" aria-labelledby="competitive-programming-heading">
-  {% include section-heading.html title="Competitive Programming" %}
+<details class="home-extra" id="competitive-programming-heading">
+  <summary><span>Programming</span><span class="home-extra__meta">Codeforces · {{ cf.rating }}</span><span class="home-extra__toggle" aria-hidden="true">＋</span></summary>
   <div class="cf-panel">
     <div class="cf-header">
       <div><p class="cf-eyebrow">CODEFORCES</p><a class="cf-handle" href="{{ cf.profile_url }}" target="_blank" rel="noopener noreferrer">{{ cf.handle }} <span aria-hidden="true">↗</span></a></div>
@@ -47,4 +47,4 @@
     </details>
     <p class="cf-note">Updated <time datetime="{{ cf.updated_at }}">{{ cf.updated_at | date: '%b %-d, %Y' }}</time></p>
   </div>
-</section>
+</details>

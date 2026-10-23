@@ -28,12 +28,24 @@ selected_publications:
   - "one-rounding-fits-all"
 
 research:
-  summary: "I study sequential decision-making under limited, noisy, or hybrid feedback. My current work focuses on bandit learning and influence maximization."
-  tags:
-    - "Learning Theory"
-    - "Influence Maximization"
-    - "Game Theory"
-    - "Multi-Agent Systems"
+  summary: "I study learning and decision-making under uncertainty, with a focus on bandit algorithms, feedback design, and adversarial robustness."
+  interests:
+    - title: "Bandit learning"
+      detail: "Reward and preference feedback, best-arm identification, and sample-efficient exploration."
+      paper: "best-arm-hybrid-feedback"
+      papers: ["best-arm-hybrid-feedback", "fusing-reward-dueling"]
+    - title: "Adversarial robustness"
+      detail: "Data poisoning in bandits and red-teaming of LLM multi-agent systems."
+      paper: "adversarial-bandits-fake-data"
+      papers: ["adversarial-bandits-fake-data", "offline-attacks-warm-start-bandits", "werewolf"]
+    - title: "Sequential inference"
+      detail: "Confidence sequences, e-values, and multiple testing."
+      paper: "improved-e-value-thresholds"
+      papers: ["improved-e-value-thresholds", "best-arm-hybrid-feedback"]
+    - title: "Combinatorial optimization"
+      detail: "Influence maximization, approximation algorithms, and memory-efficient sampling."
+      paper: "one-rounding-fits-all"
+      papers: ["one-rounding-fits-all"]
 
 service:
   - period: "2026"
