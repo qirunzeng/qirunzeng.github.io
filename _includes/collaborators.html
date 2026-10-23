@@ -1,14 +1,8 @@
 {% assign all_publications = site.data.publications.conference | concat: site.data.publications.journal | concat: site.data.publications.preprints %}
-{% assign venue_order = site.data.publications.venue_order %}
-{% assign publication_metrics = site.data.publications.metrics %}
+<section class="page-stats" aria-label="Publication statistics">
+  <dl class="page-stats__metrics">
 
-<section class="context-rail collaborator-rail" aria-labelledby="publication-overview-heading">
-  <header class="context-rail__header">
-    <h2 id="publication-overview-heading">At a glance</h2>
-  </header>
-
-  {% capture publication_metric_items %}
-    {% for metric in publication_metrics %}
+    {% for metric in site.data.publications.metrics %}
       {% if metric.scholar_key %}
         {% assign metric_value = site.data.scholar[metric.scholar_key] %}
       {% elsif metric.publication_key %}
@@ -23,19 +17,14 @@
         </div>
       {% endif %}
     {% endfor %}
-  {% endcapture %}
-  {% assign publication_metric_items = publication_metric_items | strip %}
-  {% if publication_metric_items != "" %}
-    <section class="context-rail__section" aria-labelledby="publication-metrics-heading">
-      <h3 id="publication-metrics-heading">Metrics</h3>
-      <dl class="rail-metrics publication-metrics">{{ publication_metric_items }}</dl>
-    </section>
-  {% endif %}
 
-  <section class="context-rail__section" aria-labelledby="venue-counts-heading">
-    <h3 id="venue-counts-heading">By Venue (First / Co-first)</h3>
-    <dl class="rail-metrics publication-metrics">
-      {% for venue_name in venue_order %}
+  </dl>
+  <div class="page-stats__secondary">
+    <details class="page-stats__venues">
+      <summary>By venue</summary>
+      <p class="page-stats__caption">Total (first/co-first)</p>
+      <dl>
+      {% for venue_name in site.data.publications.venue_order %}
         {% assign venue_count = 0 %}
         {% assign lead_author_count = 0 %}
         {% for paper in all_publications %}
@@ -61,7 +50,8 @@
           </div>
         {% endif %}
       {% endfor %}
-    </dl>
-  </section>
-
+      </dl>
+    </details>
+    <p class="page-stats__source"><a href="{{ site.data.publication_citations.source_url }}" target="_blank" rel="noopener noreferrer">{{ site.data.publication_citations.source }}</a> · <time datetime="{{ site.data.publication_citations.last_checked_at }}">{{ site.data.publication_citations.last_checked_at | date: '%b %-d, %Y' }}</time></p>
+  </div>
 </section>

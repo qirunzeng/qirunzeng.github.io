@@ -1,5 +1,4 @@
 <!doctype html>
-{% assign context_rail = page.context_rail %}
 <html lang="{{ site.lang | default: 'en' }}">
   <head>
     <meta charset="utf-8">
@@ -70,18 +69,6 @@
 
       <main class="site-main" id="main-content">
         {{ content }}
-        {% if context_rail %}
-          <aside class="page-overview" aria-label="{% if context_rail == 'news' %}Recent news{% elsif context_rail == 'collaborators' %}Publication overview{% else %}Teaching overview{% endif %}">
-            {% case context_rail %}
-              {% when 'news' %}
-                {% include news.html variant="rail" %}
-              {% when 'collaborators' %}
-                {% include collaborators.html %}
-              {% when 'teaching' %}
-                {% include teaching-overview.html %}
-            {% endcase %}
-          </aside>
-        {% endif %}
       </main>
     </div>
 

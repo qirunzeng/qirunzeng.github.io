@@ -3,18 +3,15 @@ layout: default
 title: "Publications"
 nav: "Publications"
 permalink: /publications/
-context_rail: collaborators
 description: "Research publications by Qirun Zeng."
 ---
 
 <section class="page-section page-section--first">
-  {% include section-heading.html level=1 title="Publications" summary="Learning theory, bandit problems, influence maximization, and multi-agent systems." %}
+  {% include section-heading.html level=1 title="Publications" %}
+
+  {% include collaborators.html %}
 
   {% include publication-note.html %}
-
-  <p class="publication-data-note">
-    <a href="{{ site.data.publication_citations.source_url }}" target="_blank" rel="noopener noreferrer">{{ site.data.publication_citations.source }}</a> · Updated <time datetime="{{ site.data.publication_citations.last_checked_at }}">{{ site.data.publication_citations.last_checked_at | date: "%e %B %Y" }}</time>.
-  </p>
 
   <div class="publication-sequence publication-sequence--full">
     {% if site.data.publications.conference and site.data.publications.conference != empty %}

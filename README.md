@@ -94,6 +94,7 @@ Public copy contains only relevant content, short actions, and freshness dates;
 methodology and implementation details belong in this README.
 
 All pages share a 1120px shell, a 200px profile column, and the same main-column
-start and title scale. Publication and teaching overviews follow their page
-content; they never add a third layout column. On compact screens, page content
+start and title scale. Publication statistics sit immediately below the title in a compact metric
+strip; venue details expand on demand. Teaching opens directly with the course
+list. Neither page adds a third layout column. On compact screens, page content
 comes first and profile links follow it consistently across all pages.
