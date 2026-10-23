@@ -92,3 +92,8 @@ two-column layout. News summaries live in `_data/home.yml`; the archive retains
 full entries. Codeforces charts and the bandit game use native disclosures.
 Public copy contains only relevant content, short actions, and freshness dates;
 methodology and implementation details belong in this README.
+
+All pages share a 1120px shell, a 200px profile column, and the same main-column
+start and title scale. Publication and teaching overviews follow their page
+content; they never add a third layout column. On compact screens, page content
+comes first and profile links follow it consistently across all pages.

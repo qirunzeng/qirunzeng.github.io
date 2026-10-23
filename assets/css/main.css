@@ -19,9 +19,9 @@
   --serif: Georgia, "Times New Roman", Times, serif;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --shadow: 0 20px 60px rgba(29, 30, 28, 0.06);
-  --content-width: 1380px;
-  --sidebar-width: clamp(190px, 16vw, 220px);
-  --rail-gap: clamp(1rem, 2vw, 2rem);
+  --content-width: 1120px;
+  --sidebar-width: 200px;
+  --rail-gap: 2rem;
 }
 
 :root[data-theme="dark"] {
@@ -52,6 +52,7 @@
 }
 
 html {
+  scrollbar-gutter: stable;
   scroll-behavior: smooth;
   scroll-padding-top: 6rem;
 }
@@ -233,17 +234,12 @@ a {
   width: min(calc(100% - 3rem), var(--content-width));
   min-height: calc(100vh - 9rem);
   margin: 3.5rem auto 0;
-  grid-template-columns: var(--sidebar-width) 1px minmax(0, 1fr) 1px var(--sidebar-width);
+  grid-template-columns: var(--sidebar-width) 1px minmax(0, 1fr);
   column-gap: var(--rail-gap);
 }
 
-.profile-column,
-.context-column {
+.profile-column {
   min-width: 0;
-}
-
-.site-shell--without-rail {
-  grid-template-columns: var(--sidebar-width) 1px minmax(0, 1fr);
 }
 
 .site-divider {
@@ -253,7 +249,7 @@ a {
   height: calc(100vh - 10rem);
   align-self: start;
   justify-self: center;
-  background: var(--line);
+  background: transparent;
 }
 
 .profile {
@@ -268,8 +264,8 @@ a {
   aspect-ratio: 1;
   margin-bottom: 1.25rem;
   background: var(--paper-soft);
-  border-radius: 22px;
-  box-shadow: var(--shadow);
+  border-radius: 20px;
+  box-shadow: none;
   text-decoration: none;
 }
 
@@ -281,6 +277,7 @@ a {
 }
 
 .profile__identity {
+  display: none;
   padding-bottom: 1.05rem;
   border-bottom: 1px solid var(--line);
 }
@@ -492,7 +489,9 @@ a {
 }
 
 .section-heading h1 {
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(2.3rem, 5vw, 3rem);
+  font-weight: 650;
+  letter-spacing: -0.05em;
 }
 
 .section-heading h2 {
@@ -1603,7 +1602,7 @@ a {
 .site-footer {
   width: min(calc(100% - 3rem), var(--content-width));
   margin: 0 auto;
-  padding: 1.35rem calc(var(--sidebar-width) + 1px + var(--rail-gap) + var(--rail-gap)) 2rem;
+  padding: 1.35rem 0 2rem calc(var(--sidebar-width) + 1px + var(--rail-gap) + var(--rail-gap));
   border-top: 1px solid var(--line);
 }
 
@@ -1668,17 +1667,9 @@ a {
 }
 
 /* Homepage: identity and research lead; detail is disclosed on demand. */
-.page-home .site-header__inner,
-.page-home .site-shell,
-.page-home .site-footer { max-width: 1120px; }
-.page-home .site-shell { grid-template-columns: 200px 1px minmax(0, 1fr); column-gap: 2rem; }
-.page-home .profile__identity { display: none; }
-.page-home .profile__portrait { border-radius: 20px; box-shadow: none; }
 .profile__fact-icon, .profile__link-icon { color: var(--muted); }
-.page-home .site-divider { background: transparent; }
-.home-intro { padding: 0.2rem 0 0.8rem; }
+.home-intro { padding: 0 0 0.8rem; }
 .home-intro h1 { margin: 0; font-size: clamp(2.3rem, 5vw, 3rem); font-weight: 650; letter-spacing: -0.05em; line-height: 1.1; }
-.home-intro__portrait { display: none; }
 .home-intro__role { margin: 0.8rem 0 0; color: var(--muted); font-size: 1rem; }
 .home-intro__focus { max-width: 58ch; margin: 1.2rem 0 0; color: var(--ink-soft); font-size: 1.15rem; line-height: 1.65; letter-spacing: -0.015em; }
 .home-intro__actions { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem 1.5rem; margin-top: 1.5rem; }
@@ -1704,7 +1695,6 @@ a {
 .page-home .news-item { padding: 0.85rem 0; }
 .page-home .news-item__marker { background: var(--line-strong); }
 .page-home .research-topics { margin-top: 1.5rem; }
-.page-home .site-footer { padding-inline: calc(200px + 4rem) 0; }
 .cf-stats { margin-bottom: 1.5rem; }
 .cf-disclosure { border-top: 1px solid var(--line); }
 .cf-disclosure > summary, .home-disclosure > summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 52px; cursor: pointer; list-style: none; color: var(--ink-soft); font-size: 0.875rem; font-weight: 550; }
@@ -1716,112 +1706,23 @@ a {
 .home-disclosure { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .home-disclosure[open] { padding-bottom: 1rem; }
 .home-disclosure .bandit { margin-top: 0.75rem; }
-@media (max-width: 900px) {
-  .page-home .site-shell { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
-  .page-home .site-main { order: 0; padding-bottom: 0; }
-  .page-home .profile-column { order: 1; }
-  .page-home .profile { display: block; border-bottom: 0; border-top: 1px solid var(--line); padding: 1rem 0 0; }
-  .page-home .profile__portrait, .page-home .profile__facts { display: none; }
-  .page-home .profile__links { margin: 0; gap: 0.3rem 1.5rem; }
-  .page-home .site-footer { padding: 1.25rem 0 2rem; margin-top: 1rem; }
-  .home-intro__portrait { display: block; width: 80px; height: 80px; border-radius: 18px; object-fit: cover; object-position: 50% 28%; margin-bottom: 1.5rem; }
-}
-
-@media (max-width: 1199px) {
-  .site-shell {
-    grid-template-columns: 220px 1px minmax(0, 1fr);
-    column-gap: clamp(1.5rem, 3.5vw, 3.5rem);
-  }
-
-  .site-divider--context,
-  .context-column {
-    display: none;
-  }
-
-  .site-main {
-    max-width: 800px;
-  }
-
-  .home-news--inline {
-    display: block;
-  }
-
-  .site-footer {
-    padding: 1.35rem 0 2rem calc(221px + clamp(3rem, 7vw, 7rem));
-  }
-}
+/* Supplemental summaries share the main column instead of changing its width. */
+.page-overview { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+.page-overview .context-rail, .page-overview .news-rail { position: static; max-height: none; overflow: visible; padding: 0; }
+.page-overview .context-rail__header { border: 0; }
+.page-overview .context-rail__section { margin-top: 1.5rem; }
+.page-overview .rail-metrics { max-width: 32rem; }
 
 @media (max-width: 900px) {
-  .site-shell {
-    grid-template-columns: 1fr;
-    gap: 3.5rem;
-  }
-
-  .site-divider {
-    display: none;
-  }
-
-  .profile {
-    position: static;
-    display: grid;
-    padding-bottom: 1.2rem;
-    border-bottom: 1px solid var(--line);
-    grid-template-columns: 112px minmax(0, 1fr);
-    grid-template-rows: auto auto auto;
-    column-gap: 1.35rem;
-  }
-
-  .profile__portrait {
-    margin: 0;
-    grid-row: 1 / span 3;
-  }
-
-  .profile__identity {
-    padding: 0 0 0.6rem;
-    border: 0;
-  }
-
-  .profile__facts {
-    display: flex;
-    padding: 0 0 0.55rem;
-    flex-wrap: wrap;
-    border: 0;
-    gap: 0.35rem 1.25rem;
-  }
-
-  .profile__facts div {
-    grid-template-columns: 1.2rem auto auto;
-    gap: 0.4rem;
-  }
-
-  .profile__links {
-    display: flex;
-    padding: 0;
-    flex-wrap: wrap;
-    gap: 0.35rem 1rem;
-  }
-
-  .profile__links a {
-    min-height: 2.75rem;
-  }
-
-  .profile__link-icon {
-    width: 1.2rem;
-    height: 1.2rem;
-    flex-basis: 1.2rem;
-  }
-
-  .site-main {
-    max-width: none;
-  }
-
-  .home-news--inline {
-    display: block;
-  }
-
-  .site-footer {
-    padding-left: 0;
-  }
+  .site-shell { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+  .site-divider { display: none; }
+  .site-main { order: 0; padding-bottom: 0; }
+  .profile-column { order: 1; }
+  .profile { position: static; display: block; border-top: 1px solid var(--line); padding: 1rem 0 0; }
+  .profile__portrait, .profile__facts { display: none; }
+  .profile__links { display: flex; margin: 0; padding: 0; flex-wrap: wrap; gap: 0.3rem 1.5rem; }
+  .profile__link-icon { width: 1.2rem; height: 1.2rem; flex-basis: 1.2rem; }
+  .site-footer { padding: 1.25rem 0 2rem; margin-top: 1rem; }
 }
 
 @media (max-width: 620px) {
@@ -2037,11 +1938,11 @@ a {
 }
 
 @media (max-width: 620px) {
-  .page-home .site-shell { margin-top: 1.75rem; }
+  .site-shell { margin-top: 1.75rem; }
   .home-intro__focus { font-size: 1.0625rem; }
   .home-intro__role { font-size: 0.9375rem; }
   .page-home .page-section { margin-top: 2.75rem; }
-  .page-home .profile__links a { font-size: 0.875rem; }
+  .profile__links a { font-size: 0.875rem; }
   .page-home .news-item { grid-template-columns: 3rem minmax(0, 1fr); column-gap: 0.75rem; }
   .page-home .news-item__date { grid-column: 1; margin: 0; }
   .page-home .news-item__marker { display: none; }
@@ -2090,7 +1991,7 @@ a {
   .site-header,
   .profile-column,
   .site-divider,
-  .context-column,
+  .page-overview,
   .site-footer,
   .section-action,
   .theme-toggle,
