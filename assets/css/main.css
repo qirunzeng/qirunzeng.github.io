@@ -1168,7 +1168,11 @@ a {
 .site-footer {
   width: min(calc(100% - 3rem), var(--content-width));
   margin: 0 auto;
-  padding: 1.35rem 0 2rem calc(var(--sidebar-width) + 1px + var(--rail-gap) + var(--rail-gap));
+}
+
+.site-footer__inner {
+  margin-left: calc(var(--sidebar-width) + 1px + var(--rail-gap) + var(--rail-gap));
+  padding: 1.35rem 0 2rem;
   border-top: 1px solid var(--line);
 }
 
@@ -1302,7 +1306,8 @@ a {
   .profile__portrait, .profile__facts { display: none; }
   .profile__links { display: flex; margin: 0; padding: 0; flex-wrap: wrap; gap: 0.3rem 1.5rem; }
   .profile__link-icon { width: 1.2rem; height: 1.2rem; flex-basis: 1.2rem; }
-  .site-footer { padding: 1.25rem 0 2rem; margin-top: 1rem; }
+  .site-footer { margin-top: 1rem; }
+  .site-footer__inner { margin-left: 0; padding: 1.25rem 0 2rem; }
 }
 
 @media (max-width: 620px) {

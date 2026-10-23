@@ -103,7 +103,8 @@ list. Neither page adds a third layout column. On compact screens, page content
 comes first and profile links follow it consistently across all pages. On desktop,
 the profile stays fixed at the shared content start. It scrolls independently
 when its content exceeds the available viewport height; scrolling at its edge
-does not move the main page.
+does not move the main page. The desktop footer and its divider stay within the
+main column so they never cross the fixed profile.
 
 
 Research interests are maintained in `_data/home.yml` with explicit paper IDs.
