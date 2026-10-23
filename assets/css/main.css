@@ -22,6 +22,8 @@
   --content-width: 1120px;
   --sidebar-width: 200px;
   --rail-gap: 2rem;
+  --header-height: 4.4rem;
+  --page-top-gap: 3.5rem;
 }
 
 :root[data-theme="dark"] {
@@ -133,7 +135,7 @@ a {
 .site-header__inner {
   display: flex;
   width: min(calc(100% - 3rem), var(--content-width));
-  min-height: 4.4rem;
+  min-height: var(--header-height);
   margin-inline: auto;
   align-items: center;
   justify-content: space-between;
@@ -233,7 +235,7 @@ a {
   display: grid;
   width: min(calc(100% - 3rem), var(--content-width));
   min-height: calc(100vh - 9rem);
-  margin: 3.5rem auto 0;
+  margin: var(--page-top-gap) auto 0;
   grid-template-columns: var(--sidebar-width) 1px minmax(0, 1fr);
   column-gap: var(--rail-gap);
 }
@@ -253,8 +255,15 @@ a {
 }
 
 .profile {
-  position: sticky;
-  top: 6.5rem;
+  position: fixed;
+  top: calc(var(--header-height) + var(--page-top-gap) + 1px);
+  width: var(--sidebar-width);
+  max-height: calc(100vh - var(--header-height) - var(--page-top-gap) - 1rem - 1px);
+  max-height: calc(100dvh - var(--header-height) - var(--page-top-gap) - 1rem - 1px);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
 }
 
 .profile__portrait {
@@ -1289,7 +1298,7 @@ a {
   .site-divider { display: none; }
   .site-main { order: 0; padding-bottom: 0; }
   .profile-column { order: 1; }
-  .profile { position: static; display: block; border-top: 1px solid var(--line); padding: 1rem 0 0; }
+  .profile { position: static; width: auto; max-height: none; overflow: visible; overscroll-behavior-y: auto; display: block; border-top: 1px solid var(--line); padding: 1rem 0 0; }
   .profile__portrait, .profile__facts { display: none; }
   .profile__links { display: flex; margin: 0; padding: 0; flex-wrap: wrap; gap: 0.3rem 1.5rem; }
   .profile__link-icon { width: 1.2rem; height: 1.2rem; flex-basis: 1.2rem; }
@@ -1456,10 +1465,6 @@ a {
   .page-home .news-item__body { grid-column: 2; }
   .cf-legend li { grid-template-columns: 7px minmax(0, 1fr) auto; }
   .cf-legend li > span:nth-child(2) { overflow-wrap: anywhere; }
-}
-
-@media (min-width: 901px) and (max-height: 850px) {
-  .profile { position: static; }
 }
 
 /* Research is primary; the programming summary stays visually quiet. */

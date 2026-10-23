@@ -100,7 +100,10 @@ All pages share a 1120px shell, a 200px profile column, and the same main-column
 start and title scale. Publication statistics sit immediately below the title in a compact metric
 strip; venue details expand on demand. Teaching opens directly with the course
 list. Neither page adds a third layout column. On compact screens, page content
-comes first and profile links follow it consistently across all pages.
+comes first and profile links follow it consistently across all pages. On desktop,
+the profile stays fixed at the shared content start. It scrolls independently
+when its content exceeds the available viewport height; scrolling at its edge
+does not move the main page.
 
 
 Research interests are maintained in `_data/home.yml` with explicit paper IDs.
