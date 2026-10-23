@@ -82,14 +82,14 @@ The visual system uses system fonts, neutral surfaces, restrained wine accents,
 thin dividers, and responsive spacing, with light/dark themes and reduced-motion
 support. Topic comparisons use bars because overlapping categories are not
 parts of a whole; languages use a static SVG ring with a text legend.
-The bandit game script loads only on the homepage. Maintenance scripts and tests
+Maintenance scripts and tests
 are excluded from the published output. No additional runtime libraries were
 introduced.
 
 
 The homepage leads with identity, research, and selected publications in a
 two-column layout. News summaries live in `_data/home.yml`; the archive retains
-full entries. Codeforces charts and the bandit game use native disclosures.
+full entries. Codeforces charts use native disclosures.
 Public copy contains only relevant content, short actions, and freshness dates;
 methodology and implementation details belong in this README.
 
@@ -106,5 +106,6 @@ adversarial robustness maps to fake-data injection, warm-start attacks, and
 WEREWOLF; sequential inference maps to confidence sequences and e-values;
 combinatorial optimization maps to partition-constrained influence maximization.
 These summarize the existing abstracts rather than asserting additional fields.
-Programming and the bandit demo are compact, closed disclosures at the end of
-the homepage. All data and game functionality remain available on expansion.
+The compact Codeforces overview is visible at the end of the homepage; charts
+expand on demand. The topic chart shows the top six, with only the remaining
+topics under Other.

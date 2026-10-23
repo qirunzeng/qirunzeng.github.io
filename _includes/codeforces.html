@@ -1,9 +1,9 @@
 {% assign cf = site.data.codeforces %}
-<details class="home-extra" id="competitive-programming-heading">
-  <summary><span>Programming</span><span class="home-extra__meta">Codeforces · {{ cf.rating }}</span><span class="home-extra__toggle" aria-hidden="true">＋</span></summary>
+<section class="home-extra" aria-labelledby="competitive-programming-heading">
   <div class="cf-panel">
     <div class="cf-header">
-      <div><p class="cf-eyebrow">CODEFORCES</p><a class="cf-handle" href="{{ cf.profile_url }}" target="_blank" rel="noopener noreferrer">{{ cf.handle }} <span aria-hidden="true">↗</span></a></div>
+      <h2 class="cf-title" id="competitive-programming-heading">Programming</h2>
+      <a class="cf-handle" href="{{ cf.profile_url }}" target="_blank" rel="noopener noreferrer">Codeforces · {{ cf.handle }} <span aria-hidden="true">↗</span></a>
       <span class="cf-rank">{{ cf.rank | capitalize }}</span>
     </div>
     <dl class="cf-stats">
@@ -24,7 +24,7 @@
             <li><div><span>{{ tag.name | escape }}</span><strong>{{ tag.count }}</strong></div><span class="cf-bar" aria-hidden="true"><i style="width: {{ tag.count | divided_by: max_tag | times: 100 }}%"></i></span></li>
           {% endfor %}
         </ol>
-        <details class="cf-details"><summary>All {{ cf.tags.size }} topics</summary><ul>{% for tag in cf.tags %}<li><span>{{ tag.name | escape }}</span><strong>{{ tag.count }}</strong></li>{% endfor %}</ul></details>
+        {% if cf.tags.size > 6 %}<details class="cf-details"><summary>Other ({{ cf.tags.size | minus: 6 }})</summary><ul>{% for tag in cf.tags offset:6 %}<li><span>{{ tag.name | escape }}</span><strong>{{ tag.count }}</strong></li>{% endfor %}</ul></details>{% endif %}
       </div>
       <div class="cf-chart">
         <h3>Languages</h3>
@@ -47,4 +47,4 @@
     </details>
     <p class="cf-note">Updated <time datetime="{{ cf.updated_at }}">{{ cf.updated_at | date: '%b %-d, %Y' }}</time></p>
   </div>
-</details>
+</section>
