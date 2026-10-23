@@ -1,0 +1,36 @@
+name: Update Codeforces Stats
+on:
+  schedule:
+    - cron: "47 2 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: update-codeforces
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - name: Verify aggregation
+        run: python -m unittest discover -s tests -p 'test_codeforces.py' -v
+      - name: Fetch official snapshot
+        run: python scripts/update_codeforces.py
+      - name: Commit and rebuild Pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- _data/codeforces.json; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/codeforces.json
+          git commit -m "Update Codeforces statistics"
+          git pull --rebase
+          git push
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"

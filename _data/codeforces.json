@@ -1,0 +1,236 @@
+{
+  "handle": "rewinery",
+  "profile_url": "https://codeforces.com/profile/rewinery",
+  "updated_at": "2026-10-23T14:09:40Z",
+  "rating": 1630,
+  "max_rating": 1648,
+  "rank": "expert",
+  "max_rank": "expert",
+  "solved": 118,
+  "accepted_submissions": 127,
+  "rated_contests": 18,
+  "tags": [
+    {
+      "name": "greedy",
+      "count": 72
+    },
+    {
+      "name": "math",
+      "count": 38
+    },
+    {
+      "name": "constructive algorithms",
+      "count": 34
+    },
+    {
+      "name": "brute force",
+      "count": 27
+    },
+    {
+      "name": "implementation",
+      "count": 27
+    },
+    {
+      "name": "dp",
+      "count": 22
+    },
+    {
+      "name": "sortings",
+      "count": 21
+    },
+    {
+      "name": "binary search",
+      "count": 16
+    },
+    {
+      "name": "data structures",
+      "count": 14
+    },
+    {
+      "name": "bitmasks",
+      "count": 10
+    },
+    {
+      "name": "dfs and similar",
+      "count": 10
+    },
+    {
+      "name": "graphs",
+      "count": 10
+    },
+    {
+      "name": "two pointers",
+      "count": 9
+    },
+    {
+      "name": "number theory",
+      "count": 8
+    },
+    {
+      "name": "interactive",
+      "count": 6
+    },
+    {
+      "name": "strings",
+      "count": 6
+    },
+    {
+      "name": "trees",
+      "count": 6
+    },
+    {
+      "name": "combinatorics",
+      "count": 5
+    },
+    {
+      "name": "games",
+      "count": 5
+    },
+    {
+      "name": "divide and conquer",
+      "count": 3
+    },
+    {
+      "name": "dsu",
+      "count": 2
+    },
+    {
+      "name": "geometry",
+      "count": 2
+    },
+    {
+      "name": "graph matchings",
+      "count": 2
+    },
+    {
+      "name": "hashing",
+      "count": 2
+    },
+    {
+      "name": "schedules",
+      "count": 2
+    },
+    {
+      "name": "shortest paths",
+      "count": 2
+    },
+    {
+      "name": "probabilities",
+      "count": 1
+    },
+    {
+      "name": "ternary search",
+      "count": 1
+    }
+  ],
+  "languages": [
+    {
+      "name": "C++23 (GCC 14-64, msys2)",
+      "count": 89
+    },
+    {
+      "name": "PyPy 3-64",
+      "count": 17
+    },
+    {
+      "name": "Python 3",
+      "count": 12
+    },
+    {
+      "name": "C++17 (GCC 7-32)",
+      "count": 9
+    }
+  ],
+  "rating_history": [
+    {
+      "contest": "Codeforces Round 951 (Div. 2)",
+      "rating": 393,
+      "timestamp": 1717691700
+    },
+    {
+      "contest": "Codeforces Round 973 (Div. 2)",
+      "rating": 770,
+      "timestamp": 1726850100
+    },
+    {
+      "contest": "Codeforces Round 975 (Div. 2)",
+      "rating": 1006,
+      "timestamp": 1727453100
+    },
+    {
+      "contest": "Codeforces Round 977 (Div. 2, based on COMPFEST 16 - Final Round)",
+      "rating": 1154,
+      "timestamp": 1728201900
+    },
+    {
+      "contest": "Codeforces Round 979 (Div. 2)",
+      "rating": 1247,
+      "timestamp": 1729354800
+    },
+    {
+      "contest": "Codeforces Round 980 (Div. 2)",
+      "rating": 1282,
+      "timestamp": 1729422300
+    },
+    {
+      "contest": "Codeforces Round 987 (Div. 2)",
+      "rating": 1215,
+      "timestamp": 1731681300
+    },
+    {
+      "contest": "Codeforces Round 988 (Div. 3)",
+      "rating": 1257,
+      "timestamp": 1731862200
+    },
+    {
+      "contest": "Codeforces Round 990 (Div. 2)",
+      "rating": 1282,
+      "timestamp": 1733214300
+    },
+    {
+      "contest": "Codeforces Round 993 (Div. 4)",
+      "rating": 1250,
+      "timestamp": 1734281400
+    },
+    {
+      "contest": "Codeforces Round 1000 (Div. 2)",
+      "rating": 1388,
+      "timestamp": 1737554700
+    },
+    {
+      "contest": "Codeforces Round 1050 (Div. 4)",
+      "rating": 1480,
+      "timestamp": 1757782200
+    },
+    {
+      "contest": "Codeforces Round 1051 (Div. 2)",
+      "rating": 1479,
+      "timestamp": 1758126900
+    },
+    {
+      "contest": "Codeforces Round 1057 (Div. 2)",
+      "rating": 1480,
+      "timestamp": 1760115000
+    },
+    {
+      "contest": "Codeforces Round 1058 (Div. 2)",
+      "rating": 1575,
+      "timestamp": 1760288700
+    },
+    {
+      "contest": "Codeforces Round 1059 (Div. 3)",
+      "rating": 1639,
+      "timestamp": 1760719800
+    },
+    {
+      "contest": "Codeforces Round 1061 (Div. 2)",
+      "rating": 1648,
+      "timestamp": 1761323700
+    },
+    {
+      "contest": "Codeforces Round 1078 (Div. 2)",
+      "rating": 1630,
+      "timestamp": 1770548700
+    }
+  ]
+}

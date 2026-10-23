@@ -1,0 +1,47 @@
+{% assign cf = site.data.codeforces %}
+<section class="page-section" aria-labelledby="competitive-programming-heading">
+  {% include section-heading.html title="Competitive Programming" %}
+  <div class="cf-panel">
+    <div class="cf-header">
+      <div><p class="cf-eyebrow">CODEFORCES</p><a class="cf-handle" href="{{ cf.profile_url }}" target="_blank" rel="noopener noreferrer">{{ cf.handle }} <span aria-hidden="true">↗</span></a></div>
+      <span class="cf-rank">{{ cf.rank | capitalize }}</span>
+    </div>
+    <dl class="cf-stats">
+      <div><dt>Current rating</dt><dd>{{ cf.rating }}</dd></div>
+      <div><dt>Peak rating</dt><dd>{{ cf.max_rating }}</dd></div>
+      <div><dt>Problems solved</dt><dd>{{ cf.solved }}</dd></div>
+      <div><dt>Rated contests</dt><dd>{{ cf.rated_contests }}</dd></div>
+    </dl>
+    <div class="cf-charts">
+      <div class="cf-chart">
+        <h3>Problems by topic</h3>
+        <p class="cf-caption">Unique solved problems · top 6</p>
+        <ol class="cf-bars">
+          {% assign max_tag = cf.tags.first.count | times: 1.0 %}
+          {% for tag in cf.tags limit:6 %}
+            <li><div><span>{{ tag.name | escape }}</span><strong>{{ tag.count }}</strong></div><span class="cf-bar" aria-hidden="true"><i style="width: {{ tag.count | divided_by: max_tag | times: 100 }}%"></i></span></li>
+          {% endfor %}
+        </ol>
+        <details class="cf-details"><summary>All {{ cf.tags.size }} topics</summary><ul>{% for tag in cf.tags %}<li><span>{{ tag.name | escape }}</span><strong>{{ tag.count }}</strong></li>{% endfor %}</ul></details>
+      </div>
+      <div class="cf-chart">
+        <h3>Languages</h3>
+        <p class="cf-caption">{{ cf.accepted_submissions }} accepted submissions</p>
+        {% assign offset = 0 %}
+        <div class="cf-donut-wrap">
+          <svg class="cf-donut" viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="cf-donut-track" cx="60" cy="60" r="46" />
+            {% for language in cf.languages %}
+              {% assign share = language.count | times: 100.0 | divided_by: cf.accepted_submissions %}
+              <circle class="cf-slice cf-color-{{ forloop.index0 | modulo: 5 }}" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="{{ share }} {{ 100 | minus: share }}" stroke-dashoffset="{{ offset | times: -1 }}" />
+              {% assign offset = offset | plus: share %}
+            {% endfor %}
+          </svg>
+          <div class="cf-donut-label"><strong>{{ cf.languages.size }}</strong><span>languages</span></div>
+        </div>
+        <ul class="cf-legend">{% for language in cf.languages %}<li><span class="cf-dot cf-color-{{ forloop.index0 | modulo: 5 }}" aria-hidden="true"></span><span>{{ language.name | escape }}</span><strong>{{ language.count }}</strong></li>{% endfor %}</ul>
+      </div>
+    </div>
+    <p class="cf-note">A problem is counted once; topics may overlap. Languages count accepted submissions, including repeat solves.<br>Updated <time datetime="{{ cf.updated_at }}">{{ cf.updated_at | date: '%b %-d, %Y' }}</time> · <a href="{{ cf.profile_url }}">Official profile ↗</a></p>
+  </div>
+</section>

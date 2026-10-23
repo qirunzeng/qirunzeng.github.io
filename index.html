@@ -2,6 +2,7 @@
 layout: default
 permalink: /
 context_rail: news
+bandit: true
 description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City University of Hong Kong, working on learning theory, bandit learning, and approximation algorithms."
 ---
 
@@ -60,6 +61,8 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
   <p class="prose">I have served as a teaching assistant for programming, data structures, algorithms, and mathematical analysis courses.</p>
   <p class="section-action"><a href="{{ '/teaching/' | relative_url }}">View teaching experience <span aria-hidden="true">→</span></a></p>
 </section>
+
+{% include codeforces.html %}
 
 <section class="page-section" aria-labelledby="bandit-heading">
   {% include section-heading.html id="bandit" title="2-Armed Bandit" %}

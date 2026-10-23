@@ -19,3 +19,5 @@ exclude:
   - Gemfile.lock
   - README.md
   - vendor
+  - scripts
+  - tests
