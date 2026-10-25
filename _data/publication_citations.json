@@ -1,8 +1,8 @@
 {
   "source": "Google Scholar",
   "source_url": "https://scholar.google.com/citations?user=sITttdEAAAAJ&hl=en",
-  "last_checked_at": "2026-10-24",
-  "metrics_updated_at": "2026-10-18",
+  "last_checked_at": "2026-10-25",
+  "metrics_updated_at": "2026-10-25",
   "papers": {
     "werewolf": {
       "scholar_id": "sITttdEAAAAJ:zYLM7Y9cAGgC",
@@ -12,7 +12,7 @@
     "one-rounding-fits-all": {
       "scholar_id": "sITttdEAAAAJ:qjMakFHDy7sC",
       "title": "One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization",
-      "citations": 0
+      "citations": 1
     },
     "fusing-reward-dueling": {
       "scholar_id": "sITttdEAAAAJ:u5HHmVD_uO8C",
