@@ -36,6 +36,7 @@ conference:
     venue_group: "EMNLP"
     links:
       - label: "EMNLP'2026"
+        url: "https://aclanthology.org/2026.findings-emnlp.2427"
         type: "conference"
       - label: "Code"
         url: "https://github.com/EntroShape/Attacking-the-MAS"
