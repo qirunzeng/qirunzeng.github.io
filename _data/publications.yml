@@ -150,6 +150,50 @@ conference:
 journal: []
 
 preprints:
+  - id: "offline-attacks-warm-start-bandits"
+    title: "Beyond Reward Suppression: Near-Optimal Offline Attacks on Warm-Start Bandits with Bounded Rewards"
+    publication_date: "7 October 2026"
+    publication_date_iso: "2026-10-07"
+    doi: "10.48550/arXiv.2610.10000"
+    abstract: >-
+      Adversarial attacks on bandits aim to mislead a learner toward a target arm while keeping the attack cost small. Existing attacks typically achieve this by suppressing non-target arms. In practice, however, manipulation such as fake reviews often directly promotes the target item. We study this gap through bounded offline attacks on warm-start bandits, where an attacker can inject only valid action-reward pairs into the warm-start history before deployment. We show that target promotion is not merely a heuristic: when the target arm lies near the lower reward boundary, any order-optimal-cost attack against UCB that makes it selected in nearly all online rounds must allocate a nonvanishing fraction of its cost to the target arm. We then design an attack that achieves the optimal sublinear cost and characterize its allocation between target promotion and non-target suppression. We further extend the attack to Thompson Sampling, ε-greedy, and a broader class of bandit algorithms. Experiments on real-world and synthetic data validate the effectiveness of our attacks.
+    authors:
+      - name: "Qirun Zeng"
+        me: true
+      - name: "Manhin Poon"
+      - name: "Xiangxiang Dai"
+      - name: "Qixin Zhang"
+      - name: "Jinhang Zuo"
+    venue: "arXiv preprint arXiv:2610.10000"
+    venue_group: "arXiv"
+    links:
+      - label: "arXiv"
+        url: "https://arxiv.org/abs/2610.10000"
+        type: "preprint"
+      - label: "Code"
+        url: "https://github.com/qirunzeng/Attack-on-Bounded-Bandit"
+        type: "code"
+
+
+  - id: "conversational-glb-hybrid-feedback"
+    title: "Conversational Generalized Linear Bandits with Hybrid Feedback"
+    publication_date: "26 October 2026"
+    publication_date_iso: "2026-10-26"
+    doi: "10.48550/arXiv.2610.35262"
+    abstract: >-
+      Conversational recommendation systems can learn user preferences through both item interactions and questions about key-terms. These interactions naturally produce different feedback: users click or rate items but may find it easier to compare key-terms. We model this setting using generalized linear bandits that combine item rewards with pairwise key-term feedback. Our algorithm, HyConUCB, integrates these observations into a common confidence bound and chooses comparisons to balance information gain with coverage of informative directions. An analysis using both observation types yields a regret guarantee that improves on reward-only and adapted dueling-only baselines. Evaluations with simulated data and real-world datasets demonstrate the benefits of this approach.
+    authors:
+      - name: "Yurui Zou"
+      - name: "Qirun Zeng"
+        me: true
+      - name: "Jinhang Zuo"
+    venue: "arXiv preprint arXiv:2610.35262"
+    venue_group: "arXiv"
+    links:
+      - label: "arXiv"
+        url: "https://arxiv.org/abs/2610.35262"
+        type: "preprint"
+
   - id: "improved-e-value-thresholds"
     title: "Improved E-Value Thresholds with Applications to Multiple and Sequential Testing"
     publication_date: "8 October 2026"
@@ -176,27 +220,3 @@ preprints:
         url: "https://github.com/houzhenliu/e-LC"
         type: "code"
 
-
-  - id: "offline-attacks-warm-start-bandits"
-    title: "Beyond Reward Suppression: Near-Optimal Offline Attacks on Warm-Start Bandits with Bounded Rewards"
-    publication_date: "7 October 2026"
-    publication_date_iso: "2026-10-07"
-    doi: "10.48550/arXiv.2610.10000"
-    abstract: >-
-      Adversarial attacks on bandits aim to mislead a learner toward a target arm while keeping the attack cost small. Existing attacks typically achieve this by suppressing non-target arms. In practice, however, manipulation such as fake reviews often directly promotes the target item. We study this gap through bounded offline attacks on warm-start bandits, where an attacker can inject only valid action-reward pairs into the warm-start history before deployment. We show that target promotion is not merely a heuristic: when the target arm lies near the lower reward boundary, any order-optimal-cost attack against UCB that makes it selected in nearly all online rounds must allocate a nonvanishing fraction of its cost to the target arm. We then design an attack that achieves the optimal sublinear cost and characterize its allocation between target promotion and non-target suppression. We further extend the attack to Thompson Sampling, ε-greedy, and a broader class of bandit algorithms. Experiments on real-world and synthetic data validate the effectiveness of our attacks.
-    authors:
-      - name: "Qirun Zeng"
-        me: true
-      - name: "Manhin Poon"
-      - name: "Xiangxiang Dai"
-      - name: "Qixin Zhang"
-      - name: "Jinhang Zuo"
-    venue: "arXiv preprint arXiv:2610.10000"
-    venue_group: "arXiv"
-    links:
-      - label: "arXiv"
-        url: "https://arxiv.org/abs/2610.10000"
-        type: "preprint"
-      - label: "Code"
-        url: "https://github.com/qirunzeng/Attack-on-Bounded-Bandit"
-        type: "code"
