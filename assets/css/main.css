@@ -493,14 +493,15 @@ a {
   color: var(--ink);
   font-family: var(--sans);
   font-weight: 700;
-  letter-spacing: -0.035em;
+  /* Keep word boundaries clear with mobile and user-selected system fonts. */
+  letter-spacing: normal;
+  word-spacing: 0.05em;
   line-height: 1.1;
 }
 
 .section-heading h1 {
   font-size: clamp(2.3rem, 5vw, 3rem);
   font-weight: 650;
-  letter-spacing: -0.05em;
 }
 
 .section-heading h2 {
@@ -1244,7 +1245,7 @@ a {
 /* Homepage: identity and research lead; detail is disclosed on demand. */
 .profile__fact-icon, .profile__link-icon { color: var(--muted); }
 .home-intro { padding: 0 0 0.8rem; }
-.home-intro h1 { margin: 0; font-size: clamp(2.3rem, 5vw, 3rem); font-weight: 650; letter-spacing: -0.05em; line-height: 1.1; }
+.home-intro h1 { margin: 0; font-size: clamp(2.3rem, 5vw, 3rem); font-weight: 650; letter-spacing: normal; word-spacing: 0.05em; line-height: 1.1; }
 .home-intro__role { margin: 0.8rem 0 0; color: var(--muted); font-size: 1rem; }
 .home-intro__focus { max-width: 58ch; margin: 1.2rem 0 0; color: var(--ink-soft); font-size: 1.15rem; line-height: 1.65; letter-spacing: -0.015em; }
 .home-intro__actions { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem 1.5rem; margin-top: 1.5rem; }
