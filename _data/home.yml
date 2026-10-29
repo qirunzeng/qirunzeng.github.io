@@ -3,22 +3,23 @@ profile:
     - "I am a Ph.D. candidate in Computer Science at City University of Hong Kong, advised by [Prof. Jinhang Zuo](https://jhzuo.github.io). Previously, I worked as a research assistant with [Prof. Sibo Wang](https://www1.se.cuhk.edu.hk/~swang/) at the Chinese University of Hong Kong from July to October 2024."
     - "I received my bachelor's degree in Computer Science and Technology from the School of the Gifted Young at the University of Science and Technology of China, where I was advised by [Prof. Xue Chen](http://staff.ustc.edu.cn/~xuechen1989/) and [Prof. Jinhang Zuo](https://jhzuo.github.io)."
 
+# Link to papers with [link text][paper:publication-id]; URLs live in publications.yml.
 news:
   - date: "2026"
     summary: "Two papers accepted to **NeurIPS 2026**."
     text: |-
       **2 papers accepted to NeurIPS 2026!**
 
-      - [**Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback**](https://arxiv.org/abs/2605.05745)
-      - [**Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection**](https://arxiv.org/abs/2505.21938)
+      - [**Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback**][paper:best-arm-hybrid-feedback]
+      - [**Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection**][paper:adversarial-bandits-fake-data]
   - date: "2026"
-    summary: "WEREWOLF accepted to **Findings of EMNLP 2026**."
-    text: "Our paper [**WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems**](https://aclanthology.org/2026.findings-emnlp.2427) was accepted to **Findings of EMNLP 2026**."
+    summary: "[WEREWOLF][paper:werewolf] accepted to **Findings of EMNLP 2026**."
+    text: "Our paper [**WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems**][paper:werewolf] was accepted to **Findings of EMNLP 2026**."
   - date: "2026"
-    summary: "One Rounding Fits All accepted to **KDD 2026**."
-    text: "Our paper [**One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization**](https://dl.acm.org/doi/abs/10.1145/3770855.3817696) was accepted to **KDD 2026**."
+    summary: "[One Rounding Fits All][paper:one-rounding-fits-all] accepted to **KDD 2026**."
+    text: "Our paper [**One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization**][paper:one-rounding-fits-all] was accepted to **KDD 2026**."
   - date: "2025"
-    text: "Our paper [**Fusing Reward and Dueling Feedback in Stochastic Bandits**](https://openreview.net/pdf?id=mqljEW2NQl) was accepted to **ICML 2025**."
+    text: "Our paper [**Fusing Reward and Dueling Feedback in Stochastic Bandits**][paper:fusing-reward-dueling] was accepted to **ICML 2025**."
 
 # Choose and order the papers shown in Selected Publications by their IDs in
 # _data/publications.yml.

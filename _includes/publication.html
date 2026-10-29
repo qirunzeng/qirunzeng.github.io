@@ -2,12 +2,9 @@
   {% assign citation = site.data.publication_citations.papers[include.paper.id] %}
   <span class="publication__number" aria-hidden="true"></span>
   <div class="publication__body">
-    {% assign paper_link = include.paper.links | where_exp: "link", "link.type != 'code'" | where_exp: "link", "link.url" | first %}
-    {% assign title_url = paper_link.url %}
-    {% if title_url == nil and include.paper.doi %}{% assign title_url = include.paper.doi | prepend: 'https://doi.org/' %}{% endif %}
     <h3 class="publication__title">
-      {% if title_url %}
-        <a href="{{ title_url | relative_url }}"{% if title_url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ include.paper.title }}</a>
+      {% if include.paper.url %}
+        <a href="{{ include.paper.url | relative_url }}"{% if include.paper.url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ include.paper.title }}</a>
       {% else %}
         {{ include.paper.title }}
       {% endif %}
@@ -31,8 +28,10 @@
       {% if include.paper.links %}
         <p class="publication__links" aria-label="Links for {{ include.paper.title }}">
           {% for link in include.paper.links %}
-            {% if link.url %}
-              <a class="tag tag--{{ link.type }}" href="{{ link.url | relative_url }}"{% if link.url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}</a>
+            {% assign link_url = link.url %}
+            {% if link.paper %}{% assign link_url = include.paper.url %}{% endif %}
+            {% if link_url %}
+              <a class="tag tag--{{ link.type }}" href="{{ link_url | relative_url }}"{% if link_url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}</a>
             {% else %}
               <span class="tag tag--{{ link.type }}">{{ link.label }}</span>
             {% endif %}

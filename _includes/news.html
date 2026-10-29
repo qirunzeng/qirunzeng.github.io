@@ -1,4 +1,11 @@
 {% assign news_items = site.data.home.news %}
+{% assign news_papers = site.data.publications.conference | concat: site.data.publications.journal | concat: site.data.publications.preprints %}
+{% capture news_paper_references %}
+
+{% for news_paper in news_papers %}{% if news_paper.url %}
+[paper:{{ news_paper.id }}]: <{{ news_paper.url | relative_url }}>
+{% endif %}{% endfor %}
+{% endcapture %}
 {% if include.variant == "rail" %}
   <section class="news-rail" aria-labelledby="news-rail-heading">
     <header class="news-rail__header">
@@ -8,7 +15,7 @@
       {% for item in news_items limit:5 %}
         <li class="news-rail__item">
           <time class="news-rail__date">{{ item.date }}</time>
-          <div class="news-rail__body">{{ item.text | markdownify }}</div>
+          <div class="news-rail__body">{{ item.text | append: news_paper_references | markdownify }}</div>
         </li>
       {% endfor %}
     </ol>
@@ -22,7 +29,7 @@
         <li class="news-item">
           <time class="news-item__date">{{ item.date }}</time>
           <span class="news-item__marker" aria-hidden="true"></span>
-          <div class="news-item__body">{{ item.summary | default: item.text | markdownify }}</div>
+          <div class="news-item__body">{{ item.summary | default: item.text | append: news_paper_references | markdownify }}</div>
         </li>
       {% endfor %}
     </ol>
@@ -36,7 +43,7 @@
         <li class="news-item">
           <time class="news-item__date">{{ item.date }}</time>
           <span class="news-item__marker" aria-hidden="true"></span>
-          <div class="news-item__body">{{ item.text | markdownify }}</div>
+          <div class="news-item__body">{{ item.text | append: news_paper_references | markdownify }}</div>
         </li>
       {% endfor %}
     </ol>
@@ -49,7 +56,7 @@
         <li class="news-item">
           <time class="news-item__date">{{ item.date }}</time>
           <span class="news-item__marker" aria-hidden="true"></span>
-          <div class="news-item__body">{{ item.text | markdownify }}</div>
+          <div class="news-item__body">{{ item.text | append: news_paper_references | markdownify }}</div>
         </li>
       {% endfor %}
     </ol>

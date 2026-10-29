@@ -1,3 +1,5 @@
+# Each paper URL is defined once here. Badges with paper: true and News
+# references such as [link text][paper:werewolf] share that URL.
 venue_order:
   - "NeurIPS"
   - "ICML"
@@ -21,6 +23,7 @@ metrics:
 
 conference:
   - id: "one-rounding-fits-all"
+    url: "https://dl.acm.org/doi/10.1145/3770855.3817696"
     title: "One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization"
     publication_date: "8 August 2026"
     publication_date_iso: "2026-08-08"
@@ -43,13 +46,14 @@ conference:
     venue_group: "KDD"
     links:
       - label: "KDD'2026"
-        url: "https://dl.acm.org/doi/10.1145/3770855.3817696"
+        paper: true
         type: "conference"
       - label: "Code"
         url: "https://github.com/qirunzeng/OneRound-IM"
         type: "code"
 
   - id: "werewolf"
+    url: "https://aclanthology.org/2026.findings-emnlp.2427"
     title: "WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems"
     publication_date: "August 2026"
     publication_date_iso: "2026-08"
@@ -65,13 +69,14 @@ conference:
     venue_group: "EMNLP"
     links:
       - label: "EMNLP'2026"
-        url: "https://aclanthology.org/2026.findings-emnlp.2427"
+        paper: true
         type: "conference"
       - label: "Code"
         url: "https://github.com/EntroShape/Attacking-the-MAS"
         type: "code"
 
   - id: "best-arm-hybrid-feedback"
+    url: "https://arxiv.org/abs/2605.05745"
     pin_to_top: true
     title: "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback"
     publication_date: "7 May 2026"
@@ -91,13 +96,14 @@ conference:
     venue_group: "NeurIPS"
     links:
       - label: "NeurIPS'2026"
-        url: "https://arxiv.org/abs/2605.05745"
+        paper: true
         type: "conference"
       - label: "Code"
         url: "https://github.com/qirunzeng/HyTS-GLB"
         type: "code"
 
   - id: "adversarial-bandits-fake-data"
+    url: "https://arxiv.org/abs/2505.21938"
     pin_to_top: true
     title: "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection"
     publication_date: "28 May 2025"
@@ -116,13 +122,14 @@ conference:
     venue_group: "NeurIPS"
     links:
       - label: "NeurIPS'2026"
-        url: "https://arxiv.org/abs/2505.21938"
+        paper: true
         type: "conference"
       - label: "Code"
         url: "https://github.com/richardhoff88/online_learning_torank"
         type: "code"
 
   - id: "fusing-reward-dueling"
+    url: "https://dl.acm.org/doi/10.5555/3780338.3782937"
     title: "Fusing Reward and Dueling Feedback in Stochastic Bandits"
     publication_date: "13 July 2025"
     publication_date_iso: "2025-07-13"
@@ -142,7 +149,7 @@ conference:
     venue_group: "ICML"
     links:
       - label: "ICML'2025"
-        url: "https://dl.acm.org/doi/10.5555/3780338.3782937"
+        paper: true
         type: "conference"
       - label: "Code"
         url: "https://github.com/qirunzeng/Fusing-Reward-and-Dueling"
@@ -157,6 +164,7 @@ journal: []
 
 preprints:
   - id: "offline-attacks-warm-start-bandits"
+    url: "https://arxiv.org/abs/2610.10000"
     title: "Beyond Reward Suppression: Near-Optimal Offline Attacks on Warm-Start Bandits with Bounded Rewards"
     publication_date: "7 October 2026"
     publication_date_iso: "2026-10-07"
@@ -174,7 +182,7 @@ preprints:
     venue_group: "arXiv"
     links:
       - label: "arXiv"
-        url: "https://arxiv.org/abs/2610.10000"
+        paper: true
         type: "preprint"
       - label: "Code"
         url: "https://github.com/qirunzeng/Attack-on-Bounded-Bandit"
@@ -182,6 +190,7 @@ preprints:
 
 
   - id: "conversational-glb-hybrid-feedback"
+    url: "https://arxiv.org/abs/2610.35262"
     title: "Conversational Generalized Linear Bandits with Hybrid Feedback"
     publication_date: "26 October 2026"
     publication_date_iso: "2026-10-26"
@@ -197,10 +206,11 @@ preprints:
     venue_group: "arXiv"
     links:
       - label: "arXiv"
-        url: "https://arxiv.org/abs/2610.35262"
+        paper: true
         type: "preprint"
 
   - id: "improved-e-value-thresholds"
+    url: "https://arxiv.org/abs/2610.11186"
     title: "Improved E-Value Thresholds with Applications to Multiple and Sequential Testing"
     publication_date: "8 October 2026"
     publication_date_iso: "2026-10-08"
@@ -220,7 +230,7 @@ preprints:
     venue_group: "arXiv"
     links:
       - label: "arXiv"
-        url: "https://arxiv.org/abs/2610.11186"
+        paper: true
         type: "preprint"
       - label: "Code"
         url: "https://github.com/houzhenliu/e-LC"

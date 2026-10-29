@@ -24,6 +24,28 @@ To choose the papers shown on the homepage, edit `selected_publications` in
 `_data/home.yml`. Each entry is a publication `id` from
 `_data/publications.yml`, and the list order controls the display order.
 
+Each paper's `url` in `_data/publications.yml` is its shared paper address.
+The title uses it directly, and conference/arXiv badges use `paper: true`
+instead of storing another URL:
+
+```yaml
+- id: "werewolf"
+  url: "https://aclanthology.org/2026.findings-emnlp.2427"
+  # Other publication fields…
+  links:
+    - label: "EMNLP'2026"
+      paper: true
+      type: "conference"
+```
+
+In News `text` and `summary`, use Markdown references such as
+`[WEREWOLF][paper:werewolf]` or
+`[**Full paper title**][paper:werewolf]`. The News template resolves these
+references from publication IDs; no URL definitions belong in `_data/home.yml`.
+Changing the paper's `url` updates its title, paper badges, and News links on
+the next build. Code links keep their own repository URLs, and DOI links are
+generated from the paper's `doi` identifier.
+
 ## Google Scholar metrics
 
 The Publications page reads citations, h-index, and i10-index from
