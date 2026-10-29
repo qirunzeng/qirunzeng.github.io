@@ -2,7 +2,16 @@
   {% assign citation = site.data.publication_citations.papers[include.paper.id] %}
   <span class="publication__number" aria-hidden="true"></span>
   <div class="publication__body">
-    <h3 class="publication__title">{{ include.paper.title }}</h3>
+    {% assign paper_link = include.paper.links | where_exp: "link", "link.type != 'code'" | where_exp: "link", "link.url" | first %}
+    {% assign title_url = paper_link.url %}
+    {% if title_url == nil and include.paper.doi %}{% assign title_url = include.paper.doi | prepend: 'https://doi.org/' %}{% endif %}
+    <h3 class="publication__title">
+      {% if title_url %}
+        <a href="{{ title_url | relative_url }}"{% if title_url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ include.paper.title }}</a>
+      {% else %}
+        {{ include.paper.title }}
+      {% endif %}
+    </h3>
 
     <p class="publication__authors">
       {% for author in include.paper.authors %}{% if author.me %}<strong>{{ author.name }}</strong>{% else %}{{ author.name }}{% endif %}{% if author.equal %}<sup class="publication__equal-marker" title="Equal contribution">⋆</sup>{% endif %}{% if author.mentored %}<sup class="publication__mentor-marker" title="Mentored student">†</sup>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
