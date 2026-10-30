@@ -38,7 +38,7 @@ instead of storing another URL:
       type: "conference"
 ```
 
-In News `text` and `summary`, use Markdown references such as
+In News `text`, use Markdown references such as
 `[WEREWOLF][paper:werewolf]` or
 `[**Full paper title**][paper:werewolf]`. The News template resolves these
 references from publication IDs; no URL definitions belong in `_data/home.yml`.
@@ -113,13 +113,18 @@ introduced.
 
 
 The homepage leads with identity, research, and selected publications in a
-two-column layout. News summaries live in `_data/home.yml`; the archive retains
-full entries. Codeforces charts use native disclosures.
+two-column layout. News entries live in `_data/home.yml`; both the homepage
+and archive display full entries, including complete linked paper titles.
+The homepage shows the latest three entries. Codeforces charts use native disclosures.
 Public copy contains only relevant content, short actions, and freshness dates;
 methodology and implementation details belong in this README.
 
 All pages share a 1120px shell, a 200px profile column, and the same main-column
-start and title scale. Publication statistics sit immediately below the title in a compact metric
+start and title scale. Body copy stays at 16px; page titles scale from 28–32px,
+section headings from 18–20px, and paper titles use 16px. Compact section gaps
+and list padding increase visible content; paper badges sit alongside venue
+details on desktop and wrap below them on phones.
+Publication statistics sit immediately below the title in a compact metric
 strip; venue details expand on demand. Teaching opens directly with the course
 list. Neither page adds a third layout column. On compact screens, page content
 comes first and profile links follow it consistently across all pages. On desktop,

@@ -6,17 +6,14 @@ profile:
 # Link to papers with [link text][paper:publication-id]; URLs live in publications.yml.
 news:
   - date: "2026"
-    summary: "Two papers accepted to **NeurIPS 2026**."
     text: |-
       **2 papers accepted to NeurIPS 2026!**
 
       - [**Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback**][paper:best-arm-hybrid-feedback]
       - [**Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection**][paper:adversarial-bandits-fake-data]
   - date: "2026"
-    summary: "[WEREWOLF][paper:werewolf] accepted to **Findings of EMNLP 2026**."
     text: "Our paper [**WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems**][paper:werewolf] was accepted to **Findings of EMNLP 2026**."
   - date: "2026"
-    summary: "[One Rounding Fits All][paper:one-rounding-fits-all] accepted to **KDD 2026**."
     text: "Our paper [**One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization**][paper:one-rounding-fits-all] was accepted to **KDD 2026**."
   - date: "2025"
     text: "Our paper [**Fusing Reward and Dueling Feedback in Stochastic Bandits**][paper:fusing-reward-dueling] was accepted to **ICML 2025**."
