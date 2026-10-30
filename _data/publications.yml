@@ -125,7 +125,7 @@ conference:
         paper: true
         type: "conference"
       - label: "Code"
-        url: "https://github.com/richardhoff88/online_learning_torank"
+        url: "https://github.com/qirunzeng/bandit-fake-data-injection"
         type: "code"
 
   - id: "fusing-reward-dueling"
