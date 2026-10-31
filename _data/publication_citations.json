@@ -1,8 +1,8 @@
 {
   "source": "Google Scholar",
   "source_url": "https://scholar.google.com/citations?user=sITttdEAAAAJ&hl=en",
-  "last_checked_at": "2026-10-30",
-  "metrics_updated_at": "2026-10-25",
+  "last_checked_at": "2026-10-31",
+  "metrics_updated_at": "2026-10-31",
   "papers": {
     "werewolf": {
       "scholar_id": "sITttdEAAAAJ:zYLM7Y9cAGgC",
@@ -17,7 +17,7 @@
     "fusing-reward-dueling": {
       "scholar_id": "sITttdEAAAAJ:u5HHmVD_uO8C",
       "title": "Fusing Reward and Dueling Feedback in Stochastic Bandits",
-      "citations": 5
+      "citations": 6
     },
     "best-arm-hybrid-feedback": {
       "scholar_id": "sITttdEAAAAJ:2osOgNQ5qMEC",
