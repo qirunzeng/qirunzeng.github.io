@@ -169,8 +169,11 @@ details on desktop and wrap below them on phones.
 Publication statistics sit immediately below the title in a compact metric
 strip; venue details expand on demand. Teaching opens directly with the course
 list. Neither page adds a third layout column. On compact screens, the header
-keeps the name, navigation, and Email visible;
-secondary profile links follow the page content. The mobile header uses two rows
+keeps the name and navigation visible. Email is available in the homepage intro
+and profile links as a direct `mailto:` link, using the single `email` field in
+`_data/profile.yml`. Teaching has a dedicated page and navigation entry;
+the homepage does not repeat its summary. Profile links follow the page content.
+The mobile header uses two rows
 to avoid crowding narrow screens. On desktop,
 the profile stays fixed at the shared content start. It scrolls independently
 when its content exceeds the available viewport height; scrolling at its edge

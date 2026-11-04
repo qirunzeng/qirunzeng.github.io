@@ -12,7 +12,6 @@ wechat_qr: "/assets/images/wechat-qr.jpg"
 links:
   - label: "Email"
     icon: "email"
-    url: "mailto:qirunzeng@gmail.com"
   - label: "Google Scholar"
     icon: "google-scholar"
     url: "https://scholar.google.com/citations?user=sITttdEAAAAJ&hl=en&oi=ao"

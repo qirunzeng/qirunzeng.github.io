@@ -60,7 +60,6 @@
           {% for item in site.navigation %}
             <a href="{{ item.url | relative_url }}"{% if page.nav == item.title %} aria-current="page"{% endif %}>{{ item.title }}</a>
           {% endfor %}
-          <a href="mailto:{{ site.data.profile.email }}">Email</a>
           <button class="theme-toggle" type="button" aria-label="Switch to dark theme" title="Change color theme">
             <span aria-hidden="true">◐</span>
           </button>

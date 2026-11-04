@@ -20,8 +20,13 @@
   <ul class="profile__links">
     {% for link in profile.links %}
       {% if link.icon == 'google-scholar' and site.data.features.scholar_enabled != true %}{% continue %}{% endif %}
+      {% if link.icon == 'email' %}
+        {% assign link_url = profile.email | prepend: 'mailto:' %}
+      {% else %}
+        {% assign link_url = link.url | relative_url %}
+      {% endif %}
       <li>
-        <a href="{{ link.url | relative_url }}"{% if link.url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>
+        <a href="{{ link_url }}"{% if link_url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>
           <span class="profile__link-icon" aria-hidden="true">{% include icon.html name=link.icon %}</span>
           <span>{{ link.label }}</span>
         </a>
