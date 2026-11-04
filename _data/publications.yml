@@ -56,6 +56,7 @@ conference:
   - id: "werewolf"
     url: "https://aclanthology.org/2026.findings-emnlp.2427"
     title: "WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems"
+    doi: "10.18653/2026.findings-emnlp.2427"
     publication_date: "August 2026"
     publication_date_iso: "2026-08"
     abstract: >-
