@@ -21,12 +21,13 @@
     {% for link in profile.links %}
       {% if link.icon == 'google-scholar' and site.data.features.scholar_enabled != true %}{% continue %}{% endif %}
       {% if link.icon == 'email' %}
-        {% assign link_url = profile.email | prepend: 'mailto:' %}
+        {% assign encoded_email = profile.email | url_encode %}
+        {% assign link_url = 'https://mail.google.com/mail/?view=cm&fs=1&to=' | append: encoded_email %}
       {% else %}
         {% assign link_url = link.url | relative_url %}
       {% endif %}
       <li>
-        <a href="{{ link_url }}"{% if link_url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>
+        <a href="{{ link_url | escape }}"{% if link_url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}{% if link.icon == 'email' %} title="Write to {{ profile.email }} in Gmail" aria-label="Write to {{ profile.email }} in Gmail"{% endif %}>
           <span class="profile__link-icon" aria-hidden="true">{% include icon.html name=link.icon %}</span>
           <span>{{ link.label }}</span>
         </a>

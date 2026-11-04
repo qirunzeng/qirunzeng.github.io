@@ -170,8 +170,9 @@ Publication statistics sit immediately below the title in a compact metric
 strip; venue details expand on demand. Teaching opens directly with the course
 list. Neither page adds a third layout column. On compact screens, the header
 keeps the name and navigation visible. Email is available in the homepage intro
-and profile links as a direct `mailto:` link, using the single `email` field in
-`_data/profile.yml`. Teaching has a dedicated page and navigation entry;
+and profile links as a Gmail web compose link, using the single `email` field in
+`_data/profile.yml`. It opens a new tab with the recipient prefilled and requires
+Gmail sign-in; visitors review and send the message themselves. Teaching has a dedicated page and navigation entry;
 the homepage does not repeat its summary. Profile links follow the page content.
 The mobile header uses two rows
 to avoid crowding narrow screens. On desktop,
