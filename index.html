@@ -9,7 +9,7 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
 
 <section class="home-intro" aria-labelledby="profile-heading">
   <h1 id="profile-heading">{{ site.data.profile.name }}</h1>
-  <p class="home-intro__role">Ph.D. candidate at City University of Hong Kong</p>
+  <p class="home-intro__role">{{ site.data.profile.role }} at {{ site.data.profile.affiliation }}</p>
   <p class="home-intro__focus">{{ home.research.summary }}</p>
   <div class="home-intro__actions">
     <a class="home-button" href="{{ '/publications/' | relative_url }}">Publications <span aria-hidden="true">↗</span></a>
@@ -26,26 +26,27 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
     {% assign all_publications = site.data.publications.conference | concat: site.data.publications.journal | concat: site.data.publications.preprints %}
     {% for publication_id in home.selected_publications %}
       {% assign paper = all_publications | where: "id", publication_id | first %}
-      {% if paper %}{% include publication.html paper=paper %}{% endif %}
+      {% if paper %}{% include publication.html paper=paper show_summary=true %}{% endif %}
     {% endfor %}
   </div>
 
   <p class="section-action"><a href="{{ '/publications/' | relative_url }}">View all publications <span aria-hidden="true">→</span></a></p>
 </section>
 
+{% include news.html variant="compact" %}
+
 <section class="page-section" aria-labelledby="research-interests-heading">
   {% include section-heading.html title="Research Interests" %}
   <dl class="research-interests">
     {% for interest in home.research.interests %}
       <div>
-        <dt><a href="{{ '/publications/' | relative_url }}#paper-{{ interest.paper }}">{{ interest.title }}</a></dt>
+        {% assign representative_paper = interest.papers | first %}
+        <dt><a href="{{ '/publications/' | relative_url }}#paper-{{ representative_paper }}">{{ interest.title }}</a></dt>
         <dd>{{ interest.detail }}</dd>
       </div>
     {% endfor %}
   </dl>
 </section>
-
-{% include news.html variant="compact" %}
 
 <section class="page-section" aria-labelledby="about-heading">
   {% include section-heading.html title="About" %}

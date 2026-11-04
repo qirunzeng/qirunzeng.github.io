@@ -1,10 +1,14 @@
 from __future__ import annotations
 
 import importlib.util
+import contextlib
+import io
+import json
 import pathlib
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -15,6 +19,78 @@ assert SPEC and SPEC.loader
 scholar = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = scholar
 SPEC.loader.exec_module(scholar)
+
+
+class ScholarSwitchTests(unittest.TestCase):
+    def test_disabled_skips_fetch_and_writes_even_for_manual_options(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            features = pathlib.Path(directory) / "features.json"
+            features.write_text('{"scholar_enabled": false}\n')
+            for options in ([], ["--check-only"], ["--allow-decrease"], ["--html-file", "missing.html"]):
+                with self.subTest(options=options), mock.patch.object(
+                    scholar, "read_config"
+                ) as read_config, mock.patch.object(
+                    scholar, "fetch_snapshot"
+                ) as fetch, mock.patch.object(
+                    scholar, "atomic_write"
+                ) as write, contextlib.redirect_stdout(io.StringIO()) as output:
+                    self.assertEqual(scholar.main(["--features-file", str(features), *options]), 0)
+                    self.assertIn("disabled", output.getvalue())
+                    read_config.assert_not_called()
+                    fetch.assert_not_called()
+                    write.assert_not_called()
+
+    def test_print_enabled_matches_switch_without_fetching(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            features = pathlib.Path(directory) / "features.json"
+            for enabled in (False, True):
+                features.write_text(json.dumps({"scholar_enabled": enabled}))
+                with self.subTest(enabled=enabled), mock.patch.object(
+                    scholar, "read_config"
+                ) as read_config, contextlib.redirect_stdout(io.StringIO()) as output:
+                    self.assertEqual(scholar.main(["--features-file", str(features), "--print-enabled"]), 0)
+                    self.assertEqual(output.getvalue(), f"{str(enabled).lower()}\n")
+                    read_config.assert_not_called()
+
+    def test_invalid_or_missing_switch_fails_before_fetching(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            features = pathlib.Path(directory) / "features.json"
+            for content in (None, "{", "{}", "[]", '{"scholar_enabled": "false"}', '{"scholar_enabled": 1}'):
+                if content is not None:
+                    features.write_text(content)
+                with self.subTest(content=content), mock.patch.object(
+                    scholar, "fetch_snapshot"
+                ) as fetch, contextlib.redirect_stderr(io.StringIO()) as output:
+                    self.assertEqual(scholar.main(["--features-file", str(features)]), 1)
+                    self.assertIn("Scholar update failed", output.getvalue())
+                    fetch.assert_not_called()
+
+    def test_reenabled_switch_runs_normal_refresh(self) -> None:
+        config = scholar.read_config(scholar.DEFAULT_DATA_PATH)
+        existing, _ = scholar.read_existing(scholar.DEFAULT_DATA_PATH)
+        publication_data = scholar.read_publication_data(scholar.DEFAULT_PUBLICATION_DATA_PATH, config)
+        snapshot = scholar.ScholarSnapshot(
+            name=config.expected_name,
+            metrics=existing,
+            provider="test",
+            publications=tuple(
+                scholar.ScholarPublication(**paper)
+                for paper in publication_data["papers"].values()
+            ),
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            features = pathlib.Path(directory) / "features.json"
+            features.write_text('{"scholar_enabled": false}\n')
+            with mock.patch.object(scholar, "fetch_snapshot", return_value=snapshot) as fetch, mock.patch.object(
+                scholar, "atomic_write"
+            ) as write, contextlib.redirect_stdout(io.StringIO()):
+                arguments = ["--features-file", str(features)]
+                self.assertEqual(scholar.main(arguments), 0)
+                fetch.assert_not_called()
+                features.write_text('{"scholar_enabled": true}\n')
+                self.assertEqual(scholar.main(arguments), 0)
+                fetch.assert_called_once_with(config)
+                self.assertEqual(write.call_count, 2)
 
 
 class ScholarUpdateTests(unittest.TestCase):

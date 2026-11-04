@@ -4,6 +4,7 @@
 
     {% for metric in site.data.publications.metrics %}
       {% if metric.scholar_key %}
+        {% unless site.data.features.scholar_enabled == true %}{% continue %}{% endunless %}
         {% assign metric_value = site.data.scholar[metric.scholar_key] %}
       {% elsif metric.publication_key %}
         {% assign metric_value = site.data.publications[metric.publication_key] | size %}
@@ -52,6 +53,8 @@
       {% endfor %}
       </dl>
     </details>
-    <p class="page-stats__source"><a href="{{ site.data.publication_citations.source_url }}" target="_blank" rel="noopener noreferrer">{{ site.data.publication_citations.source }}</a> · <time datetime="{{ site.data.publication_citations.last_checked_at }}">{{ site.data.publication_citations.last_checked_at | date: '%b %-d, %Y' }}</time></p>
+    {% if site.data.features.scholar_enabled == true %}
+      <p class="page-stats__source"><a href="{{ site.data.publication_citations.source_url }}" target="_blank" rel="noopener noreferrer">{{ site.data.publication_citations.source }}</a> · <time datetime="{{ site.data.publication_citations.last_checked_at }}">{{ site.data.publication_citations.last_checked_at | date: '%b %-d, %Y' }}</time></p>
+    {% endif %}
   </div>
 </section>

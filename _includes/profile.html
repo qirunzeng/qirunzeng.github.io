@@ -4,11 +4,6 @@
     <img src="{{ profile.avatar | relative_url }}" alt="" width="320" height="320" decoding="async">
   </a>
 
-  <div class="profile__identity">
-    <p class="profile__name">{{ profile.name }}</p>
-    <p class="profile__role">{{ profile.role }}</p>
-  </div>
-
   <dl class="profile__facts">
     <div>
       <span class="profile__fact-icon" aria-hidden="true">{% include icon.html name="location" %}</span>
@@ -24,6 +19,7 @@
 
   <ul class="profile__links">
     {% for link in profile.links %}
+      {% if link.icon == 'google-scholar' and site.data.features.scholar_enabled != true %}{% continue %}{% endif %}
       <li>
         <a href="{{ link.url | relative_url }}"{% if link.url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>
           <span class="profile__link-icon" aria-hidden="true">{% include icon.html name=link.icon %}</span>

@@ -18,7 +18,7 @@ on:
         type: boolean
 
 concurrency:
-  group: update-scholar-metrics
+  group: update-site-data
   cancel-in-progress: false
 
 permissions:
@@ -35,22 +35,36 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v7
         with:
           python-version: "3.13"
 
+      - name: Read Scholar switch
+        id: scholar
+        run: |
+          enabled=$(python scripts/update_scholar.py --print-enabled)
+          echo "enabled=$enabled" >> "$GITHUB_OUTPUT"
+          if [[ "$enabled" != "true" ]]; then
+            echo "Scholar is disabled; skipping refresh and alert recovery."
+          fi
+
       - name: Run fetcher tests
+        if: steps.scholar.outputs.enabled == 'true'
         run: python -m unittest discover -s tests -p "test_*.py" -v
 
       - name: Exercise failure alarm
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.test_alert }}
+        if: ${{ steps.scholar.outputs.enabled == 'true' && github.event_name == 'workflow_dispatch' && inputs.test_alert }}
         run: |
           echo "Intentional failure requested for alert-path testing."
           exit 1
 
       - name: Refresh Scholar metrics
+        if: steps.scholar.outputs.enabled == 'true'
         env:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
           ALLOW_DECREASE: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_decrease }}
@@ -63,27 +77,17 @@ jobs:
 
       - name: Commit verified data
         id: commit
-        run: |
-          if git diff --quiet -- _data/scholar.yml _data/publication_citations.json; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "No Scholar data change to commit."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add _data/scholar.yml _data/publication_citations.json
-          git commit -m "Update Scholar metrics"
-          git push
-          echo "changed=true" >> "$GITHUB_OUTPUT"
+        if: steps.scholar.outputs.enabled == 'true'
+        run: bash scripts/commit_snapshot.sh "Update Scholar metrics" _data/scholar.yml _data/publication_citations.json
 
       - name: Request GitHub Pages rebuild
-        if: steps.commit.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        if: steps.scholar.outputs.enabled == 'true' && (steps.commit.outputs.changed == 'true' || github.event_name == 'workflow_dispatch')
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
 
       - name: Close resolved Scholar alert
-        if: success()
+        if: success() && steps.scholar.outputs.enabled == 'true'
         uses: actions/github-script@v9
         with:
           script: |

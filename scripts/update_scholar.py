@@ -29,6 +29,7 @@ from urllib.request import Request, urlopen
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DEFAULT_DATA_PATH = ROOT / "_data" / "scholar.yml"
 DEFAULT_PUBLICATION_DATA_PATH = ROOT / "_data" / "publication_citations.json"
+DEFAULT_FEATURES_PATH = ROOT / "_data" / "features.json"
 MAX_RESPONSE_BYTES = 2_000_000
 BTH_MIRROR_URL = "https://cse.bth.se/~fer/googlescholar-api/googlescholar.php"
 METRIC_KEYS = ("total_citations", "h_index", "i10_index")
@@ -67,6 +68,13 @@ class ScholarSnapshot:
     metrics: dict[str, int]
     provider: str
     publications: tuple[ScholarPublication, ...] = ()
+
+
+def scholar_enabled(path: pathlib.Path) -> bool:
+    features = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(features, dict) or not isinstance(features.get("scholar_enabled"), bool):
+        raise ScholarError("features.json must define scholar_enabled as true or false")
+    return features["scholar_enabled"]
 
 
 def yaml_scalar(text: str, key: str) -> str | None:
@@ -664,6 +672,10 @@ def atomic_write(path: pathlib.Path, content: str) -> bool:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--features-file", type=pathlib.Path, default=DEFAULT_FEATURES_PATH)
+    parser.add_argument(
+        "--print-enabled", action="store_true", help="Print true/false and exit without fetching"
+    )
     parser.add_argument("--data-file", type=pathlib.Path, default=DEFAULT_DATA_PATH)
     parser.add_argument(
         "--publication-data-file",
@@ -683,6 +695,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     try:
+        enabled = scholar_enabled(args.features_file)
+        if args.print_enabled:
+            print("true" if enabled else "false")
+            return 0
+        if not enabled:
+            print("Scholar is disabled in _data/features.json; skipping refresh without changing data.")
+            return 0
         config = read_config(args.data_file)
         existing, previous_updated_at = read_existing(args.data_file)
         publication_data = read_publication_data(args.publication_data_file, config)

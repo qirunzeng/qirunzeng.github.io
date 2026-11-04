@@ -5,9 +5,9 @@ layout: null
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   {% assign public_pages = site.pages | where_exp: "item", "item.sitemap != false" %}
   {% for item in public_pages %}
-    {% unless item.url contains '/assets/' or item.url contains '/404' or item.url == '/research/' or item.url == '/about/' %}
+    {% if item.layout == 'default' and item.url != '/404.html' %}
       <url><loc>{{ item.url | absolute_url }}</loc></url>
-    {% endunless %}
+    {% endif %}
   {% endfor %}
 </urlset>
 

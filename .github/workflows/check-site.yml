@@ -1,0 +1,34 @@
+name: Check Site
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-site-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      BUNDLER_VERSION: "2.5.23"
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler: "2.5.23"
+          bundler-cache: true
+      - name: Test data update scripts
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Validate data and build both Scholar states
+        run: bundle exec ruby scripts/check_site.rb

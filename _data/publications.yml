@@ -25,6 +25,7 @@ conference:
   - id: "one-rounding-fits-all"
     url: "https://dl.acm.org/doi/10.1145/3770855.3817696"
     title: "One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization"
+    summary: "Memory-efficient sampling and rounding for influence maximization under partition constraints."
     publication_date: "8 August 2026"
     publication_date_iso: "2026-08-08"
     doi: "10.1145/3770855.3817696"
@@ -79,6 +80,7 @@ conference:
     url: "https://arxiv.org/abs/2605.05745"
     pin_to_top: true
     title: "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback"
+    summary: "Identifying the best arm by adaptively combining reward and preference feedback, including their acquisition costs."
     publication_date: "7 May 2026"
     publication_date_iso: "2026-05-07"
     doi: "10.48550/arXiv.2605.05745"
@@ -106,6 +108,7 @@ conference:
     url: "https://arxiv.org/abs/2505.21938"
     pin_to_top: true
     title: "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection"
+    summary: "Understanding how limited, bounded fake feedback can steer bandit algorithms toward an attacker's target arm."
     publication_date: "28 May 2025"
     publication_date_iso: "2025-05-28"
     doi: "10.48550/arXiv.2505.21938"

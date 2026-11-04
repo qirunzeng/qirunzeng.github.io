@@ -8,10 +8,35 @@ The site uses no external theme, UI framework, icon library, web font, analytics
 
 ```sh
 bundle install
-bundle exec jekyll serve
+bash scripts/preview.sh
 ```
 
 Then open `http://127.0.0.1:4000`.
+
+The preview command updates CSS/JS content versions before starting Jekyll.
+After editing CSS or JS during a preview session, run
+`python3 scripts/update_assets.py` again so the browser requests the new version.
+Commit `_data/assets.json` alongside asset changes. The content check rejects a
+stale manifest; ordinary content or metrics updates keep the asset URLs stable.
+
+## Verification
+
+```sh
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+bundle exec ruby scripts/check_site.rb
+```
+
+The `Check Site` workflow runs on pushes and pull requests. It checks publication
+IDs and references, asset versions, and both Scholar states. Temporary builds
+are inspected for local links/resources, anchors, accessibility labels, page
+metadata, JSON-LD, sitemap entries, and disabled Scholar information. The checks
+use no external APIs and leave tracked content unchanged.
+
+The two snapshot workflows share a write concurrency group. A common commit
+helper rebases onto the current remote branch and retries a racing push up to
+three times. A conflicting edit fails without overwriting the remote; local Git
+tests cover unchanged snapshots, concurrent content edits, a racing push, and
+snapshot conflicts.
 
 ## Content
 
@@ -23,6 +48,10 @@ Then open `http://127.0.0.1:4000`.
 To choose the papers shown on the homepage, edit `selected_publications` in
 `_data/home.yml`. Each entry is a publication `id` from
 `_data/publications.yml`, and the list order controls the display order.
+An optional `summary` on each paper supplies its one-sentence explanation on the
+homepage. Keep it grounded in the paper's abstract. Each research interest has a
+`papers` list; the first ID is its representative link and all IDs are validated.
+The homepage identity is read from `_data/profile.yml`.
 
 Each paper's `url` in `_data/publications.yml` is its shared paper address.
 The title uses it directly, and conference/arXiv badges use `paper: true`
@@ -47,6 +76,17 @@ the next build. Code links keep their own repository URLs, and DOI links are
 generated from the paper's `doi` identifier.
 
 ## Google Scholar metrics
+
+Quick switch: edit `_data/features.json` and set `"scholar_enabled": false` to
+disable Scholar, or `true` to re-enable it (the default). This single switch hides
+the profile link, citation/h-index/i10-index metrics, source/date, and each paper's
+"Cited by" link. Publication counts and venue breakdowns remain visible.
+The fetcher exits successfully before any network request or snapshot write when
+disabled, including manual runs. The scheduled workflow skips refresh, data
+commits, rebuild requests, and alert recovery; existing data and alerts are kept.
+Commit and push the switch change for GitHub Actions to read it; the visibility
+change takes effect on the next Pages build. Restart local `jekyll serve` if
+needed. Use JSON booleans `true`/`false`, without quotes.
 
 The Publications page reads citations, h-index, and i10-index from
 `_data/scholar.yml`. The `Update Scholar Metrics` GitHub Actions workflow runs
@@ -115,19 +155,23 @@ introduced.
 The homepage leads with identity, research, and selected publications in a
 two-column layout. News entries live in `_data/home.yml`; both the homepage
 and archive display full entries, including complete linked paper titles.
-The homepage shows the latest three entries. Codeforces charts use native disclosures.
+The homepage shows the latest three entries immediately after selected papers.
+Selected papers include a brief, abstract-based contribution summary. Codeforces
+charts use native disclosures.
 Public copy contains only relevant content, short actions, and freshness dates;
 methodology and implementation details belong in this README.
 
 All pages share a 1120px shell, a 200px profile column, and the same main-column
 start and title scale. Body copy stays at 16px; page titles scale from 28–32px,
-section headings from 18–20px, and paper titles use 16px. Compact section gaps
+section headings from 18–20px, and paper titles use 16px (17px on the homepage). Compact section gaps
 and list padding increase visible content; paper badges sit alongside venue
 details on desktop and wrap below them on phones.
 Publication statistics sit immediately below the title in a compact metric
 strip; venue details expand on demand. Teaching opens directly with the course
-list. Neither page adds a third layout column. On compact screens, page content
-comes first and profile links follow it consistently across all pages. On desktop,
+list. Neither page adds a third layout column. On compact screens, the header
+keeps the name, navigation, and Email visible;
+secondary profile links follow the page content. The mobile header uses two rows
+to avoid crowding narrow screens. On desktop,
 the profile stays fixed at the shared content start. It scrolls independently
 when its content exceeds the available viewport height; scrolling at its edge
 does not move the main page. The desktop footer and its divider stay within the
@@ -143,3 +187,7 @@ These summarize the existing abstracts rather than asserting additional fields.
 The compact Codeforces overview is visible at the end of the homepage; charts
 expand on demand. The topic chart shows the top six, with only the remaining
 topics under Other.
+
+CSS is organized by shared layout, content components, and responsive rules;
+obsolete rail layouts have been removed. Social sharing uses Open Graph metadata
+and the existing portrait. The sitemap includes content pages only.
