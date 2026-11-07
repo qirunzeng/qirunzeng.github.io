@@ -1,174 +1,46 @@
-name: Update Scholar Metrics
-
+name: Scholar Cloud Diagnostic
 on:
-  schedule:
-    # 09:23 in Hong Kong; an off-peak minute reduces GitHub scheduler delays.
-    - cron: "23 1 * * *"
-    # 21:23 recovery window; skipped without fetching after a success today.
-    - cron: "23 13 * * *"
   workflow_dispatch:
-    inputs:
-      allow_decrease:
-        description: "Accept a verified metric decrease for this manual run"
-        required: false
-        default: false
-        type: boolean
-      test_alert:
-        description: "Deliberately fail once to test the GitHub Issue alarm"
-        required: false
-        default: false
-        type: boolean
-
-concurrency:
-  group: update-site-data
-  cancel-in-progress: false
-
 permissions:
-  contents: write
-  issues: write
-  pages: write
-
+  contents: read
 jobs:
-  update-scholar:
-    name: Fetch, validate, and publish metrics
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v7
-        with:
-          ref: ${{ github.ref_name }}
-          fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@v7
-        with:
-          python-version: "3.13"
-
-      - name: Read Scholar switch
-        id: scholar
-        env:
-          EVENT_NAME: ${{ github.event_name }}
-        run: |
-          enabled=$(python scripts/update_scholar.py --print-enabled)
-          refresh=$enabled
-          if [[ "$enabled" == "true" && "$EVENT_NAME" == "schedule" ]]; then
-            refresh=$(python scripts/update_scholar.py --print-refresh-needed)
-          fi
-          echo "enabled=$enabled" >> "$GITHUB_OUTPUT"
-          echo "refresh=$refresh" >> "$GITHUB_OUTPUT"
-          if [[ "$enabled" != "true" ]]; then
-            echo "Scholar is disabled; skipping refresh and alert recovery."
-          elif [[ "$refresh" != "true" ]]; then
-            echo "Scholar already refreshed successfully today; skipping network requests."
-          fi
-
-      - name: Run fetcher tests
-        if: steps.scholar.outputs.refresh == 'true'
-        run: python -m unittest discover -s tests -p "test_*.py" -v
-
-      - name: Exercise failure alarm
-        if: ${{ steps.scholar.outputs.refresh == 'true' && github.event_name == 'workflow_dispatch' && inputs.test_alert }}
-        run: |
-          echo "Intentional failure requested for alert-path testing."
-          exit 1
-
-      - name: Refresh Scholar metrics
-        if: steps.scholar.outputs.refresh == 'true'
-        env:
-          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
-          ALLOW_DECREASE: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_decrease }}
-        run: |
-          arguments=(--fetch-attempts 3)
-          if [[ "$ALLOW_DECREASE" == "true" ]]; then
-            arguments+=(--allow-decrease)
-          fi
-          python scripts/update_scholar.py "${arguments[@]}"
-
-      - name: Commit verified data
-        id: commit
-        if: steps.scholar.outputs.refresh == 'true'
-        run: bash scripts/commit_snapshot.sh "Update Scholar metrics" _data/scholar.yml _data/publication_citations.json
-
-      - name: Request GitHub Pages rebuild
-        if: steps.scholar.outputs.refresh == 'true' && (steps.commit.outputs.changed == 'true' || github.event_name == 'workflow_dispatch')
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
-
-      - name: Close resolved Scholar alert
-        if: success() && steps.scholar.outputs.refresh == 'true'
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const title = "[Automation] Google Scholar metrics update failed";
-            const issues = await github.paginate(github.rest.issues.listForRepo, {
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: "open",
-              per_page: 100,
-            });
-            const issue = issues.find(item => !item.pull_request && item.title === title);
-            if (issue) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                body: `Recovered successfully in [workflow run ${context.runNumber}](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}).`,
-              });
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                state: "closed",
-                state_reason: "completed",
-              });
-            }
-
-  alert-on-failure:
-    name: Open or update failure alert
-    needs: update-scholar
-    if: ${{ always() && needs.update-scholar.result == 'failure' }}
-    runs-on: ubuntu-latest
+  probe:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, macos-15, windows-2025]
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 5
-
     steps:
-      - name: Create durable GitHub Issue alarm
-        uses: actions/github-script@v9
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
-          script: |
-            const title = "[Automation] Google Scholar metrics update failed";
-            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const body = [
-              `The daily Google Scholar refresh failed at ${new Date().toISOString()}.`,
-              "",
-              `- Workflow run: [${context.runNumber}](${runUrl})`,
-              `- Branch: \`${context.ref}\``,
-              "- The existing metrics were left untouched.",
-              "",
-              "Open the workflow run for the exact fetch, parse, validation, commit, or Pages error.",
-            ].join("\n");
-            const issues = await github.paginate(github.rest.issues.listForRepo, {
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: "open",
-              per_page: 100,
-            });
-            const issue = issues.find(item => !item.pull_request && item.title === title);
-            if (issue) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                body,
-              });
-            } else {
-              await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title,
-                body,
-                assignees: [context.repo.owner],
-              });
-            }
+          python-version: '3.13'
+      - name: Probe and validate real Scholar data
+        shell: bash
+        run: |
+          python -u - <<'PY'
+          import json, pathlib, sys
+          from urllib.parse import quote
+          from scripts import update_scholar as s
+          config=s.read_config(s.DEFAULT_DATA_PATH)
+          existing,_=s.read_existing(s.DEFAULT_DATA_PATH)
+          publications=s.read_publication_data(s.DEFAULT_PUBLICATION_DATA_PATH,config)
+          def validate(snapshot):
+              s.validate_snapshot(snapshot,config,existing)
+              s.reconcile_publication_citations(snapshot,publications,checked_at='diagnostic')
+              print('VALIDATED',snapshot.provider,snapshot.metrics,'papers',len(snapshot.publications),flush=True)
+          try:
+              raw=s.fetch_bytes(config.source_url+'&pagesize=100',timeout=15)
+              validate(s.parse_scholar_html(raw.decode('utf-8',errors='replace')))
+              sys.exit(0)
+          except Exception as exc:
+              print('DIRECT FAILED:',type(exc).__name__,str(exc),flush=True)
+          try:
+              user=quote(s.scholar_user_id(config.source_url)+'&pagesize=100',safe='')
+              raw=s.fetch_bytes(s.BTH_MIRROR_URL+'?user='+user,timeout=10)
+              validate(s.parse_bth_payload(json.loads(raw),expected_name=config.expected_name,identity_publication=config.identity_publication))
+          except Exception as exc:
+              print('MIRROR FAILED:',type(exc).__name__,str(exc),flush=True)
+              sys.exit(1)
+          PY
