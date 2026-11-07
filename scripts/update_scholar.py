@@ -371,6 +371,10 @@ def parse_serpapi_payload(payload: dict[str, Any]) -> ScholarSnapshot:
         citation_value: Any = 0
         if isinstance(cited_by, dict):
             citation_value = cited_by.get("value", 0)
+        # SerpApi represents an uncited article with value: null. This applies
+        # only to article counts; missing profile totals must still be rejected.
+        if citation_value is None:
+            citation_value = 0
         publications.append(
             ScholarPublication(
                 scholar_id=str(article.get("citation_id", "")),
@@ -392,6 +396,7 @@ def fetch_from_serpapi(source_url: str, api_key: str) -> ScholarSnapshot:
             "engine": "google_scholar_author",
             "author_id": scholar_user_id(source_url),
             "hl": "en",
+            "num": 100,
             "api_key": api_key,
         }
     )

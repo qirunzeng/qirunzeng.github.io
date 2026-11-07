@@ -120,6 +120,44 @@ class ScholarUpdateTests(unittest.TestCase):
             identity_publication="Fusing Reward and Dueling Feedback in Stochastic Bandits",
         )
 
+    def test_serpapi_null_article_counts_do_not_discard_valid_profile(self):
+        payload = {
+            "author": {"name": "Qirun Zeng"},
+            "cited_by": {"table": [
+                {"citations": {"all": 10}},
+                {"h_index": {"all": 2}},
+                {"i10_index": {"all": 0}},
+            ]},
+            "articles": [
+                {"title": "Uncited paper", "citation_id": "sITttdEAAAAJ:zero", "cited_by": {"value": None}},
+                {"title": "Missing citation field", "citation_id": "sITttdEAAAAJ:missing"},
+                {"title": "Null citation object", "citation_id": "sITttdEAAAAJ:null", "cited_by": None},
+                {"title": "Cited paper", "citation_id": "sITttdEAAAAJ:cited", "cited_by": {"value": 6}},
+            ],
+        }
+        with mock.patch.object(scholar, "fetch_bytes", return_value=json.dumps(payload).encode()) as fetch:
+            snapshot = scholar.fetch_from_serpapi(self.config.source_url, "test-key")
+        self.assertEqual(snapshot.metrics, {"total_citations": 10, "h_index": 2, "i10_index": 0})
+        self.assertEqual([paper.citations for paper in snapshot.publications], [0, 0, 0, 6])
+        self.assertIn("num=100", fetch.call_args.args[0])
+        self.assertEqual(snapshot.provider, "serpapi")
+
+        payload["cited_by"]["table"][0]["citations"]["all"] = None
+        with self.assertRaises(scholar.ScholarError):
+            scholar.parse_serpapi_payload(payload)
+
+    def test_serpapi_null_does_not_bypass_citation_decrease_guard(self):
+        snapshot = scholar.parse_serpapi_payload({
+            "author": {"name": "Qirun Zeng"},
+            "cited_by": {"table": [
+                {"citations": {"all": 10}}, {"h_index": {"all": 2}}, {"i10_index": {"all": 0}},
+            ]},
+            "articles": [{"title": "Known paper", "citation_id": "sITttdEAAAAJ:known", "cited_by": {"value": None}}],
+        })
+        existing = {"papers": {"known": {"title": "Known paper", "scholar_id": "sITttdEAAAAJ:known", "citations": 1}}}
+        with self.assertRaisesRegex(scholar.ScholarError, "decreased unexpectedly"):
+            scholar.reconcile_publication_citations(snapshot, existing, checked_at="2026-11-07")
+
     def test_rate_limit_falls_through_without_immediate_retries(self):
         error = HTTPError("https://scholar.google.com", 429, "Too Many Requests", {}, None)
         with mock.patch.object(scholar, "fetch_bytes", side_effect=error) as fetch, mock.patch.object(scholar.time, "sleep") as sleep:
