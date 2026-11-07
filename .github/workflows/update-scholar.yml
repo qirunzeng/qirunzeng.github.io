@@ -1,46 +1,46 @@
-name: Scholar Cloud Diagnostic
+name: Scholar API Connectivity
 on:
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   probe:
-    strategy:
-      fail-fast: false
-      matrix:
-        runner: [ubuntu-24.04, macos-15, windows-2025]
-    runs-on: ${{ matrix.runner }}
-    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
-      - name: Probe and validate real Scholar data
-        shell: bash
+      - name: Verify SerpApi authentication and real author response
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         run: |
           python -u - <<'PY'
-          import json, pathlib, sys
-          from urllib.parse import quote
+          import json, os, time
+          from urllib.request import Request, urlopen
+          from urllib.parse import urlencode
           from scripts import update_scholar as s
+          key=os.environ['SERPAPI_KEY'].strip()
+          if not key: raise SystemExit('Secret is empty')
+          def get(path,params,timeout):
+              url='https://serpapi.com/'+path+'?'+urlencode(dict(params,api_key=key))
+              started=time.monotonic()
+              try:
+                  with urlopen(Request(url,headers={'Accept':'application/json'}),timeout=timeout) as response:
+                      data=json.load(response)
+                  print('RESPONSE',path,'seconds',round(time.monotonic()-started,1),flush=True)
+                  return data
+              except Exception as exc:
+                  print('REQUEST FAILED',path,type(exc).__name__,str(exc).replace(key,'[REDACTED]'),flush=True)
+                  raise SystemExit(1)
+          account=get('account.json',{},20)
+          print('ACCOUNT', {k:account.get(k) for k in ['plan_name','account_status','total_searches_left']},flush=True)
           config=s.read_config(s.DEFAULT_DATA_PATH)
-          existing,_=s.read_existing(s.DEFAULT_DATA_PATH)
-          publications=s.read_publication_data(s.DEFAULT_PUBLICATION_DATA_PATH,config)
-          def validate(snapshot):
-              s.validate_snapshot(snapshot,config,existing)
-              s.reconcile_publication_citations(snapshot,publications,checked_at='diagnostic')
-              print('VALIDATED',snapshot.provider,snapshot.metrics,'papers',len(snapshot.publications),flush=True)
-          try:
-              raw=s.fetch_bytes(config.source_url+'&pagesize=100',timeout=15)
-              validate(s.parse_scholar_html(raw.decode('utf-8',errors='replace')))
-              sys.exit(0)
-          except Exception as exc:
-              print('DIRECT FAILED:',type(exc).__name__,str(exc),flush=True)
-          try:
-              user=quote(s.scholar_user_id(config.source_url)+'&pagesize=100',safe='')
-              raw=s.fetch_bytes(s.BTH_MIRROR_URL+'?user='+user,timeout=10)
-              validate(s.parse_bth_payload(json.loads(raw),expected_name=config.expected_name,identity_publication=config.identity_publication))
-          except Exception as exc:
-              print('MIRROR FAILED:',type(exc).__name__,str(exc),flush=True)
-              sys.exit(1)
+          data=get('search.json',{'engine':'google_scholar_author','author_id':s.scholar_user_id(config.source_url),'hl':'en','num':100},90)
+          snapshot=s.parse_serpapi_payload(data)
+          metrics,_=s.read_existing(s.DEFAULT_DATA_PATH)
+          s.validate_snapshot(snapshot,config,metrics)
+          s.reconcile_publication_citations(snapshot,s.read_publication_data(s.DEFAULT_PUBLICATION_DATA_PATH,config),checked_at='diagnostic')
+          print('VALIDATED',snapshot.provider,snapshot.metrics,'papers',len(snapshot.publications),flush=True)
           PY
