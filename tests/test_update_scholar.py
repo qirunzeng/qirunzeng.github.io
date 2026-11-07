@@ -9,6 +9,7 @@ import sys
 import tempfile
 import unittest
 from unittest import mock
+from urllib.error import HTTPError
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -22,6 +23,24 @@ SPEC.loader.exec_module(scholar)
 
 
 class ScholarSwitchTests(unittest.TestCase):
+    def test_recovery_window_skips_successful_day_but_retries_stale_day(self):
+        with tempfile.TemporaryDirectory() as directory:
+            features = pathlib.Path(directory) / "features.json"
+            data = pathlib.Path(directory) / "scholar.yml"
+            features.write_text('{"scholar_enabled": true}')
+            today = scholar.dt.datetime.now(scholar.dt.timezone.utc).date()
+            for day, expected in ((today, "false"), (today - scholar.dt.timedelta(days=1), "true")):
+                data.write_text(f'last_checked_at: "{day.isoformat()}"\n')
+                with self.subTest(day=day), contextlib.redirect_stdout(io.StringIO()) as output, mock.patch.object(scholar, "fetch_snapshot") as fetch:
+                    self.assertEqual(scholar.main(["--features-file", str(features), "--data-file", str(data), "--print-refresh-needed"]), 0)
+                    self.assertEqual(output.getvalue().strip(), expected)
+                    fetch.assert_not_called()
+            features.write_text('{"scholar_enabled": false}')
+            data.unlink()
+            with contextlib.redirect_stdout(io.StringIO()) as output:
+                self.assertEqual(scholar.main(["--features-file", str(features), "--data-file", str(data), "--print-refresh-needed"]), 0)
+                self.assertEqual(output.getvalue().strip(), "false")
+
     def test_disabled_skips_fetch_and_writes_even_for_manual_options(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             features = pathlib.Path(directory) / "features.json"
@@ -100,6 +119,45 @@ class ScholarUpdateTests(unittest.TestCase):
             expected_name="Qirun Zeng",
             identity_publication="Fusing Reward and Dueling Feedback in Stochastic Bandits",
         )
+
+    def test_rate_limit_falls_through_without_immediate_retries(self):
+        error = HTTPError("https://scholar.google.com", 429, "Too Many Requests", {}, None)
+        with mock.patch.object(scholar, "fetch_bytes", side_effect=error) as fetch, mock.patch.object(scholar.time, "sleep") as sleep:
+            with self.assertRaises(scholar.ScholarError):
+                scholar.fetch_from_google(self.config.source_url)
+            fetch.assert_called_once()
+            sleep.assert_not_called()
+
+    def test_blocked_google_can_recover_through_mirror(self):
+        snapshot = scholar.ScholarSnapshot(name="Qirun Zeng", metrics={}, provider="test", publications=(scholar.ScholarPublication("", "Paper", 0),))
+        with mock.patch.dict(scholar.os.environ, {"SERPAPI_KEY": ""}), mock.patch.object(scholar, "fetch_from_google", side_effect=scholar.ScholarError("HTTP 429")), mock.patch.object(scholar, "fetch_from_bth_mirror", return_value=snapshot), contextlib.redirect_stderr(io.StringIO()):
+            self.assertEqual(scholar.fetch_snapshot(self.config), snapshot)
+
+    def test_all_providers_exhausted_is_a_fetch_error(self):
+        with mock.patch.dict(scholar.os.environ, {"SERPAPI_KEY": ""}), mock.patch.object(scholar, "fetch_from_google", side_effect=scholar.ScholarError("HTTP 403")), mock.patch.object(scholar, "fetch_from_bth_mirror", side_effect=scholar.ScholarError("timeout")), contextlib.redirect_stderr(io.StringIO()):
+            with self.assertRaises(scholar.ScholarFetchError):
+                scholar.fetch_snapshot(self.config)
+
+    def test_fetch_recovers_after_delayed_round(self):
+        snapshot = scholar.ScholarSnapshot("Qirun Zeng", {}, "test")
+        with mock.patch.object(scholar, "fetch_snapshot", side_effect=[scholar.ScholarFetchError("timeout"), snapshot]) as fetch, mock.patch.object(scholar.time, "sleep") as sleep, contextlib.redirect_stderr(io.StringIO()):
+            self.assertEqual(scholar.fetch_with_recovery(self.config, attempts=3), snapshot)
+            self.assertEqual(fetch.call_count, 2)
+            sleep.assert_called_once_with(60)
+
+    def test_fetch_recovery_is_bounded_and_keeps_failure(self):
+        with mock.patch.object(scholar, "fetch_snapshot", side_effect=scholar.ScholarFetchError("timeout")) as fetch, mock.patch.object(scholar.time, "sleep") as sleep, contextlib.redirect_stderr(io.StringIO()):
+            with self.assertRaises(scholar.ScholarFetchError):
+                scholar.fetch_with_recovery(self.config, attempts=3)
+            self.assertEqual(fetch.call_count, 3)
+            self.assertEqual(sleep.call_args_list, [mock.call(60), mock.call(60)])
+
+    def test_validation_errors_are_not_retried(self):
+        with mock.patch.object(scholar, "fetch_snapshot", side_effect=scholar.ScholarError("identity mismatch")) as fetch, mock.patch.object(scholar.time, "sleep") as sleep:
+            with self.assertRaisesRegex(scholar.ScholarError, "identity mismatch"):
+                scholar.fetch_with_recovery(self.config, attempts=3)
+            fetch.assert_called_once()
+            sleep.assert_not_called()
 
     def test_parses_profile_identity_and_all_time_metrics(self) -> None:
         html = (ROOT / "tests" / "fixtures" / "scholar_profile.html").read_text()

@@ -48,6 +48,10 @@ class ScholarError(RuntimeError):
     """Raised when a Scholar refresh cannot be trusted."""
 
 
+class ScholarFetchError(ScholarError):
+    """All configured providers are unavailable; a delayed retry may help."""
+
+
 @dataclass(frozen=True)
 class ScholarConfig:
     source_url: str
@@ -85,6 +89,11 @@ def yaml_scalar(text: str, key: str) -> str | None:
     if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
         value = value[1:-1]
     return value
+
+
+def refresh_needed(path: pathlib.Path) -> bool:
+    today = dt.datetime.now(dt.timezone.utc).date().isoformat()
+    return yaml_scalar(path.read_text(encoding="utf-8"), "last_checked_at") != today
 
 
 def read_config(path: pathlib.Path) -> ScholarConfig:
@@ -310,7 +319,9 @@ def retry(operation_name: str, operation: Any, attempts: int = 3) -> Any:
             return operation()
         except (ScholarError, HTTPError, URLError, TimeoutError, OSError, ValueError) as exc:
             errors.append(f"attempt {attempt}: {type(exc).__name__}: {exc}")
-            if isinstance(exc, HTTPError) and exc.code in {400, 401, 403, 404}:
+            # A blocked/rate-limited provider should yield to the next source,
+            # rather than repeating requests from the same IP seconds apart.
+            if isinstance(exc, HTTPError) and exc.code in {400, 401, 403, 404, 429}:
                 break
             if attempt < attempts:
                 time.sleep(attempt * 2)
@@ -487,7 +498,23 @@ def fetch_snapshot(config: ScholarConfig) -> ScholarSnapshot:
         return snapshot
     except ScholarError as exc:
         errors.append(str(exc))
-    raise ScholarError("All Scholar providers failed: " + " || ".join(errors))
+    raise ScholarFetchError("All Scholar providers failed: " + " || ".join(errors))
+
+
+def fetch_with_recovery(config: ScholarConfig, *, attempts: int = 1) -> ScholarSnapshot:
+    for attempt in range(1, attempts + 1):
+        try:
+            return fetch_snapshot(config)
+        except ScholarFetchError as exc:
+            if attempt == attempts:
+                raise
+            print(
+                f"Warning: fetch round {attempt}/{attempts} failed: {exc}. "
+                "Waiting 60 seconds before retrying all providers.",
+                file=sys.stderr,
+            )
+            time.sleep(60)
+    raise AssertionError("At least one fetch attempt is required")
 
 
 def validate_snapshot(
@@ -673,8 +700,13 @@ def atomic_write(path: pathlib.Path, content: str) -> bool:
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--features-file", type=pathlib.Path, default=DEFAULT_FEATURES_PATH)
-    parser.add_argument(
+    status = parser.add_mutually_exclusive_group()
+    status.add_argument(
         "--print-enabled", action="store_true", help="Print true/false and exit without fetching"
+    )
+    status.add_argument(
+        "--print-refresh-needed", action="store_true",
+        help="Print whether Scholar is enabled and has not been checked today (UTC)",
     )
     parser.add_argument("--data-file", type=pathlib.Path, default=DEFAULT_DATA_PATH)
     parser.add_argument(
@@ -683,6 +715,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=DEFAULT_PUBLICATION_DATA_PATH,
     )
     parser.add_argument("--html-file", type=pathlib.Path, help="Parse a saved profile page")
+    parser.add_argument(
+        "--fetch-attempts", type=int, choices=(1, 2, 3), default=1,
+        help="Provider rounds on network failure, spaced 60 seconds apart (default: 1)",
+    )
     parser.add_argument(
         "--allow-decrease",
         action="store_true",
@@ -699,6 +735,9 @@ def main(argv: list[str] | None = None) -> int:
         if args.print_enabled:
             print("true" if enabled else "false")
             return 0
+        if args.print_refresh_needed:
+            print("true" if enabled and refresh_needed(args.data_file) else "false")
+            return 0
         if not enabled:
             print("Scholar is disabled in _data/features.json; skipping refresh without changing data.")
             return 0
@@ -708,7 +747,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.html_file:
             snapshot = parse_scholar_html(args.html_file.read_text(encoding="utf-8"))
         else:
-            snapshot = fetch_snapshot(config)
+            snapshot = fetch_with_recovery(config, attempts=args.fetch_attempts)
         validate_snapshot(snapshot, config, existing, allow_decrease=args.allow_decrease)
         checked_at = dt.datetime.now(dt.timezone.utc).date().isoformat()
         content = render_data(config, snapshot, existing, previous_updated_at, checked_at)

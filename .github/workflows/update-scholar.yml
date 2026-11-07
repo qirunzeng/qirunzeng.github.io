@@ -4,6 +4,8 @@ on:
   schedule:
     # 09:23 in Hong Kong; an off-peak minute reduces GitHub scheduler delays.
     - cron: "23 1 * * *"
+    # 21:23 recovery window; skipped without fetching after a success today.
+    - cron: "23 13 * * *"
   workflow_dispatch:
     inputs:
       allow_decrease:
@@ -30,7 +32,7 @@ jobs:
   update-scholar:
     name: Fetch, validate, and publish metrics
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Check out repository
@@ -46,30 +48,39 @@ jobs:
 
       - name: Read Scholar switch
         id: scholar
+        env:
+          EVENT_NAME: ${{ github.event_name }}
         run: |
           enabled=$(python scripts/update_scholar.py --print-enabled)
+          refresh=$enabled
+          if [[ "$enabled" == "true" && "$EVENT_NAME" == "schedule" ]]; then
+            refresh=$(python scripts/update_scholar.py --print-refresh-needed)
+          fi
           echo "enabled=$enabled" >> "$GITHUB_OUTPUT"
+          echo "refresh=$refresh" >> "$GITHUB_OUTPUT"
           if [[ "$enabled" != "true" ]]; then
             echo "Scholar is disabled; skipping refresh and alert recovery."
+          elif [[ "$refresh" != "true" ]]; then
+            echo "Scholar already refreshed successfully today; skipping network requests."
           fi
 
       - name: Run fetcher tests
-        if: steps.scholar.outputs.enabled == 'true'
+        if: steps.scholar.outputs.refresh == 'true'
         run: python -m unittest discover -s tests -p "test_*.py" -v
 
       - name: Exercise failure alarm
-        if: ${{ steps.scholar.outputs.enabled == 'true' && github.event_name == 'workflow_dispatch' && inputs.test_alert }}
+        if: ${{ steps.scholar.outputs.refresh == 'true' && github.event_name == 'workflow_dispatch' && inputs.test_alert }}
         run: |
           echo "Intentional failure requested for alert-path testing."
           exit 1
 
       - name: Refresh Scholar metrics
-        if: steps.scholar.outputs.enabled == 'true'
+        if: steps.scholar.outputs.refresh == 'true'
         env:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
           ALLOW_DECREASE: ${{ github.event_name == 'workflow_dispatch' && inputs.allow_decrease }}
         run: |
-          arguments=()
+          arguments=(--fetch-attempts 3)
           if [[ "$ALLOW_DECREASE" == "true" ]]; then
             arguments+=(--allow-decrease)
           fi
@@ -77,17 +88,17 @@ jobs:
 
       - name: Commit verified data
         id: commit
-        if: steps.scholar.outputs.enabled == 'true'
+        if: steps.scholar.outputs.refresh == 'true'
         run: bash scripts/commit_snapshot.sh "Update Scholar metrics" _data/scholar.yml _data/publication_citations.json
 
       - name: Request GitHub Pages rebuild
-        if: steps.scholar.outputs.enabled == 'true' && (steps.commit.outputs.changed == 'true' || github.event_name == 'workflow_dispatch')
+        if: steps.scholar.outputs.refresh == 'true' && (steps.commit.outputs.changed == 'true' || github.event_name == 'workflow_dispatch')
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
 
       - name: Close resolved Scholar alert
-        if: success() && steps.scholar.outputs.enabled == 'true'
+        if: success() && steps.scholar.outputs.refresh == 'true'
         uses: actions/github-script@v9
         with:
           script: |

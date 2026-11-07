@@ -90,7 +90,9 @@ needed. Use JSON booleans `true`/`false`, without quotes.
 
 The Publications page reads citations, h-index, and i10-index from
 `_data/scholar.yml`. The `Update Scholar Metrics` GitHub Actions workflow runs
-daily at 09:23 Hong Kong time. It validates the profile identity and all three
+daily at 09:23 Hong Kong time, with a recovery window at 21:23. Scheduled runs
+skip network requests if a successful check is already recorded for that UTC
+date; manual dispatch always attempts a refresh when enabled. It validates the profile identity and all three
 metrics before atomically replacing the data file, commits the verified data,
 and explicitly requests a Pages rebuild.
 
@@ -104,6 +106,15 @@ malformed response, wrong profile, truncated publication list, or unexpected
 metric decrease fails the workflow without changing the stored values. The
 failure job opens and assigns a durable GitHub Issue, comments on repeated
 failures, and the next successful run closes the alert.
+
+The switch does not change the provider URLs or parsing behavior. HTTP 403/429
+immediately falls through to the next source. Actions allows up to three complete
+provider rounds with a 60-second pause between failed rounds; local runs use one
+round by default. Identity checks and metric-decrease checks are never bypassed.
+These retries can recover transient outages but cannot guarantee access when all
+providers remain blocked. A successful run from a trusted local connection can
+also refresh the snapshots with `python3 scripts/update_scholar.py`; review and
+push both data files afterward. Never update `last_checked_at` by hand.
 
 Run the same checks locally with:
 
