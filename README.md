@@ -152,9 +152,10 @@ failures in its run status.
 
 ## Design and performance
 
-The visual system uses system fonts, neutral surfaces, restrained wine accents,
-thin dividers, and responsive spacing, with light/dark themes and reduced-motion
-support. Topics and languages use static SVG rings with text legends. Topic segments
+The visual system uses system fonts, warm neutral surfaces, Chengheng ink-blue
+accents, thin dividers, and responsive spacing. Its light and dark themes share
+the same brand palette and include reduced-motion support. Topics and languages
+use static SVG rings with text legends. Topic segments
 represent shares of tag occurrences across unique solved problems; they do not
 represent mutually exclusive shares of solved problems. The Other segment sums
 all tag counts beyond the top six.
