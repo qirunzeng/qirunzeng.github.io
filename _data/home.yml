@@ -42,6 +42,9 @@ research:
       papers: ["one-rounding-fits-all"]
 
 service:
+  - period: "2027"
+    title: "Reviewer"
+    detail: "AISTATS and WWW."
   - period: "2026"
     title: "Reviewer"
     detail: "ICLR and NeurIPS."
