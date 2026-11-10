@@ -182,7 +182,7 @@
       "name": "LeetCode",
       "handle": "qirunzeng",
       "profile_url": "https://leetcode.cn/u/qirunzeng/",
-      "updated_at": "2026-11-10T04:20:24Z",
+      "updated_at": "2026-11-10T04:27:44Z",
       "rating": 1920,
       "solved": 116,
       "languages": [
@@ -210,16 +210,16 @@
           "value": 1920
         },
         {
+          "label": "Peak rating",
+          "value": 1920
+        },
+        {
           "label": "Problems solved",
           "value": 116
         },
         {
-          "label": "Global contest rank",
-          "value": 35872
-        },
-        {
-          "label": "Top percentile",
-          "value": "5.87%"
+          "label": "Rated contests",
+          "value": 2
         }
       ],
       "verification": "public-api"
