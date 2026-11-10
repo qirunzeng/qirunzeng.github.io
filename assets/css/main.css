@@ -1004,11 +1004,6 @@ a {
 .home-intro h1 { margin: 0; font-size: clamp(1.75rem, 2.6vw, 2rem); font-weight: 650; letter-spacing: normal; word-spacing: 0.05em; line-height: 1.2; }
 .home-intro__role { margin: 0.45rem 0 0; color: var(--muted); font-size: 0.9375rem; }
 .home-intro__focus { max-width: 68ch; margin: 0.75rem 0 0; color: var(--ink-soft); font-size: 1.0625rem; line-height: 1.65; }
-.home-intro__actions { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin-top: 0.85rem; }
-.home-button, .home-contact { display: inline-flex; min-height: 44px; align-items: center; gap: 0.7rem; font-size: 0.875rem; font-weight: 550; text-decoration: none; }
-.home-button { padding: 0.5rem 1.1rem; border-radius: 24px; background: var(--accent); color: var(--accent-on); }
-.home-button:hover { background: var(--accent-strong); color: var(--accent-on); }
-:root[data-theme="dark"] .home-button,
 :root[data-theme="dark"] .site-brand__mark,
 :root[data-theme="dark"] .publication__number { color: var(--accent-on); }
 .page-home .page-section { margin-top: 1.75rem; }
@@ -1071,7 +1066,6 @@ a {
 .research-interests dt a:hover { color: var(--accent); }
 .research-interests dd { margin: 0; color: var(--muted); font-size: 0.875rem; line-height: 1.6; }
 .home-extras { margin-top: 1.75rem; border-top: 1px solid var(--line); }
-.home-extra { border-bottom: 1px solid var(--line); }
 .cf-title { margin: 0 auto 0 0; color: var(--ink-soft); font-size: 0.875rem; font-weight: 500; }
 @media (max-width: 620px) {
   html { scrollbar-gutter: auto; }
@@ -1182,10 +1176,6 @@ a {
     grid-column: 1 / -1;
   }
 
-  .publication__resources {
-    margin-top: 0.5rem;
-  }
-
   .profile__links {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1236,7 +1226,6 @@ a {
   }
 
   .page-home .page-section { margin-top: 1.5rem; }
-  .publication__abstract summary { min-height: 32px; padding-block: 0.35rem; font-weight: 500; }
   .page-home .news-item { grid-template-columns: 3rem minmax(0, 1fr); column-gap: 0.75rem; }
   .page-home .news-item__date { grid-column: 1; margin: 0; }
   .page-home .news-item__marker { display: none; }

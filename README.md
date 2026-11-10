@@ -171,6 +171,8 @@ Selected papers show titles, authors, venues, and links. Codeforces
 charts use native disclosures.
 Public copy contains only relevant content, short actions, and freshness dates;
 methodology and implementation details belong in this README.
+The homepage intro contains identity and research text; navigation and contact
+links use the shared header and profile instead of repeating actions there.
 
 All pages share a 1120px shell, a 200px profile column, and the same main-column
 start and title scale. Body copy stays at 16px; page titles scale from 28–32px,
@@ -180,15 +182,18 @@ publication details and align left at every screen size. They use transparent
 backgrounds, 12px text, and the same 24px minimum height on desktop and phones.
 Teaching material links share this compact tag style.
 The Abstract disclosure sits on its own line below the paper links, keeping
-its position stable when expanded. On phones, papers drop the number rail, use the
+its position stable when expanded. Its type, padding, and resource-row spacing
+are shared by desktop and phones. The last homepage section relies on the
+footer separator instead of adding a second bottom border.
+On phones, papers drop the number rail, use the
 full content width, and show date/citations above a separate DOI line without
 stray separators. Author lists and venues retain their full text. Profile
 links form a balanced two-column grid.
 Publication statistics sit immediately below the title in a compact metric
 strip; venue details expand on demand. Teaching opens directly with the course
 list. Neither page adds a third layout column. On compact screens, the header
-keeps the name and navigation visible. Email is available in the homepage intro
-and profile links as a Gmail web compose link, using the single `email` field in
+keeps the name and navigation visible. Email is available in the profile links
+as a Gmail web compose link, using the single `email` field in
 `_data/profile.yml`. It opens a new tab with the recipient prefilled and requires
 Gmail sign-in; visitors review and send the message themselves. Teaching has a dedicated page and navigation entry;
 the homepage does not repeat its summary. Profile links follow the page content.
