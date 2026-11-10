@@ -182,7 +182,7 @@
       "name": "LeetCode",
       "handle": "qirunzeng",
       "profile_url": "https://leetcode.cn/u/qirunzeng/",
-      "updated_at": "2026-11-10T04:04:54Z",
+      "updated_at": "2026-11-10T04:20:24Z",
       "rating": 1920,
       "solved": 116,
       "languages": [
@@ -222,7 +222,7 @@
           "value": "5.87%"
         }
       ],
-      "verification": "public-profile-browser"
+      "verification": "public-api"
     },
     {
       "id": "luogu",
