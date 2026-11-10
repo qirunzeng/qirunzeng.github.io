@@ -20,6 +20,7 @@ else:
 
 ROOT = Path(__file__).resolve().parents[1]
 ORDER = ('codeforces', 'atcoder', 'leetcode', 'luogu')
+METRIC_LABELS = ('Rating', 'Peak rating', 'Problems solved', 'Rated contests')
 IDENTITIES = {
     'codeforces': ('Codeforces', 'rewinery', 'https://codeforces.com/profile/rewinery'),
     'atcoder': ('AtCoder', 'qirunzeng', 'https://atcoder.jp/users/qirunzeng'),
@@ -100,14 +101,12 @@ def account(provider, rating, peak, solved, contests, languages, topics):
     result = dict(id=provider, name=name, handle=handle, profile_url=url, updated_at=now(),
                   rating=integer(rating, 'rating'), solved=integer(solved, 'solved'),
                   languages=languages, topics=topics)
-    result['metrics'] = [{'label': 'Rating', 'value': rating}]
-    if peak is not None:
-        if peak < rating:
-            raise ValueError('Peak rating is below current rating')
-        result['metrics'].append({'label': 'Peak rating', 'value': integer(peak, 'peak rating')})
-    result['metrics'].append({'label': 'Problems solved', 'value': solved})
-    if contests is not None:
-        result['metrics'].append({'label': 'Rated contests', 'value': integer(contests, 'contest count')})
+    peak = integer(peak, 'peak rating')
+    contests = integer(contests, 'contest count')
+    if peak < rating:
+        raise ValueError('Peak rating is below current rating')
+    result['metrics'] = [{'label': label, 'value': value}
+                         for label, value in zip(METRIC_LABELS, (rating, peak, solved, contests))]
     return result
 
 
@@ -195,6 +194,10 @@ def combine(accounts):
             raise ValueError('Account identity mismatch')
         solved = integer(a['solved'], 'solved')
         integer(a['rating'], 'rating')
+        if tuple(m['label'] for m in a['metrics']) != METRIC_LABELS:
+            raise ValueError('Programming accounts must use the same metric columns')
+        for metric in a['metrics']:
+            integer(metric['value'], metric['label'])
         metrics = {m['label']: m['value'] for m in a['metrics']}
         if len(metrics) != len(a['metrics']) or metrics.get('Rating') != a['rating'] or metrics.get('Problems solved') != solved:
             raise ValueError('Displayed metrics disagree with account values')

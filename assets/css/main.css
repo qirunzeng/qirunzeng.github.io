@@ -712,71 +712,58 @@ button, a {
 .programming-panel {
   margin-top: var(--space-4);
 }
+.programming-table-scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
 .programming-accounts {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-8) var(--space-6);
+  width: 100%;
+  min-width: 17rem;
+  table-layout: fixed;
+  border-collapse: collapse;
 }
-.programming-account {
-  min-width: 0;
+.programming-account-column {
+  width: 30%;
 }
-.programming-header {
-  display: flex;
-  align-items: start;
-  gap: var(--space-2);
+.programming-accounts th, .programming-accounts td {
+  padding: var(--space-2) var(--space-1);
+  text-align: right;
+  vertical-align: top;
 }
-.programming-header h3 {
-  margin: 0;
+.programming-accounts thead th {
+  color: var(--muted);
+  font-size: var(--text-meta);
+  font-weight: var(--weight-medium);
+}
+.programming-accounts th:first-child {
+  padding-left: 0;
+  padding-right: var(--space-2);
+  text-align: left;
+}
+.programming-accounts td:last-child, .programming-accounts thead th:last-child {
+  padding-right: 0;
+}
+.programming-accounts td {
+  white-space: nowrap;
   font-size: var(--text-body);
   font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
 }
 .programming-handle {
   color: var(--ink);
+  font-size: var(--text-body);
+  font-weight: var(--weight-semibold);
 }
-.programming-icon {
-  display: grid;
-  width: 1.25rem;
-  height: 1.5rem;
-  flex: none;
-  align-items: center;
-  color: var(--muted);
-}
-.programming-icon svg {
-  width: var(--space-4);
-  height: var(--space-4);
-}
-.programming-user {
-  margin: 0;
+.programming-checked {
+  margin: var(--space-2) 0 0;
   color: var(--muted);
   font-size: var(--text-meta);
+  font-weight: var(--weight-regular);
 }
 .programming-overview {
   margin: var(--space-2) 0 0;
   color: var(--muted);
   font-size: var(--text-meta);
-}
-.programming-stats {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-4);
-  margin: var(--space-4) 0;
-}
-.programming-stats div {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: var(--space-1);
-}
-.programming-stats dt {
-  color: var(--muted);
-  font-size: var(--text-meta);
-  line-height: 1.4;
-}
-.programming-stats dd {
-  margin: 0;
-  font-size: var(--text-section);
-  font-weight: var(--weight-semibold);
-  line-height: 1.25;
-  font-variant-numeric: tabular-nums;
 }
 .programming-charts-disclosure > summary {
   margin-top: var(--space-6);
@@ -1112,11 +1099,18 @@ button, a {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-1);
   }
-  .programming-accounts {
-    grid-template-columns: minmax(0, 1fr);
+  .programming-handle {
+    font-size: var(--text-meta);
   }
-  .programming-stats {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .programming-accounts thead th {
+    font-size: var(--text-tag);
+  }
+  .programming-accounts th:not(:first-child), .programming-accounts td {
+    padding-inline: 0.125rem;
+    white-space: nowrap;
+  }
+  .programming-accounts td {
+    font-size: var(--text-body);
   }
   .programming-charts {
     grid-template-columns: minmax(0, 1fr);

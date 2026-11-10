@@ -128,9 +128,16 @@ with `allow_decrease` enabled after checking the public profile.
 ## Programming statistics
 
 The expanded Programming overview shows Codeforces (`rewinery`), AtCoder and
-LeetCode CN (`qirunzeng`), and Luogu (`727702`) in a shared layout with the same
-code icon. Each account keeps its own rating scale, available metrics, profile
-link, and verified date. `_data/programming.json` stores the four snapshots and
+LeetCode CN (`qirunzeng`), and Luogu (`727702`) as one row per platform in a
+compact table. Every row shows the same columns: rating, peak rating, solved
+problems, and rated contests, alongside the platform's profile link.
+A single verification date below the table uses the oldest
+account snapshot; individual dates and handles remain in each link's tooltip
+and accessible name. LeetCode peak rating and contest count are verified against
+its complete attended contest history. Each platform keeps its own rating scale.
+The table keeps numbers on one line on phones; at enlarged text sizes its
+container can scroll independently without overflowing the whole page.
+`_data/programming.json` stores the four snapshots and
 combined chart data; `_data/codeforces.json` remains the Codeforces source.
 
 The `Update Programming Stats` workflow runs every Monday at 10:47 Hong Kong

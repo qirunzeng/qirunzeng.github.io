@@ -62,6 +62,20 @@ class ProgrammingTests(unittest.TestCase):
         self.assertEqual(len(combined['accounts']), 4)
         self.assertEqual(combined['languages'], [{'name': 'C++', 'count': 8}])
 
+    def test_all_accounts_must_use_the_same_metric_columns(self):
+        accounts = self.accounts()
+        accounts[2]['metrics'][-1]['label'] = 'Global contest rank'
+        with self.assertRaisesRegex(ValueError, 'same metric columns'):
+            combine(accounts)
+
+    def test_truncated_leetcode_history_cannot_produce_a_peak(self):
+        fetcher = Fetcher()
+        contest = {'data': {'userContestRanking': {'rating': 1920, 'attendedContestsCount': 2},
+                            'userContestRankingHistory': [{'attended': True, 'rating': 1920}]}}
+        with patch.object(fetcher, 'read', side_effect=[{'data': {}}, contest]):
+            with self.assertRaisesRegex(ValueError, 'Incomplete LeetCode contest history'):
+                fetcher.leetcode()
+
     def test_missing_categories_are_explicit_not_zero(self):
         accounts = self.accounts()
         accounts[1]['topics'] = None
