@@ -129,12 +129,17 @@ with `allow_decrease` enabled after checking the public profile.
 
 The expanded Programming overview shows Codeforces (`rewinery`), AtCoder and
 LeetCode CN (`qirunzeng`), and Luogu (`727702`) as one row per platform in a
-compact table. Every row shows the same columns: rating, peak rating, solved
-problems, and rated contests, alongside the platform's profile link.
+compact table. Every row shows the same columns: rating, peak rating, and solved
+problems, alongside the platform's profile link. Rated contest counts remain in
+the source snapshots for validation but are not displayed.
 A single verification date below the table uses the oldest
 account snapshot; individual dates and handles remain in each link's tooltip
 and accessible name. LeetCode peak rating and contest count are verified against
 its complete attended contest history. Each platform keeps its own rating scale.
+Sidebar platform marks are served locally: Codeforces, LeetCode and Luogu SVG
+paths come from [Simple Icons](https://github.com/simple-icons/simple-icons/tree/develop/icons);
+AtCoder uses its [official favicon](https://img.atcoder.jp/assets/favicon.png).
+All four use the same size and inherit the sidebar color in both themes.
 The table keeps numbers on one line on phones; at enlarged text sizes its
 container can scroll independently without overflowing the whole page.
 `_data/programming.json` stores the four snapshots and

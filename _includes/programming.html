@@ -5,14 +5,13 @@
     <div class="programming-panel">
       <div class="programming-table-scroll" tabindex="0" role="region" aria-label="Programming account statistics">
         <table class="programming-accounts" aria-label="Programming account statistics">
-          <colgroup><col class="programming-account-column"><col><col><col><col></colgroup>
+          <colgroup><col class="programming-account-column"><col><col><col></colgroup>
           <thead>
             <tr>
               <th scope="col">Account</th>
               <th scope="col">Rating</th>
               <th scope="col" aria-label="Peak rating" title="Peak rating">Peak</th>
               <th scope="col" aria-label="Problems solved" title="Problems solved">Solved</th>
-              <th scope="col" aria-label="Rated contests" title="Rated contests">Rated</th>
             </tr>
           </thead>
           <tbody>
@@ -21,7 +20,7 @@
                 <th scope="row" id="programming-{{ account.id }}">
                   <a class="programming-handle" href="{{ account.profile_url }}" target="_blank" rel="noopener noreferrer" title="{{ account.handle }} · Updated {{ account.updated_at | date: '%b %-d, %Y' }}" aria-label="{{ account.name }} account {{ account.handle }}, updated {{ account.updated_at | date: '%b %-d, %Y' }}">{{ account.name }}</a>
                 </th>
-                {% for metric in account.metrics %}<td>{{ metric.value }}</td>{% endfor %}
+                {% for metric in account.metrics %}{% unless metric.label == 'Rated contests' %}<td>{{ metric.value }}</td>{% endunless %}{% endfor %}
               </tr>
             {% endfor %}
           </tbody>

@@ -293,6 +293,13 @@ button, a {
   flex: none;
   fill: currentColor;
 }
+.profile__link-icon .atcoder-icon {
+  display: block;
+  width: var(--space-4);
+  height: var(--space-4);
+  background: currentColor;
+  mask: url('../images/atcoder.png') center / contain no-repeat;
+}
 .profile__links {
   display: grid;
   margin: 0;
