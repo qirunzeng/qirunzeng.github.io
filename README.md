@@ -140,6 +140,8 @@ original timestamp with an Actions warning; it is never replaced with zero or
 marked freshly checked. Missing initial snapshots or failure of every source
 fails the refresh. Valid output is written atomically and committed using the
 shared snapshot concurrency/rebase helper, followed by a Pages rebuild.
+Manual runs can select one provider, or use `--only leetcode` locally, without
+re-fetching the other accounts.
 
 Codeforces uses its official APIs. AtCoder ratings come from its official
 profile and complete rated history; solved problems and languages come from

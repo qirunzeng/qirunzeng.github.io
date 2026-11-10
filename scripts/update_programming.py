@@ -10,6 +10,7 @@ from pathlib import Path
 import re
 import time
 from urllib.parse import urlencode
+from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
 if __package__:
@@ -233,8 +234,19 @@ class Fetcher:
             if body is not None:
                 headers.update({'Content-Type': 'application/json', 'Referer': IDENTITIES['leetcode'][2]})
                 body = json.dumps(body).encode()
-            with urlopen(Request(url, data=body, headers=headers), timeout=45) as response:
-                raw = response.read().decode('utf-8')
+            try:
+                with urlopen(Request(url, data=body, headers=headers), timeout=45) as response:
+                    raw = response.read().decode('utf-8')
+            except HTTPError as exc:
+                if body is not None and exc.code in (400, 422):
+                    try:
+                        errors = json.loads(exc.read(16384)).get('errors', [])
+                        messages = [str(e.get('message', ''))[:300] for e in errors[:4]]
+                    except (ValueError, AttributeError, TypeError):
+                        messages = []
+                    if messages:
+                        raise ValueError('LeetCode query rejected: '+'; '.join(messages)) from exc
+                raise
         return json.loads(raw) if json_data else raw
 
     def codeforces(self):
@@ -360,6 +372,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--fixtures', type=Path)
     parser.add_argument('--check-only', action='store_true')
+    parser.add_argument('--only', choices=ORDER, help='Refresh one account, retaining other snapshots')
     args = parser.parse_args()
     path = ROOT/'_data/programming.json'
     old = json.loads(path.read_text()) if path.exists() else {'accounts': []}
@@ -371,7 +384,7 @@ def main():
     accounts = {a['id']: a for a in old['accounts']}
     fetcher = Fetcher(args.fixtures)
     refreshed = []
-    for provider in ORDER:
+    for provider in ([args.only] if args.only else ORDER):
         try:
             result = getattr(fetcher, provider)()
             if provider in accounts and result['solved'] < accounts[provider]['solved']:

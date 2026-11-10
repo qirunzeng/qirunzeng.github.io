@@ -3,6 +3,12 @@ on:
   schedule:
     - cron: "47 2 * * 1"
   workflow_dispatch:
+    inputs:
+      provider:
+        description: "Account to refresh"
+        type: choice
+        default: all
+        options: [all, codeforces, atcoder, leetcode, luogu]
 permissions:
   contents: write
   pages: write
@@ -26,10 +32,18 @@ jobs:
           python -m unittest discover -s tests -p 'test_codeforces.py' -v
           python -m unittest discover -s tests -p 'test_programming.py' -v
       - name: Fetch official snapshot
+        if: github.event_name == 'schedule' || inputs.provider == 'all' || inputs.provider == 'codeforces'
         continue-on-error: true
         run: python scripts/update_codeforces.py
       - name: Refresh programming accounts and combined charts
-        run: python scripts/update_programming.py
+        env:
+          PROVIDER: ${{ inputs.provider || 'all' }}
+        run: |
+          if [ "$PROVIDER" = "all" ]; then
+            python scripts/update_programming.py
+          else
+            python scripts/update_programming.py --only "$PROVIDER"
+          fi
       - name: Commit verified snapshot
         id: commit
         run: bash scripts/commit_snapshot.sh "Update programming statistics" _data/codeforces.json _data/programming.json
