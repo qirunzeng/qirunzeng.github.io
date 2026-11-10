@@ -320,20 +320,26 @@ class Fetcher:
     def leetcode(self):
         if self.fixtures:
             return leetcode_account(self.read('leetcode-ui.json', ''))
-        query = '''query($userSlug: String!) {
+        profile_query = '''query($userSlug: String!) {
           userProfilePublicProfile(userSlug: $userSlug) { profile { userSlug } }
-          userContestRanking(userSlug: $userSlug) { rating globalRanking topPercentage }
           userProfileUserQuestionProgressV2(userSlug: $userSlug) { numAcceptedQuestions { difficulty count } }
+        }'''
+        contest_query = '''query($userSlug: String!) {
+          userContestRanking(userSlug: $userSlug) { rating globalRanking topPercentage }
           userLanguageProblemCount(userSlug: $userSlug) { languageName problemsSolved }
         }'''
-        payload = self.read('', 'https://leetcode.cn/graphql/noj-go/', body={'query': query, 'variables': {'userSlug': 'qirunzeng'}})
-        if payload.get('errors'):
+        variables = {'userSlug': 'qirunzeng'}
+        # LeetCode CN's own client uses distinct schemas for these query groups.
+        profile_payload = self.read('', 'https://leetcode.cn/graphql/', body={'query': profile_query, 'variables': variables})
+        contest_payload = self.read('', 'https://leetcode.cn/graphql/noj-go/', body={'query': contest_query, 'variables': variables})
+        if profile_payload.get('errors') or contest_payload.get('errors'):
             raise ValueError('LeetCode GraphQL errors')
-        data = payload['data']; ranking = data['userContestRanking']
-        accepted = data['userProfileUserQuestionProgressV2']['numAcceptedQuestions']
+        profile = profile_payload['data']
+        data = contest_payload['data']; ranking = data['userContestRanking']
+        accepted = profile['userProfileUserQuestionProgressV2']['numAcceptedQuestions']
         by_difficulty = {r['difficulty'].casefold(): integer(r['count'], 'accepted count') for r in accepted}
         solved = by_difficulty['all'] if 'all' in by_difficulty else sum(by_difficulty.values())
-        return leetcode_account({'user_slug': data['userProfilePublicProfile']['profile']['userSlug'],
+        return leetcode_account({'user_slug': profile['userProfilePublicProfile']['profile']['userSlug'],
             'rating': ranking['rating'], 'global_rank': ranking['globalRanking'], 'top_percent': ranking['topPercentage'],
             'solved': solved, 'languages': [{'name': r['languageName'], 'count': r['problemsSolved']} for r in data['userLanguageProblemCount']]})
 

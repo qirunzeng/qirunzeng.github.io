@@ -156,7 +156,8 @@ tags are excluded from the topic graph.
 LeetCode uses the CN account exclusively; the same slug on leetcode.com is
 not substituted. The initial snapshot was verified on the public CN profile,
 including the expanded language list. The automatic fetcher uses that site's
-public GraphQL schema. If Cloudflare blocks it, the browser-verified snapshot
+public GraphQL endpoints: profile/progress queries use `/graphql/`, while
+contest/language queries use `/graphql/noj-go/`. If a request fails, the verified snapshot
 and its date remain unchanged. No login cookies or API keys are stored.
 
 Combined solves are unique within each platform, not deduplicated across

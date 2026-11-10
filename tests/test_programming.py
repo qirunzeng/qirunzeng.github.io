@@ -14,6 +14,21 @@ from scripts import update_programming as updater
 
 
 class ProgrammingTests(unittest.TestCase):
+    def test_leetcode_uses_each_cn_graphql_schema_for_its_supported_fields(self):
+        profile = {'data': {'userProfilePublicProfile': {'profile': {'userSlug': 'qirunzeng'}},
+                            'userProfileUserQuestionProgressV2': {'numAcceptedQuestions': [
+                                {'difficulty': 'EASY', 'count': 1}, {'difficulty': 'MEDIUM', 'count': 1}]}}}
+        contest = {'data': {'userContestRanking': {'rating': 1920, 'globalRanking': 100, 'topPercentage': 5.87},
+                            'userLanguageProblemCount': [{'languageName': 'C++', 'problemsSolved': 2},
+                                                         {'languageName': 'Python3', 'problemsSolved': 1}]}}
+        fetcher = Fetcher()
+        with patch.object(fetcher, 'read', side_effect=[profile, contest]) as read:
+            result = fetcher.leetcode()
+        self.assertEqual(result['solved'], 2)
+        self.assertEqual(result['verification'], 'public-api')
+        self.assertEqual(read.call_args_list[0].args[1], 'https://leetcode.cn/graphql/')
+        self.assertEqual(read.call_args_list[1].args[1], 'https://leetcode.cn/graphql/noj-go/')
+
     def test_atcoder_rated_count_ignores_unrated_history_and_tooltip_markup(self):
         html = ('<title>qirunzeng - AtCoder</title><table>'
                 '<th>Rating</th><td><span>1000</span></td>'
