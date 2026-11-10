@@ -171,8 +171,11 @@ Selected papers show titles, authors, venues, and links. Codeforces
 charts use native disclosures.
 Public copy contains only relevant content, short actions, and freshness dates;
 methodology and implementation details belong in this README.
-The homepage intro contains identity and research text; navigation and contact
-links use the shared header and profile instead of repeating actions there.
+The homepage intro combines identity, research focus, and academic background;
+there is no separate About section. Biography paragraphs remain in
+`_data/home.yml` and avoid repeating the role and affiliation shown above them.
+Navigation and contact links use the shared header and profile instead of
+repeating actions there.
 
 All pages share a 1120px shell, a 200px profile column, and the same main-column
 start and title scale. Body copy stays at 16px; page titles scale from 28–32px,

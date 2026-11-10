@@ -11,6 +11,9 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
   <h1 id="profile-heading">{{ site.data.profile.name }}</h1>
   <p class="home-intro__role">{{ site.data.profile.role }} at {{ site.data.profile.affiliation }}</p>
   <p class="home-intro__focus">{{ home.research.summary }}</p>
+  <div class="home-intro__bio prose">
+    {% for paragraph in home.profile.paragraphs %}{{ paragraph | markdownify }}{% endfor %}
+  </div>
 </section>
 
 <section class="page-section" aria-labelledby="selected-publications-heading">
@@ -42,13 +45,6 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
       </div>
     {% endfor %}
   </dl>
-</section>
-
-<section class="page-section" aria-labelledby="about-heading">
-  {% include section-heading.html title="About" %}
-  <div class="prose">
-    {% for paragraph in home.profile.paragraphs %}{{ paragraph | markdownify }}{% endfor %}
-  </div>
 </section>
 
 <section class="page-section" aria-labelledby="service-heading">

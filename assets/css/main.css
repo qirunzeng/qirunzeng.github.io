@@ -1004,6 +1004,8 @@ a {
 .home-intro h1 { margin: 0; font-size: clamp(1.75rem, 2.6vw, 2rem); font-weight: 650; letter-spacing: normal; word-spacing: 0.05em; line-height: 1.2; }
 .home-intro__role { margin: 0.45rem 0 0; color: var(--muted); font-size: 0.9375rem; }
 .home-intro__focus { max-width: 68ch; margin: 0.75rem 0 0; color: var(--ink-soft); font-size: 1.0625rem; line-height: 1.65; }
+.home-intro__bio { margin-top: 0.75rem; font-size: 0.9375rem; line-height: 1.6; }
+.home-intro__bio p:last-child { margin-bottom: 0; }
 :root[data-theme="dark"] .site-brand__mark,
 :root[data-theme="dark"] .publication__number { color: var(--accent-on); }
 .page-home .page-section { margin-top: 1.75rem; }
