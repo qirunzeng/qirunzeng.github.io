@@ -175,8 +175,15 @@ methodology and implementation details belong in this README.
 All pages share a 1120px shell, a 200px profile column, and the same main-column
 start and title scale. Body copy stays at 16px; page titles scale from 28–32px,
 section headings from 18–20px, and paper titles use 16px (17px on the homepage). Compact section gaps
-and list padding increase visible content; paper badges sit alongside venue
-details on desktop and wrap below them on phones.
+and list padding increase visible content. Small, muted paper badges sit below
+publication details and align left at every screen size. They use transparent
+backgrounds, 12px text, and the same 24px minimum height on desktop and phones.
+Teaching material links share this compact tag style.
+The Abstract disclosure sits on its own line below the paper links, keeping
+its position stable when expanded. On phones, papers drop the number rail, use the
+full content width, and show date/citations above a separate DOI line without
+stray separators. Author lists and venues retain their full text. Profile
+links form a balanced two-column grid.
 Publication statistics sit immediately below the title in a compact metric
 strip; venue details expand on demand. Teaching opens directly with the course
 list. Neither page adds a third layout column. On compact screens, the header
