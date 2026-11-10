@@ -772,15 +772,13 @@ a {
 }
 
 .publication__abstract {
-  margin-top: 0.65rem;
-  border-left: 2px solid var(--line-strong);
+  margin-top: 0.35rem;
   color: var(--muted);
 }
 
 .publication__abstract summary {
   width: max-content;
-  min-height: 44px;
-  padding: 0.65rem;
+  padding: 0.125rem 0;
   color: var(--ink-soft);
   cursor: pointer;
   font-family: var(--sans);
@@ -799,6 +797,7 @@ a {
 
 .publication__abstract p {
   max-width: 76ch;
+  border-left: 2px solid var(--line-strong);
   padding: 0.45rem 0 0.05rem 0.65rem;
   font-size: 0.82rem;
   line-height: 1.58;
@@ -1214,6 +1213,7 @@ a {
 
   .page-home .page-section { margin-top: 1.5rem; }
   .tag { min-height: 44px; }
+  .publication__abstract summary { min-height: 44px; padding-block: 0.65rem; }
   .page-home .news-item { grid-template-columns: 3rem minmax(0, 1fr); column-gap: 0.75rem; }
   .page-home .news-item__date { grid-column: 1; margin: 0; }
   .page-home .news-item__marker { display: none; }
