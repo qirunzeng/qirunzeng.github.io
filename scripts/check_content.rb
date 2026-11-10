@@ -23,7 +23,15 @@ module ContentChecks
       references.concat(related)
     end
     home.fetch("news").each do |item|
-      references.concat(item.fetch("text").scan(/\[paper:([^\]]+)\]/).flatten)
+      %w[text home_text].each do |field|
+        next if field == "home_text" && !item.key?(field)
+        value = item[field]
+        unless value.is_a?(String)
+          errors << "News #{field} must be a string"
+          next
+        end
+        references.concat(value.scan(/\[paper:([^\]]+)\]/).flatten)
+      end
     end
     references.uniq.each { |id| errors << "Unknown publication reference: #{id}" unless ids.include?(id) }
     papers.each do |paper|

@@ -13,8 +13,8 @@
       {% for item in news_items limit:3 %}
         <li class="news-item">
           <time class="news-item__date">{{ item.date }}</time>
-          <span class="news-item__marker" aria-hidden="true"></span>
-          <div class="news-item__body">{{ item.text | append: news_paper_references | markdownify }}</div>
+          {% assign home_text = item.home_text | default: item.text %}
+          <div class="news-item__body">{{ home_text | append: news_paper_references | markdownify }}</div>
         </li>
       {% endfor %}
     </ol>
@@ -27,7 +27,6 @@
       {% for item in news_items %}
         <li class="news-item">
           <time class="news-item__date">{{ item.date }}</time>
-          <span class="news-item__marker" aria-hidden="true"></span>
           <div class="news-item__body">{{ item.text | append: news_paper_references | markdownify }}</div>
         </li>
       {% endfor %}

@@ -151,73 +151,67 @@ failures in its run status.
 
 ## Design and performance
 
-The visual system uses system fonts, warm neutral surfaces, Chengheng ink-blue
-accents, thin dividers, and responsive spacing. Its light and dark themes share
-the same brand palette and include reduced-motion support. Topics and languages
-use static SVG rings with text legends. Topic segments
-represent shares of tag occurrences across unique solved problems; they do not
-represent mutually exclusive shares of solved problems. The Other segment sums
-all tag counts beyond the top six.
-Maintenance scripts and tests
-are excluded from the published output. No additional runtime libraries were
-introduced.
+The site follows Apple HIG principles of hierarchy, alignment, consistent
+spacing, and progressive disclosure while retaining its warm neutral and
+Chengheng ink-blue palette. It uses system fonts, native HTML disclosures,
+static SVG charts, and no external fonts, frameworks, or runtime dependencies.
+Light and dark themes share semantic color tokens, visible keyboard focus,
+and reduced-motion support. The header is a solid surface, without glass,
+card shadows, or entrance animations.
 
+The homepage order is introduction, Selected Publications, Recent News,
+Service, and Programming. The introduction combines research and the current
+advisor in one paragraph, followed by academic background in another.
+`_data/home.yml` retains the research-interest descriptions and paper mappings
+for maintenance; these are not rendered as a separate homepage section.
+The three selected paper IDs and their order are maintained there as well.
+No one-line paper summaries or repeated Publications/Email buttons are shown.
+Teaching remains a separate page.
 
-The homepage leads with identity, research, and selected publications in a
-two-column layout. News entries live in `_data/home.yml`; both the homepage
-and archive display full entries, including complete linked paper titles.
-The homepage shows the latest three entries immediately after selected papers.
-Selected papers show titles, authors, venues, and links. Codeforces
-charts use native disclosures.
-Public copy contains only relevant content, short actions, and freshness dates;
-methodology and implementation details belong in this README.
-The homepage intro combines identity, research focus, and academic background;
-there is no separate About section. Biography paragraphs remain in
-`_data/home.yml` and avoid repeating the role and affiliation shown above them.
-Navigation and contact links use the shared header and profile instead of
-repeating actions there.
+News entries use required `text` for the full archive and optional `home_text`
+for the latest three homepage updates. The current entries use their full
+paper titles and complete news text on both pages. A missing or empty
+`home_text` falls back to `text`. Both support `[label][paper:publication-id]` references and
+are validated by the content check. The archive always retains complete news.
+Service displays one Reviewer label and a year/venue list. Programming is
+entirely collapsed by default, including the handle, metrics, and update date;
+its charts remain a nested native disclosure. All data remains in the built
+HTML and works without JavaScript.
 
-All pages share a 1120px shell, a 200px profile column, and the same main-column
-start and title scale. Body copy stays at 16px; page titles scale from 28–32px,
-section headings from 18–20px, and paper titles use 16px (17px on the homepage). Compact section gaps
-and list padding increase visible content. Small, muted paper badges sit below
-publication details and align left at every screen size. They use transparent
-backgrounds, 12px text, and the same 24px minimum height on desktop and phones.
-Teaching material links share this compact tag style.
-The Abstract disclosure sits on its own line below the paper links, keeping
-its position stable when expanded. Its type, padding, and resource-row spacing
-are shared by desktop and phones. The last homepage section relies on the
-footer separator instead of adding a second bottom border.
-On phones, papers drop the number rail, use the
-full content width, and show date/citations above a separate DOI line without
-stray separators. Author lists and venues retain their full text. Profile
-links form a balanced two-column grid.
-Publication statistics sit immediately below the title in a compact metric
-strip; venue details expand on demand. Teaching opens directly with the course
-list. Neither page adds a third layout column. On compact screens, the header
-keeps the name and navigation visible. Email is available in the profile links
-as a Gmail web compose link, using the single `email` field in
-`_data/profile.yml`. It opens a new tab with the recipient prefilled and requires
-Gmail sign-in; visitors review and send the message themselves. Teaching has a dedicated page and navigation entry;
-the homepage does not repeat its summary. Profile links follow the page content.
-The mobile header uses two rows
-to avoid crowding narrow screens. On desktop,
-the profile stays fixed at the shared content start. It scrolls independently
-when its content exceeds the available viewport height; scrolling at its edge
-does not move the main page. The desktop footer and its divider stay within the
-main column so they never cross the fixed profile.
+All pages share a 1120px maximum shell, a 200px desktop profile column,
+and a 48px column gap. Below 900px they use one column, with profile links
+following the main content. Horizontal gutters are 24px, or 16px on phones.
+The desktop profile remains fixed and scrolls independently in short windows.
+The mobile header uses two rows to keep navigation and theme controls visible.
+The footer aligns with the main column and has one top separator.
 
+CSS tokens define spacing (4/8/12/16/24/32/48px), type, weights (400/500/600),
+radii, and separators. Page titles use 32px on desktop and 28px on phones;
+section headings use 20px/18px, paper and course titles 17px, body text 16px,
+secondary information 13px, and tags 12px. Section gaps are 48px/32px;
+heading-to-content spacing is 16px. Dividers appear only below the header,
+between adjacent publications or courses, and above the footer; adjacent
+entries have 16px padding on each side of their divider. Section headings,
+news, service, and programming use alignment and whitespace instead.
 
-Research interests are maintained in `_data/home.yml` with explicit paper IDs.
-Bandit learning maps to the hybrid-feedback and reward/dueling papers;
-adversarial robustness maps to fake-data injection, warm-start attacks, and
-WEREWOLF; sequential inference maps to confidence sequences and e-values;
-combinatorial optimization maps to partition-constrained influence maximization.
-These summarize the existing abstracts rather than asserting additional fields.
-The compact Codeforces overview is visible at the end of the homepage; charts
-expand on demand. The topic chart shows the top six, with only the remaining
-topics under Other.
+Paper, Code, and course-material tags share transparent backgrounds, muted
+borders, and a 24px minimum height on every screen. Abstract sits below the
+paper tags, with identical text and spacing on desktop and mobile; opening
+it does not move its summary. Paper titles, full author lists, venue details,
+DOIs, and citation links remain intact. Publication statistics use a compact
+metric strip, with venue details expanded on demand. Scholar visibility still
+uses the shared feature switch. Decorative number circles and timeline
+markers are removed.
 
-CSS is organized by shared layout, content components, and responsive rules;
-obsolete rail layouts have been removed. Social sharing uses Open Graph metadata
-and the existing portrait. The sitemap includes content pages only.
+Email is available in the profile links as a Gmail web compose link, using
+the single `email` field in `_data/profile.yml`. It opens a new tab with the
+recipient prefilled and requires Gmail sign-in; visitors review and send the
+message themselves. The WeChat dialog retains native modal and keyboard
+behavior, with an ordinary image link as its no-JavaScript fallback.
+
+Codeforces topics and languages use static SVG rings with text legends.
+Topic segments represent shares of tag occurrences across unique solved
+problems, not mutually exclusive shares of solved problems. The Other segment
+sums tags beyond the top six. Social metadata uses the existing portrait;
+the sitemap contains content pages only. Maintenance scripts and tests are
+excluded from the published output.
