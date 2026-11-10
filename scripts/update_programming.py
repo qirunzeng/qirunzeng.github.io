@@ -168,19 +168,17 @@ def leetcode_account(public):
     rating = public['rating']
     if type(rating) not in (int, float) or not math.isfinite(rating) or rating < 0:
         raise ValueError('Invalid LeetCode rating')
+    peak = public['max_rating']
+    if type(peak) not in (int, float) or not math.isfinite(peak) or peak < rating:
+        raise ValueError('Invalid LeetCode peak rating')
+    contests = integer(public['rated_contests'], 'contest count')
     languages = Counter()
     for row in public['languages']:
         languages[language_family(row['name'])] += integer(row['count'], 'language count')
     solved = integer(public['solved'], 'solved')
     if sum(languages.values()) < solved:
         raise ValueError('Incomplete LeetCode language distribution')
-    result = account('leetcode', int(rating + .5), None, solved, None, rows(languages), None)
-    rank = integer(public['global_rank'], 'contest rank')
-    top = public['top_percent']
-    if type(top) not in (int, float) or not math.isfinite(top) or not 0 < top <= 100:
-        raise ValueError('Invalid LeetCode percentile')
-    result['metrics'].extend([{'label': 'Global contest rank', 'value': rank},
-                              {'label': 'Top percentile', 'value': f'{top:.2f}%'}])
+    result = account('leetcode', int(rating + .5), int(peak + .5), solved, contests, rows(languages), None)
     result['verification'] = public.get('verification', 'public-api')
     return result
 
@@ -325,7 +323,8 @@ class Fetcher:
           userProfileUserQuestionProgressV2(userSlug: $userSlug) { numAcceptedQuestions { difficulty count } }
         }'''
         contest_query = '''query($userSlug: String!) {
-          userContestRanking(userSlug: $userSlug) { rating globalRanking topPercentage }
+          userContestRanking(userSlug: $userSlug) { rating attendedContestsCount }
+          userContestRankingHistory(userSlug: $userSlug) { attended rating }
           userLanguageProblemCount(userSlug: $userSlug) { languageName problemsSolved }
         }'''
         variables = {'userSlug': 'qirunzeng'}
@@ -336,11 +335,21 @@ class Fetcher:
             raise ValueError('LeetCode GraphQL errors')
         profile = profile_payload['data']
         data = contest_payload['data']; ranking = data['userContestRanking']
+        history = data['userContestRankingHistory']
+        if any(type(r.get('attended')) is not bool for r in history):
+            raise ValueError('Invalid LeetCode attendance flag')
+        rated = [r for r in history if r['attended']]
+        contests = integer(ranking['attendedContestsCount'], 'contest count')
+        if not rated or len(rated) != contests:
+            raise ValueError('Incomplete LeetCode contest history')
+        ratings = [r['rating'] for r in rated] + [ranking['rating']]
+        if any(type(r) not in (int, float) or not math.isfinite(r) or r < 0 for r in ratings):
+            raise ValueError('Invalid LeetCode historical rating')
         accepted = profile['userProfileUserQuestionProgressV2']['numAcceptedQuestions']
         by_difficulty = {r['difficulty'].casefold(): integer(r['count'], 'accepted count') for r in accepted}
         solved = by_difficulty['all'] if 'all' in by_difficulty else sum(by_difficulty.values())
         return leetcode_account({'user_slug': profile['userProfilePublicProfile']['profile']['userSlug'],
-            'rating': ranking['rating'], 'global_rank': ranking['globalRanking'], 'top_percent': ranking['topPercentage'],
+            'rating': ranking['rating'], 'max_rating': max(ratings), 'rated_contests': contests,
             'solved': solved, 'languages': [{'name': r['languageName'], 'count': r['problemsSolved']} for r in data['userLanguageProblemCount']]})
 
     def luogu(self):

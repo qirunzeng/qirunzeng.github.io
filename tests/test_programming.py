@@ -18,7 +18,10 @@ class ProgrammingTests(unittest.TestCase):
         profile = {'data': {'userProfilePublicProfile': {'profile': {'userSlug': 'qirunzeng'}},
                             'userProfileUserQuestionProgressV2': {'numAcceptedQuestions': [
                                 {'difficulty': 'EASY', 'count': 1}, {'difficulty': 'MEDIUM', 'count': 1}]}}}
-        contest = {'data': {'userContestRanking': {'rating': 1920, 'globalRanking': 100, 'topPercentage': 5.87},
+        contest = {'data': {'userContestRanking': {'rating': 1920, 'attendedContestsCount': 2},
+                            'userContestRankingHistory': [{'attended': True, 'rating': 2000.2},
+                                                         {'attended': False, 'rating': 3000},
+                                                         {'attended': True, 'rating': 1920}],
                             'userLanguageProblemCount': [{'languageName': 'C++', 'problemsSolved': 2},
                                                          {'languageName': 'Python3', 'problemsSolved': 1}]}}
         fetcher = Fetcher()
@@ -26,6 +29,9 @@ class ProgrammingTests(unittest.TestCase):
             result = fetcher.leetcode()
         self.assertEqual(result['solved'], 2)
         self.assertEqual(result['verification'], 'public-api')
+        self.assertEqual(result['metrics'], [
+            {'label': 'Rating', 'value': 1920}, {'label': 'Peak rating', 'value': 2000},
+            {'label': 'Problems solved', 'value': 2}, {'label': 'Rated contests', 'value': 2}])
         self.assertEqual(read.call_args_list[0].args[1], 'https://leetcode.cn/graphql/')
         self.assertEqual(read.call_args_list[1].args[1], 'https://leetcode.cn/graphql/noj-go/')
 
@@ -162,8 +168,8 @@ class ProgrammingTests(unittest.TestCase):
             account('atcoder', 1000, 900, 0, 1, [], [])
 
     def test_leetcode_language_counts_can_overlap(self):
-        data = dict(user_slug='qirunzeng', rating=1920.2, solved=2, global_rank=100,
-                    top_percent=5.87, languages=[dict(name='C++', count=2), dict(name='Python3', count=1)])
+        data = dict(user_slug='qirunzeng', rating=1920.2, max_rating=2000.2, solved=2, rated_contests=2,
+                    languages=[dict(name='C++', count=2), dict(name='Python3', count=1)])
         result = leetcode_account(data)
         self.assertEqual(result['rating'], 1920)
         self.assertEqual(sum(r['count'] for r in result['languages']), 3)
