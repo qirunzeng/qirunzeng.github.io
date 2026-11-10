@@ -174,8 +174,8 @@ paper titles and complete news text on both pages. A missing or empty
 `home_text` falls back to `text`. Both support `[label][paper:publication-id]` references and
 are validated by the content check. The archive always retains complete news.
 Service displays one Reviewer label and a year/venue list. Programming is
-entirely collapsed by default, including the handle, metrics, and update date;
-its charts remain a nested native disclosure. All data remains in the built
+expanded by default, showing the handle, metrics, and update date;
+its charts remain a collapsed nested native disclosure. All data remains in the built
 HTML and works without JavaScript.
 
 All pages share a 1120px maximum shell, a 200px desktop profile column,
