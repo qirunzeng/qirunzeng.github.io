@@ -48,8 +48,7 @@ snapshot conflicts.
 To choose the papers shown on the homepage, edit `selected_publications` in
 `_data/home.yml`. Each entry is a publication `id` from
 `_data/publications.yml`, and the list order controls the display order.
-An optional `summary` on each paper supplies its one-sentence explanation on the
-homepage. Keep it grounded in the paper's abstract. Each research interest has a
+Each research interest has a
 `papers` list; the first ID is its representative link and all IDs are validated.
 The homepage identity is read from `_data/profile.yml`.
 
@@ -168,7 +167,7 @@ The homepage leads with identity, research, and selected publications in a
 two-column layout. News entries live in `_data/home.yml`; both the homepage
 and archive display full entries, including complete linked paper titles.
 The homepage shows the latest three entries immediately after selected papers.
-Selected papers include a brief, abstract-based contribution summary. Codeforces
+Selected papers show titles, authors, venues, and links. Codeforces
 charts use native disclosures.
 Public copy contains only relevant content, short actions, and freshness dates;
 methodology and implementation details belong in this README.

@@ -26,7 +26,7 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
     {% assign all_publications = site.data.publications.conference | concat: site.data.publications.journal | concat: site.data.publications.preprints %}
     {% for publication_id in home.selected_publications %}
       {% assign paper = all_publications | where: "id", publication_id | first %}
-      {% if paper %}{% include publication.html paper=paper show_summary=true %}{% endif %}
+      {% if paper %}{% include publication.html paper=paper %}{% endif %}
     {% endfor %}
   </div>
 

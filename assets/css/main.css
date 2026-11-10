@@ -639,14 +639,6 @@ a {
   text-decoration: underline;
 }
 
-.publication__summary {
-  max-width: 68ch;
-  margin: 0.4rem 0 0;
-  color: var(--ink-soft);
-  font-size: 0.875rem;
-  line-height: 1.55;
-}
-
 .publication__authors {
   margin-top: 0.28rem;
   color: var(--muted);
