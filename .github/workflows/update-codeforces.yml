@@ -1,4 +1,4 @@
-name: Update Codeforces Stats
+name: Update Programming Stats
 on:
   schedule:
     - cron: "47 2 * * 1"
@@ -22,12 +22,17 @@ jobs:
         with:
           python-version: "3.13"
       - name: Verify aggregation
-        run: python -m unittest discover -s tests -p 'test_codeforces.py' -v
+        run: |
+          python -m unittest discover -s tests -p 'test_codeforces.py' -v
+          python -m unittest discover -s tests -p 'test_programming.py' -v
       - name: Fetch official snapshot
+        continue-on-error: true
         run: python scripts/update_codeforces.py
+      - name: Refresh programming accounts and combined charts
+        run: python scripts/update_programming.py
       - name: Commit verified snapshot
         id: commit
-        run: bash scripts/commit_snapshot.sh "Update Codeforces statistics" _data/codeforces.json
+        run: bash scripts/commit_snapshot.sh "Update programming statistics" _data/codeforces.json _data/programming.json
       - name: Request Pages rebuild
         if: steps.commit.outputs.changed == 'true'
         env:

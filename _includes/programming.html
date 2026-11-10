@@ -1,0 +1,36 @@
+{% assign programming = site.data.programming %}
+<section class="home-extra" aria-labelledby="competitive-programming-heading">
+  <details class="programming-disclosure" open>
+    <summary><h2 id="competitive-programming-heading">Programming <span aria-hidden="true">＋</span></h2></summary>
+    <div class="programming-panel">
+      <div class="programming-accounts">
+        {% for account in programming.accounts %}
+          <article class="programming-account" aria-labelledby="programming-{{ account.id }}">
+            <header class="programming-header">
+              <span class="programming-icon" aria-hidden="true">{% include icon.html name="code" %}</span>
+              <div>
+                <h3 id="programming-{{ account.id }}"><a class="programming-handle" href="{{ account.profile_url }}" target="_blank" rel="noopener noreferrer">{{ account.name }}</a></h3>
+                <p class="programming-user">{{ account.handle }}</p>
+              </div>
+            </header>
+            <dl class="programming-stats">
+              {% for metric in account.metrics %}
+                <div><dt>{{ metric.label }}</dt><dd>{{ metric.value }}</dd></div>
+              {% endfor %}
+            </dl>
+            <p class="programming-note">Updated <time datetime="{{ account.updated_at }}">{{ account.updated_at | date: '%b %-d, %Y' }}</time></p>
+          </article>
+        {% endfor %}
+      </div>
+      <details class="programming-charts-disclosure">
+        <summary>Explore topics &amp; languages <span aria-hidden="true">＋</span></summary>
+        <p class="programming-overview">{{ programming.solved }} platform solves across {{ programming.accounts.size }} accounts</p>
+        <div class="programming-charts">
+          {% include programming-chart.html rows=programming.topics title="Problems by topic" unit="topics" caption="Problems can have multiple topics." %}
+          {% include programming-chart.html rows=programming.languages title="Languages" unit="languages" caption="Problems can appear in multiple languages." %}
+        </div>
+        <p class="programming-note">Topic coverage: Codeforces and Luogu. Language coverage: Codeforces, AtCoder and LeetCode. Missing data remains visible as Unclassified or Not public.</p>
+      </details>
+    </div>
+  </details>
+</section>

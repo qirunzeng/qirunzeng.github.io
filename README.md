@@ -125,29 +125,56 @@ python3 scripts/update_scholar.py --check-only
 If Scholar legitimately corrects a metric downward, run the workflow manually
 with `allow_decrease` enabled after checking the public profile.
 
-## Codeforces statistics
+## Programming statistics
 
-The homepage uses `_data/codeforces.json`, a snapshot of the official
-`user.info`, `user.status`, and `user.rating` API responses for `rewinery`.
-The update workflow refreshes it every Monday at 10:47 Hong Kong time, or on
-manual dispatch. The schedule runs from the default branch.
-Visitors make no API requests, and all statistics and charts work without JS.
+The expanded Programming overview shows Codeforces (`rewinery`), AtCoder and
+LeetCode CN (`qirunzeng`), and Luogu (`727702`) in a shared layout with the same
+code icon. Each account keeps its own rating scale, available metrics, profile
+link, and verified date. `_data/programming.json` stores the four snapshots and
+combined chart data; `_data/codeforces.json` remains the Codeforces source.
+
+The `Update Programming Stats` workflow runs every Monday at 10:47 Hong Kong
+time or on manual dispatch. It refreshes Codeforces first, then verifies and
+combines all four sources. A failed source retains its previous values and
+original timestamp with an Actions warning; it is never replaced with zero or
+marked freshly checked. Missing initial snapshots or failure of every source
+fails the refresh. Valid output is written atomically and committed using the
+shared snapshot concurrency/rebase helper, followed by a Pages rebuild.
+
+Codeforces uses its official APIs. AtCoder ratings come from its official
+profile and complete rated history; solved problems and languages come from
+[AtCoder Problems](https://github.com/kenkoooo/AtCoderProblems/blob/master/doc/api.md).
+The fetcher respects its request spacing and paginates with overlapping
+boundaries, deduplicating accepted problem/language pairs. Luogu uses public
+profile/practice metadata and the algorithm tags of every solved problem,
+with requests spaced by more than one second. Contest ratings are read from
+its rating history, not its separate community score. Region, year, and source
+tags are excluded from the topic graph.
+
+LeetCode uses the CN account exclusively; the same slug on leetcode.com is
+not substituted. The initial snapshot was verified on the public CN profile,
+including the expanded language list. The automatic fetcher uses that site's
+public GraphQL schema. If Cloudflare blocks it, the browser-verified snapshot
+and its date remain unchanged. No login cookies or API keys are stored.
+
+Combined solves are unique within each platform, not deduplicated across
+platforms, so imported copies count as separate platform solves. Language
+counts are unique problem/language-family pairs: repeated accepted submissions
+in the same language family count once, and one problem can appear in multiple
+languages. This avoids mixing submission counts with LeetCode's solved counts.
+Common topic names are normalized; a solved problem counts once per normalized
+topic and can have several topics. Sources without public category data appear
+as Unclassified (AtCoder/LeetCode topics) or Not public (Luogu languages), rather
+than vanishing from the charts. Known categories alone count toward the number
+shown in each chart's center. Detailed provider and chart invariants are checked
+by the offline build and unit tests. Visitors make no API calls.
 
 ```sh
 python3 scripts/update_codeforces.py
+python3 scripts/update_programming.py
+python3 scripts/update_programming.py --check-only
 python3 -m unittest discover -s tests -p 'test_*.py' -v
 ```
-
-Solved problems are deduplicated by contest ID and problem index, including
-practice and virtual participation. Topics count unique solved problems and
-can overlap; languages count all accepted submissions, including repeated
-solves. Language versions are grouped into C++ and Python families; PyPy counts
-as Python. Other language names remain distinct. The fetcher paginates the
-complete submission history, respects API request spacing, validates identity and rating consistency, and atomically
-replaces the snapshot only on success. A decreasing solved count fails for
-manual inspection. Network/API failure leaves the previous snapshot intact;
-the date shown on the page identifies its age. GitHub Actions reports refresh
-failures in its run status.
 
 ## Design and performance
 
@@ -175,7 +202,7 @@ paper titles and complete news text on both pages. A missing or empty
 are validated by the content check. The archive always retains complete news.
 Service displays one Reviewer label and a year/venue list. Programming is
 expanded by default, showing the handle, metrics, and update date;
-its charts remain a collapsed nested native disclosure. All data remains in the built
+its combined four-account charts remain a collapsed nested native disclosure. All data remains in the built
 HTML and works without JavaScript.
 
 All pages share a 1120px maximum shell, a 200px desktop profile column,
@@ -209,9 +236,9 @@ recipient prefilled and requires Gmail sign-in; visitors review and send the
 message themselves. The WeChat dialog retains native modal and keyboard
 behavior, with an ordinary image link as its no-JavaScript fallback.
 
-Codeforces topics and languages use static SVG rings with text legends.
-Topic segments represent shares of tag occurrences across unique solved
-problems, not mutually exclusive shares of solved problems. The Other segment
+Combined programming topics and languages use static SVG rings with text legends.
+Topic segments represent shares of normalized tag occurrences across platform
+solves, including an Unclassified category, not mutually exclusive problem counts. The Other segment
 sums tags beyond the top six. Social metadata uses the existing portrait;
 the sitemap contains content pages only. Maintenance scripts and tests are
 excluded from the published output.

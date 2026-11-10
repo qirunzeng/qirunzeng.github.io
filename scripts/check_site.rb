@@ -4,6 +4,7 @@ require "tmpdir"
 require_relative "check_content"
 
 ContentChecks.check
+abort 'Programming snapshot validation failed' unless system('python3', File.join(ContentChecks::ROOT, 'scripts/update_programming.py'), '--check-only')
 root = ContentChecks::ROOT
 Dir.chdir(root) do
   Dir.mktmpdir("qirun-site-check-") do |directory|

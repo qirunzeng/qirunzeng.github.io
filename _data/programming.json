@@ -1,0 +1,451 @@
+{
+  "accounts": [
+    {
+      "id": "codeforces",
+      "name": "Codeforces",
+      "handle": "rewinery",
+      "profile_url": "https://codeforces.com/profile/rewinery",
+      "updated_at": "2026-11-09T10:23:41Z",
+      "rating": 1630,
+      "solved": 118,
+      "languages": [
+        {
+          "name": "C++",
+          "count": 92
+        },
+        {
+          "name": "Python",
+          "count": 27
+        }
+      ],
+      "topics": [
+        {
+          "name": "Greedy",
+          "count": 72
+        },
+        {
+          "name": "Math",
+          "count": 38
+        },
+        {
+          "name": "Constructive algorithms",
+          "count": 34
+        },
+        {
+          "name": "Brute force",
+          "count": 27
+        },
+        {
+          "name": "Simulation",
+          "count": 27
+        },
+        {
+          "name": "Dynamic programming",
+          "count": 22
+        },
+        {
+          "name": "Sorting",
+          "count": 21
+        },
+        {
+          "name": "Binary search",
+          "count": 16
+        },
+        {
+          "name": "Data structures",
+          "count": 16
+        },
+        {
+          "name": "Search",
+          "count": 11
+        },
+        {
+          "name": "Bitmasks",
+          "count": 10
+        },
+        {
+          "name": "Graphs",
+          "count": 10
+        },
+        {
+          "name": "Two pointers",
+          "count": 9
+        },
+        {
+          "name": "Number theory",
+          "count": 8
+        },
+        {
+          "name": "Interactive",
+          "count": 6
+        },
+        {
+          "name": "Strings",
+          "count": 6
+        },
+        {
+          "name": "Trees",
+          "count": 6
+        },
+        {
+          "name": "Combinatorics",
+          "count": 5
+        },
+        {
+          "name": "Game theory",
+          "count": 5
+        },
+        {
+          "name": "Divide and conquer",
+          "count": 3
+        },
+        {
+          "name": "Geometry",
+          "count": 2
+        },
+        {
+          "name": "Hashing",
+          "count": 2
+        },
+        {
+          "name": "Scheduling",
+          "count": 2
+        },
+        {
+          "name": "Unclassified",
+          "count": 2
+        },
+        {
+          "name": "Probability",
+          "count": 1
+        }
+      ],
+      "metrics": [
+        {
+          "label": "Rating",
+          "value": 1630
+        },
+        {
+          "label": "Peak rating",
+          "value": 1648
+        },
+        {
+          "label": "Problems solved",
+          "value": 118
+        },
+        {
+          "label": "Rated contests",
+          "value": 18
+        }
+      ]
+    },
+    {
+      "id": "atcoder",
+      "name": "AtCoder",
+      "handle": "qirunzeng",
+      "profile_url": "https://atcoder.jp/users/qirunzeng",
+      "updated_at": "2026-11-10T04:04:54Z",
+      "rating": 984,
+      "solved": 71,
+      "languages": [
+        {
+          "name": "C++",
+          "count": 39
+        },
+        {
+          "name": "Python",
+          "count": 32
+        }
+      ],
+      "topics": null,
+      "metrics": [
+        {
+          "label": "Rating",
+          "value": 984
+        },
+        {
+          "label": "Peak rating",
+          "value": 1023
+        },
+        {
+          "label": "Problems solved",
+          "value": 71
+        },
+        {
+          "label": "Rated contests",
+          "value": 19
+        }
+      ]
+    },
+    {
+      "id": "leetcode",
+      "name": "LeetCode",
+      "handle": "qirunzeng",
+      "profile_url": "https://leetcode.cn/u/qirunzeng/",
+      "updated_at": "2026-11-10T04:04:54Z",
+      "rating": 1920,
+      "solved": 116,
+      "languages": [
+        {
+          "name": "C++",
+          "count": 110
+        },
+        {
+          "name": "C",
+          "count": 4
+        },
+        {
+          "name": "Rust",
+          "count": 2
+        },
+        {
+          "name": "Python",
+          "count": 1
+        }
+      ],
+      "topics": null,
+      "metrics": [
+        {
+          "label": "Rating",
+          "value": 1920
+        },
+        {
+          "label": "Problems solved",
+          "value": 116
+        },
+        {
+          "label": "Global contest rank",
+          "value": 35872
+        },
+        {
+          "label": "Top percentile",
+          "value": "5.87%"
+        }
+      ],
+      "verification": "public-profile-browser"
+    },
+    {
+      "id": "luogu",
+      "name": "Luogu",
+      "handle": "qirunzeng",
+      "profile_url": "https://www.luogu.com.cn/user/727702",
+      "updated_at": "2026-11-10T04:04:54Z",
+      "rating": 1216,
+      "solved": 82,
+      "languages": null,
+      "topics": [
+        {
+          "name": "Simulation",
+          "count": 31
+        },
+        {
+          "name": "Other algorithms",
+          "count": 30
+        },
+        {
+          "name": "Dynamic programming",
+          "count": 23
+        },
+        {
+          "name": "Math",
+          "count": 22
+        },
+        {
+          "name": "Search",
+          "count": 13
+        },
+        {
+          "name": "Brute force",
+          "count": 12
+        },
+        {
+          "name": "Data structures",
+          "count": 10
+        },
+        {
+          "name": "Sorting",
+          "count": 10
+        },
+        {
+          "name": "Strings",
+          "count": 10
+        },
+        {
+          "name": "Binary search",
+          "count": 6
+        },
+        {
+          "name": "Greedy",
+          "count": 6
+        },
+        {
+          "name": "Number theory",
+          "count": 5
+        },
+        {
+          "name": "Trees",
+          "count": 4
+        },
+        {
+          "name": "Game theory",
+          "count": 3
+        },
+        {
+          "name": "Graphs",
+          "count": 3
+        },
+        {
+          "name": "Unclassified",
+          "count": 3
+        }
+      ],
+      "metrics": [
+        {
+          "label": "Rating",
+          "value": 1216
+        },
+        {
+          "label": "Peak rating",
+          "value": 1216
+        },
+        {
+          "label": "Problems solved",
+          "value": 82
+        },
+        {
+          "label": "Rated contests",
+          "value": 5
+        }
+      ]
+    }
+  ],
+  "solved": 387,
+  "topics": [
+    {
+      "name": "Unclassified",
+      "count": 192
+    },
+    {
+      "name": "Greedy",
+      "count": 78
+    },
+    {
+      "name": "Math",
+      "count": 60
+    },
+    {
+      "name": "Simulation",
+      "count": 58
+    },
+    {
+      "name": "Dynamic programming",
+      "count": 45
+    },
+    {
+      "name": "Brute force",
+      "count": 39
+    },
+    {
+      "name": "Constructive algorithms",
+      "count": 34
+    },
+    {
+      "name": "Sorting",
+      "count": 31
+    },
+    {
+      "name": "Other algorithms",
+      "count": 30
+    },
+    {
+      "name": "Data structures",
+      "count": 26
+    },
+    {
+      "name": "Search",
+      "count": 24
+    },
+    {
+      "name": "Binary search",
+      "count": 22
+    },
+    {
+      "name": "Strings",
+      "count": 16
+    },
+    {
+      "name": "Graphs",
+      "count": 13
+    },
+    {
+      "name": "Number theory",
+      "count": 13
+    },
+    {
+      "name": "Bitmasks",
+      "count": 10
+    },
+    {
+      "name": "Trees",
+      "count": 10
+    },
+    {
+      "name": "Two pointers",
+      "count": 9
+    },
+    {
+      "name": "Game theory",
+      "count": 8
+    },
+    {
+      "name": "Interactive",
+      "count": 6
+    },
+    {
+      "name": "Combinatorics",
+      "count": 5
+    },
+    {
+      "name": "Divide and conquer",
+      "count": 3
+    },
+    {
+      "name": "Geometry",
+      "count": 2
+    },
+    {
+      "name": "Hashing",
+      "count": 2
+    },
+    {
+      "name": "Scheduling",
+      "count": 2
+    },
+    {
+      "name": "Probability",
+      "count": 1
+    }
+  ],
+  "languages": [
+    {
+      "name": "C++",
+      "count": 241
+    },
+    {
+      "name": "Not public",
+      "count": 82
+    },
+    {
+      "name": "Python",
+      "count": 60
+    },
+    {
+      "name": "C",
+      "count": 4
+    },
+    {
+      "name": "Rust",
+      "count": 2
+    }
+  ]
+}

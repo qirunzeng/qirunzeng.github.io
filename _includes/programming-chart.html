@@ -1,0 +1,41 @@
+{% assign total = 0 %}
+{% assign other = 0 %}
+{% assign known_categories = 0 %}
+{% for row in include.rows %}
+  {% assign total = total | plus: row.count %}
+  {% unless row.name == 'Unclassified' or row.name == 'Not public' %}{% assign known_categories = known_categories | plus: 1 %}{% endunless %}
+{% endfor %}
+{% for row in include.rows offset:6 %}{% assign other = other | plus: row.count %}{% endfor %}
+<div class="programming-chart">
+  <h3>{{ include.title }}</h3>
+  <p class="programming-caption">{{ include.caption }}</p>
+  <div class="programming-donut-wrap">
+    <svg class="programming-donut" viewBox="0 0 120 120" aria-hidden="true">
+      <circle class="programming-donut-track" cx="60" cy="60" r="46" />
+      {% if total > 0 %}
+        {% assign offset = 0 %}
+        {% for row in include.rows limit:6 %}
+          {% assign share = row.count | times: 100.0 | divided_by: total %}
+          <circle class="programming-slice programming-color-{{ forloop.index0 }}" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="{{ share }} {{ 100 | minus: share }}" stroke-dashoffset="{{ offset | times: -1 }}" />
+          {% assign offset = offset | plus: share %}
+        {% endfor %}
+        {% if other > 0 %}
+          {% assign share = other | times: 100.0 | divided_by: total %}
+          <circle class="programming-slice programming-color-6" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="{{ share }} {{ 100 | minus: share }}" stroke-dashoffset="{{ offset | times: -1 }}" />
+        {% endif %}
+      {% endif %}
+    </svg>
+    <div class="programming-donut-label"><strong>{{ known_categories }}</strong><span>{{ include.unit }}</span></div>
+  </div>
+  <ol class="programming-legend">
+    {% for row in include.rows limit:6 %}
+      <li><span class="programming-dot programming-color-{{ forloop.index0 }}" aria-hidden="true"></span><span>{{ row.name | escape }}</span><strong>{{ row.count }}</strong></li>
+    {% endfor %}
+  </ol>
+  {% if other > 0 %}
+    <details class="programming-details programming-topic-other">
+      <summary><span class="programming-dot programming-color-6" aria-hidden="true"></span><span>Other ({{ include.rows.size | minus: 6 }}) <span class="programming-other-toggle" aria-hidden="true">＋</span></span><strong>{{ other }}</strong></summary>
+      <ul>{% for row in include.rows offset:6 %}<li><span>{{ row.name | escape }}</span><strong>{{ row.count }}</strong></li>{% endfor %}</ul>
+    </details>
+  {% endif %}
+</div>
