@@ -18,7 +18,10 @@
             {% for account in programming.accounts %}
               <tr class="programming-account">
                 <th scope="row" id="programming-{{ account.id }}">
-                  <a class="programming-handle" href="{{ account.profile_url }}" target="_blank" rel="noopener noreferrer" title="{{ account.handle }} · Updated {{ account.updated_at | date: '%b %-d, %Y' }}" aria-label="{{ account.name }} account {{ account.handle }}, updated {{ account.updated_at | date: '%b %-d, %Y' }}">{{ account.name }}</a>
+                  <a class="programming-handle" href="{{ account.profile_url }}" target="_blank" rel="noopener noreferrer" title="{{ account.handle }} · Updated {{ account.updated_at | date: '%b %-d, %Y' }}" aria-label="{{ account.name }} account {{ account.handle }}, updated {{ account.updated_at | date: '%b %-d, %Y' }}">
+                    <span class="programming-account-icon" aria-hidden="true">{% include icon.html name=account.id %}</span>
+                    <span>{{ account.name }}</span>
+                  </a>
                 </th>
                 {% for metric in account.metrics %}{% unless metric.label == 'Rated contests' %}<td>{{ metric.value }}</td>{% endunless %}{% endfor %}
               </tr>

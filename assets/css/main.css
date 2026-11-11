@@ -287,13 +287,13 @@ button, a {
   place-items: center;
   color: var(--muted);
 }
-.profile__fact-icon svg, .profile__link-icon svg {
+.profile__fact-icon svg, .profile__link-icon svg, .programming-account-icon svg {
   width: var(--space-4);
   height: var(--space-4);
   flex: none;
   fill: currentColor;
 }
-.profile__link-icon .atcoder-icon {
+.atcoder-icon {
   display: block;
   width: var(--space-4);
   height: var(--space-4);
@@ -730,7 +730,7 @@ button, a {
   border-collapse: collapse;
 }
 .programming-account-column {
-  width: 30%;
+  width: 40%;
 }
 .programming-accounts th, .programming-accounts td {
   padding: var(--space-2) var(--space-1);
@@ -757,9 +757,21 @@ button, a {
   font-variant-numeric: tabular-nums;
 }
 .programming-handle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  white-space: nowrap;
   color: var(--ink);
   font-size: var(--text-body);
   font-weight: var(--weight-semibold);
+}
+.programming-account-icon {
+  display: grid;
+  width: var(--space-4);
+  height: var(--space-4);
+  flex: none;
+  place-items: center;
+  color: var(--muted);
 }
 .programming-checked {
   margin: var(--space-2) 0 0;

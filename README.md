@@ -136,10 +136,11 @@ A single verification date below the table uses the oldest
 account snapshot; individual dates and handles remain in each link's tooltip
 and accessible name. LeetCode peak rating and contest count are verified against
 its complete attended contest history. Each platform keeps its own rating scale.
-Sidebar platform marks are served locally: Codeforces, LeetCode and Luogu SVG
+Platform links and marks appear in the homepage Programming table, rather than
+the profile sidebar. Marks are served locally: Codeforces, LeetCode and Luogu SVG
 paths come from [Simple Icons](https://github.com/simple-icons/simple-icons/tree/develop/icons);
 AtCoder uses its [official favicon](https://img.atcoder.jp/assets/favicon.png).
-All four use the same size and inherit the sidebar color in both themes.
+All four use the same size and muted icon color in both themes.
 The table keeps numbers on one line on phones; at enlarged text sizes its
 container can scroll independently without overflowing the whole page.
 `_data/programming.json` stores the four snapshots and
