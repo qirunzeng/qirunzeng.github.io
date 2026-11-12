@@ -357,7 +357,6 @@ button, a {
   color: var(--ink-soft);
 }
 .prose p {
-  max-width: 68ch;
   margin: 0 0 var(--space-4);
 }
 .prose p:last-child {
