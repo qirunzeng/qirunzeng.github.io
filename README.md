@@ -238,10 +238,11 @@ entries have 16px padding on each side of their divider. Section headings,
 news, service, and programming use alignment and whitespace instead.
 
 Paper, Code, and course-material tags share transparent backgrounds, muted
-borders, and a 24px minimum height on every screen. Abstract sits below the
-paper tags, with identical text and spacing on desktop and mobile; opening
-it does not move its summary. Paper titles, full author lists, venue details,
-DOIs, and citation links remain intact. Publication statistics use a compact
+borders, and a 24px minimum height on every screen. Publications initially show
+the title, full author list, and venue with a consistent 4px gap between lines.
+A native Details disclosure reveals dates, DOIs, citations, resource tags, and
+the full abstract together, with identical spacing on desktop and mobile.
+Publication statistics use a compact
 metric strip, with venue details expanded on demand. Scholar visibility still
 uses the shared feature switch. Decorative number circles and timeline
 markers are removed.
