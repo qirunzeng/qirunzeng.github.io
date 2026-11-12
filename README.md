@@ -240,8 +240,10 @@ news, service, and programming use alignment and whitespace instead.
 Paper, Code, and course-material tags share transparent backgrounds, muted
 borders, and a 24px minimum height on every screen. Publications initially show
 the title, full author list, and venue with a consistent 4px gap between lines.
-Resource tags align to the right of the venue. Each paper independently wraps
-its tags onto a new line when its venue and links exceed the available width.
+Each paper places resource tags after the venue's final text line. Tags align
+right when they share that line with text, and align left when they wrap onto
+an empty line. The native script measures the final line after layout and on
+resize; without JavaScript the tags follow the venue in normal inline flow.
 A native Details disclosure reveals dates, DOIs, citations, and
 the full abstract together, with identical spacing on desktop and mobile.
 Publication statistics use a compact
