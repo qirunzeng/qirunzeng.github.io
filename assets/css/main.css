@@ -464,6 +464,10 @@ button, a {
   vertical-align: 0.32em;
 }
 .publication__venue {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
   color: var(--muted);
   font-size: var(--text-meta);
   font-style: normal;
@@ -485,15 +489,17 @@ button, a {
 .publication__metadata a {
   color: inherit;
 }
-.publication__links, .teaching-item__links {
+.teaching-item__links {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
 }
-.publication__resources {
-  display: grid;
-  margin-top: var(--space-1);
-  gap: var(--space-1);
+.publication__links {
+  display: inline-flex;
+  max-width: 100%;
+  margin-inline-start: auto;
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 .publication__disclosure {
   min-width: 0;
@@ -526,8 +532,7 @@ button, a {
   gap: var(--space-2);
   padding-top: var(--space-2);
 }
-.publication__expanded > .publication__metadata,
-.publication__expanded > .publication__resources {
+.publication__expanded > .publication__metadata {
   margin-top: 0;
 }
 .tag {

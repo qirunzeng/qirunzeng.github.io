@@ -13,7 +13,22 @@
       {% for author in include.paper.authors %}{% if author.me %}<strong>{{ author.name }}</strong>{% else %}{{ author.name }}{% endif %}{% if author.equal %}<sup class="publication__equal-marker" title="Equal contribution">⋆</sup>{% endif %}{% if author.mentored %}<sup class="publication__mentor-marker" title="Mentored student">†</sup>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
     </p>
 
-    <p class="publication__venue">{{ include.paper.venue }}</p>
+    <div class="publication__venue">
+      <span class="publication__venue-text">{{ include.paper.venue }}</span>
+      {% if include.paper.links %}
+        <span class="publication__links" aria-label="Links for {{ include.paper.title | escape }}">
+          {% for link in include.paper.links %}
+            {% assign link_url = link.url %}
+            {% if link.paper %}{% assign link_url = include.paper.url %}{% endif %}
+            {% if link_url %}
+              <a class="tag tag--{{ link.type }}" href="{{ link_url | relative_url }}"{% if link_url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}</a>
+            {% else %}
+              <span class="tag tag--{{ link.type }}">{{ link.label }}</span>
+            {% endif %}
+          {% endfor %}
+        </span>
+      {% endif %}
+    </div>
 
     {% if include.extended %}
       <details class="publication__disclosure">
@@ -27,36 +42,17 @@
             {% if include.paper.doi %}<a class="publication__doi" href="https://doi.org/{{ include.paper.doi }}" target="_blank" rel="noopener noreferrer">DOI {{ include.paper.doi }}</a>{% endif %}
             {% if site.data.features.scholar_enabled == true and citation and citation.citations > 0 %}<a class="publication__citations" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=sITttdEAAAAJ&amp;citation_for_view={{ citation.scholar_id }}" target="_blank" rel="noopener noreferrer">Cited by {{ citation.citations }}</a>{% endif %}
           </p>
-    {% endif %}
 
-    <div class="publication__resources">
-      {% if include.paper.links %}
-        <p class="publication__links" aria-label="Links for {{ include.paper.title }}">
-          {% for link in include.paper.links %}
-            {% assign link_url = link.url %}
-            {% if link.paper %}{% assign link_url = include.paper.url %}{% endif %}
-            {% if link_url %}
-              <a class="tag tag--{{ link.type }}" href="{{ link_url | relative_url }}"{% if link_url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}</a>
-            {% else %}
-              <span class="tag tag--{{ link.type }}">{{ link.label }}</span>
-            {% endif %}
-          {% endfor %}
-        </p>
-      {% endif %}
-      {% if include.extended %}
-        {% if include.paper.abstract or include.paper.abstract_status %}
-          <div class="publication__abstract">
-            <h4>Abstract</h4>
-            {% if include.paper.abstract %}
-              {{ include.paper.abstract | markdownify }}
-            {% else %}
-              <p>{{ include.paper.abstract_status }}</p>
-            {% endif %}
-          </div>
-        {% endif %}
-      {% endif %}
-    </div>
-    {% if include.extended %}
+          {% if include.paper.abstract or include.paper.abstract_status %}
+            <div class="publication__abstract">
+              <h4>Abstract</h4>
+              {% if include.paper.abstract %}
+                {{ include.paper.abstract | markdownify }}
+              {% else %}
+                <p>{{ include.paper.abstract_status }}</p>
+              {% endif %}
+            </div>
+          {% endif %}
         </div>
       </details>
     {% endif %}
