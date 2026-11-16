@@ -5,7 +5,7 @@
       "name": "Codeforces",
       "handle": "rewinery",
       "profile_url": "https://codeforces.com/profile/rewinery",
-      "updated_at": "2026-11-10T04:12:55Z",
+      "updated_at": "2026-11-16T10:11:34Z",
       "rating": 1630,
       "solved": 118,
       "languages": [
@@ -144,7 +144,7 @@
       "name": "AtCoder",
       "handle": "qirunzeng",
       "profile_url": "https://atcoder.jp/users/qirunzeng",
-      "updated_at": "2026-11-10T04:12:57Z",
+      "updated_at": "2026-11-16T10:11:35Z",
       "rating": 984,
       "solved": 71,
       "languages": [
@@ -182,13 +182,13 @@
       "name": "LeetCode",
       "handle": "qirunzeng",
       "profile_url": "https://leetcode.cn/u/qirunzeng/",
-      "updated_at": "2026-11-10T04:27:44Z",
+      "updated_at": "2026-11-16T10:11:38Z",
       "rating": 1920,
-      "solved": 116,
+      "solved": 117,
       "languages": [
         {
           "name": "C++",
-          "count": 110
+          "count": 111
         },
         {
           "name": "C",
@@ -215,7 +215,7 @@
         },
         {
           "label": "Problems solved",
-          "value": 116
+          "value": 117
         },
         {
           "label": "Rated contests",
@@ -229,7 +229,7 @@
       "name": "Luogu",
       "handle": "qirunzeng",
       "profile_url": "https://www.luogu.com.cn/user/727702",
-      "updated_at": "2026-11-10T04:16:06Z",
+      "updated_at": "2026-11-16T10:14:24Z",
       "rating": 1216,
       "solved": 82,
       "languages": null,
@@ -319,11 +319,11 @@
       ]
     }
   ],
-  "solved": 387,
+  "solved": 388,
   "topics": [
     {
       "name": "Unclassified",
-      "count": 192
+      "count": 193
     },
     {
       "name": "Greedy",
@@ -429,7 +429,7 @@
   "languages": [
     {
       "name": "C++",
-      "count": 241
+      "count": 242
     },
     {
       "name": "Not public",
