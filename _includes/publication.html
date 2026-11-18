@@ -15,10 +15,13 @@
     </p>
 
     <div class="publication__venue">
-      <span class="publication__venue-text">{{ include.paper.venue }}</span>
+      {% assign venue = include.paper.venue %}
+      {% if include.compact %}{% assign venue = include.paper.short_venue | default: venue %}{% endif %}
+      <span class="publication__venue-text">{{ venue }}</span>
       {% if include.paper.links %}
         <span class="publication__links" aria-label="Links for {{ include.paper.title | escape }}">
           {% for link in include.paper.links %}
+            {% if include.compact and link.paper %}{% continue %}{% endif %}
             {% assign link_url = link.url %}
             {% if link.paper %}{% assign link_url = include.paper.url %}{% endif %}
             {% if link_url %}

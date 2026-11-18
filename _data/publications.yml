@@ -44,6 +44,7 @@ conference:
       - name: "Dacheng Tao"
     venue: "In Proceedings of the 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining"
     venue_group: "KDD"
+    short_venue: "KDD 2026"
     links:
       - label: "KDD'2026"
         paper: true
@@ -95,6 +96,7 @@ conference:
       - name: "Jinhang Zuo"
     venue: "In Proceedings of the 40th Annual Conference on Neural Information Processing Systems"
     venue_group: "NeurIPS"
+    short_venue: "NeurIPS 2026"
     links:
       - label: "NeurIPS'2026"
         paper: true
@@ -121,6 +123,7 @@ conference:
       - name: "Jinhang Zuo"
     venue: "In Proceedings of the 40th Annual Conference on Neural Information Processing Systems"
     venue_group: "NeurIPS"
+    short_venue: "NeurIPS 2026"
     links:
       - label: "NeurIPS'2026"
         paper: true
@@ -209,6 +212,10 @@ preprints:
       - label: "arXiv"
         paper: true
         type: "preprint"
+      - label: "Code"
+        url: "https://github.com/yuruizou/HyConUCB"
+        type: "code"
+
 
   - id: "improved-e-value-thresholds"
     url: "https://arxiv.org/abs/2610.11186"

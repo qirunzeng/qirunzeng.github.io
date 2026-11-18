@@ -408,6 +408,12 @@ button, a {
 .home-intro__bio {
   margin-top: var(--space-3);
 }
+.home-intro__contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: var(--space-2) 0 0;
+}
 .home-intro__bio p {
   text-wrap: pretty;
 }
