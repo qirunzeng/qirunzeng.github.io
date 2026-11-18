@@ -10,13 +10,6 @@ description: "Qirun Zeng is a Ph.D. candidate in Computer Science at City Univer
 <section class="home-intro" aria-labelledby="profile-heading">
   <h1 id="profile-heading">{{ site.data.profile.name }}</h1>
   <p class="home-intro__role">{{ site.data.profile.role }} at {{ site.data.profile.affiliation }}</p>
-  <p class="home-intro__contact">
-    <a href="mailto:{{ site.data.profile.email | escape }}">{{ site.data.profile.email | escape }}</a>
-    {% assign scholar = site.data.profile.links | where: "icon", "google-scholar" | first %}
-    {% if site.data.features.scholar_enabled == true and scholar.url %}
-      <a href="{{ scholar.url | escape }}">{{ scholar.label }}</a>
-    {% endif %}
-  </p>
   <div class="home-intro__bio prose">
     {% capture research_intro %}{{ home.research.summary }} {{ home.profile.advisor }}{% endcapture %}
     {{ research_intro | markdownify }}

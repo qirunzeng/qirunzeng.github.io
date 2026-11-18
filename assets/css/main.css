@@ -408,12 +408,6 @@ button, a {
 .home-intro__bio {
   margin-top: var(--space-3);
 }
-.home-intro__contact {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-4);
-  margin: var(--space-2) 0 0;
-}
 .home-intro__bio p {
   text-wrap: pretty;
 }
@@ -490,6 +484,9 @@ button, a {
 .citation-records h2 a:hover, .citation-records h2 a:focus-visible {
   color: var(--accent);
   text-decoration: underline;
+}
+.publication__headline .publication__title {
+  display: inline;
 }
 .publication__authors {
   color: var(--muted);

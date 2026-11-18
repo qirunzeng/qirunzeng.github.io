@@ -29,12 +29,12 @@
 }());
 
 (function () {
-  var venues = Array.from(document.querySelectorAll('.publication__venue'));
-  var rows = venues.map(function (venue) {
+  var containers = Array.from(document.querySelectorAll('[data-publication-row]'));
+  var rows = containers.map(function (container) {
     return {
-      venue: venue,
-      text: venue.querySelector('.publication__venue-text'),
-      links: venue.querySelector('.publication__links')
+      container: container,
+      text: container.querySelector('.publication__title, .publication__venue-text'),
+      links: container.querySelector('.publication__links')
     };
   }).filter(function (row) {
     return row.text && row.links;
@@ -50,16 +50,14 @@
       row.links.style.removeProperty('--publication-link-offset');
     });
     var offsets = rows.map(function (row) {
-      var range = document.createRange();
-      range.selectNodeContents(row.text);
-      var lines = range.getClientRects();
+      var lines = row.text.getClientRects();
       var lastLine = lines[lines.length - 1];
       var links = row.links.getBoundingClientRect();
       var sharesLine = lastLine && links.top < lastLine.bottom
         && links.bottom > lastLine.top;
       // Leave half a pixel for fractional layout rounding at the right edge.
       return sharesLine
-        ? Math.max(0, row.venue.getBoundingClientRect().right - links.right - 0.5)
+        ? Math.max(0, row.container.getBoundingClientRect().right - links.right - 0.5)
         : 0;
     });
     rows.forEach(function (row, index) {
@@ -74,7 +72,7 @@
   window.addEventListener('resize', scheduleAlignment);
   if (typeof ResizeObserver === 'function') {
     var observer = new ResizeObserver(scheduleAlignment);
-    rows.forEach(function (row) { observer.observe(row.venue); });
+    rows.forEach(function (row) { observer.observe(row.container); });
   }
   if (document.fonts) document.fonts.ready.then(scheduleAlignment);
   scheduleAlignment();

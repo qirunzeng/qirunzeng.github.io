@@ -2,26 +2,19 @@
   {% assign citation = site.data.publication_citations.papers[include.paper.id] %}
   {% assign combined = site.data.combined_citations.papers[include.paper.id] %}
   <div class="publication__body">
-    <h3 class="publication__title">
-      {% if include.paper.url %}
-        <a href="{{ include.paper.url | relative_url }}"{% if include.paper.url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ include.paper.title }}</a>
-      {% else %}
-        {{ include.paper.title }}
-      {% endif %}
-    </h3>
-
-    <p class="publication__authors">
-      {% for author in include.paper.authors %}{% if author.me %}<strong>{{ author.name }}</strong>{% else %}{{ author.name }}{% endif %}{% if author.equal %}<sup class="publication__equal-marker" title="Equal contribution">⋆</sup>{% endif %}{% if author.mentored %}<sup class="publication__mentor-marker" title="Mentored student">†</sup>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
-    </p>
-
-    <div class="publication__venue">
-      {% assign venue = include.paper.venue %}
-      {% if include.compact %}{% assign venue = include.paper.short_venue | default: venue %}{% endif %}
-      <span class="publication__venue-text">{{ venue }}</span>
+    {% capture title %}
+      <h3 class="publication__title">
+        {% if include.paper.url %}
+          <a href="{{ include.paper.url | relative_url }}"{% if include.paper.url contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ include.paper.title }}</a>
+        {% else %}
+          {{ include.paper.title }}
+        {% endif %}
+      </h3>
+    {% endcapture %}
+    {% capture tags %}
       {% if include.paper.links %}
         <span class="publication__links" aria-label="Links for {{ include.paper.title | escape }}">
           {% for link in include.paper.links %}
-            {% if include.compact and link.paper %}{% continue %}{% endif %}
             {% assign link_url = link.url %}
             {% if link.paper %}{% assign link_url = include.paper.url %}{% endif %}
             {% if link_url %}
@@ -32,7 +25,24 @@
           {% endfor %}
         </span>
       {% endif %}
-    </div>
+    {% endcapture %}
+
+    {% if include.compact %}
+      <div class="publication__headline" data-publication-row>{{ title }} {{ tags }}</div>
+    {% else %}
+      {{ title }}
+    {% endif %}
+
+    <p class="publication__authors">
+      {% for author in include.paper.authors %}{% if author.me %}<strong>{{ author.name }}</strong>{% else %}{{ author.name }}{% endif %}{% if author.equal %}<sup class="publication__equal-marker" title="Equal contribution">⋆</sup>{% endif %}{% if author.mentored %}<sup class="publication__mentor-marker" title="Mentored student">†</sup>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
+    </p>
+
+    {% unless include.compact %}
+      <div class="publication__venue" data-publication-row>
+        <span class="publication__venue-text">{{ include.paper.venue }}</span>
+        {{ tags }}
+      </div>
+    {% endunless %}
 
     {% if include.extended %}
       <details class="publication__disclosure">
