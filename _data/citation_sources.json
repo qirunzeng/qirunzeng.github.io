@@ -1,0 +1,38 @@
+{
+  "google_author_id": "sITttdEAAAAJ",
+  "semantic_author_id": "2357692303",
+  "papers": [
+    {
+      "id": "one-rounding-fits-all",
+      "title": "One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization"
+    },
+    {
+      "id": "werewolf",
+      "title": "WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems"
+    },
+    {
+      "id": "best-arm-hybrid-feedback",
+      "title": "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback"
+    },
+    {
+      "id": "adversarial-bandits-fake-data",
+      "title": "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection"
+    },
+    {
+      "id": "fusing-reward-dueling",
+      "title": "Fusing Reward and Dueling Feedback in Stochastic Bandits"
+    },
+    {
+      "id": "offline-attacks-warm-start-bandits",
+      "title": "Beyond Reward Suppression: Near-Optimal Offline Attacks on Warm-Start Bandits with Bounded Rewards"
+    },
+    {
+      "id": "conversational-glb-hybrid-feedback",
+      "title": "Conversational Generalized Linear Bandits with Hybrid Feedback"
+    },
+    {
+      "id": "improved-e-value-thresholds",
+      "title": "Improved E-Value Thresholds with Applications to Multiple and Sequential Testing"
+    }
+  ]
+}

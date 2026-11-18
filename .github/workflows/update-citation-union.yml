@@ -1,0 +1,55 @@
+name: Update Combined Citations
+
+on:
+  schedule:
+    # Monday 10:13 Hong Kong time.
+    - cron: "13 2 * * 1"
+  workflow_dispatch:
+  push:
+    branches: [codex/citation-union]
+    paths:
+      - scripts/update_citation_union.py
+      - .github/workflows/update-citation-union.yml
+
+concurrency:
+  group: update-site-data
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - name: Test citation collection and union
+        run: python -m unittest discover -s tests -p 'test_citation_union.py' -v
+      - name: Collect complete citation lists
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+          SEMANTIC_SCHOLAR_KEY: ${{ secrets.SEMANTIC_SCHOLAR_KEY }}
+        run: python scripts/update_citation_union.py
+      - name: Upload verified snapshot
+        uses: actions/upload-artifact@v6
+        with:
+          name: combined-citations
+          path: _data/combined_citations.json
+          if-no-files-found: error
+      - name: Publish weekly snapshot
+        if: github.ref_name == github.event.repository.default_branch
+        id: commit
+        run: bash scripts/commit_snapshot.sh "Update combined citations" _data/combined_citations.json
+      - name: Request Pages rebuild
+        if: github.ref_name == github.event.repository.default_branch && steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
