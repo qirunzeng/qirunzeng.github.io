@@ -34,16 +34,22 @@ def nonnegative(value):
     return value
 
 
-def request_json(url, params=None):
+def request_json(url, params=None, body=None):
     if params:
         url += '?' + urlencode(params)
     for attempt in range(5):
         try:
             headers = {'User-Agent': 'qirunzeng.github.io citation index'}
+            encoded = None
+            if body is not None:
+                headers['Content-Type'] = 'application/json'
+                encoded = json.dumps(body).encode()
             if url.startswith(S2) and os.getenv('SEMANTIC_SCHOLAR_KEY'):
                 headers['x-api-key'] = os.environ['SEMANTIC_SCHOLAR_KEY']
-            with urlopen(Request(url, headers=headers), timeout=45) as response:
+            with urlopen(Request(url, data=encoded, headers=headers), timeout=45) as response:
                 data = json.loads(response.read(20_000_001))
+            if body is not None and isinstance(data, list):
+                return data
             if not isinstance(data, dict) or data.get('error'):
                 raise ValueError('Provider returned an invalid response or API error')
             return data
@@ -52,7 +58,8 @@ def request_json(url, params=None):
                 raise ValueError(f'Provider HTTP {error.code}') from None
             if attempt == 4:
                 # Never print a request URL: SerpApi URLs contain the secret.
-                raise ValueError('Provider unavailable after five attempts') from None
+                status = f'HTTP {error.code}' if isinstance(error, HTTPError) else type(error).__name__
+                raise ValueError(f'{urlsplit(url).hostname} unavailable after five attempts ({status})') from None
             time.sleep(min(60, 5 * 2 ** attempt))
     raise AssertionError('Unreachable retry state')
 
@@ -171,22 +178,36 @@ def uniquely_match(papers, title):
 def fetch(config):
     if not os.getenv('SERPAPI_KEY'):
         raise ValueError('SERPAPI_KEY is required for the complete Google citing lists')
+    semantic = semantic_pages('author/' + config['semantic_author_id'] + '/papers', 'title,externalIds,citationCount')
+    targets = [uniquely_match(semantic, p['title']) for p in config['papers']]
+    time.sleep(3)
+    # One batch avoids a separate API request for every small citation list.
+    batch = request_json(S2 + 'paper/batch', {
+        'fields': 'title,citationCount,citations.title,citations.authors,citations.year,citations.externalIds,citations.url',
+    }, body={'ids': [p['paperId'] for p in targets]})
+    if not isinstance(batch, list) or len(batch) != len(targets) or any(not p for p in batch):
+        raise ValueError('Incomplete Semantic Scholar paper batch')
+    print('Fetched Semantic Scholar paper batch', flush=True)
     google = serpapi({'engine': 'google_scholar_author', 'author_id': config['google_author_id'], 'num': 100})
     if normalized(google.get('author', {}).get('name', '')) != normalized('Qirun Zeng'):
         raise ValueError('Google author identity mismatch')
     if google.get('serpapi_pagination', {}).get('next'):
         raise ValueError('Google author list requires additional pagination')
     articles = google.get('articles', [])
-    semantic = semantic_pages('author/' + config['semantic_author_id'] + '/papers', 'title,externalIds,citationCount')
     result = {}
     for paper in config['papers']:
         ga = uniquely_match(articles, paper['title'])
-        sa = uniquely_match(semantic, paper['title'])
+        sa = uniquely_match(batch, paper['title'])
         print(f"Collecting citing lists for {paper['id']}", flush=True)
         google_rows, google_count = google_citations(ga)
         expected = nonnegative(sa.get('citationCount'))
-        semantic_rows = semantic_pages('paper/' + sa['paperId'] + '/citations', 'title,authors,year,externalIds,url') if expected else []
-        semantic_rows = [semantic_record(item['citingPaper']) for item in semantic_rows]
+        semantic_rows = sa.get('citations')
+        if not isinstance(semantic_rows, list):
+            raise ValueError('Semantic Scholar paper has no citation list')
+        if len(semantic_rows) != expected:
+            pages = semantic_pages('paper/' + sa['paperId'] + '/citations', 'title,authors,year,externalIds,url')
+            semantic_rows = [item['citingPaper'] for item in pages]
+        semantic_rows = [semantic_record(item) for item in semantic_rows]
         if len(semantic_rows) != expected or len({r['ids']['semantic'] for r in semantic_rows}) != expected:
             raise ValueError('Semantic Scholar citing-list coverage differs from article count')
         result[paper['id']] = {
