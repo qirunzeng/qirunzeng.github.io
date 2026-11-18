@@ -1,6 +1,3 @@
-import copy
-import importlib.util
-import json
 from pathlib import Path
 import sys
 import tempfile
@@ -95,6 +92,54 @@ class UnionTests(unittest.TestCase):
             {'data': [1], 'next': 1}, {'data': [2]},
         ]):
             self.assertEqual(union.semantic_pages('test', 'title'), [1, 2])
+
+    def test_complete_fetch_from_both_api_shapes(self):
+        config = {'google_author_id': 'g', 'semantic_author_id': 's',
+                  'papers': [{'id': 'target', 'title': 'Target'}]}
+        citing = {'paperId': 'citing', 'title': 'A Learning Algorithm', 'year': 2026,
+                  'authors': [{'name': 'Qirun Zeng'}], 'externalIds': {}}
+        target = {'paperId': 'target', 'title': 'Target', 'citationCount': 1, 'citations': [citing]}
+        google = {'author': {'name': 'Qirun Zeng'}, 'articles': [
+            {'title': 'Target', 'cited_by': {'value': 1, 'cites_id': '123'}}]}
+        google_list = {'organic_results': [{'title': 'A Learning Algorithm', 'result_id': 'g1',
+                       'publication_info': {'authors': [{'name': 'Q Zeng'}]}}]}
+        with patch.dict('os.environ', {'SERPAPI_KEY': 'test', 'SEMANTIC_SCHOLAR_KEY': 'test'}), patch.object(union.time, 'sleep'), \
+             patch.object(union, 'semantic_pages', return_value=[target]), \
+             patch.object(union, 'request_json', return_value=[target]), \
+             patch.object(union, 'serpapi', side_effect=[google, google_list]):
+            result = union.derive(union.fetch(config))
+        self.assertEqual(result['total_citations'], 1)
+        self.assertEqual(result['h_index'], 1)
+
+    def test_incomplete_batch_fails_before_google_requests(self):
+        config = {'semantic_author_id': 's', 'papers': [{'id': 'one', 'title': 'Target'}]}
+        with patch.dict('os.environ', {'SERPAPI_KEY': 'test', 'SEMANTIC_SCHOLAR_KEY': 'test'}), patch.object(union.time, 'sleep'), \
+             patch.object(union, 'semantic_pages', return_value=[{'paperId': 'p', 'title': 'Target'}]), \
+             patch.object(union, 'request_json', return_value=[None]), \
+             patch.object(union, 'serpapi') as google:
+            with self.assertRaises(ValueError):
+                union.fetch(config)
+            google.assert_not_called()
+
+    def test_public_website_pagination_and_coverage(self):
+        config = {'semantic_author_id': 's', 'papers': [{'id': 'one', 'title': 'Target'}]}
+        def item(identifier):
+            return {'id': identifier, 'title': {'text': identifier},
+                    'authors': [[{'name': 'Qirun Zeng'}, {'text': 'Qirun Zeng'}]], 'year': 2026}
+        responses = [
+            {'author': {'id': 's', 'name': 'Qi-Run Zeng'}, 'totalPublications': 1},
+            {'authorId': 's', 'paperLites': [{'id': 'one', 'title': 'Target'}]},
+            {'citationType': 'citingPapers', 'pageNumber': 1, 'totalCitations': 2, 'citations': [item('a')]},
+            {'citationType': 'citingPapers', 'pageNumber': 2, 'totalCitations': 2, 'citations': [item('b')]},
+        ]
+        with patch.object(union.time, 'sleep'), patch.object(union, 'request_json', side_effect=responses):
+            result = union.semantic_web_papers(config)
+        self.assertEqual(result[0]['count'], 2)
+        self.assertEqual(len(result[0]['records']), 2)
+        responses[-1]['citations'] = [item('a')]
+        with patch.object(union.time, 'sleep'), patch.object(union, 'request_json', side_effect=responses):
+            with self.assertRaises(ValueError):
+                union.semantic_web_papers(config)
 
     def test_partial_failure_does_not_overwrite_snapshot(self):
         with tempfile.TemporaryDirectory() as directory:

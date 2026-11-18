@@ -4,6 +4,7 @@
 import argparse
 import datetime as dt
 import html
+import gzip
 import json
 import os
 from pathlib import Path
@@ -21,6 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / '_data/citation_sources.json'
 SNAPSHOT = ROOT / '_data/combined_citations.json'
 S2 = 'https://api.semanticscholar.org/graph/v1/'
+S2_WEB = 'https://www.semanticscholar.org/api/1/'
 
 
 def normalized(text):
@@ -47,7 +49,10 @@ def request_json(url, params=None, body=None):
             if url.startswith(S2) and os.getenv('SEMANTIC_SCHOLAR_KEY'):
                 headers['x-api-key'] = os.environ['SEMANTIC_SCHOLAR_KEY']
             with urlopen(Request(url, data=encoded, headers=headers), timeout=45) as response:
-                data = json.loads(response.read(20_000_001))
+                raw = response.read(20_000_001)
+                if raw.startswith(b'\x1f\x8b'):
+                    raw = gzip.decompress(raw)
+                data = json.loads(raw)
             if body is not None and isinstance(data, list):
                 return data
             if not isinstance(data, dict) or data.get('error'):
@@ -175,19 +180,89 @@ def uniquely_match(papers, title):
     return matches[0]
 
 
-def fetch(config):
-    if not os.getenv('SERPAPI_KEY'):
-        raise ValueError('SERPAPI_KEY is required for the complete Google citing lists')
+def semantic_web_record(item):
+    authors = [pair[0]['name'] for pair in item['authors']]
+    return {
+        'source': 'semantic', 'title': item['title']['text'], 'authors': authors,
+        'year': item.get('year'),
+        'url': 'https://www.semanticscholar.org/paper/' + item['id'],
+        'ids': {'semantic': item['id']},
+    }
+
+
+def semantic_web_papers(config):
+    author_id = config['semantic_author_id']
+    detail = request_json(S2_WEB + 'author/' + author_id, {'requireSlug': 'false'})
+    author = detail['author']
+    if str(author['id']) != author_id or normalized(author['name']) != normalized('Qi-Run Zeng'):
+        raise ValueError('Semantic Scholar author identity mismatch')
+    listing = request_json(S2_WEB + 'author/' + author_id + '/papers', body={
+        'filterText': None, 'model': 'PaperLite',
+    })
+    papers = listing['paperLites']
+    if str(listing['authorId']) != author_id or len(papers) != detail['totalPublications']:
+        raise ValueError('Incomplete Semantic Scholar author paper list')
+    result = []
+    for configured in config['papers']:
+        paper = uniquely_match(papers, configured['title'])
+        records, offset, expected = [], 0, None
+        while True:
+            time.sleep(1.1)
+            page = request_json(S2_WEB + 'paper/' + paper['id'] + '/citations', {
+                'citationType': 'citingPapers', 'sort': 'relevance',
+                'offset': offset, 'citationsPageSize': 100,
+            })
+            total = nonnegative(page['totalCitations'])
+            if page['citationType'] != 'citingPapers' or page['pageNumber'] != offset // 100 + 1:
+                raise ValueError('Invalid Semantic Scholar website pagination')
+            if expected is not None and expected != total:
+                raise ValueError('Semantic Scholar citation count changed during pagination')
+            expected = total
+            items = page['citations']
+            if not isinstance(items, list):
+                raise ValueError('Missing Semantic Scholar website citations')
+            records.extend(semantic_web_record(item) for item in items)
+            if len(records) >= expected:
+                break
+            if not items or offset >= 10000:
+                raise ValueError('Incomplete Semantic Scholar website citations')
+            offset += 100
+        if len(records) != expected or len({r['ids']['semantic'] for r in records}) != expected:
+            raise ValueError('Semantic Scholar website citation coverage mismatch')
+        result.append({'title': paper['title'], 'count': expected, 'records': records})
+        print(f"Fetched public Semantic Scholar list for {configured['id']}: {expected}", flush=True)
+    return result
+
+
+def semantic_api_papers(config):
     semantic = semantic_pages('author/' + config['semantic_author_id'] + '/papers', 'title,externalIds,citationCount')
     targets = [uniquely_match(semantic, p['title']) for p in config['papers']]
     time.sleep(3)
-    # One batch avoids a separate API request for every small citation list.
     batch = request_json(S2 + 'paper/batch', {
         'fields': 'title,citationCount,citations.title,citations.authors,citations.year,citations.externalIds,citations.url',
     }, body={'ids': [p['paperId'] for p in targets]})
     if not isinstance(batch, list) or len(batch) != len(targets) or any(not p for p in batch):
         raise ValueError('Incomplete Semantic Scholar paper batch')
-    print('Fetched Semantic Scholar paper batch', flush=True)
+    result = []
+    for paper in batch:
+        expected = nonnegative(paper.get('citationCount'))
+        rows = paper.get('citations')
+        if not isinstance(rows, list):
+            raise ValueError('Semantic Scholar paper has no citation list')
+        if len(rows) != expected:
+            pages = semantic_pages('paper/' + paper['paperId'] + '/citations', 'title,authors,year,externalIds,url')
+            rows = [item['citingPaper'] for item in pages]
+        rows = [semantic_record(item) for item in rows]
+        if len(rows) != expected or len({r['ids']['semantic'] for r in rows}) != expected:
+            raise ValueError('Semantic Scholar citing-list coverage differs from article count')
+        result.append({'title': paper['title'], 'count': expected, 'records': rows})
+    return result
+
+
+def fetch(config):
+    if not os.getenv('SERPAPI_KEY'):
+        raise ValueError('SERPAPI_KEY is required for the complete Google citing lists')
+    semantic = semantic_api_papers(config) if os.getenv('SEMANTIC_SCHOLAR_KEY') else semantic_web_papers(config)
     google = serpapi({'engine': 'google_scholar_author', 'author_id': config['google_author_id'], 'num': 100})
     if normalized(google.get('author', {}).get('name', '')) != normalized('Qirun Zeng'):
         raise ValueError('Google author identity mismatch')
@@ -197,19 +272,11 @@ def fetch(config):
     result = {}
     for paper in config['papers']:
         ga = uniquely_match(articles, paper['title'])
-        sa = uniquely_match(batch, paper['title'])
+        sa = uniquely_match(semantic, paper['title'])
         print(f"Collecting citing lists for {paper['id']}", flush=True)
         google_rows, google_count = google_citations(ga)
-        expected = nonnegative(sa.get('citationCount'))
-        semantic_rows = sa.get('citations')
-        if not isinstance(semantic_rows, list):
-            raise ValueError('Semantic Scholar paper has no citation list')
-        if len(semantic_rows) != expected:
-            pages = semantic_pages('paper/' + sa['paperId'] + '/citations', 'title,authors,year,externalIds,url')
-            semantic_rows = [item['citingPaper'] for item in pages]
-        semantic_rows = [semantic_record(item) for item in semantic_rows]
-        if len(semantic_rows) != expected or len({r['ids']['semantic'] for r in semantic_rows}) != expected:
-            raise ValueError('Semantic Scholar citing-list coverage differs from article count')
+        expected = sa['count']
+        semantic_rows = sa['records']
         result[paper['id']] = {
             'title': paper['title'], 'google_count': google_count, 'semantic_count': expected,
             'records': google_rows + semantic_rows,
@@ -324,6 +391,7 @@ def main():
     papers = fetch(config)
     snapshot = {
         'updated_at': dt.datetime.now(dt.timezone.utc).date().isoformat(),
+        'semantic_method': 'graph-api' if os.getenv('SEMANTIC_SCHOLAR_KEY') else 'public-website',
         'sources': {k: config[k] for k in ('google_author_id', 'semantic_author_id')},
         **derive(papers),
     }
