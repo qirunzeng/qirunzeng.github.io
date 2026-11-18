@@ -5,6 +5,7 @@ import argparse
 from collections import Counter
 from html.parser import HTMLParser
 import json
+import re
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 import xml.etree.ElementTree as ET
@@ -82,10 +83,17 @@ def check_site(root, scholar):
             if not page.schemas or page.schemas[0].get("@type") != "Person":
                 errors.append(f"{name}: missing Person JSON-LD")
         if not scholar:
-            for marker in ("scholar.google.com", "Google Scholar", "Cited by", "<dt>Citations</dt>", "<dt>h-index</dt>", "<dt>i10-index</dt>", "page-stats__source"):
+            for marker in ("scholar.google.com", "Google Scholar", "semanticscholar.org", "Semantic Scholar", "Cited by", "<dt>Citations</dt>", "<dt>h-index</dt>", "<dt>i10-index</dt>", "page-stats__source"):
                 if marker in texts[path]:
                     errors.append(f"{name}: disabled Scholar information leaked: {marker}")
     publications = texts[root / "publications/index.html"]
+    if scholar:
+        combined = json.loads((Path(__file__).resolve().parents[1] / '_data/combined_citations.json').read_text())
+        for path in ('index.html', 'publications/index.html'):
+            text = texts[root / path]
+            for label, key in (('Citations', 'total_citations'), ('h-index', 'h_index')):
+                if not re.search(r'<dt>' + label + r'</dt>\s*<dd>' + str(combined[key]) + r'</dd>', text):
+                    errors.append(f'{path}: combined {label} missing or incorrect')
     if scholar and ("scholar.google.com" not in publications or "page-stats__source" not in publications):
         errors.append("Enabled Scholar profile/source missing")
     for marker in ("Conference papers", "By venue"):

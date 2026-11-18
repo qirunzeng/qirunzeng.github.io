@@ -78,7 +78,7 @@ generated from the paper's `doi` identifier.
 
 Quick switch: edit `_data/features.json` and set `"scholar_enabled": false` to
 disable Scholar, or `true` to re-enable it (the default). This single switch hides
-the profile link, citation/h-index/i10-index metrics, source/date, and each paper's
+both Scholar profile links, citation/h-index/i10-index metrics, source/date, and each paper's
 "Cited by" link. Publication counts and venue breakdowns remain visible.
 The fetcher exits successfully before any network request or snapshot write when
 disabled, including manual runs. The scheduled workflow skips refresh, data
@@ -87,8 +87,8 @@ Commit and push the switch change for GitHub Actions to read it; the visibility
 change takes effect on the next Pages build. Restart local `jekyll serve` if
 needed. Use JSON booleans `true`/`false`, without quotes.
 
-The Publications page reads citations, h-index, and i10-index from
-`_data/scholar.yml`. The `Update Scholar Metrics` GitHub Actions workflow runs
+The original Google-only snapshots remain in `_data/scholar.yml` and
+`_data/publication_citations.json`. The `Update Scholar Metrics` workflow runs
 daily at 09:23 Hong Kong time, with a recovery window at 21:23. Scheduled runs
 skip network requests if a successful check is already recorded for that UTC
 date; manual dispatch always attempts a refresh when enabled. It validates the profile identity and all three
@@ -100,7 +100,7 @@ open-source BTH Google Scholar mirror because Google blocks GitHub-hosted runner
 IPs. The mirror response must contain a configured known publication; h-index
 and i10-index are independently derived from its publication citation counts.
 For a more reliable primary source, add a repository Actions secret named
-`SERPAPI_KEY` (the free quota is sufficient for a daily run). A total failure,
+`SERPAPI_KEY`. Citation-list collection also consumes this account's quota. A total failure,
 malformed response, wrong profile, truncated publication list, or unexpected
 metric decrease fails the workflow without changing the stored values. The
 failure job opens and assigns a durable GitHub Issue, comments on repeated
@@ -124,6 +124,44 @@ python3 scripts/update_scholar.py --check-only
 
 If Scholar legitimately corrects a metric downward, run the workflow manually
 with `allow_decrease` enabled after checking the public profile.
+
+## Combined citation metrics
+
+The homepage and Publications show citations and h-index from
+`_data/combined_citations.json`. The source label links to both profiles and to
+`/citations/`, which lists each deduplicated citing paper and its sources.
+Per-paper Cited by links use these same combined counts. Google-only snapshots
+remain available for source checks. The Semantic Scholar sidebar mark uses the
+locally embedded Simple Icons path, alongside 32px desktop link rows. Mobile
+links retain 44px click targets.
+
+`Update Combined Citations` runs every Monday at 10:13 Hong Kong time and can
+also be dispatched manually. It reuses `SERPAPI_KEY`; an optional
+`SEMANTIC_SCHOLAR_KEY` selects the Academic Graph API when available. No
+Semantic Scholar key is required: by default the collector reads the structured
+responses used by its public author and citing-paper pages. This public website
+interface can change; schema, identity, pagination, count and duplicate checks
+fail closed if it does. Complete paginated Google citing lists and Semantic
+Scholar citing lists cover every publication in `_data/citation_sources.json`.
+A typical refresh uses one author request plus one request per nonzero Google
+citing list, with extra requests when lists require pagination. No paid quota
+or additional service is enabled automatically.
+
+Deduplication uses DOI/arXiv identifiers and exact normalized titles with
+matching first-author initials/surnames and compatible years. Shared identifiers can
+join renamed versions transitively. Ambiguous titles without author evidence
+or with conflicting years fail the refresh for review. Citations are counted
+per cited publication; one citing work referencing two of the author's papers
+contributes once to each. The combined h-index is recomputed from those counts.
+This source union includes self-citations.
+
+Source rows and counts are retained so the entire union can be reproduced with
+`python3 scripts/update_citation_union.py --check-only`. Collection, completeness
+checks and deduplication all finish before one atomic snapshot write. A failure
+retains the previous snapshot and its date, and fails the Actions run. The
+shared Scholar switch hides both sources, metrics and citation records and
+skips union network collection. After adding a publication, add its ID and title
+to the citation sources file; content checks reject incomplete configurations.
 
 ## Programming statistics
 

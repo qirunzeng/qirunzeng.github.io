@@ -246,7 +246,7 @@ button, a {
   overflow: hidden;
   width: 100%;
   aspect-ratio: 1;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
   border-radius: var(--radius-portrait);
   background: var(--paper-soft);
   text-decoration: none;
@@ -260,8 +260,8 @@ button, a {
 .profile__facts {
   display: grid;
   margin: 0;
-  padding-block: var(--space-3);
-  gap: var(--space-2);
+  padding-block: var(--space-2);
+  gap: var(--space-1);
 }
 .profile__facts div {
   display: grid;
@@ -303,15 +303,15 @@ button, a {
 .profile__links {
   display: grid;
   margin: 0;
-  padding: var(--space-3) 0 0;
+  padding: var(--space-2) 0 0;
   list-style: none;
-  gap: var(--space-1);
+  gap: 0;
 }
 .profile__links a {
   display: flex;
-  min-height: 44px;
+  min-height: 32px;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
   color: var(--ink-soft);
   font-size: var(--text-meta);
   font-weight: var(--weight-medium);
@@ -599,6 +599,33 @@ button, a {
 /* Publication statistics: the same compact type hierarchy, without a box. */
 .page-stats {
   margin-bottom: var(--space-8);
+}
+.page-stats--home {
+  margin: var(--space-6) 0 0;
+}
+.page-stats--home .page-stats__metrics {
+  grid-template-columns: repeat(2, max-content);
+  column-gap: var(--space-8);
+}
+.page-stats--home .page-stats__source {
+  margin-top: var(--space-2);
+  color: var(--muted);
+  font-size: var(--text-meta);
+}
+.citation-records {
+  margin-top: var(--space-8);
+}
+.citation-records h2 {
+  font-size: var(--text-title);
+  font-weight: var(--weight-semibold);
+}
+.citation-records li + li {
+  margin-top: var(--space-4);
+}
+.citation-note {
+  margin: var(--space-1) 0;
+  color: var(--muted);
+  font-size: var(--text-meta);
 }
 .page-stats__metrics {
   display: grid;
@@ -1073,6 +1100,9 @@ button, a {
     padding: 0;
     flex-wrap: wrap;
     gap: var(--space-1) var(--space-6);
+  }
+  .profile__links a {
+    min-height: 44px;
   }
   .site-footer {
     margin-top: var(--space-8);

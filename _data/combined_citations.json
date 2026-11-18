@@ -1,0 +1,685 @@
+{
+  "updated_at": "2026-11-18",
+  "semantic_method": "public-website",
+  "sources": {
+    "google_author_id": "sITttdEAAAAJ",
+    "semantic_author_id": "2357692303"
+  },
+  "total_citations": 16,
+  "h_index": 3,
+  "papers": {
+    "one-rounding-fits-all": {
+      "title": "One Rounding Fits All: Memory-Efficient Approximation Algorithms for Partition-Constrained Influence Maximization",
+      "google_count": 1,
+      "semantic_count": 0,
+      "citations": [
+        {
+          "title": "When Weak Submodularity Meets Matroids: How Does Standard Greedy Behave?",
+          "authors": [
+            "Q Zhang",
+            "S Fu",
+            "S Chen",
+            "C Qian",
+            "D Tao"
+          ],
+          "year": 2026,
+          "url": "https://arxiv.org/abs/2610.26967",
+          "sources": [
+            "google"
+          ],
+          "records": [
+            {
+              "source": "google",
+              "title": "When Weak Submodularity Meets Matroids: How Does Standard Greedy Behave?",
+              "authors": [
+                "Q Zhang",
+                "S Fu",
+                "S Chen",
+                "C Qian",
+                "D Tao"
+              ],
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2610.26967",
+              "ids": {
+                "arxiv": "2610.26967",
+                "google": "Ic-nJ4S8mrEJ"
+              }
+            }
+          ]
+        }
+      ],
+      "count": 1
+    },
+    "werewolf": {
+      "title": "WEREWOLF: Reputation-Aware Red-Teaming for Self-Organizing LLM Multi-Agent Systems",
+      "google_count": 0,
+      "semantic_count": 0,
+      "citations": [],
+      "count": 0
+    },
+    "best-arm-hybrid-feedback": {
+      "title": "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback",
+      "google_count": 1,
+      "semantic_count": 3,
+      "citations": [
+        {
+          "title": "Conversational Generalized Linear Bandits with Hybrid Feedback",
+          "authors": [
+            "Yu Zou",
+            "Qi-Run Zeng",
+            "Jin-Hang Zuo"
+          ],
+          "year": 2026,
+          "url": "https://www.semanticscholar.org/paper/df6cdeb898c4d4a14c6450b9bb1788ee6ddd89ed",
+          "sources": [
+            "semantic"
+          ],
+          "records": [
+            {
+              "source": "semantic",
+              "title": "Conversational Generalized Linear Bandits with Hybrid Feedback",
+              "authors": [
+                "Yu Zou",
+                "Qi-Run Zeng",
+                "Jin-Hang Zuo"
+              ],
+              "year": 2026,
+              "url": "https://www.semanticscholar.org/paper/df6cdeb898c4d4a14c6450b9bb1788ee6ddd89ed",
+              "ids": {
+                "semantic": "df6cdeb898c4d4a14c6450b9bb1788ee6ddd89ed"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Gaussian Process Bandits for AI System Optimization with Selectively Verified Feedback",
+          "authors": [
+            "Shuang Wu"
+          ],
+          "year": 2026,
+          "url": "https://www.semanticscholar.org/paper/5dd74d569045bfe7d0ae3ea76c095de109c55a1b",
+          "sources": [
+            "google",
+            "semantic"
+          ],
+          "records": [
+            {
+              "source": "google",
+              "title": "Gaussian Process Bandits for AI System Optimization with Selectively Verified Feedback",
+              "authors": [
+                "S Wu"
+              ],
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2610.17760",
+              "ids": {
+                "arxiv": "2610.17760",
+                "google": "N2oMf4u-6vMJ"
+              }
+            },
+            {
+              "source": "semantic",
+              "title": "Gaussian Process Bandits for AI System Optimization with Selectively Verified Feedback",
+              "authors": [
+                "Shuang Wu"
+              ],
+              "year": 2026,
+              "url": "https://www.semanticscholar.org/paper/5dd74d569045bfe7d0ae3ea76c095de109c55a1b",
+              "ids": {
+                "semantic": "5dd74d569045bfe7d0ae3ea76c095de109c55a1b"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection",
+          "authors": [
+            "Qi-Run Zeng",
+            "Eric He",
+            "R. Hoffmann",
+            "Xu-Chuang Wang",
+            "Jin-Hang Zuo"
+          ],
+          "year": 2025,
+          "url": "https://www.semanticscholar.org/paper/22888dbfa968162e66e23e8dbf1fcee6db41b540",
+          "sources": [
+            "semantic"
+          ],
+          "records": [
+            {
+              "source": "semantic",
+              "title": "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection",
+              "authors": [
+                "Qi-Run Zeng",
+                "Eric He",
+                "R. Hoffmann",
+                "Xu-Chuang Wang",
+                "Jin-Hang Zuo"
+              ],
+              "year": 2025,
+              "url": "https://www.semanticscholar.org/paper/22888dbfa968162e66e23e8dbf1fcee6db41b540",
+              "ids": {
+                "semantic": "22888dbfa968162e66e23e8dbf1fcee6db41b540"
+              }
+            }
+          ]
+        }
+      ],
+      "count": 3
+    },
+    "adversarial-bandits-fake-data": {
+      "title": "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection",
+      "google_count": 2,
+      "semantic_count": 3,
+      "citations": [
+        {
+          "title": "Beyond Reward Suppression: Near-Optimal Offline Attacks on Warm-Start Bandits with Bounded Rewards",
+          "authors": [
+            "Qi-Run Zeng",
+            "Man-Hin Poon",
+            "Xiang-Xiang Dai",
+            "Qi-Xin Zhang",
+            "Jin-Hang Zuo"
+          ],
+          "year": 2026,
+          "url": "https://www.semanticscholar.org/paper/027acd69d82340fed00824a7f8f33680a51a2384",
+          "sources": [
+            "google",
+            "semantic"
+          ],
+          "records": [
+            {
+              "source": "google",
+              "title": "Beyond Reward Suppression: Near-Optimal Offline Attacks on Warm-Start Bandits with Bounded Rewards",
+              "authors": [
+                "Q Zeng",
+                "M Poon",
+                "X Dai",
+                "Q Zhang",
+                "J Zuo"
+              ],
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2610.10000",
+              "ids": {
+                "arxiv": "2610.10000",
+                "google": "qUvon8ZkJzcJ"
+              }
+            },
+            {
+              "source": "semantic",
+              "title": "Beyond Reward Suppression: Near-Optimal Offline Attacks on Warm-Start Bandits with Bounded Rewards",
+              "authors": [
+                "Qi-Run Zeng",
+                "Man-Hin Poon",
+                "Xiang-Xiang Dai",
+                "Qi-Xin Zhang",
+                "Jin-Hang Zuo"
+              ],
+              "year": 2026,
+              "url": "https://www.semanticscholar.org/paper/027acd69d82340fed00824a7f8f33680a51a2384",
+              "ids": {
+                "semantic": "027acd69d82340fed00824a7f8f33680a51a2384"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Learning to Attack: A Bandit Approach to Adversarial Context Poisoning",
+          "authors": [
+            "Ray Telikani",
+            "A. Gandomi"
+          ],
+          "year": 2026,
+          "url": "https://www.semanticscholar.org/paper/41ceeab2a47b41a38b9cd157c151cbc18161cf35",
+          "sources": [
+            "semantic"
+          ],
+          "records": [
+            {
+              "source": "semantic",
+              "title": "Learning to Attack: A Bandit Approach to Adversarial Context Poisoning",
+              "authors": [
+                "Ray Telikani",
+                "A. Gandomi"
+              ],
+              "year": 2026,
+              "url": "https://www.semanticscholar.org/paper/41ceeab2a47b41a38b9cd157c151cbc18161cf35",
+              "ids": {
+                "semantic": "41ceeab2a47b41a38b9cd157c151cbc18161cf35"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Online Multi-LLM Selection via Contextual Bandits under Unstructured Context Evolution",
+          "authors": [
+            "Man-Hin Poon",
+            "Xiang-Xiang Dai",
+            "Xutong Liu",
+            "Fang-yuan Kong",
+            "John C. S. Lui",
+            "Jin-Hang Zuo"
+          ],
+          "year": 2026,
+          "url": "https://www.semanticscholar.org/paper/413be1e55823c5443b2c94f8e1b24d6195da67f6",
+          "sources": [
+            "google",
+            "semantic"
+          ],
+          "records": [
+            {
+              "source": "google",
+              "title": "Online multi-llm selection via contextual bandits under unstructured context evolution",
+              "authors": [
+                "M Poon",
+                "XX Dai",
+                "X Liu",
+                "F Kong",
+                "JCS Lui"
+              ],
+              "year": 2026,
+              "url": "https://ojs.aaai.org/index.php/AAAI/article/view/39672",
+              "ids": {
+                "google": "clR2429bCNUJ"
+              }
+            },
+            {
+              "source": "semantic",
+              "title": "Online Multi-LLM Selection via Contextual Bandits under Unstructured Context Evolution",
+              "authors": [
+                "Man-Hin Poon",
+                "Xiang-Xiang Dai",
+                "Xutong Liu",
+                "Fang-yuan Kong",
+                "John C. S. Lui",
+                "Jin-Hang Zuo"
+              ],
+              "year": 2026,
+              "url": "https://www.semanticscholar.org/paper/413be1e55823c5443b2c94f8e1b24d6195da67f6",
+              "ids": {
+                "semantic": "413be1e55823c5443b2c94f8e1b24d6195da67f6"
+              }
+            }
+          ]
+        }
+      ],
+      "count": 3
+    },
+    "fusing-reward-dueling": {
+      "title": "Fusing Reward and Dueling Feedback in Stochastic Bandits",
+      "google_count": 6,
+      "semantic_count": 4,
+      "citations": [
+        {
+          "title": "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback",
+          "authors": [
+            "Qi-Run Zeng",
+            "Xu-Chuang Wang",
+            "Jiayi Shen",
+            "Xutong Liu",
+            "Fang-yuan Kong",
+            "Jin-Hang Zuo"
+          ],
+          "year": 2026,
+          "url": "https://www.semanticscholar.org/paper/e656cf012219854e23756d3a079c54302f858cd2",
+          "sources": [
+            "google",
+            "semantic"
+          ],
+          "records": [
+            {
+              "source": "google",
+              "title": "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback",
+              "authors": [
+                "Q Zeng",
+                "X Wang",
+                "J Shen",
+                "X Liu",
+                "F Kong"
+              ],
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2605.05745",
+              "ids": {
+                "arxiv": "2605.05745",
+                "google": "6ZMBryB4OCQJ"
+              }
+            },
+            {
+              "source": "semantic",
+              "title": "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback",
+              "authors": [
+                "Qi-Run Zeng",
+                "Xu-Chuang Wang",
+                "Jiayi Shen",
+                "Xutong Liu",
+                "Fang-yuan Kong",
+                "Jin-Hang Zuo"
+              ],
+              "year": 2026,
+              "url": "https://www.semanticscholar.org/paper/e656cf012219854e23756d3a079c54302f858cd2",
+              "ids": {
+                "semantic": "e656cf012219854e23756d3a079c54302f858cd2"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Conversational Generalized Linear Bandits with Hybrid Feedback",
+          "authors": [
+            "Yu Zou",
+            "Qi-Run Zeng",
+            "Jin-Hang Zuo"
+          ],
+          "year": 2026,
+          "url": "https://www.semanticscholar.org/paper/df6cdeb898c4d4a14c6450b9bb1788ee6ddd89ed",
+          "sources": [
+            "google",
+            "semantic"
+          ],
+          "records": [
+            {
+              "source": "google",
+              "title": "Conversational Generalized Linear Bandits with Hybrid Feedback",
+              "authors": [
+                "Y Zou",
+                "Q Zeng",
+                "J Zuo"
+              ],
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2610.35262",
+              "ids": {
+                "arxiv": "2610.35262",
+                "google": "5CxVCdxappkJ"
+              }
+            },
+            {
+              "source": "semantic",
+              "title": "Conversational Generalized Linear Bandits with Hybrid Feedback",
+              "authors": [
+                "Yu Zou",
+                "Qi-Run Zeng",
+                "Jin-Hang Zuo"
+              ],
+              "year": 2026,
+              "url": "https://www.semanticscholar.org/paper/df6cdeb898c4d4a14c6450b9bb1788ee6ddd89ed",
+              "ids": {
+                "semantic": "df6cdeb898c4d4a14c6450b9bb1788ee6ddd89ed"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Learning Across the Gap: Hybrid Multi-armed Bandits with Heterogeneous Offline and Online Data",
+          "authors": [
+            "Qi-Jia He",
+            "Ming-Han Wang",
+            "Xu-Tong Liu",
+            "Zhiyong Wang",
+            "Fang-yuan Kong"
+          ],
+          "year": 2025,
+          "url": "https://www.semanticscholar.org/paper/20f246d57644574d606cceba16565129b2b947b3",
+          "sources": [
+            "google",
+            "semantic"
+          ],
+          "records": [
+            {
+              "source": "google",
+              "title": "Learning across the gap: Hybrid multi-armed bandits with heterogeneous offline and online data",
+              "authors": [
+                "Q He",
+                "M Wang",
+                "X Liu",
+                "Z Wang"
+              ],
+              "year": 2026,
+              "url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/1d3d77002cdb7fc73fec66e4dd2d6dbe-Abstract-Conference.html",
+              "ids": {
+                "google": "buyMgypsJQEJ"
+              }
+            },
+            {
+              "source": "semantic",
+              "title": "Learning Across the Gap: Hybrid Multi-armed Bandits with Heterogeneous Offline and Online Data",
+              "authors": [
+                "Qi-Jia He",
+                "Ming-Han Wang",
+                "Xu-Tong Liu",
+                "Zhiyong Wang",
+                "Fang-yuan Kong"
+              ],
+              "year": 2025,
+              "url": "https://www.semanticscholar.org/paper/20f246d57644574d606cceba16565129b2b947b3",
+              "ids": {
+                "semantic": "20f246d57644574d606cceba16565129b2b947b3"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Online multi-llm selection via contextual bandits under unstructured context evolution",
+          "authors": [
+            "M Poon",
+            "XX Dai",
+            "X Liu",
+            "F Kong",
+            "JCS Lui"
+          ],
+          "year": 2026,
+          "url": "https://ojs.aaai.org/index.php/AAAI/article/view/39672",
+          "sources": [
+            "google"
+          ],
+          "records": [
+            {
+              "source": "google",
+              "title": "Online multi-llm selection via contextual bandits under unstructured context evolution",
+              "authors": [
+                "M Poon",
+                "XX Dai",
+                "X Liu",
+                "F Kong",
+                "JCS Lui"
+              ],
+              "year": 2026,
+              "url": "https://ojs.aaai.org/index.php/AAAI/article/view/39672",
+              "ids": {
+                "google": "clR2429bCNUJ"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Theory and Practice of Sequential Decision Making",
+          "authors": [
+            "Xu-Chuang Wang"
+          ],
+          "year": 2026,
+          "url": "https://www.semanticscholar.org/paper/aca815e1ed3c6c83e11172a92422c92a0dd18e9f",
+          "sources": [
+            "google",
+            "semantic"
+          ],
+          "records": [
+            {
+              "source": "google",
+              "title": "Theory and Practice of Sequential Decision Making",
+              "authors": [
+                "X Wang"
+              ],
+              "year": 2026,
+              "url": "https://dl.acm.org/doi/abs/10.1145/3788882.3788904",
+              "ids": {
+                "doi": "10.1145/3788882.3788904",
+                "google": "Jz393xkSL70J"
+              }
+            },
+            {
+              "source": "semantic",
+              "title": "Theory and Practice of Sequential Decision Making",
+              "authors": [
+                "Xu-Chuang Wang"
+              ],
+              "year": 2026,
+              "url": "https://www.semanticscholar.org/paper/aca815e1ed3c6c83e11172a92422c92a0dd18e9f",
+              "ids": {
+                "semantic": "aca815e1ed3c6c83e11172a92422c92a0dd18e9f"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Towards Understanding the Role of Feedback in Online Learning",
+          "authors": [
+            "D Cheng"
+          ],
+          "year": 2026,
+          "url": "https://dl.acm.org/doi/abs/10.1145/3788882.3788899",
+          "sources": [
+            "google"
+          ],
+          "records": [
+            {
+              "source": "google",
+              "title": "Towards Understanding the Role of Feedback in Online Learning",
+              "authors": [
+                "D Cheng"
+              ],
+              "year": 2026,
+              "url": "https://dl.acm.org/doi/abs/10.1145/3788882.3788899",
+              "ids": {
+                "doi": "10.1145/3788882.3788899",
+                "google": "Bl5RrXOTciAJ"
+              }
+            }
+          ]
+        }
+      ],
+      "count": 6
+    },
+    "offline-attacks-warm-start-bandits": {
+      "title": "Beyond Reward Suppression: Near-Optimal Offline Attacks on Warm-Start Bandits with Bounded Rewards",
+      "google_count": 0,
+      "semantic_count": 1,
+      "citations": [
+        {
+          "title": "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection",
+          "authors": [
+            "Qi-Run Zeng",
+            "Eric He",
+            "R. Hoffmann",
+            "Xu-Chuang Wang",
+            "Jin-Hang Zuo"
+          ],
+          "year": 2025,
+          "url": "https://www.semanticscholar.org/paper/22888dbfa968162e66e23e8dbf1fcee6db41b540",
+          "sources": [
+            "semantic"
+          ],
+          "records": [
+            {
+              "source": "semantic",
+              "title": "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection",
+              "authors": [
+                "Qi-Run Zeng",
+                "Eric He",
+                "R. Hoffmann",
+                "Xu-Chuang Wang",
+                "Jin-Hang Zuo"
+              ],
+              "year": 2025,
+              "url": "https://www.semanticscholar.org/paper/22888dbfa968162e66e23e8dbf1fcee6db41b540",
+              "ids": {
+                "semantic": "22888dbfa968162e66e23e8dbf1fcee6db41b540"
+              }
+            }
+          ]
+        }
+      ],
+      "count": 1
+    },
+    "conversational-glb-hybrid-feedback": {
+      "title": "Conversational Generalized Linear Bandits with Hybrid Feedback",
+      "google_count": 0,
+      "semantic_count": 2,
+      "citations": [
+        {
+          "title": "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback",
+          "authors": [
+            "Qi-Run Zeng",
+            "Xu-Chuang Wang",
+            "Jiayi Shen",
+            "Xutong Liu",
+            "Fang-yuan Kong",
+            "Jin-Hang Zuo"
+          ],
+          "year": 2026,
+          "url": "https://www.semanticscholar.org/paper/e656cf012219854e23756d3a079c54302f858cd2",
+          "sources": [
+            "semantic"
+          ],
+          "records": [
+            {
+              "source": "semantic",
+              "title": "Best Arm Identification in Generalized Linear Bandits via Hybrid Feedback",
+              "authors": [
+                "Qi-Run Zeng",
+                "Xu-Chuang Wang",
+                "Jiayi Shen",
+                "Xutong Liu",
+                "Fang-yuan Kong",
+                "Jin-Hang Zuo"
+              ],
+              "year": 2026,
+              "url": "https://www.semanticscholar.org/paper/e656cf012219854e23756d3a079c54302f858cd2",
+              "ids": {
+                "semantic": "e656cf012219854e23756d3a079c54302f858cd2"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection",
+          "authors": [
+            "Qi-Run Zeng",
+            "Eric He",
+            "R. Hoffmann",
+            "Xu-Chuang Wang",
+            "Jin-Hang Zuo"
+          ],
+          "year": 2025,
+          "url": "https://www.semanticscholar.org/paper/22888dbfa968162e66e23e8dbf1fcee6db41b540",
+          "sources": [
+            "semantic"
+          ],
+          "records": [
+            {
+              "source": "semantic",
+              "title": "Practical Adversarial Attacks on Stochastic Bandits via Fake Data Injection",
+              "authors": [
+                "Qi-Run Zeng",
+                "Eric He",
+                "R. Hoffmann",
+                "Xu-Chuang Wang",
+                "Jin-Hang Zuo"
+              ],
+              "year": 2025,
+              "url": "https://www.semanticscholar.org/paper/22888dbfa968162e66e23e8dbf1fcee6db41b540",
+              "ids": {
+                "semantic": "22888dbfa968162e66e23e8dbf1fcee6db41b540"
+              }
+            }
+          ]
+        }
+      ],
+      "count": 2
+    },
+    "improved-e-value-thresholds": {
+      "title": "Improved E-Value Thresholds with Applications to Multiple and Sequential Testing",
+      "google_count": 0,
+      "semantic_count": 0,
+      "citations": [],
+      "count": 0
+    }
+  }
+}

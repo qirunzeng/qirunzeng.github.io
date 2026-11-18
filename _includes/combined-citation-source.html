@@ -1,0 +1,6 @@
+<p class="page-stats__source">
+  <a href="https://scholar.google.com/citations?user={{ site.data.citation_sources.google_author_id }}&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a> ∪
+  <a href="https://www.semanticscholar.org/author/{{ site.data.citation_sources.semantic_author_id }}" target="_blank" rel="noopener noreferrer">Semantic Scholar</a>
+  · <time datetime="{{ site.data.combined_citations.updated_at }}">{{ site.data.combined_citations.updated_at | date: '%b %-d, %Y' }}</time>
+  {% unless page.url == '/citations/' %}· <a href="{{ '/citations/' | relative_url }}">Citation list</a>{% endunless %}
+</p>

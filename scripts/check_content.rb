@@ -39,6 +39,12 @@ module ContentChecks
       errors << "Unknown venue group for #{paper['id']}" unless publications.fetch("venue_order").include?(paper["venue_group"])
       errors << "No author marked me for #{paper['id']}" unless paper.fetch("authors").any? { |author| author["me"] }
     end
+    citation_config = File.join(root, "_data/citation_sources.json")
+    if File.exist?(citation_config)
+      configured = JSON.parse(File.read(citation_config)).fetch("papers")
+      canonical = papers.map { |paper| [paper.fetch("id"), paper.fetch("title")] }.sort
+      errors << "Citation sources must match every publication ID and title" unless configured.map { |paper| [paper.fetch("id"), paper.fetch("title")] }.sort == canonical
+    end
     features = JSON.parse(File.read(File.join(root, "_data/features.json")))
     errors << "scholar_enabled must be a JSON boolean" unless [true, false].include?(features["scholar_enabled"])
     versions = JSON.parse(File.read(File.join(root, "_data/assets.json")))

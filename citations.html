@@ -1,0 +1,33 @@
+---
+layout: default
+title: "Citations"
+permalink: /citations/
+description: "Combined deduplicated citation records for research publications by Qirun Zeng."
+---
+<section class="page-section page-section--first">
+  {% include section-heading.html level=1 title="Citation records" %}
+  {% if site.data.features.scholar_enabled == true and site.data.combined_citations %}
+    {% include combined-stats.html %}
+    <p class="citation-note">Citing papers are deduplicated for each publication. A paper citing multiple publications contributes once to each. Updated weekly.</p>
+    {% for configured in site.data.citation_sources.papers %}
+      {% assign paper = site.data.combined_citations.papers[configured.id] %}
+      <section class="citation-records" id="citations-{{ configured.id }}">
+        <h2>{{ paper.title }}</h2>
+        <p class="citation-note">{{ paper.count }} combined · Google Scholar {{ paper.google_count }} · Semantic Scholar {{ paper.semantic_count }}</p>
+        {% if paper.count > 0 %}
+          <ol>
+            {% for citing in paper.citations %}
+              <li>
+                {% if citing.url != empty %}<a href="{{ citing.url | escape }}" target="_blank" rel="noopener noreferrer">{{ citing.title | escape }}</a>{% else %}{{ citing.title | escape }}{% endif %}
+                <p class="citation-note">{{ citing.authors | join: ', ' | escape }}{% if citing.year %} · {{ citing.year }}{% endif %}</p>
+                <p class="citation-note">{% for source in citing.sources %}{% if source == 'google' %}Google Scholar{% else %}Semantic Scholar{% endif %}{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
+              </li>
+            {% endfor %}
+          </ol>
+        {% endif %}
+      </section>
+    {% endfor %}
+  {% else %}
+    <p>Citation records are currently unavailable.</p>
+  {% endif %}
+</section>

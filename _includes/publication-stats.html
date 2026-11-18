@@ -6,12 +6,16 @@
       {% if metric.scholar_key %}
         {% unless site.data.features.scholar_enabled == true %}{% continue %}{% endunless %}
         {% assign metric_value = site.data.scholar[metric.scholar_key] %}
+        {% if site.data.combined_citations %}
+          {% if metric.scholar_key == 'i10_index' %}{% continue %}{% endif %}
+          {% assign metric_value = site.data.combined_citations[metric.scholar_key] %}
+        {% endif %}
       {% elsif metric.publication_key %}
         {% assign metric_value = site.data.publications[metric.publication_key] | size %}
       {% else %}
         {% assign metric_value = metric.value %}
       {% endif %}
-      {% if metric_value and metric_value > 0 %}
+      {% if metric_value and metric_value > 0 or metric.scholar_key %}
         <div>
           <dt>{{ metric.label }}</dt>
           <dd>{{ metric_value }}</dd>
@@ -54,7 +58,11 @@
       </dl>
     </details>
     {% if site.data.features.scholar_enabled == true %}
+      {% if site.data.combined_citations %}
+        {% include combined-citation-source.html %}
+      {% else %}
       <p class="page-stats__source"><a href="{{ site.data.publication_citations.source_url }}" target="_blank" rel="noopener noreferrer">{{ site.data.publication_citations.source }}</a> · <time datetime="{{ site.data.publication_citations.last_checked_at }}">{{ site.data.publication_citations.last_checked_at | date: '%b %-d, %Y' }}</time></p>
+      {% endif %}
     {% endif %}
   </div>
 </section>

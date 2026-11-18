@@ -20,6 +20,7 @@
   <ul class="profile__links">
     {% for link in profile.links %}
       {% if link.icon == 'google-scholar' and site.data.features.scholar_enabled != true %}{% continue %}{% endif %}
+      {% if link.icon == 'semantic-scholar' and site.data.features.scholar_enabled != true %}{% continue %}{% endif %}
       {% if link.icon == 'email' %}
         {% assign encoded_email = profile.email | url_encode %}
         {% assign link_url = 'https://mail.google.com/mail/?view=cm&fs=1&to=' | append: encoded_email %}
