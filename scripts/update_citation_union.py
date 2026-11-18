@@ -85,13 +85,13 @@ def identifiers(urls, external=None):
 
 def google_record(item):
     info = item.get('publication_info') or {}
-    authors = [a['name'] for a in info.get('authors', []) if a.get('name')]
-    summary = info.get('summary', '')
+    authors = [a['name'] for a in (info.get('authors') or []) if a.get('name')]
+    summary = info.get('summary') or ''
     if not authors and ' - ' in summary:
         authors = [name.strip() for name in summary.split(' - ', 1)[0].split(',')]
     year = re.search(r'\b(?:19|20)\d{2}\b', summary)
     url = item.get('link') or ''
-    urls = [url] + [r.get('link', '') for r in item.get('resources', [])]
+    urls = [url] + [r.get('link') or '' for r in (item.get('resources') or [])]
     return {
         'source': 'google', 'title': html.unescape(item['title']),
         'authors': authors, 'year': int(year[0]) if year else None,
@@ -182,6 +182,7 @@ def fetch(config):
     for paper in config['papers']:
         ga = uniquely_match(articles, paper['title'])
         sa = uniquely_match(semantic, paper['title'])
+        print(f"Collecting citing lists for {paper['id']}", flush=True)
         google_rows, google_count = google_citations(ga)
         expected = nonnegative(sa.get('citationCount'))
         semantic_rows = semantic_pages('paper/' + sa['paperId'] + '/citations', 'title,authors,year,externalIds,url') if expected else []

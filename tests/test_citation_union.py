@@ -83,6 +83,13 @@ class UnionTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 union.google_citations(article)
 
+    def test_google_nullable_metadata(self):
+        item = {'title': 'Paper', 'result_id': '123', 'link': None, 'resources': None,
+                'publication_info': {'summary': None, 'authors': None}}
+        result = union.google_record(item)
+        self.assertEqual(result['authors'], [])
+        self.assertIsNone(result['year'])
+
     def test_semantic_pagination(self):
         with patch.object(union.time, 'sleep'), patch.object(union, 'request_json', side_effect=[
             {'data': [1], 'next': 1}, {'data': [2]},
