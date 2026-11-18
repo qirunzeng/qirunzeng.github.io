@@ -7,6 +7,10 @@
   function updateButton(theme) {
     var next = theme === 'dark' ? 'light' : 'dark';
     button.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+    var themeColor = document.querySelector('meta[name="theme-color"]');
+    if (themeColor) {
+      themeColor.setAttribute('content', getComputedStyle(root).getPropertyValue('--canvas').trim());
+    }
   }
 
   updateButton(root.dataset.theme || 'light');

@@ -9,6 +9,7 @@ description: "Combined deduplicated citation records for research publications b
   {% if site.data.features.scholar_enabled == true and site.data.combined_citations %}
     {% include combined-stats.html %}
     <p class="citation-note">Citing papers are deduplicated for each publication. A paper citing multiple publications contributes once to each. Updated weekly.</p>
+    <div class="citation-overview">
     {% for configured in site.data.citation_sources.papers %}
       {% assign paper = site.data.combined_citations.papers[configured.id] %}
       <section class="citation-records" id="citations-{{ configured.id }}">
@@ -17,6 +18,7 @@ description: "Combined deduplicated citation records for research publications b
         <p class="citation-note">{{ paper.count }} combined · Google Scholar {{ paper.google_count }} · Semantic Scholar {{ paper.semantic_count }}</p>
       </section>
     {% endfor %}
+    </div>
   {% else %}
     <p>Citation records are currently unavailable.</p>
   {% endif %}

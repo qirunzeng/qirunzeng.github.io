@@ -127,7 +127,7 @@ with `allow_decrease` enabled after checking the public profile.
 
 ## Combined citation metrics
 
-The homepage and Publications show citations and h-index from
+Publications and the citation overview show citations and h-index from
 `_data/combined_citations.json`. The source label links to both profiles and to
 `/citations/`, which lists papers and their citation counts. Each paper has its
 own `/citations/<paper-id>/` page containing deduplicated citing works and their
@@ -236,8 +236,12 @@ python3 -m unittest discover -s tests -p 'test_*.py' -v
 ## Design and performance
 
 The site follows Apple HIG principles of hierarchy, alignment, consistent
-spacing, and progressive disclosure while retaining its warm neutral and
-Chengheng ink-blue palette. It uses system fonts, native HTML disclosures,
+spacing, and progressive disclosure. Theme tokens reference Chengheng's
+`AppTheme.qml`: white surfaces and #236782 accents in light mode, charcoal
+#1e1e1e surfaces and #86b9cf accents in dark mode, with shared neutral borders,
+6px control radii and 8px portrait/brand radii. Navigation uses a muted selected
+background, profile links use compact hover rows, and charts use the same
+adaptive palette. It uses system fonts, native HTML disclosures,
 static SVG charts, and no external fonts, frameworks, or runtime dependencies.
 Light and dark themes share semantic color tokens, visible keyboard focus,
 and reduced-motion support. The header is a solid surface, without glass,
@@ -263,19 +267,23 @@ its combined four-account charts remain a collapsed nested native disclosure. Al
 HTML and works without JavaScript.
 
 All pages share a 1120px maximum shell, a 200px desktop profile column,
-and a 48px column gap. Below 900px they use one column, with profile links
+and a 40px column gap. Below 900px they use one column, with profile links
 following the main content. Horizontal gutters are 24px, or 16px on phones.
 The desktop profile remains fixed and scrolls independently in short windows.
-The mobile header uses two rows to keep navigation and theme controls visible.
+The mobile header uses one compact row with the QZ home mark, navigation and
+theme control. Navigation keeps 44px touch targets; desktop controls use 32px.
+Citation overviews use compact paper rows and individual pages share the same
+title, source, list and pagination spacing. The theme control updates browser
+chrome from the active CSS canvas color.
 The footer aligns with the main column and has one top separator.
 
 CSS tokens define spacing (4/8/12/16/24/32/48px), type, weights (400/500/600),
 radii, and separators. Page titles use 32px on desktop and 28px on phones;
 section headings use 20px/18px, paper and course titles 17px, body text 16px,
-secondary information 13px, and tags 12px. Section gaps are 48px/32px;
-heading-to-content spacing is 16px. Dividers appear only below the header,
+secondary information 13px, and tags 12px. Section gaps are 32px/24px;
+heading-to-content spacing is 12px. Dividers appear only below the header,
 between adjacent publications or courses, and above the footer; adjacent
-entries have 16px padding on each side of their divider. Section headings,
+entries have 12px padding on each side of their divider. Section headings,
 news, service, and programming use alignment and whitespace instead.
 
 Paper, Code, and course-material tags share transparent backgrounds, muted
@@ -287,8 +295,11 @@ an empty line. The native script measures the final line after layout and on
 resize; without JavaScript the tags follow the venue in normal inline flow.
 A native Details disclosure reveals dates, DOIs, citations, and
 the full abstract together, with identical spacing on desktop and mobile.
-Publication statistics use a compact
-metric strip, with venue details expanded on demand. Scholar visibility still
+Publication statistics use equal-width columns across the main content,
+with at most two columns on narrow phones and venue details expanded on demand.
+Their 20px values and muted 13px labels remain distinct from page headings.
+The citation overview pairs its two metrics with a wrapping source/date line.
+The homepage introduction contains no citation metrics. Scholar visibility still
 uses the shared feature switch. Decorative number circles and timeline
 markers are removed.
 

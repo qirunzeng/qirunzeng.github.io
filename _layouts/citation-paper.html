@@ -4,7 +4,7 @@ layout: default
 {% assign paper = site.data.combined_citations.papers[page.paper_id] %}
 <section class="page-section page-section--first">
   {% include section-heading.html level=1 title="Citation records" %}
-  <p><a href="{{ '/citations/' | relative_url }}">← All papers</a></p>
+  <p class="citation-back"><a href="{{ '/citations/' | relative_url }}">← All papers</a></p>
   <section class="citation-records">
     <h2>{{ paper.title }}</h2>
     {% if site.data.features.scholar_enabled == true %}

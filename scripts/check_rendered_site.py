@@ -103,7 +103,9 @@ def check_site(root, scholar):
                 errors.append(f'Publication missing citation-page link for {paper_id}')
             if not paper['count'] and 'No citations recorded in the latest update.' not in detail:
                 errors.append(f'{relative}: missing empty citation state')
-        for path in ('index.html', 'publications/index.html'):
+        if 'aria-label="Combined citation statistics"' in texts[root / 'index.html']:
+            errors.append('Homepage introduction must not contain citation statistics')
+        for path in ('publications/index.html', 'citations/index.html'):
             text = texts[root / path]
             for label, key in (('Citations', 'total_citations'), ('h-index', 'h_index')):
                 if not re.search(r'<dt>' + label + r'</dt>\s*<dd>' + str(combined[key]) + r'</dd>', text):
