@@ -129,8 +129,10 @@ with `allow_decrease` enabled after checking the public profile.
 
 The homepage and Publications show citations and h-index from
 `_data/combined_citations.json`. The source label links to both profiles and to
-`/citations/`, which lists each deduplicated citing paper and its sources.
-Per-paper Cited by links use these same combined counts. Google-only snapshots
+`/citations/`, which lists papers and their citation counts. Each paper has its
+own `/citations/<paper-id>/` page containing deduplicated citing works and their
+sources, with previous/next paper navigation. Per-paper Cited by links open that
+paper's page using the same combined count. Google-only snapshots
 remain available for source checks. The Semantic Scholar sidebar mark uses the
 locally embedded Simple Icons path, alongside 32px desktop link rows. Mobile
 links retain 44px click targets.
@@ -161,7 +163,8 @@ checks and deduplication all finish before one atomic snapshot write. A failure
 retains the previous snapshot and its date, and fails the Actions run. The
 shared Scholar switch hides both sources, metrics and citation records and
 skips union network collection. After adding a publication, add its ID and title
-to the citation sources file; content checks reject incomplete configurations.
+to the citation sources file and add a matching page under `citations/` using
+the `citation-paper` layout; content checks reject incomplete configurations.
 
 ## Programming statistics
 

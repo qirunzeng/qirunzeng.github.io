@@ -44,6 +44,11 @@ module ContentChecks
       configured = JSON.parse(File.read(citation_config)).fetch("papers")
       canonical = papers.map { |paper| [paper.fetch("id"), paper.fetch("title")] }.sort
       errors << "Citation sources must match every publication ID and title" unless configured.map { |paper| [paper.fetch("id"), paper.fetch("title")] }.sort == canonical
+      citation_pages = Dir.glob(File.join(root, "citations/*.html")).map { |path| YAML.load_file(path) }
+      errors << "Each publication needs one citation page" unless citation_pages.map { |page| page.fetch("paper_id") }.sort == ids.sort
+      citation_pages.each do |page|
+        errors << "Invalid citation page route" unless page["layout"] == "citation-paper" && page["permalink"] == "/citations/#{page['paper_id']}/"
+      end
     end
     features = JSON.parse(File.read(File.join(root, "_data/features.json")))
     errors << "scholar_enabled must be a JSON boolean" unless [true, false].include?(features["scholar_enabled"])

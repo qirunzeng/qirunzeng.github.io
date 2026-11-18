@@ -1,0 +1,48 @@
+---
+layout: default
+---
+{% assign paper = site.data.combined_citations.papers[page.paper_id] %}
+<section class="page-section page-section--first">
+  {% include section-heading.html level=1 title="Citation records" %}
+  <p><a href="{{ '/citations/' | relative_url }}">← All papers</a></p>
+  <section class="citation-records">
+    <h2>{{ paper.title }}</h2>
+    {% if site.data.features.scholar_enabled == true %}
+      <p class="citation-note">{{ paper.count }} combined · Google Scholar {{ paper.google_count }} · Semantic Scholar {{ paper.semantic_count }}</p>
+      {% include combined-citation-source.html %}
+      {% if paper.count > 0 %}
+        <ol>
+          {% for citing in paper.citations %}
+            <li class="citation-entry">
+              {% if citing.url != empty %}<a href="{{ citing.url | escape }}" target="_blank" rel="noopener noreferrer">{{ citing.title | escape }}</a>{% else %}{{ citing.title | escape }}{% endif %}
+              <p class="citation-note">{{ citing.authors | join: ', ' | escape }}{% if citing.year %} · {{ citing.year }}{% endif %}</p>
+              <p class="citation-note">{% for source in citing.sources %}{% if source == 'google' %}Google Scholar{% else %}Semantic Scholar{% endif %}{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
+            </li>
+          {% endfor %}
+        </ol>
+      {% else %}
+        <p>No citations recorded in the latest update.</p>
+      {% endif %}
+      <nav class="citation-pagination" aria-label="Citation pages by paper">
+        {% for configured in site.data.citation_sources.papers %}
+          {% if configured.id == page.paper_id %}
+            {% unless forloop.first %}
+              {% assign previous_index = forloop.index0 | minus: 1 %}
+              {% assign previous = site.data.citation_sources.papers[previous_index] %}
+              {% assign previous_url = '/citations/' | append: previous.id | append: '/' %}
+              <a href="{{ previous_url | relative_url }}" rel="prev" aria-label="Previous paper: {{ previous.title | escape }}">← Previous paper</a>
+            {% endunless %}
+            {% unless forloop.last %}
+              {% assign next_index = forloop.index0 | plus: 1 %}
+              {% assign next = site.data.citation_sources.papers[next_index] %}
+              {% assign next_url = '/citations/' | append: next.id | append: '/' %}
+              <a href="{{ next_url | relative_url }}" rel="next" aria-label="Next paper: {{ next.title | escape }}">Next paper →</a>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </nav>
+    {% else %}
+      <p>Citation records are currently unavailable.</p>
+    {% endif %}
+  </section>
+</section>

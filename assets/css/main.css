@@ -609,8 +609,6 @@ button, a {
 }
 .page-stats--home .page-stats__source {
   margin-top: var(--space-2);
-  color: var(--muted);
-  font-size: var(--text-meta);
 }
 .citation-records {
   margin-top: var(--space-8);
@@ -626,6 +624,17 @@ button, a {
   margin: var(--space-1) 0;
   color: var(--muted);
   font-size: var(--text-meta);
+}
+.citation-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+  font-size: var(--text-meta);
+}
+.citation-pagination a[rel="next"] {
+  margin-inline-start: auto;
 }
 .page-stats__metrics {
   display: grid;
@@ -686,6 +695,8 @@ button, a {
 .page-stats__source {
   margin: 0;
   padding-block: var(--space-1);
+  color: var(--muted);
+  font-size: var(--text-meta);
 }
 .page-stats__source a {
   color: inherit;

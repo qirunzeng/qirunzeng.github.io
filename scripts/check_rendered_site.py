@@ -89,6 +89,20 @@ def check_site(root, scholar):
     publications = texts[root / "publications/index.html"]
     if scholar:
         combined = json.loads((Path(__file__).resolve().parents[1] / '_data/combined_citations.json').read_text())
+        index = texts[root / 'citations/index.html']
+        if 'class="citation-entry"' in index:
+            errors.append('Citation overview must not contain citing-paper lists')
+        for paper_id, paper in combined['papers'].items():
+            relative = f'citations/{paper_id}/index.html'
+            detail = texts.get(root / relative, '')
+            if detail.count('class="citation-entry"') != paper['count']:
+                errors.append(f'{relative}: incorrect number of citing papers')
+            if f'/citations/{paper_id}/' not in index:
+                errors.append(f'Citation overview missing link for {paper_id}')
+            if paper['count'] and f'/citations/{paper_id}/' not in publications:
+                errors.append(f'Publication missing citation-page link for {paper_id}')
+            if not paper['count'] and 'No citations recorded in the latest update.' not in detail:
+                errors.append(f'{relative}: missing empty citation state')
         for path in ('index.html', 'publications/index.html'):
             text = texts[root / path]
             for label, key in (('Citations', 'total_citations'), ('h-index', 'h_index')):

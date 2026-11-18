@@ -43,7 +43,8 @@
             {% if include.paper.doi %}<a class="publication__doi" href="https://doi.org/{{ include.paper.doi }}" target="_blank" rel="noopener noreferrer">DOI {{ include.paper.doi }}</a>{% endif %}
             {% if site.data.features.scholar_enabled == true %}
               {% if combined and combined.count > 0 %}
-                <a class="publication__citations" href="{{ '/citations/' | relative_url }}#citations-{{ include.paper.id }}">Cited by {{ combined.count }}</a>
+                {% assign citation_url = '/citations/' | append: include.paper.id | append: '/' %}
+                <a class="publication__citations" href="{{ citation_url | relative_url }}">Cited by {{ combined.count }}</a>
               {% elsif combined == nil and citation and citation.citations > 0 %}
                 <a class="publication__citations" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=sITttdEAAAAJ&amp;citation_for_view={{ citation.scholar_id }}" target="_blank" rel="noopener noreferrer">Cited by {{ citation.citations }}</a>
               {% endif %}
